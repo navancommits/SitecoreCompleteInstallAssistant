@@ -1,4 +1,4 @@
-# SitecoreCommerceInstaller
+# SitecoreCommerceInstaller (SCIA)
 The #Sitecore Commerce Install Assistant (SCIA) built as a #dotnetcore 2019 Windows Application, it can -
 
 1. Generate install and uninstall scripts for Sitecore Commerce 10
