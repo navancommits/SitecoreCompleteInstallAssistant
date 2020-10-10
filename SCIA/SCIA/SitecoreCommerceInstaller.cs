@@ -733,7 +733,7 @@ namespace SCIA
         private void btnInstall_Click(object sender, EventArgs e)
         {
             string portString = string.Empty;
-            ValidateAll();
+            if (!ValidateAll()) return;
             if (IsPortDuplicated(AddPortstoArray())) { lblStatus.Text = "Duplicate port numbers detected! provide unique port numbers...."; return; }
             if (!Directory.Exists(txtSXAInstallDir.Text))
             {
@@ -765,78 +765,83 @@ namespace SCIA
             txtSearchIndexPrefix.Text = txtSiteName.Text;
         }
 
-        private void ValidateAll()
+        private bool ValidateAll()
         {
-            ValidateData(txtSiteName, "Site Name");
-            ValidateData(txtIDServerSiteName, "ID Server Site Name");
-            ValidateData(txtSitecoreIdentityServerUrl, "Sitecore Id Server Url");
-            ValidateData(txtCommerceEngineConnectClientId, "Sitecore Commerce Connect Client Id");
-            ValidateData(txtCommerceEngineConnectClientSecret, "Sitecore Commerce Connect Client Secret");
-            ValidateData(txtSiteHostHeaderName, "Site Host Header Name");
+            if (!ValidateData(txtSiteName, "Site Name")) return false;
+            if (!ValidateData(txtIDServerSiteName, "ID Server Site Name")) return false;
+            if (!ValidateData(txtSitecoreIdentityServerUrl, "Sitecore Id Server Url")) return false;
+            if (!ValidateData(txtCommerceEngineConnectClientId, "Sitecore Commerce Connect Client Id")) return false;
+            if (!ValidateData(txtCommerceEngineConnectClientSecret, "Sitecore Commerce Connect Client Secret")) return false;
+            if (!ValidateData(txtSiteHostHeaderName, "Site Host Header Name")) return false;
 
-            ValidateData(txtSXAInstallDir, "Sitecore SXA Install Directory");
-            ValidateData(txtxConnectInstallDir, "Sitecore xConnect Install Directory");
-            ValidateData(txtCommerceInstallRoot, "Commerce Install Root");
+            if (!ValidateData(txtSXAInstallDir, "Sitecore SXA Install Directory")) return false;
+            if (!ValidateData(txtxConnectInstallDir, "Sitecore xConnect Install Directory")) return false;
+            if (!ValidateData(txtCommerceInstallRoot, "Commerce Install Root")) return false;
 
-            ValidateData(txtSqlDbPrefix, "Sql Db Prefix");
-            ValidateData(txtSitecoreDbServer, "Sitecore Db Server");
-            ValidateData(txtSitecoreCoreDbName, "Sitecore Core Db Name");
-            ValidateData(txtSqlUser, "Sql User");
-            ValidateData(txtSqlPass, "Sql Password");
+            if (!ValidateData(txtSqlDbPrefix, "Sql Db Prefix")) return false;
+            if (!ValidateData(txtSitecoreDbServer, "Sitecore Db Server")) return false;
+            if (!ValidateData(txtSitecoreCoreDbName, "Sitecore Core Db Name")) return false;
+            if (!ValidateData(txtSqlUser, "Sql User")) return false;
+            if (!ValidateData(txtSqlPass, "Sql Password")) return false;
 
-            ValidateData(txtSitecoreDomain, "Sitecore Domain");
-            ValidateData(txtSitecoreUsername, "Sitecore Username");
-            ValidateData(txtSitecoreUserPassword, "Sitecore User Password");
+            if (!ValidateData(txtSitecoreDomain, "Sitecore Domain")) return false;
+            if (!ValidateData(txtSitecoreUsername, "Sitecore Username")) return false;
+            if (!ValidateData(txtSitecoreUserPassword, "Sitecore User Password")) return false;
 
-            ValidateData(txtSearchIndexPrefix, "Search Index Prefix");
-            ValidateData(txtSolrUrl, "Solr Url");
-            ValidateData(txtSolrRoot, "Solr Root Path");
-            ValidateData(txtSolrService, "Solr Service Name");
-            ValidateData(txtStorefrontIndexPrefix, "Storefront Index Prefix");
+            if (!ValidateData(txtSearchIndexPrefix, "Search Index Prefix")) return false;
+            if (!ValidateData(txtSolrUrl, "Solr Url")) return false;
+            if (!ValidateData(txtSolrRoot, "Solr Root Path")) return false;
+            if (!ValidateData(txtSolrService, "Solr Service Name")) return false;
+            if (!ValidateData(txtStorefrontIndexPrefix, "Storefront Index Prefix")) return false;
 
-            ValidateData(txtRedisHost, "Redis Host");
-            ValidatePortNumber(txtRedisPort, "Redis Port");
+            if (!ValidateData(txtRedisHost, "Redis Host")) return false;
+            if (!ValidatePortNumber(txtRedisPort, "Redis Port")) return false;
 
-            ValidateData(txtCommerceServicesDBServer, "Commerce DB Server");
-            ValidateData(txtCommerceDbName, "Commerce DB Name");
-            ValidateData(txtCommerceGlobalDbName, "Sitecore Commerce Global Db Name");
-            ValidateData(txtCommerceSvcPostFix, "Sitecore Commerce Svc Post Fix");
-            ValidateData(txtCommerceServicesHostPostFix, "Sitecore Commerce Svc Host Post Fix");
+            if (!ValidateData(txtCommerceServicesDBServer, "Commerce DB Server")) return false;
+            if (!ValidateData(txtCommerceDbName, "Commerce DB Name")) return false;
+            if (!ValidateData(txtCommerceGlobalDbName, "Sitecore Commerce Global Db Name")) return false;
+            if (!ValidateData(txtCommerceSvcPostFix, "Sitecore Commerce Svc Post Fix")) return false;
+            if (!ValidateData(txtCommerceServicesHostPostFix, "Sitecore Commerce Svc Host Post Fix")) return false;
 
-            ValidatePortNumber(txtCommerceOpsSvcPort, "Commerce Ops Svc Port");
-            ValidatePortNumber(txtCommerceShopsServicesPort, "Commerce Shops Svc Port");
-            ValidatePortNumber(txtCommerceAuthSvcPort, "Commerce Auth Svc Port");
-            ValidatePortNumber(txtCommerceMinionsSvcPort, "Commerce Minions Svc Port");
-            ValidatePortNumber(txtBizFxPort, "BizFx Port Number");
-            ValidateData(txtBizFxName, "BizFx Name");
+            if (!ValidatePortNumber(txtCommerceOpsSvcPort, "Commerce Ops Svc Port")) return false;
+            if (!ValidatePortNumber(txtCommerceShopsServicesPort, "Commerce Shops Svc Port")) return false;
+            if (!ValidatePortNumber(txtCommerceAuthSvcPort, "Commerce Auth Svc Port")) return false;
+            if (!ValidatePortNumber(txtCommerceMinionsSvcPort, "Commerce Minions Svc Port")) return false;
+            if (!ValidatePortNumber(txtBizFxPort, "BizFx Port Number")) return false;
+            if (!ValidateData(txtBizFxName, "BizFx Name")) return false;
 
-            ValidateData(txtUserDomain, "Win User Domain");
-            ValidateData(txtUserName, "Win User Name");
-            ValidateData(txtUserPassword, "Win User Password");
+            if (!ValidateData(txtUserDomain, "Win User Domain")) return false;
+            if (!ValidateData(txtUserName, "Win User Name")) return false;
+            if (!ValidateData(txtUserPassword, "Win User Password")) return false;
 
             /*
             Braintree
             */
+            return true;
         }
 
-        private void ValidateData(TextBox control, string controlString)
+        private bool ValidateData(TextBox control, string controlString)
         {
+            bool Valid = true;
             if (string.IsNullOrWhiteSpace(control.Text))
             {
                 lblStatus.Text = "Tested! " + controlString + " needed... ";
                 lblStatus.ForeColor = Color.Red;
-                return;
+                Valid = false;
             }
+            return Valid;
         }
 
-        private void ValidatePortNumber(NumericUpDown control, string controlString)
+        private bool ValidatePortNumber(NumericUpDown control, string controlString)
         {
+            bool Valid = true;
             if (control.Value<1024)
             {
                 lblStatus.Text = controlString + " must be between 1024 to 49151... ";
                 lblStatus.ForeColor = Color.Red;
-                return;
+                Valid = false;
             }
+            return Valid;
         }
 
         private bool IsPortDuplicated(List<int> ports)
@@ -876,7 +881,7 @@ namespace SCIA
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             string portString = string.Empty;
-            ValidateAll();
+            if (!ValidateAll()) return;
             if (IsPortDuplicated(AddPortstoArray())) { lblStatus.Text = "Duplicate port numbers detected! Provide unique port numbers...."; return; }
             if (!Directory.Exists(txtSXAInstallDir.Text))
             {
@@ -944,24 +949,24 @@ namespace SCIA
 
         private void btnUninstall_Click(object sender, EventArgs e)
         {
-            string portString = string.Empty;
-            ValidateAll();
-            if (IsPortDuplicated(AddPortstoArray())) { lblStatus.Text = "Duplicate port numbers detected! Provide unique port numbers...."; return; }
-            if (!Directory.Exists(txtSXAInstallDir.Text))
-            {
-                lblStatus.Text = "Missing Directory! Install SXA-site at - " + txtSXAInstallDir.Text;
-                lblStatus.ForeColor = Color.Red;
-                return;
-            }
-            if (!Directory.Exists(txtSXAInstallDir.Text + "\\App_Config\\Modules\\SXA"))
-            {
-                lblStatus.Text = txtSiteName.Text + " is not an SXA-enabled site";
-                lblStatus.ForeColor = Color.Red;
-                return;
-            }
-            portString = StatusMessageBuilder(portString);
-            if (!string.IsNullOrWhiteSpace(portString))
-            { lblStatus.Text = "Port(s) in use... provide different numbers for - " + portString; lblStatus.ForeColor = Color.Red; }
+            //string portString = string.Empty;
+            //if (!ValidateAll()) return;
+            //if (IsPortDuplicated(AddPortstoArray())) { lblStatus.Text = "Duplicate port numbers detected! Provide unique port numbers...."; return; }
+            //if (!Directory.Exists(txtSXAInstallDir.Text))
+            //{
+            //    lblStatus.Text = "Missing Directory! Install SXA-site at - " + txtSXAInstallDir.Text;
+            //    lblStatus.ForeColor = Color.Red;
+            //    return;
+            //}
+            //if (!Directory.Exists(txtSXAInstallDir.Text + "\\App_Config\\Modules\\SXA"))
+            //{
+            //    lblStatus.Text = txtSiteName.Text + " is not an SXA-enabled site";
+            //    lblStatus.ForeColor = Color.Red;
+            //    return;
+            //}
+            //portString = StatusMessageBuilder(portString);
+            //if (!string.IsNullOrWhiteSpace(portString))
+            //{ lblStatus.Text = "Port(s) in use... provide different numbers for - " + portString; lblStatus.ForeColor = Color.Red; }
            
             WriteFile(txtSiteName.Text + "_UnInstall_Script.ps1", true);
             LaunchPSScript(txtSiteName.Text + "_UnInstall_Script.ps1");
