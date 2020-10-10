@@ -185,6 +185,7 @@
             this.txtSiteName.TabIndex = 2;
             this.txtSiteName.Text = "scom10sxa.dev.local";
             this.txtSiteName.TextChanged += new System.EventHandler(this.txtSiteName_TextChanged);
+            this.txtSiteName.Leave += new System.EventHandler(this.txtSiteName_Leave);
             // 
             // txtIDServerSiteName
             // 
@@ -194,6 +195,8 @@
             this.txtIDServerSiteName.Size = new System.Drawing.Size(593, 27);
             this.txtIDServerSiteName.TabIndex = 3;
             this.txtIDServerSiteName.Text = "scom10sxaIdentityserver.dev.local";
+            this.txtIDServerSiteName.TextChanged += new System.EventHandler(this.txtIDServerSiteName_TextChanged);
+            this.txtIDServerSiteName.Leave += new System.EventHandler(this.txtIDServerSiteName_Leave);
             // 
             // label2
             // 
@@ -260,16 +263,17 @@
             this.txtSiteHostHeaderName.Name = "txtSiteHostHeaderName";
             this.txtSiteHostHeaderName.Size = new System.Drawing.Size(593, 27);
             this.txtSiteHostHeaderName.TabIndex = 7;
+            this.txtSiteHostHeaderName.Leave += new System.EventHandler(this.txtSiteHostHeaderName_Leave);
             // 
             // txtCommerceEngineConnectClientSecret
             // 
-            this.txtCommerceEngineConnectClientSecret.Enabled = false;
             this.txtCommerceEngineConnectClientSecret.Location = new System.Drawing.Point(179, 113);
             this.txtCommerceEngineConnectClientSecret.MaxLength = 100;
             this.txtCommerceEngineConnectClientSecret.Name = "txtCommerceEngineConnectClientSecret";
             this.txtCommerceEngineConnectClientSecret.Size = new System.Drawing.Size(593, 27);
             this.txtCommerceEngineConnectClientSecret.TabIndex = 6;
             this.txtCommerceEngineConnectClientSecret.Text = "fe6g2c5+YBGh5180qjB6N91nKGNn+gvgS0n51ixHnNY=";
+            this.txtCommerceEngineConnectClientSecret.Leave += new System.EventHandler(this.txtCommerceEngineConnectClientSecret_Leave);
             // 
             // label8
             // 
@@ -282,7 +286,6 @@
             // 
             // txtCommerceEngineConnectClientId
             // 
-            this.txtCommerceEngineConnectClientId.Enabled = false;
             this.txtCommerceEngineConnectClientId.Location = new System.Drawing.Point(179, 80);
             this.txtCommerceEngineConnectClientId.MaxLength = 50;
             this.txtCommerceEngineConnectClientId.Name = "txtCommerceEngineConnectClientId";
@@ -315,6 +318,8 @@
             this.txtSitecoreIdentityServerUrl.Name = "txtSitecoreIdentityServerUrl";
             this.txtSitecoreIdentityServerUrl.Size = new System.Drawing.Size(593, 27);
             this.txtSitecoreIdentityServerUrl.TabIndex = 4;
+            this.txtSitecoreIdentityServerUrl.TextChanged += new System.EventHandler(this.txtSitecoreIdentityServerUrl_TextChanged);
+            this.txtSitecoreIdentityServerUrl.Leave += new System.EventHandler(this.txtSitecoreIdentityServerUrl_Leave);
             // 
             // tabPage3
             // 
@@ -347,6 +352,7 @@
             this.txtCommerceInstallRoot.Size = new System.Drawing.Size(593, 27);
             this.txtCommerceInstallRoot.TabIndex = 10;
             this.txtCommerceInstallRoot.Text = "c:\\inetpub\\wwwroot";
+            this.txtCommerceInstallRoot.Leave += new System.EventHandler(this.txtCommerceInstallRoot_Leave);
             // 
             // txtxConnectInstallDir
             // 
@@ -356,6 +362,7 @@
             this.txtxConnectInstallDir.Size = new System.Drawing.Size(593, 27);
             this.txtxConnectInstallDir.TabIndex = 9;
             this.txtxConnectInstallDir.Text = "c:\\inetpub\\wwwroot";
+            this.txtxConnectInstallDir.Leave += new System.EventHandler(this.txtxConnectInstallDir_Leave);
             // 
             // label5
             // 
@@ -374,6 +381,7 @@
             this.txtSXAInstallDir.Size = new System.Drawing.Size(593, 27);
             this.txtSXAInstallDir.TabIndex = 8;
             this.txtSXAInstallDir.Text = "c:\\inetpub\\wwwroot";
+            this.txtSXAInstallDir.Leave += new System.EventHandler(this.txtSXAInstallDir_Leave);
             // 
             // label4
             // 
@@ -419,6 +427,7 @@
             this.txtSqlPass.Size = new System.Drawing.Size(593, 27);
             this.txtSqlPass.TabIndex = 15;
             this.txtSqlPass.UseSystemPasswordChar = true;
+            this.txtSqlPass.Leave += new System.EventHandler(this.txtSqlPass_Leave);
             // 
             // txtSqlUser
             // 
@@ -428,6 +437,7 @@
             this.txtSqlUser.Size = new System.Drawing.Size(593, 27);
             this.txtSqlUser.TabIndex = 14;
             this.txtSqlUser.Text = "sa";
+            this.txtSqlUser.Leave += new System.EventHandler(this.txtSqlUser_Leave);
             // 
             // label12
             // 
@@ -446,6 +456,8 @@
             this.txtSitecoreCoreDbName.Size = new System.Drawing.Size(593, 27);
             this.txtSitecoreCoreDbName.TabIndex = 13;
             this.txtSitecoreCoreDbName.Text = "c:\\inetpub\\wwwroot";
+            this.txtSitecoreCoreDbName.TextChanged += new System.EventHandler(this.txtSitecoreCoreDbName_TextChanged);
+            this.txtSitecoreCoreDbName.Leave += new System.EventHandler(this.txtSitecoreCoreDbName_Leave);
             // 
             // label11
             // 
@@ -473,6 +485,7 @@
             this.txtSitecoreDbServer.Size = new System.Drawing.Size(593, 27);
             this.txtSitecoreDbServer.TabIndex = 12;
             this.txtSitecoreDbServer.Text = "(local)";
+            this.txtSitecoreDbServer.Leave += new System.EventHandler(this.txtSitecoreDbServer_Leave);
             // 
             // label10
             // 
@@ -491,6 +504,7 @@
             this.txtSqlDbPrefix.Size = new System.Drawing.Size(593, 27);
             this.txtSqlDbPrefix.TabIndex = 11;
             this.txtSqlDbPrefix.Text = "scom10sxa";
+            this.txtSqlDbPrefix.Leave += new System.EventHandler(this.txtSqlDbPrefix_Leave);
             // 
             // tabPage5
             // 
@@ -524,6 +538,7 @@
             this.txtSitecoreUserPassword.TabIndex = 18;
             this.txtSitecoreUserPassword.Text = "b";
             this.txtSitecoreUserPassword.UseSystemPasswordChar = true;
+            this.txtSitecoreUserPassword.Leave += new System.EventHandler(this.txtSitecoreUserPassword_Leave);
             // 
             // txtSitecoreUsername
             // 
@@ -533,6 +548,7 @@
             this.txtSitecoreUsername.Size = new System.Drawing.Size(595, 27);
             this.txtSitecoreUsername.TabIndex = 17;
             this.txtSitecoreUsername.Text = "admin";
+            this.txtSitecoreUsername.Leave += new System.EventHandler(this.txtSitecoreUsername_Leave);
             // 
             // label15
             // 
@@ -561,6 +577,7 @@
             this.txtSitecoreDomain.Size = new System.Drawing.Size(595, 27);
             this.txtSitecoreDomain.TabIndex = 16;
             this.txtSitecoreDomain.Text = "sitecore";
+            this.txtSitecoreDomain.Leave += new System.EventHandler(this.txtSitecoreDomain_Leave);
             // 
             // tabPage6
             // 
@@ -596,6 +613,7 @@
             this.txtStorefrontIndexPrefix.Name = "txtStorefrontIndexPrefix";
             this.txtStorefrontIndexPrefix.Size = new System.Drawing.Size(592, 27);
             this.txtStorefrontIndexPrefix.TabIndex = 23;
+            this.txtStorefrontIndexPrefix.Leave += new System.EventHandler(this.txtStorefrontIndexPrefix_Leave);
             // 
             // label20
             // 
@@ -614,6 +632,7 @@
             this.txtSolrService.Size = new System.Drawing.Size(592, 27);
             this.txtSolrService.TabIndex = 22;
             this.txtSolrService.Text = "solr-8.4.0";
+            this.txtSolrService.Leave += new System.EventHandler(this.txtSolrService_Leave);
             // 
             // label19
             // 
@@ -632,6 +651,7 @@
             this.txtSolrRoot.Size = new System.Drawing.Size(592, 27);
             this.txtSolrRoot.TabIndex = 21;
             this.txtSolrRoot.Text = "C:\\Solr\\solr-8.4.0";
+            this.txtSolrRoot.Leave += new System.EventHandler(this.txtSolrRoot_Leave);
             // 
             // txtSolrUrl
             // 
@@ -640,7 +660,8 @@
             this.txtSolrUrl.Name = "txtSolrUrl";
             this.txtSolrUrl.Size = new System.Drawing.Size(592, 27);
             this.txtSolrUrl.TabIndex = 20;
-            this.txtSolrUrl.Text = "https://solr840:8988/solr";
+            this.txtSolrUrl.Text = "https://solr:8984/solr";
+            this.txtSolrUrl.Leave += new System.EventHandler(this.txtSolrUrl_Leave);
             // 
             // label18
             // 
@@ -659,6 +680,7 @@
             this.txtSearchIndexPrefix.Size = new System.Drawing.Size(592, 27);
             this.txtSearchIndexPrefix.TabIndex = 19;
             this.txtSearchIndexPrefix.Text = "sitecore";
+            this.txtSearchIndexPrefix.Leave += new System.EventHandler(this.txtSearchIndexPrefix_Leave);
             // 
             // label17
             // 
@@ -683,7 +705,6 @@
             // 
             // txtRedisPort
             // 
-            this.txtRedisPort.Enabled = false;
             this.txtRedisPort.Location = new System.Drawing.Point(176, 47);
             this.txtRedisPort.Maximum = new decimal(new int[] {
             49000,
@@ -698,6 +719,7 @@
             0,
             0,
             0});
+            this.txtRedisPort.Leave += new System.EventHandler(this.txtRedisPort_Leave);
             // 
             // label24
             // 
@@ -719,13 +741,13 @@
             // 
             // txtRedisHost
             // 
-            this.txtRedisHost.Enabled = false;
             this.txtRedisHost.Location = new System.Drawing.Point(176, 13);
             this.txtRedisHost.MaxLength = 50;
             this.txtRedisHost.Name = "txtRedisHost";
             this.txtRedisHost.Size = new System.Drawing.Size(596, 27);
             this.txtRedisHost.TabIndex = 24;
             this.txtRedisHost.Text = "localhost";
+            this.txtRedisHost.Leave += new System.EventHandler(this.txtRedisHost_Leave);
             // 
             // tabPage8
             // 
@@ -762,6 +784,7 @@
             this.txtCommerceServicesDBServer.Size = new System.Drawing.Size(567, 27);
             this.txtCommerceServicesDBServer.TabIndex = 26;
             this.txtCommerceServicesDBServer.Text = "(local)";
+            this.txtCommerceServicesDBServer.Leave += new System.EventHandler(this.txtCommerceServicesDBServer_Leave);
             // 
             // label30
             // 
@@ -788,6 +811,7 @@
             this.txtCommerceGlobalDbName.Size = new System.Drawing.Size(567, 27);
             this.txtCommerceGlobalDbName.TabIndex = 28;
             this.txtCommerceGlobalDbName.Text = "C:\\Solr\\solr-8.4.0";
+            this.txtCommerceGlobalDbName.Leave += new System.EventHandler(this.txtCommerceGlobalDbName_Leave);
             // 
             // label28
             // 
@@ -806,6 +830,7 @@
             this.txtCommerceSvcPostFix.Size = new System.Drawing.Size(567, 27);
             this.txtCommerceSvcPostFix.TabIndex = 29;
             this.txtCommerceSvcPostFix.Text = "solr-8.4.0";
+            this.txtCommerceSvcPostFix.Leave += new System.EventHandler(this.txtCommerceSvcPostFix_Leave);
             // 
             // label27
             // 
@@ -824,6 +849,7 @@
             this.txtCommerceServicesHostPostFix.Size = new System.Drawing.Size(567, 27);
             this.txtCommerceServicesHostPostFix.TabIndex = 30;
             this.txtCommerceServicesHostPostFix.Text = "solr-8.4.0";
+            this.txtCommerceServicesHostPostFix.Leave += new System.EventHandler(this.txtCommerceServicesHostPostFix_Leave);
             // 
             // txtCommerceDbName
             // 
@@ -833,6 +859,7 @@
             this.txtCommerceDbName.Size = new System.Drawing.Size(567, 27);
             this.txtCommerceDbName.TabIndex = 27;
             this.txtCommerceDbName.Text = "https://solr840:8988/solr";
+            this.txtCommerceDbName.Leave += new System.EventHandler(this.txtCommerceDbName_Leave);
             // 
             // tabPage9
             // 
@@ -1008,6 +1035,7 @@
             this.txtBizFxName.Size = new System.Drawing.Size(567, 27);
             this.txtBizFxName.TabIndex = 36;
             this.txtBizFxName.Text = "SitecoreBizFx";
+            this.txtBizFxName.Leave += new System.EventHandler(this.txtBizFxName_Leave);
             // 
             // label37
             // 
@@ -1077,7 +1105,6 @@
             this.chkDeploySampleData.AutoSize = true;
             this.chkDeploySampleData.Checked = true;
             this.chkDeploySampleData.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkDeploySampleData.Enabled = false;
             this.chkDeploySampleData.Location = new System.Drawing.Point(205, 50);
             this.chkDeploySampleData.Name = "chkDeploySampleData";
             this.chkDeploySampleData.Size = new System.Drawing.Size(161, 24);
@@ -1087,7 +1114,6 @@
             // 
             // textBox16
             // 
-            this.textBox16.Enabled = false;
             this.textBox16.Location = new System.Drawing.Point(205, 13);
             this.textBox16.Name = "textBox16";
             this.textBox16.Size = new System.Drawing.Size(567, 27);
@@ -1128,13 +1154,13 @@
             // 
             // txtUserDomain
             // 
-            this.txtUserDomain.Enabled = false;
             this.txtUserDomain.Location = new System.Drawing.Point(185, 23);
             this.txtUserDomain.MaxLength = 50;
             this.txtUserDomain.Name = "txtUserDomain";
             this.txtUserDomain.Size = new System.Drawing.Size(587, 27);
             this.txtUserDomain.TabIndex = 39;
             this.txtUserDomain.Text = "sitecore";
+            this.txtUserDomain.Leave += new System.EventHandler(this.txtUserDomain_Leave);
             // 
             // label42
             // 
@@ -1154,6 +1180,7 @@
             this.txtUserPassword.TabIndex = 41;
             this.txtUserPassword.Text = "q5Y8tA3FRMZf3xKN!";
             this.txtUserPassword.UseSystemPasswordChar = true;
+            this.txtUserPassword.Leave += new System.EventHandler(this.txtUserPassword_Leave);
             // 
             // label39
             // 
@@ -1172,6 +1199,7 @@
             this.txtUserName.Size = new System.Drawing.Size(587, 27);
             this.txtUserName.TabIndex = 40;
             this.txtUserName.Text = "CSFndRuntimeUser";
+            this.txtUserName.Leave += new System.EventHandler(this.txtUserName_Leave);
             // 
             // tabPage12
             // 
@@ -1205,6 +1233,7 @@
             this.txttxtBraintreeMerchantId.Name = "txttxtBraintreeMerchantId";
             this.txttxtBraintreeMerchantId.Size = new System.Drawing.Size(587, 27);
             this.txttxtBraintreeMerchantId.TabIndex = 42;
+            this.txttxtBraintreeMerchantId.Leave += new System.EventHandler(this.txttxtBraintreeMerchantId_Leave);
             // 
             // label45
             // 
@@ -1222,6 +1251,7 @@
             this.txtBraintreePublicKey.Name = "txtBraintreePublicKey";
             this.txtBraintreePublicKey.Size = new System.Drawing.Size(587, 27);
             this.txtBraintreePublicKey.TabIndex = 43;
+            this.txtBraintreePublicKey.Leave += new System.EventHandler(this.txtBraintreePublicKey_Leave);
             // 
             // txtBraintreePrivateKey
             // 
@@ -1230,8 +1260,8 @@
             this.txtBraintreePrivateKey.Name = "txtBraintreePrivateKey";
             this.txtBraintreePrivateKey.Size = new System.Drawing.Size(587, 27);
             this.txtBraintreePrivateKey.TabIndex = 44;
-            this.txtBraintreePrivateKey.Text = "78db5aa3f2e060b4fd1a1eb8a97b08f3";
             this.txtBraintreePrivateKey.UseSystemPasswordChar = true;
+            this.txtBraintreePrivateKey.Leave += new System.EventHandler(this.txtBraintreePrivateKey_Leave);
             // 
             // label44
             // 
@@ -1244,13 +1274,13 @@
             // 
             // txtBraintreeEnvironment
             // 
-            this.txtBraintreeEnvironment.Enabled = false;
             this.txtBraintreeEnvironment.Location = new System.Drawing.Point(185, 121);
             this.txtBraintreeEnvironment.MaxLength = 100;
             this.txtBraintreeEnvironment.Name = "txtBraintreeEnvironment";
             this.txtBraintreeEnvironment.Size = new System.Drawing.Size(587, 27);
             this.txtBraintreeEnvironment.TabIndex = 45;
             this.txtBraintreeEnvironment.Text = "sandbox";
+            this.txtBraintreeEnvironment.Leave += new System.EventHandler(this.txtBraintreeEnvironment_Leave);
             // 
             // label40
             // 
@@ -1289,6 +1319,7 @@
             this.txtSiteNamePrefix.TabIndex = 1;
             this.txtSiteNamePrefix.Text = "scom10sxa";
             this.txtSiteNamePrefix.TextChanged += new System.EventHandler(this.txtSiteNamePrefix_TextChanged);
+            this.txtSiteNamePrefix.Leave += new System.EventHandler(this.txtSiteNamePrefix_Leave);
             // 
             // label22
             // 
@@ -1342,6 +1373,7 @@
             this.txtSiteNameSuffix.TabIndex = 1;
             this.txtSiteNameSuffix.Text = ".dev.local";
             this.txtSiteNameSuffix.TextChanged += new System.EventHandler(this.txtSiteNameSuffix_TextChanged);
+            this.txtSiteNameSuffix.Leave += new System.EventHandler(this.txtSiteNameSuffix_Leave);
             // 
             // label38
             // 
@@ -1365,7 +1397,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(208, 507);
+            this.button1.Location = new System.Drawing.Point(212, 509);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(139, 38);
             this.button1.TabIndex = 46;
@@ -1375,7 +1407,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(353, 507);
+            this.button3.Location = new System.Drawing.Point(357, 509);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(120, 38);
             this.button3.TabIndex = 47;
@@ -1385,7 +1417,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(480, 507);
+            this.button4.Location = new System.Drawing.Point(484, 509);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(114, 38);
             this.button4.TabIndex = 48;

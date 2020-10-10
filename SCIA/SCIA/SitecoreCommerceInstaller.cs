@@ -425,7 +425,14 @@ namespace SCIA
             file.WriteLine("\t# The environments running the minions service. (This is required, for example, for running indexing minions).");
             file.WriteLine("\t[array]$MinionEnvironments = @(\"AdventureWorksMinions\", \"HabitatMinions\"),");
             file.WriteLine("\t# whether to deploy sample data for each environment.");
-            file.WriteLine("\t[bool]$DeploySampleData = $true,");
+            if (chkDeploySampleData.Checked)
+            {
+                file.WriteLine("\t[bool]$DeploySampleData = $true,");
+            }
+            else
+            {
+                file.WriteLine("\t[bool]$DeploySampleData = $false,");
+            }
             file.WriteLine();
             file.WriteLine("\t# The domain of the local account used for the various application pools created as part of the deployment.");
             file.WriteLine("\t[string]$UserDomain = $Env:COMPUTERNAME,");
@@ -767,78 +774,88 @@ namespace SCIA
 
         private bool ValidateAll()
         {
-            if (!ValidateData(txtSiteName, "Site Name")) return false;
-            if (!ValidateData(txtIDServerSiteName, "ID Server Site Name")) return false;
-            if (!ValidateData(txtSitecoreIdentityServerUrl, "Sitecore Id Server Url")) return false;
-            if (!ValidateData(txtCommerceEngineConnectClientId, "Sitecore Commerce Connect Client Id")) return false;
-            if (!ValidateData(txtCommerceEngineConnectClientSecret, "Sitecore Commerce Connect Client Secret")) return false;
-            if (!ValidateData(txtSiteHostHeaderName, "Site Host Header Name")) return false;
+            if (!ValidateData(txtSiteName, "Site Name",0)) return false;
+            if (!ValidateData(txtIDServerSiteName, "ID Server Site Name",0)) return false;
+            if (!ValidateData(txtSitecoreIdentityServerUrl, "Sitecore Id Server Url",0)) return false;
+            if (!ValidateData(txtCommerceEngineConnectClientId, "Sitecore Commerce Connect Client Id",0)) return false;
+            if (!ValidateData(txtCommerceEngineConnectClientSecret, "Sitecore Commerce Connect Client Secret",0)) return false;
+            if (!ValidateData(txtSiteHostHeaderName, "Site Host Header Name",0)) return false;
 
-            if (!ValidateData(txtSXAInstallDir, "Sitecore SXA Install Directory")) return false;
-            if (!ValidateData(txtxConnectInstallDir, "Sitecore xConnect Install Directory")) return false;
-            if (!ValidateData(txtCommerceInstallRoot, "Commerce Install Root")) return false;
+            if (!ValidateData(txtSXAInstallDir, "Sitecore SXA Install Directory",1)) return false;
+            if (!ValidateData(txtxConnectInstallDir, "Sitecore xConnect Install Directory",1)) return false;
+            if (!ValidateData(txtCommerceInstallRoot, "Commerce Install Root",1)) return false;
 
-            if (!ValidateData(txtSqlDbPrefix, "Sql Db Prefix")) return false;
-            if (!ValidateData(txtSitecoreDbServer, "Sitecore Db Server")) return false;
-            if (!ValidateData(txtSitecoreCoreDbName, "Sitecore Core Db Name")) return false;
-            if (!ValidateData(txtSqlUser, "Sql User")) return false;
-            if (!ValidateData(txtSqlPass, "Sql Password")) return false;
+            if (!ValidateData(txtSqlDbPrefix, "Sql Db Prefix",2)) return false;
+            if (!ValidateData(txtSitecoreDbServer, "Sitecore Db Server",2)) return false;
+            if (!ValidateData(txtSitecoreCoreDbName, "Sitecore Core Db Name",2)) return false;
+            if (!ValidateData(txtSqlUser, "Sql User",2)) return false;
+            if (!ValidateData(txtSqlPass, "Sql Password",2)) return false;
 
-            if (!ValidateData(txtSitecoreDomain, "Sitecore Domain")) return false;
-            if (!ValidateData(txtSitecoreUsername, "Sitecore Username")) return false;
-            if (!ValidateData(txtSitecoreUserPassword, "Sitecore User Password")) return false;
+            if (!ValidateData(txtSitecoreDomain, "Sitecore Domain",3)) return false;
+            if (!ValidateData(txtSitecoreUsername, "Sitecore Username",3)) return false;
+            if (!ValidateData(txtSitecoreUserPassword, "Sitecore User Password",3)) return false;
 
-            if (!ValidateData(txtSearchIndexPrefix, "Search Index Prefix")) return false;
-            if (!ValidateData(txtSolrUrl, "Solr Url")) return false;
-            if (!ValidateData(txtSolrRoot, "Solr Root Path")) return false;
-            if (!ValidateData(txtSolrService, "Solr Service Name")) return false;
-            if (!ValidateData(txtStorefrontIndexPrefix, "Storefront Index Prefix")) return false;
+            if (!ValidateData(txtSearchIndexPrefix, "Search Index Prefix",4)) return false;
+            if (!ValidateData(txtSolrUrl, "Solr Url",4)) return false;
+            if (!ValidateData(txtSolrRoot, "Solr Root Path",4)) return false;
+            if (!ValidateData(txtSolrService, "Solr Service Name",4)) return false;
+            if (!ValidateData(txtStorefrontIndexPrefix, "Storefront Index Prefix",4)) return false;
 
-            if (!ValidateData(txtRedisHost, "Redis Host")) return false;
-            if (!ValidatePortNumber(txtRedisPort, "Redis Port")) return false;
+            if (!ValidateData(txtRedisHost, "Redis Host",5)) return false;
+            if (!ValidatePortNumber(txtRedisPort, "Redis Port",5)) return false;
 
-            if (!ValidateData(txtCommerceServicesDBServer, "Commerce DB Server")) return false;
-            if (!ValidateData(txtCommerceDbName, "Commerce DB Name")) return false;
-            if (!ValidateData(txtCommerceGlobalDbName, "Sitecore Commerce Global Db Name")) return false;
-            if (!ValidateData(txtCommerceSvcPostFix, "Sitecore Commerce Svc Post Fix")) return false;
-            if (!ValidateData(txtCommerceServicesHostPostFix, "Sitecore Commerce Svc Host Post Fix")) return false;
+            if (!ValidateData(txtCommerceServicesDBServer, "Commerce DB Server",6)) return false;
+            if (!ValidateData(txtCommerceDbName, "Commerce DB Name",6)) return false;
+            if (!ValidateData(txtCommerceGlobalDbName, "Sitecore Commerce Global Db Name",6)) return false;
+            if (!ValidateData(txtCommerceSvcPostFix, "Sitecore Commerce Svc Post Fix",6)) return false;
+            if (!ValidateData(txtCommerceServicesHostPostFix, "Sitecore Commerce Svc Host Post Fix",6)) return false;
 
-            if (!ValidatePortNumber(txtCommerceOpsSvcPort, "Commerce Ops Svc Port")) return false;
-            if (!ValidatePortNumber(txtCommerceShopsServicesPort, "Commerce Shops Svc Port")) return false;
-            if (!ValidatePortNumber(txtCommerceAuthSvcPort, "Commerce Auth Svc Port")) return false;
-            if (!ValidatePortNumber(txtCommerceMinionsSvcPort, "Commerce Minions Svc Port")) return false;
-            if (!ValidatePortNumber(txtBizFxPort, "BizFx Port Number")) return false;
-            if (!ValidateData(txtBizFxName, "BizFx Name")) return false;
+            if (!ValidatePortNumber(txtCommerceOpsSvcPort, "Commerce Ops Svc Port",7)) return false;
+            if (!ValidatePortNumber(txtCommerceShopsServicesPort, "Commerce Shops Svc Port",7)) return false;
+            if (!ValidatePortNumber(txtCommerceAuthSvcPort, "Commerce Auth Svc Port",7)) return false;
+            if (!ValidatePortNumber(txtCommerceMinionsSvcPort, "Commerce Minions Svc Port",7)) return false;
+            if (!ValidatePortNumber(txtBizFxPort, "BizFx Port Number",7)) return false;
+            if (!IsPortNotinUse(txtCommerceOpsSvcPort,7)) return false;
+            if (!IsPortNotinUse(txtCommerceShopsServicesPort,7)) return false;
+            if (!IsPortNotinUse(txtCommerceAuthSvcPort,7)) return false;
+            if (!IsPortNotinUse(txtCommerceMinionsSvcPort,7)) return false;
+            if (!IsPortNotinUse(txtBizFxPort,7)) return false;
+            if (!ValidateData(txtBizFxName, "BizFx Name",7)) return false;
 
-            if (!ValidateData(txtUserDomain, "Win User Domain")) return false;
-            if (!ValidateData(txtUserName, "Win User Name")) return false;
-            if (!ValidateData(txtUserPassword, "Win User Password")) return false;
+            if (!ValidateData(txtUserDomain, "Win User Domain",9)) return false;
+            if (!ValidateData(txtUserName, "Win User Name",9)) return false;
+            if (!ValidateData(txtUserPassword, "Win User Password",9)) return false;
 
-            /*
-            Braintree
-            */
+            if (!ValidateData(txttxtBraintreeMerchantId, "Braintree Merchant Id", 10)) return false;
+            if (!ValidateData(txtBraintreePublicKey, "Braintree Public Key", 10)) return false;
+            if (!ValidateData(txtBraintreePrivateKey, "Braintree Private Key", 10)) return false;
+            if (!ValidateData(txtBraintreeEnvironment, "Braintree Environment", 10)) return false;
+            
             return true;
         }
 
-        private bool ValidateData(TextBox control, string controlString)
+        private bool ValidateData(TextBox control, string controlString,int tabIndex)
         {
             bool Valid = true;
             if (string.IsNullOrWhiteSpace(control.Text))
             {
                 lblStatus.Text = "Tested! " + controlString + " needed... ";
                 lblStatus.ForeColor = Color.Red;
+                tabDetails.SelectedIndex = tabIndex;
                 Valid = false;
             }
             return Valid;
         }
 
-        private bool ValidatePortNumber(NumericUpDown control, string controlString)
+        private bool ValidatePortNumber(NumericUpDown control, string controlString, int tabIndex)
         {
             bool Valid = true;
             if (control.Value<1024)
             {
                 lblStatus.Text = controlString + " must be between 1024 to 49151... ";
                 lblStatus.ForeColor = Color.Red;
+                control.Focus();
+                tabDetails.SelectedIndex = tabIndex;
                 Valid = false;
             }
             return Valid;
@@ -949,25 +966,25 @@ namespace SCIA
 
         private void btnUninstall_Click(object sender, EventArgs e)
         {
-            //string portString = string.Empty;
-            //if (!ValidateAll()) return;
-            //if (IsPortDuplicated(AddPortstoArray())) { lblStatus.Text = "Duplicate port numbers detected! Provide unique port numbers...."; return; }
-            //if (!Directory.Exists(txtSXAInstallDir.Text))
-            //{
-            //    lblStatus.Text = "Missing Directory! Install SXA-site at - " + txtSXAInstallDir.Text;
-            //    lblStatus.ForeColor = Color.Red;
-            //    return;
-            //}
-            //if (!Directory.Exists(txtSXAInstallDir.Text + "\\App_Config\\Modules\\SXA"))
-            //{
-            //    lblStatus.Text = txtSiteName.Text + " is not an SXA-enabled site";
-            //    lblStatus.ForeColor = Color.Red;
-            //    return;
-            //}
-            //portString = StatusMessageBuilder(portString);
-            //if (!string.IsNullOrWhiteSpace(portString))
-            //{ lblStatus.Text = "Port(s) in use... provide different numbers for - " + portString; lblStatus.ForeColor = Color.Red; }
-           
+            string portString = string.Empty;
+            if (!ValidateAll()) return;
+            if (IsPortDuplicated(AddPortstoArray())) { lblStatus.Text = "Duplicate port numbers detected! Provide unique port numbers...."; return; }
+            if (!Directory.Exists(txtSXAInstallDir.Text))
+            {
+                lblStatus.Text = "Missing Directory! Install SXA-site at - " + txtSXAInstallDir.Text;
+                lblStatus.ForeColor = Color.Red;
+                return;
+            }
+            if (!Directory.Exists(txtSXAInstallDir.Text + "\\App_Config\\Modules\\SXA"))
+            {
+                lblStatus.Text = txtSiteName.Text + " is not an SXA-enabled site";
+                lblStatus.ForeColor = Color.Red;
+                return;
+            }
+            portString = StatusMessageBuilder(portString);
+            if (!string.IsNullOrWhiteSpace(portString))
+            { lblStatus.Text = "Port(s) in use... provide different numbers for - " + portString; lblStatus.ForeColor = Color.Red; }
+
             WriteFile(txtSiteName.Text + "_UnInstall_Script.ps1", true);
             LaunchPSScript(txtSiteName.Text + "_UnInstall_Script.ps1");
             lblStatus.Text = "Uninstallation successfully launched through Powershell....";
@@ -991,53 +1008,44 @@ namespace SCIA
                 }
             }
 
-
             return inUse;
         }
 
         private void btnCommerceOpsSvcPort_Click(object sender, EventArgs e)
         {
-            if (PortInUse(Convert.ToInt32(txtCommerceOpsSvcPort.Value)))
+            IsPortNotinUse(txtCommerceOpsSvcPort,7);
+        }
+
+        private bool IsPortNotinUse(NumericUpDown control,int tabIndex)
+        {
+            if (PortInUse(Convert.ToInt32(control.Value)))
             {
-                lblStatus.Text = txtCommerceOpsSvcPort.Value + " port in use... provide a different number...";
+                lblStatus.Text = control.Value + " port in use... provide a different number...";
                 lblStatus.ForeColor = Color.Red;
+                tabDetails.SelectedIndex = tabIndex;
+                return false;                
             }
+            return true;
         }
 
         private void btnCommerceShopsSvcPort_Click(object sender, EventArgs e)
         {
-            if (PortInUse(Convert.ToInt32(txtCommerceShopsServicesPort.Value))) 
-            { 
-                lblStatus.Text = txtCommerceShopsServicesPort.Value + " port in use... provide a different number...";
-                lblStatus.ForeColor = Color.Red;
-            }
+            IsPortNotinUse(txtCommerceShopsServicesPort,7);
         }
 
         private void btnCommerceAuthSvcPort_Click(object sender, EventArgs e)
         {
-            if (PortInUse(Convert.ToInt32(txtCommerceAuthSvcPort.Value)))
-            {
-                lblStatus.Text = txtCommerceAuthSvcPort.Value + " port in use... provide a different number...";
-                lblStatus.ForeColor = Color.Red;
-            }
+            IsPortNotinUse(txtCommerceAuthSvcPort,7);
         }
 
         private void btnCommerceMinionsSvcPort_Click(object sender, EventArgs e)
         {
-            if (PortInUse(Convert.ToInt32(txtCommerceMinionsSvcPort.Value)))
-            {
-                lblStatus.Text = txtCommerceMinionsSvcPort.Value + " port in use... provide a different number...";
-                lblStatus.ForeColor = Color.Red;
-            }
+            IsPortNotinUse(txtCommerceMinionsSvcPort,7);
         }
 
         private void btnBizFxPort_Click(object sender, EventArgs e)
         {
-            if (PortInUse(Convert.ToInt32(txtBizFxPort.Value)))
-            {
-                lblStatus.Text = txtBizFxPort.Value + " port in use... provide a different number...";
-                lblStatus.ForeColor = Color.Red;
-            }
+            IsPortNotinUse(txtBizFxPort,7);
         }
 
         private void txtCommerceMinionsSvcPort_Leave(object sender, EventArgs e)
@@ -1061,6 +1069,211 @@ namespace SCIA
         }
 
         private void txtBizFxPort_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtIDServerSiteName_TextChanged(object sender, EventArgs e)
+        {
+            txtSitecoreIdentityServerUrl.Text= "https://" + txtIDServerSiteName.Text;
+        }
+
+        private void txtIDServerSiteName_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtSitecoreIdentityServerUrl_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSitecoreIdentityServerUrl_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtCommerceEngineConnectClientSecret_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtSiteHostHeaderName_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtSXAInstallDir_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtxConnectInstallDir_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtCommerceInstallRoot_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtSqlDbPrefix_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtSitecoreDbServer_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtSitecoreCoreDbName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSitecoreCoreDbName_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtSqlUser_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtSqlPass_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtSitecoreDomain_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtSitecoreUsername_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtSitecoreUserPassword_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtSearchIndexPrefix_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtSolrUrl_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtSolrRoot_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtSolrService_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtStorefrontIndexPrefix_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtRedisHost_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtRedisPort_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtCommerceServicesDBServer_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtCommerceDbName_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtCommerceGlobalDbName_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtCommerceSvcPostFix_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtCommerceServicesHostPostFix_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtBizFxName_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtUserDomain_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtUserName_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtUserPassword_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txttxtBraintreeMerchantId_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtBraintreePublicKey_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtBraintreePrivateKey_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtBraintreeEnvironment_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtSiteName_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtSiteNameSuffix_Leave(object sender, EventArgs e)
+        {
+            SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void txtSiteNamePrefix_Leave(object sender, EventArgs e)
         {
             SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
         }
