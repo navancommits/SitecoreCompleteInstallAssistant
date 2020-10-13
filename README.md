@@ -12,3 +12,6 @@ The #Sitecore Commerce Install Assistant (SCIA) built as a #dotnetcore 2019 Wind
 9. Will be zipped with all the pre-requisites just like SIA and can be downloaded for installation...
 
 https://navansitecorenotes.blogspot.com/2020/10/a-sneak-peek-at-scia-features-part-1.html
+
+Here is the exe:
+https://github.com/navancommits/SCIA
