@@ -201,6 +201,8 @@ namespace SCIA
             lblStatus.ForeColor = color;
             lblStatus.Text = statusmsg;
         }
+
+        
         public SitecoreCommerceInstaller()
         {
             InitializeComponent();
@@ -222,7 +224,7 @@ namespace SCIA
             txtUserName.Text = txtCommerceSvcPostFix.Text + "_User";
             txtSitecoreIdentityServerUrl.Text = "https://" + txtIDServerSiteName.Text;
             txtStorefrontIndexPrefix.Text = txtSiteName.Text;
-
+            
         }
 
         void LaunchPSScript(string scriptname)
@@ -1325,6 +1327,12 @@ namespace SCIA
         private void txtSiteNamePrefix_Leave(object sender, EventArgs e)
         {
             SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
+        }
+
+        private void btnPrerequisites_Click(object sender, EventArgs e)
+        {
+            Prerequisites prereq = new Prerequisites();
+            prereq.ShowDialog();
         }
     }
 

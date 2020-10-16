@@ -29,11 +29,17 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SitecoreCommerceInstaller));
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtSiteName = new System.Windows.Forms.TextBox();
             this.txtIDServerSiteName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tabDetails = new System.Windows.Forms.TabControl();
+            this.tabPage13 = new System.Windows.Forms.TabPage();
+            this.button5 = new System.Windows.Forms.Button();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.txtSiteNameSuffix = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.txtSiteNamePrefix = new System.Windows.Forms.TextBox();
+            this.txtSiteName = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
             this.txtSiteHostHeaderName = new System.Windows.Forms.TextBox();
@@ -51,6 +57,7 @@
             this.txtSXAInstallDir = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnCheckDbConn = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.txtSqlPass = new System.Windows.Forms.TextBox();
             this.txtSqlUser = new System.Windows.Forms.TextBox();
@@ -69,6 +76,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.txtSitecoreDomain = new System.Windows.Forms.TextBox();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.button6 = new System.Windows.Forms.Button();
             this.label21 = new System.Windows.Forms.Label();
             this.txtStorefrontIndexPrefix = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
@@ -133,21 +141,17 @@
             this.label44 = new System.Windows.Forms.Label();
             this.txtBraintreeEnvironment = new System.Windows.Forms.TextBox();
             this.label40 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.txtSiteNamePrefix = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.txtSiteNameSuffix = new System.Windows.Forms.TextBox();
-            this.label38 = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.btnPrerequisites = new System.Windows.Forms.Button();
             this.tabDetails.SuspendLayout();
+            this.tabPage13.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -166,26 +170,6 @@
             this.tabPage11.SuspendLayout();
             this.tabPage12.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 119);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "SiteName:";
-            // 
-            // txtSiteName
-            // 
-            this.txtSiteName.Location = new System.Drawing.Point(200, 185);
-            this.txtSiteName.MaxLength = 100;
-            this.txtSiteName.Name = "txtSiteName";
-            this.txtSiteName.Size = new System.Drawing.Size(596, 27);
-            this.txtSiteName.TabIndex = 2;
-            this.txtSiteName.Text = "scom10sxa.dev.local";
-            this.txtSiteName.TextChanged += new System.EventHandler(this.txtSiteName_TextChanged);
-            this.txtSiteName.Leave += new System.EventHandler(this.txtSiteName_Leave);
             // 
             // txtIDServerSiteName
             // 
@@ -209,6 +193,7 @@
             // 
             // tabDetails
             // 
+            this.tabDetails.Controls.Add(this.tabPage13);
             this.tabDetails.Controls.Add(this.tabPage1);
             this.tabDetails.Controls.Add(this.tabPage3);
             this.tabDetails.Controls.Add(this.tabPage4);
@@ -220,12 +205,97 @@
             this.tabDetails.Controls.Add(this.tabPage10);
             this.tabDetails.Controls.Add(this.tabPage11);
             this.tabDetails.Controls.Add(this.tabPage12);
-            this.tabDetails.Location = new System.Drawing.Point(17, 218);
+            this.tabDetails.Location = new System.Drawing.Point(17, 112);
             this.tabDetails.Multiline = true;
             this.tabDetails.Name = "tabDetails";
             this.tabDetails.SelectedIndex = 0;
-            this.tabDetails.Size = new System.Drawing.Size(783, 273);
+            this.tabDetails.Size = new System.Drawing.Size(783, 278);
             this.tabDetails.TabIndex = 2;
+            // 
+            // tabPage13
+            // 
+            this.tabPage13.Controls.Add(this.button5);
+            this.tabPage13.Controls.Add(this.label38);
+            this.tabPage13.Controls.Add(this.label26);
+            this.tabPage13.Controls.Add(this.txtSiteNameSuffix);
+            this.tabPage13.Controls.Add(this.label22);
+            this.tabPage13.Controls.Add(this.txtSiteNamePrefix);
+            this.tabPage13.Controls.Add(this.txtSiteName);
+            this.tabPage13.Location = new System.Drawing.Point(4, 54);
+            this.tabPage13.Name = "tabPage13";
+            this.tabPage13.Size = new System.Drawing.Size(775, 220);
+            this.tabPage13.TabIndex = 12;
+            this.tabPage13.Text = "Site Info";
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(633, 137);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(139, 38);
+            this.button5.TabIndex = 46;
+            this.button5.Text = "Proceed >>";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.btnGenerate_Click);
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(2, 19);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(114, 20);
+            this.label38.TabIndex = 0;
+            this.label38.Text = "SiteNamePrefix:";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(2, 95);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(77, 20);
+            this.label26.TabIndex = 7;
+            this.label26.Text = "SiteName:";
+            // 
+            // txtSiteNameSuffix
+            // 
+            this.txtSiteNameSuffix.Location = new System.Drawing.Point(176, 53);
+            this.txtSiteNameSuffix.MaxLength = 50;
+            this.txtSiteNameSuffix.Name = "txtSiteNameSuffix";
+            this.txtSiteNameSuffix.Size = new System.Drawing.Size(596, 27);
+            this.txtSiteNameSuffix.TabIndex = 1;
+            this.txtSiteNameSuffix.Text = ".dev.local";
+            this.txtSiteNameSuffix.TextChanged += new System.EventHandler(this.txtSiteNameSuffix_TextChanged);
+            this.txtSiteNameSuffix.Leave += new System.EventHandler(this.txtSiteNameSuffix_Leave);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(2, 56);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(114, 20);
+            this.label22.TabIndex = 0;
+            this.label22.Text = "SiteNameSuffix:";
+            // 
+            // txtSiteNamePrefix
+            // 
+            this.txtSiteNamePrefix.Location = new System.Drawing.Point(176, 16);
+            this.txtSiteNamePrefix.MaxLength = 50;
+            this.txtSiteNamePrefix.Name = "txtSiteNamePrefix";
+            this.txtSiteNamePrefix.Size = new System.Drawing.Size(596, 27);
+            this.txtSiteNamePrefix.TabIndex = 1;
+            this.txtSiteNamePrefix.Text = "scom10sxa";
+            this.txtSiteNamePrefix.TextChanged += new System.EventHandler(this.txtSiteNamePrefix_TextChanged);
+            this.txtSiteNamePrefix.Leave += new System.EventHandler(this.txtSiteNamePrefix_Leave);
+            // 
+            // txtSiteName
+            // 
+            this.txtSiteName.Location = new System.Drawing.Point(176, 92);
+            this.txtSiteName.MaxLength = 100;
+            this.txtSiteName.Name = "txtSiteName";
+            this.txtSiteName.Size = new System.Drawing.Size(596, 27);
+            this.txtSiteName.TabIndex = 2;
+            this.txtSiteName.Text = "scom10sxa.dev.local";
+            this.txtSiteName.TextChanged += new System.EventHandler(this.txtSiteName_TextChanged);
+            this.txtSiteName.Leave += new System.EventHandler(this.txtSiteName_Leave);
             // 
             // tabPage1
             // 
@@ -243,7 +313,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 54);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(775, 215);
+            this.tabPage1.Size = new System.Drawing.Size(775, 220);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "General";
             // 
@@ -331,7 +401,7 @@
             this.tabPage3.Controls.Add(this.label4);
             this.tabPage3.Location = new System.Drawing.Point(4, 54);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(775, 215);
+            this.tabPage3.Size = new System.Drawing.Size(775, 220);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Install Details";
             // 
@@ -394,6 +464,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.btnCheckDbConn);
             this.tabPage4.Controls.Add(this.label13);
             this.tabPage4.Controls.Add(this.txtSqlPass);
             this.tabPage4.Controls.Add(this.txtSqlUser);
@@ -406,9 +477,19 @@
             this.tabPage4.Controls.Add(this.txtSqlDbPrefix);
             this.tabPage4.Location = new System.Drawing.Point(4, 54);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(775, 215);
+            this.tabPage4.Size = new System.Drawing.Size(775, 220);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "DB Details";
+            // 
+            // btnCheckDbConn
+            // 
+            this.btnCheckDbConn.Location = new System.Drawing.Point(620, 181);
+            this.btnCheckDbConn.Name = "btnCheckDbConn";
+            this.btnCheckDbConn.Size = new System.Drawing.Size(152, 38);
+            this.btnCheckDbConn.TabIndex = 47;
+            this.btnCheckDbConn.Text = "Check Connection";
+            this.btnCheckDbConn.UseVisualStyleBackColor = true;
+            this.btnCheckDbConn.Click += new System.EventHandler(this.btnInstall_Click);
             // 
             // label13
             // 
@@ -516,7 +597,7 @@
             this.tabPage5.Controls.Add(this.txtSitecoreDomain);
             this.tabPage5.Location = new System.Drawing.Point(4, 54);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(775, 215);
+            this.tabPage5.Size = new System.Drawing.Size(775, 220);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Sitecore";
             // 
@@ -581,6 +662,7 @@
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.button6);
             this.tabPage6.Controls.Add(this.label21);
             this.tabPage6.Controls.Add(this.txtStorefrontIndexPrefix);
             this.tabPage6.Controls.Add(this.label20);
@@ -593,9 +675,19 @@
             this.tabPage6.Controls.Add(this.label17);
             this.tabPage6.Location = new System.Drawing.Point(4, 54);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(775, 215);
+            this.tabPage6.Size = new System.Drawing.Size(775, 220);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Solr";
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(620, 176);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(152, 38);
+            this.button6.TabIndex = 47;
+            this.button6.Text = "Check Solr";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.btnInstall_Click);
             // 
             // label21
             // 
@@ -699,7 +791,7 @@
             this.tabPage7.Controls.Add(this.txtRedisHost);
             this.tabPage7.Location = new System.Drawing.Point(4, 54);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(775, 215);
+            this.tabPage7.Size = new System.Drawing.Size(775, 220);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Redis";
             // 
@@ -763,7 +855,7 @@
             this.tabPage8.Controls.Add(this.txtCommerceDbName);
             this.tabPage8.Location = new System.Drawing.Point(4, 54);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(775, 215);
+            this.tabPage8.Size = new System.Drawing.Size(775, 220);
             this.tabPage8.TabIndex = 7;
             this.tabPage8.Text = "Commerce";
             // 
@@ -882,7 +974,7 @@
             this.tabPage9.Controls.Add(this.label32);
             this.tabPage9.Location = new System.Drawing.Point(4, 54);
             this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Size = new System.Drawing.Size(775, 215);
+            this.tabPage9.Size = new System.Drawing.Size(775, 220);
             this.tabPage9.TabIndex = 8;
             this.tabPage9.Text = "Ports";
             // 
@@ -1096,7 +1188,7 @@
             this.tabPage10.Controls.Add(this.label41);
             this.tabPage10.Location = new System.Drawing.Point(4, 54);
             this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Size = new System.Drawing.Size(775, 215);
+            this.tabPage10.Size = new System.Drawing.Size(775, 220);
             this.tabPage10.TabIndex = 9;
             this.tabPage10.Text = "Environments";
             // 
@@ -1139,7 +1231,7 @@
             this.tabPage11.Controls.Add(this.txtUserName);
             this.tabPage11.Location = new System.Drawing.Point(4, 54);
             this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Size = new System.Drawing.Size(775, 215);
+            this.tabPage11.Size = new System.Drawing.Size(775, 220);
             this.tabPage11.TabIndex = 10;
             this.tabPage11.Text = "Win User";
             // 
@@ -1213,7 +1305,7 @@
             this.tabPage12.Controls.Add(this.label40);
             this.tabPage12.Location = new System.Drawing.Point(4, 54);
             this.tabPage12.Name = "tabPage12";
-            this.tabPage12.Size = new System.Drawing.Size(775, 215);
+            this.tabPage12.Size = new System.Drawing.Size(775, 220);
             this.tabPage12.TabIndex = 11;
             this.tabPage12.Text = "Braintree";
             // 
@@ -1291,15 +1383,6 @@
             this.label40.TabIndex = 0;
             this.label40.Text = "BraintreeEnvironment:";
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(357, 409);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(120, 38);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(16, 130);
@@ -1310,26 +1393,6 @@
             this.tabPage2.Text = "Solr";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // txtSiteNamePrefix
-            // 
-            this.txtSiteNamePrefix.Location = new System.Drawing.Point(200, 119);
-            this.txtSiteNamePrefix.MaxLength = 50;
-            this.txtSiteNamePrefix.Name = "txtSiteNamePrefix";
-            this.txtSiteNamePrefix.Size = new System.Drawing.Size(596, 27);
-            this.txtSiteNamePrefix.TabIndex = 1;
-            this.txtSiteNamePrefix.Text = "scom10sxa";
-            this.txtSiteNamePrefix.TextChanged += new System.EventHandler(this.txtSiteNamePrefix_TextChanged);
-            this.txtSiteNamePrefix.Leave += new System.EventHandler(this.txtSiteNamePrefix_Leave);
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(26, 122);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(114, 20);
-            this.label22.TabIndex = 0;
-            this.label22.Text = "SiteNamePrefix:";
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
@@ -1339,15 +1402,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(105, 96);
             this.panel1.TabIndex = 5;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(26, 188);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(77, 20);
-            this.label26.TabIndex = 7;
-            this.label26.Text = "SiteName:";
             // 
             // label25
             // 
@@ -1364,32 +1418,12 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // txtSiteNameSuffix
-            // 
-            this.txtSiteNameSuffix.Location = new System.Drawing.Point(200, 152);
-            this.txtSiteNameSuffix.MaxLength = 50;
-            this.txtSiteNameSuffix.Name = "txtSiteNameSuffix";
-            this.txtSiteNameSuffix.Size = new System.Drawing.Size(596, 27);
-            this.txtSiteNameSuffix.TabIndex = 1;
-            this.txtSiteNameSuffix.Text = ".dev.local";
-            this.txtSiteNameSuffix.TextChanged += new System.EventHandler(this.txtSiteNameSuffix_TextChanged);
-            this.txtSiteNameSuffix.Leave += new System.EventHandler(this.txtSiteNameSuffix_Leave);
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(26, 155);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(114, 20);
-            this.label38.TabIndex = 0;
-            this.label38.Text = "SiteNameSuffix:";
-            // 
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblStatus.ForeColor = System.Drawing.Color.SeaGreen;
-            this.lblStatus.Location = new System.Drawing.Point(12, 556);
+            this.lblStatus.Location = new System.Drawing.Point(21, 462);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(133, 20);
             this.lblStatus.TabIndex = 49;
@@ -1397,7 +1431,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(212, 509);
+            this.button1.Location = new System.Drawing.Point(298, 410);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(139, 38);
             this.button1.TabIndex = 46;
@@ -1407,7 +1441,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(357, 509);
+            this.button3.Location = new System.Drawing.Point(443, 410);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(120, 38);
             this.button3.TabIndex = 47;
@@ -1417,7 +1451,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(484, 509);
+            this.button4.Location = new System.Drawing.Point(569, 410);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(114, 38);
             this.button4.TabIndex = 48;
@@ -1425,28 +1459,31 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.btnUninstall_Click);
             // 
+            // btnPrerequisites
+            // 
+            this.btnPrerequisites.Location = new System.Drawing.Point(162, 410);
+            this.btnPrerequisites.Name = "btnPrerequisites";
+            this.btnPrerequisites.Size = new System.Drawing.Size(130, 38);
+            this.btnPrerequisites.TabIndex = 48;
+            this.btnPrerequisites.Text = "Pre-requisites";
+            this.btnPrerequisites.UseVisualStyleBackColor = true;
+            this.btnPrerequisites.Click += new System.EventHandler(this.btnPrerequisites_Click);
+            // 
             // SitecoreCommerceInstaller
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(808, 585);
+            this.ClientSize = new System.Drawing.Size(808, 496);
+            this.Controls.Add(this.btnPrerequisites);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lblStatus);
-            this.Controls.Add(this.label38);
-            this.Controls.Add(this.txtSiteNameSuffix);
             this.Controls.Add(this.label25);
-            this.Controls.Add(this.label26);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.label22);
-            this.Controls.Add(this.txtSiteNamePrefix);
             this.Controls.Add(this.tabDetails);
-            this.Controls.Add(this.txtSiteName);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -1454,6 +1491,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sitecore Commerce Install Assistant (SCIA)";
             this.tabDetails.ResumeLayout(false);
+            this.tabPage13.ResumeLayout(false);
+            this.tabPage13.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage3.ResumeLayout(false);
@@ -1488,9 +1527,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtSiteName;
         private System.Windows.Forms.TextBox txtIDServerSiteName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TabControl tabDetails;
@@ -1506,7 +1542,6 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TextBox txtSXAInstallDir;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtCommerceInstallRoot;
@@ -1550,10 +1585,7 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.TextBox txtRedisHost;
-        private System.Windows.Forms.TextBox txtSiteNamePrefix;
-        private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.TextBox txtCommerceServicesDBServer;
@@ -1590,8 +1622,6 @@
         private System.Windows.Forms.TextBox txtBraintreeEnvironment;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.TextBox txtSiteNameSuffix;
-        private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button3;
@@ -1607,5 +1637,16 @@
         private System.Windows.Forms.Button btnBizFxPort;
         private System.Windows.Forms.Button btnCommerceMinionsSvcPort;
         private System.Windows.Forms.Button btnCommerceAuthSvcPort;
+        private System.Windows.Forms.TabPage tabPage13;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox txtSiteNameSuffix;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TextBox txtSiteNamePrefix;
+        private System.Windows.Forms.TextBox txtSiteName;
+        private System.Windows.Forms.Button btnCheckDbConn;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button btnPrerequisites;
     }
 }
