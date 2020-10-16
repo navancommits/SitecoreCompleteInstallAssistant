@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
@@ -188,7 +189,7 @@ namespace SCIA
      *
      *
      */
-    
+
     public partial class SitecoreCommerceInstaller : Form
     {
         string SystemDrive = "C:";
@@ -204,13 +205,13 @@ namespace SCIA
         {
             InitializeComponent();
             SystemDrive = Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.System));
-            
+
             txtSiteName.Text = txtSiteNamePrefix.Text + "sc" + txtSiteNameSuffix.Text;
             txtSearchIndexPrefix.Text = txtSiteName.Text;
             txtIDServerSiteName.Text = txtSiteNamePrefix.Text + "identityserver" + txtSiteNameSuffix.Text;
             txtSiteHostHeaderName.Text = txtSiteNamePrefix.Text + ".storefront.com";
             txtSXAInstallDir.Text = "c:\\inetpub\\wwwroot\\" + txtSiteNamePrefix.Text + "sc" + txtSiteNameSuffix.Text;
-            txtxConnectInstallDir.Text = "c:\\inetpub\\wwwroot\\" +  txtSiteNamePrefix.Text + "xconnect" + txtSiteNameSuffix.Text;
+            txtxConnectInstallDir.Text = "c:\\inetpub\\wwwroot\\" + txtSiteNamePrefix.Text + "xconnect" + txtSiteNameSuffix.Text;
             txtSqlDbPrefix.Text = txtSiteNamePrefix.Text;
             txtSitecoreCoreDbName.Text = txtSqlDbPrefix.Text + "_Core";
             txtCommerceDbName.Text = txtSiteNamePrefix.Text + "_SitecoreCommerce_SharedEnvironments";
@@ -236,7 +237,7 @@ namespace SCIA
             Process.Start(startInfo);
         }
 
-        void WriteFile(string path, bool uninstallscript)
+        void WriteFile(string path, bool habitatflag, bool uninstallscript)
         {
             //File.Create(path);
             // Example #4: Append new text to an existing file.
@@ -451,7 +452,15 @@ namespace SCIA
             file.WriteLine("\t[string]$BraintreeEnvironment = \"sandbox\",");
             file.WriteLine();
             file.WriteLine("\t# List of comma-separated task names to skip during Sitecore XC deployment.");
-            file.WriteLine("\t[string]$TasksToSkip = \"\"");
+            if (habitatflag)
+            {
+                file.WriteLine("\t[string]$TasksToSkip = \"Module-HabitatImages_InstallWDPModuleMasterCore,Module-HabitatImages_InstallWDPModuleMaster,Module-HabitatImages_InstallWDPModuleCore,Module-AdventureWorksImages_InstallWDPModuleMasterCore,Module-AdventureWorksImages_InstallWDPModuleMaster,Module-AdventureWorksImages_InstallWDPModuleCore,RebuildIndexes_RebuildIndex-Master,RebuildIndexes_RebuildIndex-Web\"");
+            }
+            else
+            {
+                file.WriteLine("\t[string]$TasksToSkip = \"\"");
+            }
+
             file.WriteLine(")");
             file.WriteLine();
             file.WriteLine("Function Resolve-ItemPath {");
@@ -576,7 +585,7 @@ namespace SCIA
             else
             {
                 file.WriteLine("\tInstall-SitecoreConfiguration @deployCommerceParams -Verbose *>&1 | Tee-Object \"$XCSIFInstallRoot\\XC-Install.log\"");
-            }            
+            }
             file.WriteLine("}");
             file.WriteLine("else {");
             if (!uninstallscript)
@@ -722,12 +731,12 @@ namespace SCIA
             file.Dispose();
         }
 
-        private string BuildPortString(string port,string buildMsgString)
+        private string BuildPortString(string port, string buildMsgString)
         {
             string portMessageString = string.Empty;
             if (string.IsNullOrWhiteSpace(buildMsgString))
             {
-                portMessageString = port; 
+                portMessageString = port;
             }
             else
             {
@@ -735,6 +744,14 @@ namespace SCIA
             }
 
             return portMessageString;
+        }
+
+        private void  ResetIIS()
+        {
+            Process elevated = new Process();
+            elevated.StartInfo.Verb = "runas";
+            elevated.StartInfo.FileName = "iisreset.exe";
+            elevated.Start();
         }
 
         private void btnInstall_Click(object sender, EventArgs e)
@@ -757,11 +774,13 @@ namespace SCIA
             portString = StatusMessageBuilder(portString);
             if (!string.IsNullOrWhiteSpace(portString))
             { lblStatus.Text = "Port(s) in use... provide different numbers for - " + portString; lblStatus.ForeColor = Color.Red; }
+            bool habitatExists = HabitatExists(BuildConnectionString(txtSitecoreDbServer.Text, txtSqlDbPrefix.Text + "_master", txtSqlUser.Text, txtSqlPass.Text));
 
-            WriteFile(txtSiteName.Text + "_Install_Script.ps1", false);
-                    LaunchPSScript(txtSiteName.Text + "_Install_Script.ps1");
-                    lblStatus.Text = "Installation successfully launched through Powershell....";
-                    lblStatus.ForeColor = Color.DarkGreen;             
+            WriteFile(txtSiteName.Text + "_Install_Script.ps1", habitatExists, false);
+            //ResetIIS();
+            LaunchPSScript(txtSiteName.Text + "_Install_Script.ps1");
+            lblStatus.Text = "Installation successfully launched through Powershell....";
+            lblStatus.ForeColor = Color.DarkGreen;             
         }
 
         private void txtSiteName_TextChanged(object sender, EventArgs e)
@@ -895,6 +914,34 @@ namespace SCIA
             return ports;
         }
 
+        private bool HabitatExists(string connString)
+        {
+            try
+            {
+                SqlConnection sqlConn;
+                using (sqlConn = new SqlConnection(connString))
+                {
+                    sqlConn.Open();
+                    using SqlCommand cmd = new SqlCommand(@"SELECT count(id) FROM Items where name like '%storefront%'", sqlConn);
+                    int recCount = (int)cmd.ExecuteScalar();
+                    sqlConn.Close();
+                    if (recCount <= 0) return false;
+                }
+            }
+            catch
+            {
+                lblStatus.Text = "Connectivity Issues....";
+            }
+            return true;
+        }
+
+        private string BuildConnectionString(string datasource, string dbname, string uid, string pwd)
+        {
+            
+            return "Data Source=" + datasource + "; Initial Catalog=" + dbname + "; User ID=" + uid + "; Password=" + pwd;
+            
+        }
+
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             string portString = string.Empty;
@@ -915,11 +962,12 @@ namespace SCIA
             portString = StatusMessageBuilder(portString);
             if (!string.IsNullOrWhiteSpace(portString))
             { lblStatus.Text = "Port(s) in use... provide different numbers for - " + portString; lblStatus.ForeColor = Color.Red; }
+            bool habitatExists = HabitatExists(BuildConnectionString(txtSitecoreDbServer.Text, txtSqlDbPrefix.Text + "_master", txtSqlUser.Text, txtSqlPass.Text));
             
-            WriteFile(txtSiteName.Text + "_Uninstall_Script.ps1", true);
-                WriteFile(txtSiteName.Text + "_Install_Script.ps1", false);
-                lblStatus.Text = "Scripts generated successfully....";
-                lblStatus.ForeColor = Color.DarkGreen;
+            WriteFile(txtSiteName.Text + "_Uninstall_Script.ps1", habitatExists, true);
+            WriteFile(txtSiteName.Text + "_Install_Script.ps1", habitatExists, false);
+            lblStatus.Text = "Scripts generated successfully....";
+            lblStatus.ForeColor = Color.DarkGreen;
         }
 
         private void txtSiteNamePrefix_TextChanged(object sender, EventArgs e)
@@ -984,8 +1032,9 @@ namespace SCIA
             portString = StatusMessageBuilder(portString);
             if (!string.IsNullOrWhiteSpace(portString))
             { lblStatus.Text = "Port(s) in use... provide different numbers for - " + portString; lblStatus.ForeColor = Color.Red; }
+            bool habitatExists = HabitatExists(BuildConnectionString(txtSitecoreDbServer.Text, txtSqlDbPrefix.Text + "_master", txtSqlUser.Text, txtSqlPass.Text));
 
-            WriteFile(txtSiteName.Text + "_UnInstall_Script.ps1", true);
+            WriteFile(txtSiteName.Text + "_UnInstall_Script.ps1", habitatExists, true);
             LaunchPSScript(txtSiteName.Text + "_UnInstall_Script.ps1");
             lblStatus.Text = "Uninstallation successfully launched through Powershell....";
             lblStatus.ForeColor = Color.DarkGreen;
