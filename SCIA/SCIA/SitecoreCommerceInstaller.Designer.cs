@@ -32,32 +32,9 @@
             this.txtIDServerSiteName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tabDetails = new System.Windows.Forms.TabControl();
-            this.tabPage13 = new System.Windows.Forms.TabPage();
+            this.tabPgDbDetails = new System.Windows.Forms.TabPage();
             this.button5 = new System.Windows.Forms.Button();
-            this.label38 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.txtSiteNameSuffix = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.txtSiteNamePrefix = new System.Windows.Forms.TextBox();
-            this.txtSiteName = new System.Windows.Forms.TextBox();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtSiteHostHeaderName = new System.Windows.Forms.TextBox();
-            this.txtCommerceEngineConnectClientSecret = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtCommerceEngineConnectClientId = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtSitecoreIdentityServerUrl = new System.Windows.Forms.TextBox();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtCommerceInstallRoot = new System.Windows.Forms.TextBox();
-            this.txtxConnectInstallDir = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtSXAInstallDir = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.btnCheckDbConn = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.txtSqlPass = new System.Windows.Forms.TextBox();
             this.txtSqlUser = new System.Windows.Forms.TextBox();
@@ -68,15 +45,53 @@
             this.txtSitecoreDbServer = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtSqlDbPrefix = new System.Windows.Forms.TextBox();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tabpgSiteInfo = new System.Windows.Forms.TabPage();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.txtSiteNameSuffix = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.txtSiteNamePrefix = new System.Windows.Forms.TextBox();
+            this.txtSiteName = new System.Windows.Forms.TextBox();
+            this.tabPgGeneral = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtSiteHostHeaderName = new System.Windows.Forms.TextBox();
+            this.txtCommerceEngineConnectClientSecret = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtCommerceEngineConnectClientId = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtSitecoreIdentityServerUrl = new System.Windows.Forms.TextBox();
+            this.tabPgInstallDetails = new System.Windows.Forms.TabPage();
+            this.roundButton16 = new SCIA.RoundButton();
+            this.roundButton15 = new SCIA.RoundButton();
+            this.roundButton14 = new SCIA.RoundButton();
+            this.roundButton13 = new SCIA.RoundButton();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtCommerceInstallRoot = new System.Windows.Forms.TextBox();
+            this.txtxConnectInstallDir = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtSXAInstallDir = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tabPgSitecore = new System.Windows.Forms.TabPage();
+            this.roundButton20 = new SCIA.RoundButton();
+            this.roundButton19 = new SCIA.RoundButton();
+            this.roundButton18 = new SCIA.RoundButton();
+            this.roundButton17 = new SCIA.RoundButton();
             this.label16 = new System.Windows.Forms.Label();
             this.txtSitecoreUserPassword = new System.Windows.Forms.TextBox();
             this.txtSitecoreUsername = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.txtSitecoreDomain = new System.Windows.Forms.TextBox();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.button6 = new System.Windows.Forms.Button();
+            this.tabPgSolr = new System.Windows.Forms.TabPage();
+            this.roundButton24 = new SCIA.RoundButton();
+            this.roundButton23 = new SCIA.RoundButton();
+            this.roundButton22 = new SCIA.RoundButton();
+            this.roundButton21 = new SCIA.RoundButton();
             this.label21 = new System.Windows.Forms.Label();
             this.txtStorefrontIndexPrefix = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
@@ -87,12 +102,20 @@
             this.label18 = new System.Windows.Forms.Label();
             this.txtSearchIndexPrefix = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.tabPgRedis = new System.Windows.Forms.TabPage();
+            this.roundButton28 = new SCIA.RoundButton();
+            this.roundButton27 = new SCIA.RoundButton();
+            this.roundButton26 = new SCIA.RoundButton();
+            this.roundButton25 = new SCIA.RoundButton();
             this.txtRedisPort = new System.Windows.Forms.NumericUpDown();
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.txtRedisHost = new System.Windows.Forms.TextBox();
-            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.tabPgCommerce = new System.Windows.Forms.TabPage();
+            this.roundButton32 = new SCIA.RoundButton();
+            this.roundButton31 = new SCIA.RoundButton();
+            this.roundButton30 = new SCIA.RoundButton();
+            this.roundButton29 = new SCIA.RoundButton();
             this.label31 = new System.Windows.Forms.Label();
             this.txtCommerceServicesDBServer = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
@@ -103,7 +126,11 @@
             this.label27 = new System.Windows.Forms.Label();
             this.txtCommerceServicesHostPostFix = new System.Windows.Forms.TextBox();
             this.txtCommerceDbName = new System.Windows.Forms.TextBox();
-            this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.tabPgPorts = new System.Windows.Forms.TabPage();
+            this.roundButton36 = new SCIA.RoundButton();
+            this.roundButton35 = new SCIA.RoundButton();
+            this.roundButton34 = new SCIA.RoundButton();
+            this.roundButton33 = new SCIA.RoundButton();
             this.btnBizFxPort = new System.Windows.Forms.Button();
             this.btnCommerceMinionsSvcPort = new System.Windows.Forms.Button();
             this.btnCommerceAuthSvcPort = new System.Windows.Forms.Button();
@@ -121,18 +148,28 @@
             this.label34 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
-            this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.tabPgEnvironments = new System.Windows.Forms.TabPage();
+            this.roundButton40 = new SCIA.RoundButton();
+            this.roundButton39 = new SCIA.RoundButton();
+            this.roundButton38 = new SCIA.RoundButton();
+            this.roundButton37 = new SCIA.RoundButton();
             this.chkDeploySampleData = new System.Windows.Forms.CheckBox();
             this.textBox16 = new System.Windows.Forms.TextBox();
             this.label41 = new System.Windows.Forms.Label();
-            this.tabPage11 = new System.Windows.Forms.TabPage();
+            this.tabPgWinUser = new System.Windows.Forms.TabPage();
+            this.roundButton44 = new SCIA.RoundButton();
+            this.roundButton43 = new SCIA.RoundButton();
+            this.roundButton42 = new SCIA.RoundButton();
+            this.roundButton41 = new SCIA.RoundButton();
             this.label43 = new System.Windows.Forms.Label();
             this.txtUserDomain = new System.Windows.Forms.TextBox();
             this.label42 = new System.Windows.Forms.Label();
             this.txtUserPassword = new System.Windows.Forms.TextBox();
             this.label39 = new System.Windows.Forms.Label();
             this.txtUserName = new System.Windows.Forms.TextBox();
-            this.tabPage12 = new System.Windows.Forms.TabPage();
+            this.tabPgBraintree = new System.Windows.Forms.TabPage();
+            this.roundButton47 = new SCIA.RoundButton();
+            this.roundButton46 = new SCIA.RoundButton();
             this.label46 = new System.Windows.Forms.Label();
             this.txttxtBraintreeMerchantId = new System.Windows.Forms.TextBox();
             this.label45 = new System.Windows.Forms.Label();
@@ -145,35 +182,44 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label25 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnGenerate = new System.Windows.Forms.Button();
+            this.btnInstall = new System.Windows.Forms.Button();
+            this.btnUninstall = new System.Windows.Forms.Button();
             this.btnPrerequisites = new System.Windows.Forms.Button();
+            this.btnAppSettings = new System.Windows.Forms.Button();
+            this.pnlDetails = new System.Windows.Forms.Panel();
+            this.lblStepStatus = new System.Windows.Forms.Label();
+            this.btnDbConn = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.lblStepInfo = new System.Windows.Forms.Label();
             this.tabDetails.SuspendLayout();
-            this.tabPage13.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            this.tabPage5.SuspendLayout();
-            this.tabPage6.SuspendLayout();
-            this.tabPage7.SuspendLayout();
+            this.tabPgDbDetails.SuspendLayout();
+            this.tabpgSiteInfo.SuspendLayout();
+            this.tabPgGeneral.SuspendLayout();
+            this.tabPgInstallDetails.SuspendLayout();
+            this.tabPgSitecore.SuspendLayout();
+            this.tabPgSolr.SuspendLayout();
+            this.tabPgRedis.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtRedisPort)).BeginInit();
-            this.tabPage8.SuspendLayout();
-            this.tabPage9.SuspendLayout();
+            this.tabPgCommerce.SuspendLayout();
+            this.tabPgPorts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtBizFxPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCommerceMinionsSvcPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCommerceAuthSvcPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCommerceShopsServicesPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCommerceOpsSvcPort)).BeginInit();
-            this.tabPage10.SuspendLayout();
-            this.tabPage11.SuspendLayout();
-            this.tabPage12.SuspendLayout();
+            this.tabPgEnvironments.SuspendLayout();
+            this.tabPgWinUser.SuspendLayout();
+            this.tabPgBraintree.SuspendLayout();
+            this.pnlDetails.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtIDServerSiteName
             // 
-            this.txtIDServerSiteName.Location = new System.Drawing.Point(179, 14);
+            this.txtIDServerSiteName.Location = new System.Drawing.Point(179, 13);
             this.txtIDServerSiteName.MaxLength = 50;
             this.txtIDServerSiteName.Name = "txtIDServerSiteName";
             this.txtIDServerSiteName.Size = new System.Drawing.Size(593, 27);
@@ -185,7 +231,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 17);
+            this.label2.Location = new System.Drawing.Point(12, 16);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(133, 20);
             this.label2.TabIndex = 0;
@@ -193,303 +239,68 @@
             // 
             // tabDetails
             // 
-            this.tabDetails.Controls.Add(this.tabPage13);
-            this.tabDetails.Controls.Add(this.tabPage1);
-            this.tabDetails.Controls.Add(this.tabPage3);
-            this.tabDetails.Controls.Add(this.tabPage4);
-            this.tabDetails.Controls.Add(this.tabPage5);
-            this.tabDetails.Controls.Add(this.tabPage6);
-            this.tabDetails.Controls.Add(this.tabPage7);
-            this.tabDetails.Controls.Add(this.tabPage8);
-            this.tabDetails.Controls.Add(this.tabPage9);
-            this.tabDetails.Controls.Add(this.tabPage10);
-            this.tabDetails.Controls.Add(this.tabPage11);
-            this.tabDetails.Controls.Add(this.tabPage12);
-            this.tabDetails.Location = new System.Drawing.Point(17, 112);
+            this.tabDetails.Controls.Add(this.tabPgDbDetails);
+            this.tabDetails.Controls.Add(this.tabpgSiteInfo);
+            this.tabDetails.Controls.Add(this.tabPgGeneral);
+            this.tabDetails.Controls.Add(this.tabPgInstallDetails);
+            this.tabDetails.Controls.Add(this.tabPgSitecore);
+            this.tabDetails.Controls.Add(this.tabPgSolr);
+            this.tabDetails.Controls.Add(this.tabPgRedis);
+            this.tabDetails.Controls.Add(this.tabPgCommerce);
+            this.tabDetails.Controls.Add(this.tabPgPorts);
+            this.tabDetails.Controls.Add(this.tabPgEnvironments);
+            this.tabDetails.Controls.Add(this.tabPgWinUser);
+            this.tabDetails.Controls.Add(this.tabPgBraintree);
+            this.tabDetails.Location = new System.Drawing.Point(13, 162);
             this.tabDetails.Multiline = true;
             this.tabDetails.Name = "tabDetails";
             this.tabDetails.SelectedIndex = 0;
-            this.tabDetails.Size = new System.Drawing.Size(783, 278);
+            this.tabDetails.Size = new System.Drawing.Size(783, 313);
             this.tabDetails.TabIndex = 2;
             // 
-            // tabPage13
+            // tabPgDbDetails
             // 
-            this.tabPage13.Controls.Add(this.button5);
-            this.tabPage13.Controls.Add(this.label38);
-            this.tabPage13.Controls.Add(this.label26);
-            this.tabPage13.Controls.Add(this.txtSiteNameSuffix);
-            this.tabPage13.Controls.Add(this.label22);
-            this.tabPage13.Controls.Add(this.txtSiteNamePrefix);
-            this.tabPage13.Controls.Add(this.txtSiteName);
-            this.tabPage13.Location = new System.Drawing.Point(4, 54);
-            this.tabPage13.Name = "tabPage13";
-            this.tabPage13.Size = new System.Drawing.Size(775, 220);
-            this.tabPage13.TabIndex = 12;
-            this.tabPage13.Text = "Site Info";
+            this.tabPgDbDetails.Controls.Add(this.button5);
+            this.tabPgDbDetails.Controls.Add(this.button4);
+            this.tabPgDbDetails.Controls.Add(this.label13);
+            this.tabPgDbDetails.Controls.Add(this.txtSqlPass);
+            this.tabPgDbDetails.Controls.Add(this.txtSqlUser);
+            this.tabPgDbDetails.Controls.Add(this.label12);
+            this.tabPgDbDetails.Controls.Add(this.txtSitecoreCoreDbName);
+            this.tabPgDbDetails.Controls.Add(this.label11);
+            this.tabPgDbDetails.Controls.Add(this.SitecoreDbServer);
+            this.tabPgDbDetails.Controls.Add(this.txtSitecoreDbServer);
+            this.tabPgDbDetails.Controls.Add(this.label10);
+            this.tabPgDbDetails.Controls.Add(this.txtSqlDbPrefix);
+            this.tabPgDbDetails.Location = new System.Drawing.Point(4, 54);
+            this.tabPgDbDetails.Name = "tabPgDbDetails";
+            this.tabPgDbDetails.Size = new System.Drawing.Size(775, 255);
+            this.tabPgDbDetails.TabIndex = 3;
+            this.tabPgDbDetails.Text = "DB Details";
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(633, 137);
+            this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button5.Location = new System.Drawing.Point(672, 208);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(139, 38);
-            this.button5.TabIndex = 46;
-            this.button5.Text = "Proceed >>";
+            this.button5.Size = new System.Drawing.Size(47, 44);
+            this.button5.TabIndex = 48;
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.btnGenerate_Click);
+            this.button5.Click += new System.EventHandler(this.btnPrerequisites_Click);
             // 
-            // label38
+            // button4
             // 
-            this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(2, 19);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(114, 20);
-            this.label38.TabIndex = 0;
-            this.label38.Text = "SiteNamePrefix:";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(2, 95);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(77, 20);
-            this.label26.TabIndex = 7;
-            this.label26.Text = "SiteName:";
-            // 
-            // txtSiteNameSuffix
-            // 
-            this.txtSiteNameSuffix.Location = new System.Drawing.Point(176, 53);
-            this.txtSiteNameSuffix.MaxLength = 50;
-            this.txtSiteNameSuffix.Name = "txtSiteNameSuffix";
-            this.txtSiteNameSuffix.Size = new System.Drawing.Size(596, 27);
-            this.txtSiteNameSuffix.TabIndex = 1;
-            this.txtSiteNameSuffix.Text = ".dev.local";
-            this.txtSiteNameSuffix.TextChanged += new System.EventHandler(this.txtSiteNameSuffix_TextChanged);
-            this.txtSiteNameSuffix.Leave += new System.EventHandler(this.txtSiteNameSuffix_Leave);
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(2, 56);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(114, 20);
-            this.label22.TabIndex = 0;
-            this.label22.Text = "SiteNameSuffix:";
-            // 
-            // txtSiteNamePrefix
-            // 
-            this.txtSiteNamePrefix.Location = new System.Drawing.Point(176, 16);
-            this.txtSiteNamePrefix.MaxLength = 50;
-            this.txtSiteNamePrefix.Name = "txtSiteNamePrefix";
-            this.txtSiteNamePrefix.Size = new System.Drawing.Size(596, 27);
-            this.txtSiteNamePrefix.TabIndex = 1;
-            this.txtSiteNamePrefix.Text = "scom10sxa";
-            this.txtSiteNamePrefix.TextChanged += new System.EventHandler(this.txtSiteNamePrefix_TextChanged);
-            this.txtSiteNamePrefix.Leave += new System.EventHandler(this.txtSiteNamePrefix_Leave);
-            // 
-            // txtSiteName
-            // 
-            this.txtSiteName.Location = new System.Drawing.Point(176, 92);
-            this.txtSiteName.MaxLength = 100;
-            this.txtSiteName.Name = "txtSiteName";
-            this.txtSiteName.Size = new System.Drawing.Size(596, 27);
-            this.txtSiteName.TabIndex = 2;
-            this.txtSiteName.Text = "scom10sxa.dev.local";
-            this.txtSiteName.TextChanged += new System.EventHandler(this.txtSiteName_TextChanged);
-            this.txtSiteName.Leave += new System.EventHandler(this.txtSiteName_Leave);
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.txtSiteHostHeaderName);
-            this.tabPage1.Controls.Add(this.txtCommerceEngineConnectClientSecret);
-            this.tabPage1.Controls.Add(this.label8);
-            this.tabPage1.Controls.Add(this.txtCommerceEngineConnectClientId);
-            this.tabPage1.Controls.Add(this.label7);
-            this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Controls.Add(this.txtSitecoreIdentityServerUrl);
-            this.tabPage1.Controls.Add(this.txtIDServerSiteName);
-            this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Location = new System.Drawing.Point(4, 54);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(775, 220);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "General";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 149);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(157, 20);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "SiteHostHeaderName:";
-            // 
-            // txtSiteHostHeaderName
-            // 
-            this.txtSiteHostHeaderName.Location = new System.Drawing.Point(179, 146);
-            this.txtSiteHostHeaderName.MaxLength = 100;
-            this.txtSiteHostHeaderName.Name = "txtSiteHostHeaderName";
-            this.txtSiteHostHeaderName.Size = new System.Drawing.Size(593, 27);
-            this.txtSiteHostHeaderName.TabIndex = 7;
-            this.txtSiteHostHeaderName.Leave += new System.EventHandler(this.txtSiteHostHeaderName_Leave);
-            // 
-            // txtCommerceEngineConnectClientSecret
-            // 
-            this.txtCommerceEngineConnectClientSecret.Location = new System.Drawing.Point(179, 113);
-            this.txtCommerceEngineConnectClientSecret.MaxLength = 100;
-            this.txtCommerceEngineConnectClientSecret.Name = "txtCommerceEngineConnectClientSecret";
-            this.txtCommerceEngineConnectClientSecret.Size = new System.Drawing.Size(593, 27);
-            this.txtCommerceEngineConnectClientSecret.TabIndex = 6;
-            this.txtCommerceEngineConnectClientSecret.Text = "fe6g2c5+YBGh5180qjB6N91nKGNn+gvgS0n51ixHnNY=";
-            this.txtCommerceEngineConnectClientSecret.Leave += new System.EventHandler(this.txtCommerceEngineConnectClientSecret_Leave);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 116);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(169, 20);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "CommEngConnClSecret:";
-            // 
-            // txtCommerceEngineConnectClientId
-            // 
-            this.txtCommerceEngineConnectClientId.Location = new System.Drawing.Point(179, 80);
-            this.txtCommerceEngineConnectClientId.MaxLength = 50;
-            this.txtCommerceEngineConnectClientId.Name = "txtCommerceEngineConnectClientId";
-            this.txtCommerceEngineConnectClientId.Size = new System.Drawing.Size(593, 27);
-            this.txtCommerceEngineConnectClientId.TabIndex = 5;
-            this.txtCommerceEngineConnectClientId.Text = "CommerceEngineConnect";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 83);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(166, 20);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "CommEngConnClientId:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 50);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(139, 20);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "SitecoreIdServerUrl:";
-            // 
-            // txtSitecoreIdentityServerUrl
-            // 
-            this.txtSitecoreIdentityServerUrl.Location = new System.Drawing.Point(179, 47);
-            this.txtSitecoreIdentityServerUrl.MaxLength = 200;
-            this.txtSitecoreIdentityServerUrl.Name = "txtSitecoreIdentityServerUrl";
-            this.txtSitecoreIdentityServerUrl.Size = new System.Drawing.Size(593, 27);
-            this.txtSitecoreIdentityServerUrl.TabIndex = 4;
-            this.txtSitecoreIdentityServerUrl.TextChanged += new System.EventHandler(this.txtSitecoreIdentityServerUrl_TextChanged);
-            this.txtSitecoreIdentityServerUrl.Leave += new System.EventHandler(this.txtSitecoreIdentityServerUrl_Leave);
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.label9);
-            this.tabPage3.Controls.Add(this.txtCommerceInstallRoot);
-            this.tabPage3.Controls.Add(this.txtxConnectInstallDir);
-            this.tabPage3.Controls.Add(this.label5);
-            this.tabPage3.Controls.Add(this.txtSXAInstallDir);
-            this.tabPage3.Controls.Add(this.label4);
-            this.tabPage3.Location = new System.Drawing.Point(4, 54);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(775, 220);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Install Details";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(7, 87);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(155, 20);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "CommerceInstallRoot:";
-            // 
-            // txtCommerceInstallRoot
-            // 
-            this.txtCommerceInstallRoot.Location = new System.Drawing.Point(179, 84);
-            this.txtCommerceInstallRoot.MaxLength = 200;
-            this.txtCommerceInstallRoot.Name = "txtCommerceInstallRoot";
-            this.txtCommerceInstallRoot.Size = new System.Drawing.Size(593, 27);
-            this.txtCommerceInstallRoot.TabIndex = 10;
-            this.txtCommerceInstallRoot.Text = "c:\\inetpub\\wwwroot";
-            this.txtCommerceInstallRoot.Leave += new System.EventHandler(this.txtCommerceInstallRoot_Leave);
-            // 
-            // txtxConnectInstallDir
-            // 
-            this.txtxConnectInstallDir.Location = new System.Drawing.Point(179, 51);
-            this.txtxConnectInstallDir.MaxLength = 200;
-            this.txtxConnectInstallDir.Name = "txtxConnectInstallDir";
-            this.txtxConnectInstallDir.Size = new System.Drawing.Size(593, 27);
-            this.txtxConnectInstallDir.TabIndex = 9;
-            this.txtxConnectInstallDir.Text = "c:\\inetpub\\wwwroot";
-            this.txtxConnectInstallDir.Leave += new System.EventHandler(this.txtxConnectInstallDir_Leave);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 54);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(134, 20);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "XConnectInstallDir:";
-            // 
-            // txtSXAInstallDir
-            // 
-            this.txtSXAInstallDir.Location = new System.Drawing.Point(179, 18);
-            this.txtSXAInstallDir.MaxLength = 200;
-            this.txtSXAInstallDir.Name = "txtSXAInstallDir";
-            this.txtSXAInstallDir.Size = new System.Drawing.Size(593, 27);
-            this.txtSXAInstallDir.TabIndex = 8;
-            this.txtSXAInstallDir.Text = "c:\\inetpub\\wwwroot";
-            this.txtSXAInstallDir.Leave += new System.EventHandler(this.txtSXAInstallDir_Leave);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 21);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(123, 20);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "SXASiteInstallDir:";
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.btnCheckDbConn);
-            this.tabPage4.Controls.Add(this.label13);
-            this.tabPage4.Controls.Add(this.txtSqlPass);
-            this.tabPage4.Controls.Add(this.txtSqlUser);
-            this.tabPage4.Controls.Add(this.label12);
-            this.tabPage4.Controls.Add(this.txtSitecoreCoreDbName);
-            this.tabPage4.Controls.Add(this.label11);
-            this.tabPage4.Controls.Add(this.SitecoreDbServer);
-            this.tabPage4.Controls.Add(this.txtSitecoreDbServer);
-            this.tabPage4.Controls.Add(this.label10);
-            this.tabPage4.Controls.Add(this.txtSqlDbPrefix);
-            this.tabPage4.Location = new System.Drawing.Point(4, 54);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(775, 220);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "DB Details";
-            // 
-            // btnCheckDbConn
-            // 
-            this.btnCheckDbConn.Location = new System.Drawing.Point(620, 181);
-            this.btnCheckDbConn.Name = "btnCheckDbConn";
-            this.btnCheckDbConn.Size = new System.Drawing.Size(152, 38);
-            this.btnCheckDbConn.TabIndex = 47;
-            this.btnCheckDbConn.Text = "Check Connection";
-            this.btnCheckDbConn.UseVisualStyleBackColor = true;
-            this.btnCheckDbConn.Click += new System.EventHandler(this.btnInstall_Click);
+            this.button4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button4.BackgroundImage")));
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button4.Location = new System.Drawing.Point(725, 208);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(47, 44);
+            this.button4.TabIndex = 48;
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.btnPrerequisites_Click);
             // 
             // label13
             // 
@@ -587,19 +398,418 @@
             this.txtSqlDbPrefix.Text = "scom10sxa";
             this.txtSqlDbPrefix.Leave += new System.EventHandler(this.txtSqlDbPrefix_Leave);
             // 
-            // tabPage5
+            // tabpgSiteInfo
             // 
-            this.tabPage5.Controls.Add(this.label16);
-            this.tabPage5.Controls.Add(this.txtSitecoreUserPassword);
-            this.tabPage5.Controls.Add(this.txtSitecoreUsername);
-            this.tabPage5.Controls.Add(this.label15);
-            this.tabPage5.Controls.Add(this.label14);
-            this.tabPage5.Controls.Add(this.txtSitecoreDomain);
-            this.tabPage5.Location = new System.Drawing.Point(4, 54);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(775, 220);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Sitecore";
+            this.tabpgSiteInfo.Controls.Add(this.button9);
+            this.tabpgSiteInfo.Controls.Add(this.button6);
+            this.tabpgSiteInfo.Controls.Add(this.button8);
+            this.tabpgSiteInfo.Controls.Add(this.button7);
+            this.tabpgSiteInfo.Controls.Add(this.label38);
+            this.tabpgSiteInfo.Controls.Add(this.label26);
+            this.tabpgSiteInfo.Controls.Add(this.txtSiteNameSuffix);
+            this.tabpgSiteInfo.Controls.Add(this.label22);
+            this.tabpgSiteInfo.Controls.Add(this.txtSiteNamePrefix);
+            this.tabpgSiteInfo.Controls.Add(this.txtSiteName);
+            this.tabpgSiteInfo.Location = new System.Drawing.Point(4, 54);
+            this.tabpgSiteInfo.Name = "tabpgSiteInfo";
+            this.tabpgSiteInfo.Size = new System.Drawing.Size(775, 255);
+            this.tabpgSiteInfo.TabIndex = 12;
+            this.tabpgSiteInfo.Text = "Site Info";
+            // 
+            // button9
+            // 
+            this.button9.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button9.BackgroundImage")));
+            this.button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button9.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button9.Location = new System.Drawing.Point(56, 206);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(47, 44);
+            this.button9.TabIndex = 48;
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.btnPrerequisites_Click);
+            // 
+            // button6
+            // 
+            this.button6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button6.BackgroundImage")));
+            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button6.Location = new System.Drawing.Point(3, 206);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(47, 44);
+            this.button6.TabIndex = 48;
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.btnPrerequisites_Click);
+            // 
+            // button8
+            // 
+            this.button8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button8.BackgroundImage")));
+            this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button8.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button8.Location = new System.Drawing.Point(725, 206);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(47, 44);
+            this.button8.TabIndex = 48;
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.btnPrerequisites_Click);
+            // 
+            // button7
+            // 
+            this.button7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button7.BackgroundImage")));
+            this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button7.Location = new System.Drawing.Point(672, 206);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(47, 44);
+            this.button7.TabIndex = 48;
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.btnPrerequisites_Click);
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(2, 17);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(114, 20);
+            this.label38.TabIndex = 0;
+            this.label38.Text = "SiteNamePrefix:";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(2, 93);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(77, 20);
+            this.label26.TabIndex = 7;
+            this.label26.Text = "SiteName:";
+            // 
+            // txtSiteNameSuffix
+            // 
+            this.txtSiteNameSuffix.Location = new System.Drawing.Point(176, 51);
+            this.txtSiteNameSuffix.MaxLength = 50;
+            this.txtSiteNameSuffix.Name = "txtSiteNameSuffix";
+            this.txtSiteNameSuffix.Size = new System.Drawing.Size(596, 27);
+            this.txtSiteNameSuffix.TabIndex = 1;
+            this.txtSiteNameSuffix.Text = ".dev.local";
+            this.txtSiteNameSuffix.TextChanged += new System.EventHandler(this.txtSiteNameSuffix_TextChanged);
+            this.txtSiteNameSuffix.Leave += new System.EventHandler(this.txtSiteNameSuffix_Leave);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(2, 54);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(114, 20);
+            this.label22.TabIndex = 0;
+            this.label22.Text = "SiteNameSuffix:";
+            // 
+            // txtSiteNamePrefix
+            // 
+            this.txtSiteNamePrefix.Location = new System.Drawing.Point(176, 14);
+            this.txtSiteNamePrefix.MaxLength = 50;
+            this.txtSiteNamePrefix.Name = "txtSiteNamePrefix";
+            this.txtSiteNamePrefix.Size = new System.Drawing.Size(596, 27);
+            this.txtSiteNamePrefix.TabIndex = 1;
+            this.txtSiteNamePrefix.Text = "scom10sxa";
+            this.txtSiteNamePrefix.TextChanged += new System.EventHandler(this.txtSiteNamePrefix_TextChanged);
+            this.txtSiteNamePrefix.Leave += new System.EventHandler(this.txtSiteNamePrefix_Leave);
+            // 
+            // txtSiteName
+            // 
+            this.txtSiteName.Location = new System.Drawing.Point(176, 90);
+            this.txtSiteName.MaxLength = 100;
+            this.txtSiteName.Name = "txtSiteName";
+            this.txtSiteName.Size = new System.Drawing.Size(596, 27);
+            this.txtSiteName.TabIndex = 2;
+            this.txtSiteName.Text = "scom10sxa.dev.local";
+            this.txtSiteName.TextChanged += new System.EventHandler(this.txtSiteName_TextChanged);
+            this.txtSiteName.Leave += new System.EventHandler(this.txtSiteName_Leave);
+            // 
+            // tabPgGeneral
+            // 
+            this.tabPgGeneral.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPgGeneral.Controls.Add(this.label3);
+            this.tabPgGeneral.Controls.Add(this.txtSiteHostHeaderName);
+            this.tabPgGeneral.Controls.Add(this.txtCommerceEngineConnectClientSecret);
+            this.tabPgGeneral.Controls.Add(this.label8);
+            this.tabPgGeneral.Controls.Add(this.txtCommerceEngineConnectClientId);
+            this.tabPgGeneral.Controls.Add(this.label7);
+            this.tabPgGeneral.Controls.Add(this.label6);
+            this.tabPgGeneral.Controls.Add(this.txtSitecoreIdentityServerUrl);
+            this.tabPgGeneral.Controls.Add(this.txtIDServerSiteName);
+            this.tabPgGeneral.Controls.Add(this.label2);
+            this.tabPgGeneral.Location = new System.Drawing.Point(4, 54);
+            this.tabPgGeneral.Name = "tabPgGeneral";
+            this.tabPgGeneral.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPgGeneral.Size = new System.Drawing.Size(775, 255);
+            this.tabPgGeneral.TabIndex = 0;
+            this.tabPgGeneral.Text = "General";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 148);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(157, 20);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "SiteHostHeaderName:";
+            // 
+            // txtSiteHostHeaderName
+            // 
+            this.txtSiteHostHeaderName.Location = new System.Drawing.Point(179, 145);
+            this.txtSiteHostHeaderName.MaxLength = 100;
+            this.txtSiteHostHeaderName.Name = "txtSiteHostHeaderName";
+            this.txtSiteHostHeaderName.Size = new System.Drawing.Size(593, 27);
+            this.txtSiteHostHeaderName.TabIndex = 7;
+            this.txtSiteHostHeaderName.Leave += new System.EventHandler(this.txtSiteHostHeaderName_Leave);
+            // 
+            // txtCommerceEngineConnectClientSecret
+            // 
+            this.txtCommerceEngineConnectClientSecret.Location = new System.Drawing.Point(179, 112);
+            this.txtCommerceEngineConnectClientSecret.MaxLength = 100;
+            this.txtCommerceEngineConnectClientSecret.Name = "txtCommerceEngineConnectClientSecret";
+            this.txtCommerceEngineConnectClientSecret.Size = new System.Drawing.Size(593, 27);
+            this.txtCommerceEngineConnectClientSecret.TabIndex = 6;
+            this.txtCommerceEngineConnectClientSecret.Text = "fe6g2c5+YBGh5180qjB6N91nKGNn+gvgS0n51ixHnNY=";
+            this.txtCommerceEngineConnectClientSecret.Leave += new System.EventHandler(this.txtCommerceEngineConnectClientSecret_Leave);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(12, 115);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(169, 20);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "CommEngConnClSecret:";
+            // 
+            // txtCommerceEngineConnectClientId
+            // 
+            this.txtCommerceEngineConnectClientId.Location = new System.Drawing.Point(179, 79);
+            this.txtCommerceEngineConnectClientId.MaxLength = 50;
+            this.txtCommerceEngineConnectClientId.Name = "txtCommerceEngineConnectClientId";
+            this.txtCommerceEngineConnectClientId.Size = new System.Drawing.Size(593, 27);
+            this.txtCommerceEngineConnectClientId.TabIndex = 5;
+            this.txtCommerceEngineConnectClientId.Text = "CommerceEngineConnect";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(12, 82);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(166, 20);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "CommEngConnClientId:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(12, 49);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(139, 20);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "SitecoreIdServerUrl:";
+            // 
+            // txtSitecoreIdentityServerUrl
+            // 
+            this.txtSitecoreIdentityServerUrl.Location = new System.Drawing.Point(179, 46);
+            this.txtSitecoreIdentityServerUrl.MaxLength = 200;
+            this.txtSitecoreIdentityServerUrl.Name = "txtSitecoreIdentityServerUrl";
+            this.txtSitecoreIdentityServerUrl.Size = new System.Drawing.Size(593, 27);
+            this.txtSitecoreIdentityServerUrl.TabIndex = 4;
+            this.txtSitecoreIdentityServerUrl.TextChanged += new System.EventHandler(this.txtSitecoreIdentityServerUrl_TextChanged);
+            this.txtSitecoreIdentityServerUrl.Leave += new System.EventHandler(this.txtSitecoreIdentityServerUrl_Leave);
+            // 
+            // tabPgInstallDetails
+            // 
+            this.tabPgInstallDetails.Controls.Add(this.roundButton16);
+            this.tabPgInstallDetails.Controls.Add(this.roundButton15);
+            this.tabPgInstallDetails.Controls.Add(this.roundButton14);
+            this.tabPgInstallDetails.Controls.Add(this.roundButton13);
+            this.tabPgInstallDetails.Controls.Add(this.label9);
+            this.tabPgInstallDetails.Controls.Add(this.txtCommerceInstallRoot);
+            this.tabPgInstallDetails.Controls.Add(this.txtxConnectInstallDir);
+            this.tabPgInstallDetails.Controls.Add(this.label5);
+            this.tabPgInstallDetails.Controls.Add(this.txtSXAInstallDir);
+            this.tabPgInstallDetails.Controls.Add(this.label4);
+            this.tabPgInstallDetails.Location = new System.Drawing.Point(4, 54);
+            this.tabPgInstallDetails.Name = "tabPgInstallDetails";
+            this.tabPgInstallDetails.Size = new System.Drawing.Size(775, 255);
+            this.tabPgInstallDetails.TabIndex = 2;
+            this.tabPgInstallDetails.Text = "Install Details";
+            // 
+            // roundButton16
+            // 
+            this.roundButton16.BackColor = System.Drawing.Color.Navy;
+            this.roundButton16.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton16.ForeColor = System.Drawing.Color.Lavender;
+            this.roundButton16.Location = new System.Drawing.Point(725, 206);
+            this.roundButton16.Name = "roundButton16";
+            this.roundButton16.Size = new System.Drawing.Size(52, 53);
+            this.roundButton16.TabIndex = 47;
+            this.roundButton16.Text = ">>";
+            this.roundButton16.UseVisualStyleBackColor = false;
+            // 
+            // roundButton15
+            // 
+            this.roundButton15.BackColor = System.Drawing.Color.DarkBlue;
+            this.roundButton15.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton15.ForeColor = System.Drawing.Color.Lavender;
+            this.roundButton15.Location = new System.Drawing.Point(8, 206);
+            this.roundButton15.Name = "roundButton15";
+            this.roundButton15.Size = new System.Drawing.Size(52, 53);
+            this.roundButton15.TabIndex = 47;
+            this.roundButton15.Text = "<<";
+            this.roundButton15.UseVisualStyleBackColor = false;
+            this.roundButton15.Click += new System.EventHandler(this.roundButton3_Click);
+            // 
+            // roundButton14
+            // 
+            this.roundButton14.BackColor = System.Drawing.Color.MediumBlue;
+            this.roundButton14.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton14.ForeColor = System.Drawing.Color.GhostWhite;
+            this.roundButton14.Location = new System.Drawing.Point(58, 206);
+            this.roundButton14.Name = "roundButton14";
+            this.roundButton14.Size = new System.Drawing.Size(52, 53);
+            this.roundButton14.TabIndex = 47;
+            this.roundButton14.Text = "<";
+            this.roundButton14.UseVisualStyleBackColor = false;
+            this.roundButton14.Click += new System.EventHandler(this.roundButton3_Click);
+            // 
+            // roundButton13
+            // 
+            this.roundButton13.BackColor = System.Drawing.Color.MediumBlue;
+            this.roundButton13.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton13.ForeColor = System.Drawing.Color.GhostWhite;
+            this.roundButton13.Location = new System.Drawing.Point(676, 206);
+            this.roundButton13.Name = "roundButton13";
+            this.roundButton13.Size = new System.Drawing.Size(52, 53);
+            this.roundButton13.TabIndex = 47;
+            this.roundButton13.Text = ">";
+            this.roundButton13.UseVisualStyleBackColor = false;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(7, 87);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(155, 20);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "CommerceInstallRoot:";
+            // 
+            // txtCommerceInstallRoot
+            // 
+            this.txtCommerceInstallRoot.Location = new System.Drawing.Point(179, 84);
+            this.txtCommerceInstallRoot.MaxLength = 200;
+            this.txtCommerceInstallRoot.Name = "txtCommerceInstallRoot";
+            this.txtCommerceInstallRoot.Size = new System.Drawing.Size(593, 27);
+            this.txtCommerceInstallRoot.TabIndex = 10;
+            this.txtCommerceInstallRoot.Text = "c:\\inetpub\\wwwroot";
+            this.txtCommerceInstallRoot.Leave += new System.EventHandler(this.txtCommerceInstallRoot_Leave);
+            // 
+            // txtxConnectInstallDir
+            // 
+            this.txtxConnectInstallDir.Location = new System.Drawing.Point(179, 51);
+            this.txtxConnectInstallDir.MaxLength = 200;
+            this.txtxConnectInstallDir.Name = "txtxConnectInstallDir";
+            this.txtxConnectInstallDir.Size = new System.Drawing.Size(593, 27);
+            this.txtxConnectInstallDir.TabIndex = 9;
+            this.txtxConnectInstallDir.Text = "c:\\inetpub\\wwwroot";
+            this.txtxConnectInstallDir.Leave += new System.EventHandler(this.txtxConnectInstallDir_Leave);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 54);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(134, 20);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "XConnectInstallDir:";
+            // 
+            // txtSXAInstallDir
+            // 
+            this.txtSXAInstallDir.Location = new System.Drawing.Point(179, 18);
+            this.txtSXAInstallDir.MaxLength = 200;
+            this.txtSXAInstallDir.Name = "txtSXAInstallDir";
+            this.txtSXAInstallDir.Size = new System.Drawing.Size(593, 27);
+            this.txtSXAInstallDir.TabIndex = 8;
+            this.txtSXAInstallDir.Text = "c:\\inetpub\\wwwroot";
+            this.txtSXAInstallDir.Leave += new System.EventHandler(this.txtSXAInstallDir_Leave);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 21);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(123, 20);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "SXASiteInstallDir:";
+            // 
+            // tabPgSitecore
+            // 
+            this.tabPgSitecore.Controls.Add(this.roundButton20);
+            this.tabPgSitecore.Controls.Add(this.roundButton19);
+            this.tabPgSitecore.Controls.Add(this.roundButton18);
+            this.tabPgSitecore.Controls.Add(this.roundButton17);
+            this.tabPgSitecore.Controls.Add(this.label16);
+            this.tabPgSitecore.Controls.Add(this.txtSitecoreUserPassword);
+            this.tabPgSitecore.Controls.Add(this.txtSitecoreUsername);
+            this.tabPgSitecore.Controls.Add(this.label15);
+            this.tabPgSitecore.Controls.Add(this.label14);
+            this.tabPgSitecore.Controls.Add(this.txtSitecoreDomain);
+            this.tabPgSitecore.Location = new System.Drawing.Point(4, 54);
+            this.tabPgSitecore.Name = "tabPgSitecore";
+            this.tabPgSitecore.Size = new System.Drawing.Size(775, 255);
+            this.tabPgSitecore.TabIndex = 4;
+            this.tabPgSitecore.Text = "Sitecore";
+            // 
+            // roundButton20
+            // 
+            this.roundButton20.BackColor = System.Drawing.Color.Navy;
+            this.roundButton20.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton20.ForeColor = System.Drawing.Color.Lavender;
+            this.roundButton20.Location = new System.Drawing.Point(725, 202);
+            this.roundButton20.Name = "roundButton20";
+            this.roundButton20.Size = new System.Drawing.Size(52, 53);
+            this.roundButton20.TabIndex = 47;
+            this.roundButton20.Text = ">>";
+            this.roundButton20.UseVisualStyleBackColor = false;
+            // 
+            // roundButton19
+            // 
+            this.roundButton19.BackColor = System.Drawing.Color.DarkBlue;
+            this.roundButton19.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton19.ForeColor = System.Drawing.Color.Lavender;
+            this.roundButton19.Location = new System.Drawing.Point(8, 202);
+            this.roundButton19.Name = "roundButton19";
+            this.roundButton19.Size = new System.Drawing.Size(52, 53);
+            this.roundButton19.TabIndex = 47;
+            this.roundButton19.Text = "<<";
+            this.roundButton19.UseVisualStyleBackColor = false;
+            this.roundButton19.Click += new System.EventHandler(this.roundButton3_Click);
+            // 
+            // roundButton18
+            // 
+            this.roundButton18.BackColor = System.Drawing.Color.MediumBlue;
+            this.roundButton18.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton18.ForeColor = System.Drawing.Color.GhostWhite;
+            this.roundButton18.Location = new System.Drawing.Point(58, 202);
+            this.roundButton18.Name = "roundButton18";
+            this.roundButton18.Size = new System.Drawing.Size(52, 53);
+            this.roundButton18.TabIndex = 47;
+            this.roundButton18.Text = "<";
+            this.roundButton18.UseVisualStyleBackColor = false;
+            this.roundButton18.Click += new System.EventHandler(this.roundButton3_Click);
+            // 
+            // roundButton17
+            // 
+            this.roundButton17.BackColor = System.Drawing.Color.MediumBlue;
+            this.roundButton17.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton17.ForeColor = System.Drawing.Color.GhostWhite;
+            this.roundButton17.Location = new System.Drawing.Point(676, 202);
+            this.roundButton17.Name = "roundButton17";
+            this.roundButton17.Size = new System.Drawing.Size(52, 53);
+            this.roundButton17.TabIndex = 47;
+            this.roundButton17.Text = ">";
+            this.roundButton17.UseVisualStyleBackColor = false;
             // 
             // label16
             // 
@@ -660,34 +870,77 @@
             this.txtSitecoreDomain.Text = "sitecore";
             this.txtSitecoreDomain.Leave += new System.EventHandler(this.txtSitecoreDomain_Leave);
             // 
-            // tabPage6
+            // tabPgSolr
             // 
-            this.tabPage6.Controls.Add(this.button6);
-            this.tabPage6.Controls.Add(this.label21);
-            this.tabPage6.Controls.Add(this.txtStorefrontIndexPrefix);
-            this.tabPage6.Controls.Add(this.label20);
-            this.tabPage6.Controls.Add(this.txtSolrService);
-            this.tabPage6.Controls.Add(this.label19);
-            this.tabPage6.Controls.Add(this.txtSolrRoot);
-            this.tabPage6.Controls.Add(this.txtSolrUrl);
-            this.tabPage6.Controls.Add(this.label18);
-            this.tabPage6.Controls.Add(this.txtSearchIndexPrefix);
-            this.tabPage6.Controls.Add(this.label17);
-            this.tabPage6.Location = new System.Drawing.Point(4, 54);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(775, 220);
-            this.tabPage6.TabIndex = 5;
-            this.tabPage6.Text = "Solr";
+            this.tabPgSolr.Controls.Add(this.roundButton24);
+            this.tabPgSolr.Controls.Add(this.roundButton23);
+            this.tabPgSolr.Controls.Add(this.roundButton22);
+            this.tabPgSolr.Controls.Add(this.roundButton21);
+            this.tabPgSolr.Controls.Add(this.label21);
+            this.tabPgSolr.Controls.Add(this.txtStorefrontIndexPrefix);
+            this.tabPgSolr.Controls.Add(this.label20);
+            this.tabPgSolr.Controls.Add(this.txtSolrService);
+            this.tabPgSolr.Controls.Add(this.label19);
+            this.tabPgSolr.Controls.Add(this.txtSolrRoot);
+            this.tabPgSolr.Controls.Add(this.txtSolrUrl);
+            this.tabPgSolr.Controls.Add(this.label18);
+            this.tabPgSolr.Controls.Add(this.txtSearchIndexPrefix);
+            this.tabPgSolr.Controls.Add(this.label17);
+            this.tabPgSolr.Location = new System.Drawing.Point(4, 54);
+            this.tabPgSolr.Name = "tabPgSolr";
+            this.tabPgSolr.Size = new System.Drawing.Size(775, 255);
+            this.tabPgSolr.TabIndex = 5;
+            this.tabPgSolr.Text = "Solr";
             // 
-            // button6
+            // roundButton24
             // 
-            this.button6.Location = new System.Drawing.Point(620, 176);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(152, 38);
-            this.button6.TabIndex = 47;
-            this.button6.Text = "Check Solr";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.btnInstall_Click);
+            this.roundButton24.BackColor = System.Drawing.Color.Navy;
+            this.roundButton24.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton24.ForeColor = System.Drawing.Color.Lavender;
+            this.roundButton24.Location = new System.Drawing.Point(724, 202);
+            this.roundButton24.Name = "roundButton24";
+            this.roundButton24.Size = new System.Drawing.Size(52, 53);
+            this.roundButton24.TabIndex = 47;
+            this.roundButton24.Text = ">>";
+            this.roundButton24.UseVisualStyleBackColor = false;
+            // 
+            // roundButton23
+            // 
+            this.roundButton23.BackColor = System.Drawing.Color.DarkBlue;
+            this.roundButton23.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton23.ForeColor = System.Drawing.Color.Lavender;
+            this.roundButton23.Location = new System.Drawing.Point(7, 202);
+            this.roundButton23.Name = "roundButton23";
+            this.roundButton23.Size = new System.Drawing.Size(52, 53);
+            this.roundButton23.TabIndex = 47;
+            this.roundButton23.Text = "<<";
+            this.roundButton23.UseVisualStyleBackColor = false;
+            this.roundButton23.Click += new System.EventHandler(this.roundButton3_Click);
+            // 
+            // roundButton22
+            // 
+            this.roundButton22.BackColor = System.Drawing.Color.MediumBlue;
+            this.roundButton22.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton22.ForeColor = System.Drawing.Color.GhostWhite;
+            this.roundButton22.Location = new System.Drawing.Point(57, 202);
+            this.roundButton22.Name = "roundButton22";
+            this.roundButton22.Size = new System.Drawing.Size(52, 53);
+            this.roundButton22.TabIndex = 47;
+            this.roundButton22.Text = "<";
+            this.roundButton22.UseVisualStyleBackColor = false;
+            this.roundButton22.Click += new System.EventHandler(this.roundButton3_Click);
+            // 
+            // roundButton21
+            // 
+            this.roundButton21.BackColor = System.Drawing.Color.MediumBlue;
+            this.roundButton21.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton21.ForeColor = System.Drawing.Color.GhostWhite;
+            this.roundButton21.Location = new System.Drawing.Point(675, 202);
+            this.roundButton21.Name = "roundButton21";
+            this.roundButton21.Size = new System.Drawing.Size(52, 53);
+            this.roundButton21.TabIndex = 47;
+            this.roundButton21.Text = ">";
+            this.roundButton21.UseVisualStyleBackColor = false;
             // 
             // label21
             // 
@@ -783,17 +1036,71 @@
             this.label17.TabIndex = 0;
             this.label17.Text = "SearchIndexPrefix:";
             // 
-            // tabPage7
+            // tabPgRedis
             // 
-            this.tabPage7.Controls.Add(this.txtRedisPort);
-            this.tabPage7.Controls.Add(this.label24);
-            this.tabPage7.Controls.Add(this.label23);
-            this.tabPage7.Controls.Add(this.txtRedisHost);
-            this.tabPage7.Location = new System.Drawing.Point(4, 54);
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(775, 220);
-            this.tabPage7.TabIndex = 6;
-            this.tabPage7.Text = "Redis";
+            this.tabPgRedis.Controls.Add(this.roundButton28);
+            this.tabPgRedis.Controls.Add(this.roundButton27);
+            this.tabPgRedis.Controls.Add(this.roundButton26);
+            this.tabPgRedis.Controls.Add(this.roundButton25);
+            this.tabPgRedis.Controls.Add(this.txtRedisPort);
+            this.tabPgRedis.Controls.Add(this.label24);
+            this.tabPgRedis.Controls.Add(this.label23);
+            this.tabPgRedis.Controls.Add(this.txtRedisHost);
+            this.tabPgRedis.Location = new System.Drawing.Point(4, 54);
+            this.tabPgRedis.Name = "tabPgRedis";
+            this.tabPgRedis.Size = new System.Drawing.Size(775, 255);
+            this.tabPgRedis.TabIndex = 6;
+            this.tabPgRedis.Text = "Redis";
+            // 
+            // roundButton28
+            // 
+            this.roundButton28.BackColor = System.Drawing.Color.Navy;
+            this.roundButton28.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton28.ForeColor = System.Drawing.Color.Lavender;
+            this.roundButton28.Location = new System.Drawing.Point(721, 199);
+            this.roundButton28.Name = "roundButton28";
+            this.roundButton28.Size = new System.Drawing.Size(52, 53);
+            this.roundButton28.TabIndex = 47;
+            this.roundButton28.Text = ">>";
+            this.roundButton28.UseVisualStyleBackColor = false;
+            // 
+            // roundButton27
+            // 
+            this.roundButton27.BackColor = System.Drawing.Color.DarkBlue;
+            this.roundButton27.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton27.ForeColor = System.Drawing.Color.Lavender;
+            this.roundButton27.Location = new System.Drawing.Point(4, 199);
+            this.roundButton27.Name = "roundButton27";
+            this.roundButton27.Size = new System.Drawing.Size(52, 53);
+            this.roundButton27.TabIndex = 47;
+            this.roundButton27.Text = "<<";
+            this.roundButton27.UseVisualStyleBackColor = false;
+            this.roundButton27.Click += new System.EventHandler(this.roundButton3_Click);
+            // 
+            // roundButton26
+            // 
+            this.roundButton26.BackColor = System.Drawing.Color.MediumBlue;
+            this.roundButton26.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton26.ForeColor = System.Drawing.Color.GhostWhite;
+            this.roundButton26.Location = new System.Drawing.Point(54, 199);
+            this.roundButton26.Name = "roundButton26";
+            this.roundButton26.Size = new System.Drawing.Size(52, 53);
+            this.roundButton26.TabIndex = 47;
+            this.roundButton26.Text = "<";
+            this.roundButton26.UseVisualStyleBackColor = false;
+            this.roundButton26.Click += new System.EventHandler(this.roundButton3_Click);
+            // 
+            // roundButton25
+            // 
+            this.roundButton25.BackColor = System.Drawing.Color.MediumBlue;
+            this.roundButton25.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton25.ForeColor = System.Drawing.Color.GhostWhite;
+            this.roundButton25.Location = new System.Drawing.Point(672, 199);
+            this.roundButton25.Name = "roundButton25";
+            this.roundButton25.Size = new System.Drawing.Size(52, 53);
+            this.roundButton25.TabIndex = 47;
+            this.roundButton25.Text = ">";
+            this.roundButton25.UseVisualStyleBackColor = false;
             // 
             // txtRedisPort
             // 
@@ -841,23 +1148,77 @@
             this.txtRedisHost.Text = "localhost";
             this.txtRedisHost.Leave += new System.EventHandler(this.txtRedisHost_Leave);
             // 
-            // tabPage8
+            // tabPgCommerce
             // 
-            this.tabPage8.Controls.Add(this.label31);
-            this.tabPage8.Controls.Add(this.txtCommerceServicesDBServer);
-            this.tabPage8.Controls.Add(this.label30);
-            this.tabPage8.Controls.Add(this.label29);
-            this.tabPage8.Controls.Add(this.txtCommerceGlobalDbName);
-            this.tabPage8.Controls.Add(this.label28);
-            this.tabPage8.Controls.Add(this.txtCommerceSvcPostFix);
-            this.tabPage8.Controls.Add(this.label27);
-            this.tabPage8.Controls.Add(this.txtCommerceServicesHostPostFix);
-            this.tabPage8.Controls.Add(this.txtCommerceDbName);
-            this.tabPage8.Location = new System.Drawing.Point(4, 54);
-            this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(775, 220);
-            this.tabPage8.TabIndex = 7;
-            this.tabPage8.Text = "Commerce";
+            this.tabPgCommerce.Controls.Add(this.roundButton32);
+            this.tabPgCommerce.Controls.Add(this.roundButton31);
+            this.tabPgCommerce.Controls.Add(this.roundButton30);
+            this.tabPgCommerce.Controls.Add(this.roundButton29);
+            this.tabPgCommerce.Controls.Add(this.label31);
+            this.tabPgCommerce.Controls.Add(this.txtCommerceServicesDBServer);
+            this.tabPgCommerce.Controls.Add(this.label30);
+            this.tabPgCommerce.Controls.Add(this.label29);
+            this.tabPgCommerce.Controls.Add(this.txtCommerceGlobalDbName);
+            this.tabPgCommerce.Controls.Add(this.label28);
+            this.tabPgCommerce.Controls.Add(this.txtCommerceSvcPostFix);
+            this.tabPgCommerce.Controls.Add(this.label27);
+            this.tabPgCommerce.Controls.Add(this.txtCommerceServicesHostPostFix);
+            this.tabPgCommerce.Controls.Add(this.txtCommerceDbName);
+            this.tabPgCommerce.Location = new System.Drawing.Point(4, 54);
+            this.tabPgCommerce.Name = "tabPgCommerce";
+            this.tabPgCommerce.Size = new System.Drawing.Size(775, 255);
+            this.tabPgCommerce.TabIndex = 7;
+            this.tabPgCommerce.Text = "Commerce";
+            // 
+            // roundButton32
+            // 
+            this.roundButton32.BackColor = System.Drawing.Color.Navy;
+            this.roundButton32.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton32.ForeColor = System.Drawing.Color.Lavender;
+            this.roundButton32.Location = new System.Drawing.Point(722, 202);
+            this.roundButton32.Name = "roundButton32";
+            this.roundButton32.Size = new System.Drawing.Size(52, 53);
+            this.roundButton32.TabIndex = 47;
+            this.roundButton32.Text = ">>";
+            this.roundButton32.UseVisualStyleBackColor = false;
+            // 
+            // roundButton31
+            // 
+            this.roundButton31.BackColor = System.Drawing.Color.DarkBlue;
+            this.roundButton31.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton31.ForeColor = System.Drawing.Color.Lavender;
+            this.roundButton31.Location = new System.Drawing.Point(5, 202);
+            this.roundButton31.Name = "roundButton31";
+            this.roundButton31.Size = new System.Drawing.Size(52, 53);
+            this.roundButton31.TabIndex = 47;
+            this.roundButton31.Text = "<<";
+            this.roundButton31.UseVisualStyleBackColor = false;
+            this.roundButton31.Click += new System.EventHandler(this.roundButton3_Click);
+            // 
+            // roundButton30
+            // 
+            this.roundButton30.BackColor = System.Drawing.Color.MediumBlue;
+            this.roundButton30.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton30.ForeColor = System.Drawing.Color.GhostWhite;
+            this.roundButton30.Location = new System.Drawing.Point(55, 202);
+            this.roundButton30.Name = "roundButton30";
+            this.roundButton30.Size = new System.Drawing.Size(52, 53);
+            this.roundButton30.TabIndex = 47;
+            this.roundButton30.Text = "<";
+            this.roundButton30.UseVisualStyleBackColor = false;
+            this.roundButton30.Click += new System.EventHandler(this.roundButton3_Click);
+            // 
+            // roundButton29
+            // 
+            this.roundButton29.BackColor = System.Drawing.Color.MediumBlue;
+            this.roundButton29.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton29.ForeColor = System.Drawing.Color.GhostWhite;
+            this.roundButton29.Location = new System.Drawing.Point(673, 202);
+            this.roundButton29.Name = "roundButton29";
+            this.roundButton29.Size = new System.Drawing.Size(52, 53);
+            this.roundButton29.TabIndex = 47;
+            this.roundButton29.Text = ">";
+            this.roundButton29.UseVisualStyleBackColor = false;
             // 
             // label31
             // 
@@ -953,30 +1314,84 @@
             this.txtCommerceDbName.Text = "https://solr840:8988/solr";
             this.txtCommerceDbName.Leave += new System.EventHandler(this.txtCommerceDbName_Leave);
             // 
-            // tabPage9
+            // tabPgPorts
             // 
-            this.tabPage9.Controls.Add(this.btnBizFxPort);
-            this.tabPage9.Controls.Add(this.btnCommerceMinionsSvcPort);
-            this.tabPage9.Controls.Add(this.btnCommerceAuthSvcPort);
-            this.tabPage9.Controls.Add(this.btnCommerceShopsSvcPort);
-            this.tabPage9.Controls.Add(this.btnCommerceOpsSvcPort);
-            this.tabPage9.Controls.Add(this.txtBizFxPort);
-            this.tabPage9.Controls.Add(this.txtCommerceMinionsSvcPort);
-            this.tabPage9.Controls.Add(this.txtCommerceAuthSvcPort);
-            this.tabPage9.Controls.Add(this.txtCommerceShopsServicesPort);
-            this.tabPage9.Controls.Add(this.txtCommerceOpsSvcPort);
-            this.tabPage9.Controls.Add(this.txtBizFxName);
-            this.tabPage9.Controls.Add(this.label37);
-            this.tabPage9.Controls.Add(this.label36);
-            this.tabPage9.Controls.Add(this.label35);
-            this.tabPage9.Controls.Add(this.label34);
-            this.tabPage9.Controls.Add(this.label33);
-            this.tabPage9.Controls.Add(this.label32);
-            this.tabPage9.Location = new System.Drawing.Point(4, 54);
-            this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Size = new System.Drawing.Size(775, 220);
-            this.tabPage9.TabIndex = 8;
-            this.tabPage9.Text = "Ports";
+            this.tabPgPorts.Controls.Add(this.roundButton36);
+            this.tabPgPorts.Controls.Add(this.roundButton35);
+            this.tabPgPorts.Controls.Add(this.roundButton34);
+            this.tabPgPorts.Controls.Add(this.roundButton33);
+            this.tabPgPorts.Controls.Add(this.btnBizFxPort);
+            this.tabPgPorts.Controls.Add(this.btnCommerceMinionsSvcPort);
+            this.tabPgPorts.Controls.Add(this.btnCommerceAuthSvcPort);
+            this.tabPgPorts.Controls.Add(this.btnCommerceShopsSvcPort);
+            this.tabPgPorts.Controls.Add(this.btnCommerceOpsSvcPort);
+            this.tabPgPorts.Controls.Add(this.txtBizFxPort);
+            this.tabPgPorts.Controls.Add(this.txtCommerceMinionsSvcPort);
+            this.tabPgPorts.Controls.Add(this.txtCommerceAuthSvcPort);
+            this.tabPgPorts.Controls.Add(this.txtCommerceShopsServicesPort);
+            this.tabPgPorts.Controls.Add(this.txtCommerceOpsSvcPort);
+            this.tabPgPorts.Controls.Add(this.txtBizFxName);
+            this.tabPgPorts.Controls.Add(this.label37);
+            this.tabPgPorts.Controls.Add(this.label36);
+            this.tabPgPorts.Controls.Add(this.label35);
+            this.tabPgPorts.Controls.Add(this.label34);
+            this.tabPgPorts.Controls.Add(this.label33);
+            this.tabPgPorts.Controls.Add(this.label32);
+            this.tabPgPorts.Location = new System.Drawing.Point(4, 54);
+            this.tabPgPorts.Name = "tabPgPorts";
+            this.tabPgPorts.Size = new System.Drawing.Size(775, 255);
+            this.tabPgPorts.TabIndex = 8;
+            this.tabPgPorts.Text = "Ports";
+            // 
+            // roundButton36
+            // 
+            this.roundButton36.BackColor = System.Drawing.Color.Navy;
+            this.roundButton36.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton36.ForeColor = System.Drawing.Color.Lavender;
+            this.roundButton36.Location = new System.Drawing.Point(726, 202);
+            this.roundButton36.Name = "roundButton36";
+            this.roundButton36.Size = new System.Drawing.Size(52, 53);
+            this.roundButton36.TabIndex = 47;
+            this.roundButton36.Text = ">>";
+            this.roundButton36.UseVisualStyleBackColor = false;
+            // 
+            // roundButton35
+            // 
+            this.roundButton35.BackColor = System.Drawing.Color.DarkBlue;
+            this.roundButton35.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton35.ForeColor = System.Drawing.Color.Lavender;
+            this.roundButton35.Location = new System.Drawing.Point(9, 202);
+            this.roundButton35.Name = "roundButton35";
+            this.roundButton35.Size = new System.Drawing.Size(52, 53);
+            this.roundButton35.TabIndex = 47;
+            this.roundButton35.Text = "<<";
+            this.roundButton35.UseVisualStyleBackColor = false;
+            this.roundButton35.Click += new System.EventHandler(this.roundButton3_Click);
+            // 
+            // roundButton34
+            // 
+            this.roundButton34.BackColor = System.Drawing.Color.MediumBlue;
+            this.roundButton34.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton34.ForeColor = System.Drawing.Color.GhostWhite;
+            this.roundButton34.Location = new System.Drawing.Point(59, 202);
+            this.roundButton34.Name = "roundButton34";
+            this.roundButton34.Size = new System.Drawing.Size(52, 53);
+            this.roundButton34.TabIndex = 47;
+            this.roundButton34.Text = "<";
+            this.roundButton34.UseVisualStyleBackColor = false;
+            this.roundButton34.Click += new System.EventHandler(this.roundButton3_Click);
+            // 
+            // roundButton33
+            // 
+            this.roundButton33.BackColor = System.Drawing.Color.MediumBlue;
+            this.roundButton33.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton33.ForeColor = System.Drawing.Color.GhostWhite;
+            this.roundButton33.Location = new System.Drawing.Point(677, 202);
+            this.roundButton33.Name = "roundButton33";
+            this.roundButton33.Size = new System.Drawing.Size(52, 53);
+            this.roundButton33.TabIndex = 47;
+            this.roundButton33.Text = ">";
+            this.roundButton33.UseVisualStyleBackColor = false;
             // 
             // btnBizFxPort
             // 
@@ -1181,16 +1596,70 @@
             this.label32.TabIndex = 0;
             this.label32.Text = "CommerceShopsSvcPort:";
             // 
-            // tabPage10
+            // tabPgEnvironments
             // 
-            this.tabPage10.Controls.Add(this.chkDeploySampleData);
-            this.tabPage10.Controls.Add(this.textBox16);
-            this.tabPage10.Controls.Add(this.label41);
-            this.tabPage10.Location = new System.Drawing.Point(4, 54);
-            this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Size = new System.Drawing.Size(775, 220);
-            this.tabPage10.TabIndex = 9;
-            this.tabPage10.Text = "Environments";
+            this.tabPgEnvironments.Controls.Add(this.roundButton40);
+            this.tabPgEnvironments.Controls.Add(this.roundButton39);
+            this.tabPgEnvironments.Controls.Add(this.roundButton38);
+            this.tabPgEnvironments.Controls.Add(this.roundButton37);
+            this.tabPgEnvironments.Controls.Add(this.chkDeploySampleData);
+            this.tabPgEnvironments.Controls.Add(this.textBox16);
+            this.tabPgEnvironments.Controls.Add(this.label41);
+            this.tabPgEnvironments.Location = new System.Drawing.Point(4, 54);
+            this.tabPgEnvironments.Name = "tabPgEnvironments";
+            this.tabPgEnvironments.Size = new System.Drawing.Size(775, 255);
+            this.tabPgEnvironments.TabIndex = 9;
+            this.tabPgEnvironments.Text = "Environments";
+            // 
+            // roundButton40
+            // 
+            this.roundButton40.BackColor = System.Drawing.Color.Navy;
+            this.roundButton40.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton40.ForeColor = System.Drawing.Color.Lavender;
+            this.roundButton40.Location = new System.Drawing.Point(721, 178);
+            this.roundButton40.Name = "roundButton40";
+            this.roundButton40.Size = new System.Drawing.Size(52, 53);
+            this.roundButton40.TabIndex = 47;
+            this.roundButton40.Text = ">>";
+            this.roundButton40.UseVisualStyleBackColor = false;
+            // 
+            // roundButton39
+            // 
+            this.roundButton39.BackColor = System.Drawing.Color.DarkBlue;
+            this.roundButton39.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton39.ForeColor = System.Drawing.Color.Lavender;
+            this.roundButton39.Location = new System.Drawing.Point(4, 178);
+            this.roundButton39.Name = "roundButton39";
+            this.roundButton39.Size = new System.Drawing.Size(52, 53);
+            this.roundButton39.TabIndex = 47;
+            this.roundButton39.Text = "<<";
+            this.roundButton39.UseVisualStyleBackColor = false;
+            this.roundButton39.Click += new System.EventHandler(this.roundButton3_Click);
+            // 
+            // roundButton38
+            // 
+            this.roundButton38.BackColor = System.Drawing.Color.MediumBlue;
+            this.roundButton38.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton38.ForeColor = System.Drawing.Color.GhostWhite;
+            this.roundButton38.Location = new System.Drawing.Point(54, 178);
+            this.roundButton38.Name = "roundButton38";
+            this.roundButton38.Size = new System.Drawing.Size(52, 53);
+            this.roundButton38.TabIndex = 47;
+            this.roundButton38.Text = "<";
+            this.roundButton38.UseVisualStyleBackColor = false;
+            this.roundButton38.Click += new System.EventHandler(this.roundButton3_Click);
+            // 
+            // roundButton37
+            // 
+            this.roundButton37.BackColor = System.Drawing.Color.MediumBlue;
+            this.roundButton37.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton37.ForeColor = System.Drawing.Color.GhostWhite;
+            this.roundButton37.Location = new System.Drawing.Point(672, 178);
+            this.roundButton37.Name = "roundButton37";
+            this.roundButton37.Size = new System.Drawing.Size(52, 53);
+            this.roundButton37.TabIndex = 47;
+            this.roundButton37.Text = ">";
+            this.roundButton37.UseVisualStyleBackColor = false;
             // 
             // chkDeploySampleData
             // 
@@ -1221,19 +1690,73 @@
             this.label41.TabIndex = 0;
             this.label41.Text = "EnvironmentsPrefix:";
             // 
-            // tabPage11
+            // tabPgWinUser
             // 
-            this.tabPage11.Controls.Add(this.label43);
-            this.tabPage11.Controls.Add(this.txtUserDomain);
-            this.tabPage11.Controls.Add(this.label42);
-            this.tabPage11.Controls.Add(this.txtUserPassword);
-            this.tabPage11.Controls.Add(this.label39);
-            this.tabPage11.Controls.Add(this.txtUserName);
-            this.tabPage11.Location = new System.Drawing.Point(4, 54);
-            this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Size = new System.Drawing.Size(775, 220);
-            this.tabPage11.TabIndex = 10;
-            this.tabPage11.Text = "Win User";
+            this.tabPgWinUser.Controls.Add(this.roundButton44);
+            this.tabPgWinUser.Controls.Add(this.roundButton43);
+            this.tabPgWinUser.Controls.Add(this.roundButton42);
+            this.tabPgWinUser.Controls.Add(this.roundButton41);
+            this.tabPgWinUser.Controls.Add(this.label43);
+            this.tabPgWinUser.Controls.Add(this.txtUserDomain);
+            this.tabPgWinUser.Controls.Add(this.label42);
+            this.tabPgWinUser.Controls.Add(this.txtUserPassword);
+            this.tabPgWinUser.Controls.Add(this.label39);
+            this.tabPgWinUser.Controls.Add(this.txtUserName);
+            this.tabPgWinUser.Location = new System.Drawing.Point(4, 54);
+            this.tabPgWinUser.Name = "tabPgWinUser";
+            this.tabPgWinUser.Size = new System.Drawing.Size(775, 255);
+            this.tabPgWinUser.TabIndex = 10;
+            this.tabPgWinUser.Text = "Win User";
+            // 
+            // roundButton44
+            // 
+            this.roundButton44.BackColor = System.Drawing.Color.Navy;
+            this.roundButton44.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton44.ForeColor = System.Drawing.Color.Lavender;
+            this.roundButton44.Location = new System.Drawing.Point(720, 178);
+            this.roundButton44.Name = "roundButton44";
+            this.roundButton44.Size = new System.Drawing.Size(52, 53);
+            this.roundButton44.TabIndex = 47;
+            this.roundButton44.Text = ">>";
+            this.roundButton44.UseVisualStyleBackColor = false;
+            // 
+            // roundButton43
+            // 
+            this.roundButton43.BackColor = System.Drawing.Color.DarkBlue;
+            this.roundButton43.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton43.ForeColor = System.Drawing.Color.Lavender;
+            this.roundButton43.Location = new System.Drawing.Point(3, 178);
+            this.roundButton43.Name = "roundButton43";
+            this.roundButton43.Size = new System.Drawing.Size(52, 53);
+            this.roundButton43.TabIndex = 47;
+            this.roundButton43.Text = "<<";
+            this.roundButton43.UseVisualStyleBackColor = false;
+            this.roundButton43.Click += new System.EventHandler(this.roundButton3_Click);
+            // 
+            // roundButton42
+            // 
+            this.roundButton42.BackColor = System.Drawing.Color.MediumBlue;
+            this.roundButton42.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton42.ForeColor = System.Drawing.Color.GhostWhite;
+            this.roundButton42.Location = new System.Drawing.Point(53, 178);
+            this.roundButton42.Name = "roundButton42";
+            this.roundButton42.Size = new System.Drawing.Size(52, 53);
+            this.roundButton42.TabIndex = 47;
+            this.roundButton42.Text = "<";
+            this.roundButton42.UseVisualStyleBackColor = false;
+            this.roundButton42.Click += new System.EventHandler(this.roundButton3_Click);
+            // 
+            // roundButton41
+            // 
+            this.roundButton41.BackColor = System.Drawing.Color.MediumBlue;
+            this.roundButton41.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton41.ForeColor = System.Drawing.Color.GhostWhite;
+            this.roundButton41.Location = new System.Drawing.Point(671, 178);
+            this.roundButton41.Name = "roundButton41";
+            this.roundButton41.Size = new System.Drawing.Size(52, 53);
+            this.roundButton41.TabIndex = 47;
+            this.roundButton41.Text = ">";
+            this.roundButton41.UseVisualStyleBackColor = false;
             // 
             // label43
             // 
@@ -1293,21 +1816,49 @@
             this.txtUserName.Text = "CSFndRuntimeUser";
             this.txtUserName.Leave += new System.EventHandler(this.txtUserName_Leave);
             // 
-            // tabPage12
+            // tabPgBraintree
             // 
-            this.tabPage12.Controls.Add(this.label46);
-            this.tabPage12.Controls.Add(this.txttxtBraintreeMerchantId);
-            this.tabPage12.Controls.Add(this.label45);
-            this.tabPage12.Controls.Add(this.txtBraintreePublicKey);
-            this.tabPage12.Controls.Add(this.txtBraintreePrivateKey);
-            this.tabPage12.Controls.Add(this.label44);
-            this.tabPage12.Controls.Add(this.txtBraintreeEnvironment);
-            this.tabPage12.Controls.Add(this.label40);
-            this.tabPage12.Location = new System.Drawing.Point(4, 54);
-            this.tabPage12.Name = "tabPage12";
-            this.tabPage12.Size = new System.Drawing.Size(775, 220);
-            this.tabPage12.TabIndex = 11;
-            this.tabPage12.Text = "Braintree";
+            this.tabPgBraintree.Controls.Add(this.roundButton47);
+            this.tabPgBraintree.Controls.Add(this.roundButton46);
+            this.tabPgBraintree.Controls.Add(this.label46);
+            this.tabPgBraintree.Controls.Add(this.txttxtBraintreeMerchantId);
+            this.tabPgBraintree.Controls.Add(this.label45);
+            this.tabPgBraintree.Controls.Add(this.txtBraintreePublicKey);
+            this.tabPgBraintree.Controls.Add(this.txtBraintreePrivateKey);
+            this.tabPgBraintree.Controls.Add(this.label44);
+            this.tabPgBraintree.Controls.Add(this.txtBraintreeEnvironment);
+            this.tabPgBraintree.Controls.Add(this.label40);
+            this.tabPgBraintree.Location = new System.Drawing.Point(4, 54);
+            this.tabPgBraintree.Name = "tabPgBraintree";
+            this.tabPgBraintree.Size = new System.Drawing.Size(775, 255);
+            this.tabPgBraintree.TabIndex = 11;
+            this.tabPgBraintree.Text = "Braintree";
+            // 
+            // roundButton47
+            // 
+            this.roundButton47.BackColor = System.Drawing.Color.DarkBlue;
+            this.roundButton47.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton47.ForeColor = System.Drawing.Color.Lavender;
+            this.roundButton47.Location = new System.Drawing.Point(8, 178);
+            this.roundButton47.Name = "roundButton47";
+            this.roundButton47.Size = new System.Drawing.Size(52, 53);
+            this.roundButton47.TabIndex = 47;
+            this.roundButton47.Text = "<<";
+            this.roundButton47.UseVisualStyleBackColor = false;
+            this.roundButton47.Click += new System.EventHandler(this.roundButton3_Click);
+            // 
+            // roundButton46
+            // 
+            this.roundButton46.BackColor = System.Drawing.Color.MediumBlue;
+            this.roundButton46.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.roundButton46.ForeColor = System.Drawing.Color.GhostWhite;
+            this.roundButton46.Location = new System.Drawing.Point(58, 178);
+            this.roundButton46.Name = "roundButton46";
+            this.roundButton46.Size = new System.Drawing.Size(52, 53);
+            this.roundButton46.TabIndex = 47;
+            this.roundButton46.Text = "<";
+            this.roundButton46.UseVisualStyleBackColor = false;
+            this.roundButton46.Click += new System.EventHandler(this.roundButton3_Click);
             // 
             // label46
             // 
@@ -1418,109 +1969,223 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // btnGenerate
+            // 
+            this.btnGenerate.BackColor = System.Drawing.SystemColors.Desktop;
+            this.btnGenerate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnGenerate.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnGenerate.Location = new System.Drawing.Point(211, 492);
+            this.btnGenerate.Name = "btnGenerate";
+            this.btnGenerate.Size = new System.Drawing.Size(139, 38);
+            this.btnGenerate.TabIndex = 46;
+            this.btnGenerate.Text = "Generate Scripts";
+            this.btnGenerate.UseVisualStyleBackColor = false;
+            this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
+            this.btnGenerate.MouseHover += new System.EventHandler(this.btnGenerate_MouseHover);
+            // 
+            // btnInstall
+            // 
+            this.btnInstall.BackColor = System.Drawing.SystemColors.ControlText;
+            this.btnInstall.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInstall.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnInstall.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnInstall.Location = new System.Drawing.Point(356, 492);
+            this.btnInstall.Name = "btnInstall";
+            this.btnInstall.Size = new System.Drawing.Size(120, 38);
+            this.btnInstall.TabIndex = 47;
+            this.btnInstall.Text = "Install";
+            this.btnInstall.UseVisualStyleBackColor = false;
+            this.btnInstall.Click += new System.EventHandler(this.btnInstall_Click);
+            // 
+            // btnUninstall
+            // 
+            this.btnUninstall.BackColor = System.Drawing.SystemColors.ControlText;
+            this.btnUninstall.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUninstall.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnUninstall.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnUninstall.Location = new System.Drawing.Point(482, 492);
+            this.btnUninstall.Name = "btnUninstall";
+            this.btnUninstall.Size = new System.Drawing.Size(114, 38);
+            this.btnUninstall.TabIndex = 48;
+            this.btnUninstall.Text = "Uninstall";
+            this.btnUninstall.UseVisualStyleBackColor = false;
+            this.btnUninstall.Click += new System.EventHandler(this.btnUninstall_Click);
+            // 
+            // btnPrerequisites
+            // 
+            this.btnPrerequisites.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPrerequisites.BackgroundImage")));
+            this.btnPrerequisites.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnPrerequisites.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPrerequisites.Location = new System.Drawing.Point(52, 107);
+            this.btnPrerequisites.Name = "btnPrerequisites";
+            this.btnPrerequisites.Size = new System.Drawing.Size(47, 44);
+            this.btnPrerequisites.TabIndex = 48;
+            this.btnPrerequisites.UseVisualStyleBackColor = true;
+            this.btnPrerequisites.Click += new System.EventHandler(this.btnPrerequisites_Click);
+            // 
+            // btnAppSettings
+            // 
+            this.btnAppSettings.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAppSettings.BackgroundImage")));
+            this.btnAppSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAppSettings.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAppSettings.Location = new System.Drawing.Point(9, 107);
+            this.btnAppSettings.Name = "btnAppSettings";
+            this.btnAppSettings.Size = new System.Drawing.Size(47, 44);
+            this.btnAppSettings.TabIndex = 50;
+            this.btnAppSettings.UseVisualStyleBackColor = true;
+            // 
+            // pnlDetails
+            // 
+            this.pnlDetails.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pnlDetails.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlDetails.Controls.Add(this.lblStepStatus);
+            this.pnlDetails.Location = new System.Drawing.Point(13, 162);
+            this.pnlDetails.Name = "pnlDetails";
+            this.pnlDetails.Size = new System.Drawing.Size(789, 324);
+            this.pnlDetails.TabIndex = 51;
+            // 
+            // lblStepStatus
+            // 
+            this.lblStepStatus.AutoSize = true;
+            this.lblStepStatus.Location = new System.Drawing.Point(691, -78);
+            this.lblStepStatus.Name = "lblStepStatus";
+            this.lblStepStatus.Size = new System.Drawing.Size(83, 20);
+            this.lblStepStatus.TabIndex = 47;
+            this.lblStepStatus.Text = "Step Status";
+            // 
+            // btnDbConn
+            // 
+            this.btnDbConn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnDbConn.BackgroundImage")));
+            this.btnDbConn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnDbConn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDbConn.Location = new System.Drawing.Point(96, 107);
+            this.btnDbConn.Name = "btnDbConn";
+            this.btnDbConn.Size = new System.Drawing.Size(47, 44);
+            this.btnDbConn.TabIndex = 48;
+            this.btnDbConn.UseVisualStyleBackColor = true;
+            this.btnDbConn.Click += new System.EventHandler(this.btnPrerequisites_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.Location = new System.Drawing.Point(139, 107);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(47, 44);
+            this.button1.TabIndex = 48;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnPrerequisites_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.Location = new System.Drawing.Point(180, 107);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(47, 44);
+            this.button2.TabIndex = 48;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.btnPrerequisites_Click);
+            // 
+            // button3
+            // 
+            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button3.Location = new System.Drawing.Point(224, 107);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(47, 44);
+            this.button3.TabIndex = 48;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.btnPrerequisites_Click);
+            // 
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblStatus.ForeColor = System.Drawing.Color.SeaGreen;
-            this.lblStatus.Location = new System.Drawing.Point(21, 462);
+            this.lblStatus.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblStatus.Location = new System.Drawing.Point(12, 540);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(133, 20);
-            this.lblStatus.TabIndex = 49;
+            this.lblStatus.TabIndex = 52;
             this.lblStatus.Text = "Happy Sitecoring!";
             // 
-            // button1
+            // lblStepInfo
             // 
-            this.button1.Location = new System.Drawing.Point(298, 410);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(139, 38);
-            this.button1.TabIndex = 46;
-            this.button1.Text = "Generate Scripts";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.btnGenerate_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(443, 410);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(120, 38);
-            this.button3.TabIndex = 47;
-            this.button3.Text = "Install";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.btnInstall_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(569, 410);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(114, 38);
-            this.button4.TabIndex = 48;
-            this.button4.Text = "Uninstall";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.btnUninstall_Click);
-            // 
-            // btnPrerequisites
-            // 
-            this.btnPrerequisites.Location = new System.Drawing.Point(162, 410);
-            this.btnPrerequisites.Name = "btnPrerequisites";
-            this.btnPrerequisites.Size = new System.Drawing.Size(130, 38);
-            this.btnPrerequisites.TabIndex = 48;
-            this.btnPrerequisites.Text = "Pre-requisites";
-            this.btnPrerequisites.UseVisualStyleBackColor = true;
-            this.btnPrerequisites.Click += new System.EventHandler(this.btnPrerequisites_Click);
+            this.lblStepInfo.AutoSize = true;
+            this.lblStepInfo.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblStepInfo.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lblStepInfo.Location = new System.Drawing.Point(609, 128);
+            this.lblStepInfo.Name = "lblStepInfo";
+            this.lblStepInfo.Size = new System.Drawing.Size(187, 23);
+            this.lblStepInfo.TabIndex = 52;
+            this.lblStepInfo.Text = "Step 1 of 12: Site Info";
             // 
             // SitecoreCommerceInstaller
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.BackColor = System.Drawing.SystemColors.Menu;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(808, 496);
-            this.Controls.Add(this.btnPrerequisites);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(808, 569);
+            this.Controls.Add(this.lblStepInfo);
             this.Controls.Add(this.lblStatus);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnDbConn);
+            this.Controls.Add(this.btnAppSettings);
+            this.Controls.Add(this.btnPrerequisites);
+            this.Controls.Add(this.btnUninstall);
+            this.Controls.Add(this.btnInstall);
+            this.Controls.Add(this.btnGenerate);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabDetails);
+            this.Controls.Add(this.pnlDetails);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "SitecoreCommerceInstaller";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sitecore Commerce Install Assistant (SCIA)";
+            this.TransparencyKey = System.Drawing.Color.Silver;
             this.tabDetails.ResumeLayout(false);
-            this.tabPage13.ResumeLayout(false);
-            this.tabPage13.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
-            this.tabPage5.ResumeLayout(false);
-            this.tabPage5.PerformLayout();
-            this.tabPage6.ResumeLayout(false);
-            this.tabPage6.PerformLayout();
-            this.tabPage7.ResumeLayout(false);
-            this.tabPage7.PerformLayout();
+            this.tabPgDbDetails.ResumeLayout(false);
+            this.tabPgDbDetails.PerformLayout();
+            this.tabpgSiteInfo.ResumeLayout(false);
+            this.tabpgSiteInfo.PerformLayout();
+            this.tabPgGeneral.ResumeLayout(false);
+            this.tabPgGeneral.PerformLayout();
+            this.tabPgInstallDetails.ResumeLayout(false);
+            this.tabPgInstallDetails.PerformLayout();
+            this.tabPgSitecore.ResumeLayout(false);
+            this.tabPgSitecore.PerformLayout();
+            this.tabPgSolr.ResumeLayout(false);
+            this.tabPgSolr.PerformLayout();
+            this.tabPgRedis.ResumeLayout(false);
+            this.tabPgRedis.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtRedisPort)).EndInit();
-            this.tabPage8.ResumeLayout(false);
-            this.tabPage8.PerformLayout();
-            this.tabPage9.ResumeLayout(false);
-            this.tabPage9.PerformLayout();
+            this.tabPgCommerce.ResumeLayout(false);
+            this.tabPgCommerce.PerformLayout();
+            this.tabPgPorts.ResumeLayout(false);
+            this.tabPgPorts.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtBizFxPort)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCommerceMinionsSvcPort)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCommerceAuthSvcPort)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCommerceShopsServicesPort)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCommerceOpsSvcPort)).EndInit();
-            this.tabPage10.ResumeLayout(false);
-            this.tabPage10.PerformLayout();
-            this.tabPage11.ResumeLayout(false);
-            this.tabPage11.PerformLayout();
-            this.tabPage12.ResumeLayout(false);
-            this.tabPage12.PerformLayout();
+            this.tabPgEnvironments.ResumeLayout(false);
+            this.tabPgEnvironments.PerformLayout();
+            this.tabPgWinUser.ResumeLayout(false);
+            this.tabPgWinUser.PerformLayout();
+            this.tabPgBraintree.ResumeLayout(false);
+            this.tabPgBraintree.PerformLayout();
+            this.pnlDetails.ResumeLayout(false);
+            this.pnlDetails.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1530,7 +2195,7 @@
         private System.Windows.Forms.TextBox txtIDServerSiteName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TabControl tabDetails;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPgGeneral;
         private System.Windows.Forms.TextBox txtCommerceEngineConnectClientSecret;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtCommerceEngineConnectClientId;
@@ -1539,7 +2204,7 @@
         private System.Windows.Forms.TextBox txtSitecoreIdentityServerUrl;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtSiteHostHeaderName;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPgInstallDetails;
         private System.Windows.Forms.TextBox txtSXAInstallDir;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TabPage tabPage2;
@@ -1547,7 +2212,7 @@
         private System.Windows.Forms.TextBox txtCommerceInstallRoot;
         private System.Windows.Forms.TextBox txtxConnectInstallDir;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage tabPgDbDetails;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtSqlPass;
         private System.Windows.Forms.TextBox txtSqlUser;
@@ -1558,14 +2223,14 @@
         private System.Windows.Forms.TextBox txtSitecoreDbServer;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtSqlDbPrefix;
-        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.TabPage tabPgSitecore;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txtSitecoreUserPassword;
         private System.Windows.Forms.TextBox txtSitecoreUsername;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtSitecoreDomain;
-        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.TabPage tabPgSolr;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox txtStorefrontIndexPrefix;
         private System.Windows.Forms.Label label20;
@@ -1576,12 +2241,12 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox txtSearchIndexPrefix;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TabPage tabPage7;
-        private System.Windows.Forms.TabPage tabPage8;
-        private System.Windows.Forms.TabPage tabPage9;
-        private System.Windows.Forms.TabPage tabPage10;
-        private System.Windows.Forms.TabPage tabPage11;
-        private System.Windows.Forms.TabPage tabPage12;
+        private System.Windows.Forms.TabPage tabPgRedis;
+        private System.Windows.Forms.TabPage tabPgCommerce;
+        private System.Windows.Forms.TabPage tabPgPorts;
+        private System.Windows.Forms.TabPage tabPgEnvironments;
+        private System.Windows.Forms.TabPage tabPgWinUser;
+        private System.Windows.Forms.TabPage tabPgBraintree;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.TextBox txtRedisHost;
@@ -1622,10 +2287,9 @@
         private System.Windows.Forms.TextBox txtBraintreeEnvironment;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnGenerate;
+        private System.Windows.Forms.Button btnInstall;
+        private System.Windows.Forms.Button btnUninstall;
         private System.Windows.Forms.NumericUpDown txtCommerceOpsSvcPort;
         private System.Windows.Forms.NumericUpDown txtCommerceShopsServicesPort;
         private System.Windows.Forms.NumericUpDown txtCommerceAuthSvcPort;
@@ -1637,16 +2301,62 @@
         private System.Windows.Forms.Button btnBizFxPort;
         private System.Windows.Forms.Button btnCommerceMinionsSvcPort;
         private System.Windows.Forms.Button btnCommerceAuthSvcPort;
-        private System.Windows.Forms.TabPage tabPage13;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.TabPage tabpgSiteInfo;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TextBox txtSiteNameSuffix;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox txtSiteNamePrefix;
         private System.Windows.Forms.TextBox txtSiteName;
-        private System.Windows.Forms.Button btnCheckDbConn;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button btnPrerequisites;
+        private System.Windows.Forms.Button btnAppSettings;
+        private System.Windows.Forms.Panel pnlDetails;
+        private System.Windows.Forms.Button btnDbConn;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label lblStepStatus;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Label lblStepInfo;
+        private RoundButton roundButton16;
+        private RoundButton roundButton15;
+        private RoundButton roundButton14;
+        private RoundButton roundButton13;
+        private RoundButton roundButton20;
+        private RoundButton roundButton19;
+        private RoundButton roundButton18;
+        private RoundButton roundButton17;
+        private RoundButton roundButton24;
+        private RoundButton roundButton23;
+        private RoundButton roundButton22;
+        private RoundButton roundButton21;
+        private RoundButton roundButton28;
+        private RoundButton roundButton27;
+        private RoundButton roundButton26;
+        private RoundButton roundButton25;
+        private RoundButton roundButton32;
+        private RoundButton roundButton31;
+        private RoundButton roundButton30;
+        private RoundButton roundButton29;
+        private RoundButton roundButton36;
+        private RoundButton roundButton35;
+        private RoundButton roundButton34;
+        private RoundButton roundButton33;
+        private RoundButton roundButton40;
+        private RoundButton roundButton39;
+        private RoundButton roundButton38;
+        private RoundButton roundButton37;
+        private RoundButton roundButton44;
+        private RoundButton roundButton43;
+        private RoundButton roundButton42;
+        private RoundButton roundButton41;
+        private RoundButton roundButton47;
+        private RoundButton roundButton46;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button7;
     }
 }

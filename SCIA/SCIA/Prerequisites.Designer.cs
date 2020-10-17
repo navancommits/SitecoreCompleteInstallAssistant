@@ -51,6 +51,7 @@
             this.chkCommerceEngineSolr = new System.Windows.Forms.CheckBox();
             this.chkHabitatImages = new System.Windows.Forms.CheckBox();
             this.chkPowershellExtensions = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // chkMsBuild
@@ -66,9 +67,10 @@
             // chkSIF
             // 
             this.chkSIF.AutoSize = true;
+            this.chkSIF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkSIF.Location = new System.Drawing.Point(12, 148);
             this.chkSIF.Name = "chkSIF";
-            this.chkSIF.Size = new System.Drawing.Size(269, 24);
+            this.chkSIF.Size = new System.Drawing.Size(265, 24);
             this.chkSIF.TabIndex = 0;
             this.chkSIF.Text = "SIF.Sitecore.Commerce.5.0.49 Folder";
             this.chkSIF.UseVisualStyleBackColor = true;
@@ -274,11 +276,24 @@
             this.chkPowershellExtensions.Text = "Sitecore.PowerShell.Extensions-6.1.1.scwdp.zip";
             this.chkPowershellExtensions.UseVisualStyleBackColor = true;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.ForeColor = System.Drawing.Color.DarkGreen;
+            this.label2.Location = new System.Drawing.Point(12, 421);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(133, 20);
+            this.label2.TabIndex = 52;
+            this.label2.Text = "Happy Sitecoring!";
+            // 
             // Prerequisites
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1140, 431);
+            this.BackColor = System.Drawing.SystemColors.Menu;
+            this.ClientSize = new System.Drawing.Size(1140, 450);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.chkPowershellExtensions);
             this.Controls.Add(this.chkHabitatImages);
             this.Controls.Add(this.chkCommerceEngineSolr);
@@ -301,7 +316,10 @@
             this.Controls.Add(this.chkCommerceEngSdk);
             this.Controls.Add(this.chkSIF);
             this.Controls.Add(this.chkMsBuild);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Prerequisites";
             this.Text = "Prerequisites";
             this.ResumeLayout(false);
@@ -333,5 +351,6 @@
         private System.Windows.Forms.CheckBox chkCommerceEngineSolr;
         private System.Windows.Forms.CheckBox chkHabitatImages;
         private System.Windows.Forms.CheckBox chkPowershellExtensions;
+        private System.Windows.Forms.Label label2;
     }
 }

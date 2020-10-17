@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Management.Automation;
 using System.Net;
@@ -224,7 +225,7 @@ namespace SCIA
             txtUserName.Text = txtCommerceSvcPostFix.Text + "_User";
             txtSitecoreIdentityServerUrl.Text = "https://" + txtIDServerSiteName.Text;
             txtStorefrontIndexPrefix.Text = txtSiteName.Text;
-            
+            tabDetails.Region = new Region(tabDetails.DisplayRectangle);
         }
 
         void LaunchPSScript(string scriptname)
@@ -756,6 +757,7 @@ namespace SCIA
             elevated.Start();
         }
 
+        
         private void btnInstall_Click(object sender, EventArgs e)
         {
             string portString = string.Empty;
@@ -860,7 +862,7 @@ namespace SCIA
             bool Valid = true;
             if (string.IsNullOrWhiteSpace(control.Text))
             {
-                lblStatus.Text = "Tested! " + controlString + " needed... ";
+                lblStatus.Text = controlString + " needed... ";
                 lblStatus.ForeColor = Color.Red;
                 tabDetails.SelectedIndex = tabIndex;
                 Valid = false;
@@ -965,11 +967,12 @@ namespace SCIA
             if (!string.IsNullOrWhiteSpace(portString))
             { lblStatus.Text = "Port(s) in use... provide different numbers for - " + portString; lblStatus.ForeColor = Color.Red; }
             bool habitatExists = HabitatExists(BuildConnectionString(txtSitecoreDbServer.Text, txtSqlDbPrefix.Text + "_master", txtSqlUser.Text, txtSqlPass.Text));
-            
+
             WriteFile(txtSiteName.Text + "_Uninstall_Script.ps1", habitatExists, true);
             WriteFile(txtSiteName.Text + "_Install_Script.ps1", habitatExists, false);
             lblStatus.Text = "Scripts generated successfully....";
             lblStatus.ForeColor = Color.DarkGreen;
+
         }
 
         private void txtSiteNamePrefix_TextChanged(object sender, EventArgs e)
@@ -1334,7 +1337,33 @@ namespace SCIA
             Prerequisites prereq = new Prerequisites();
             prereq.ShowDialog();
         }
+
+        private void btnProceed_Click(object sender, EventArgs e)
+        {
+            if (!ValidateData(txtSiteName, "Site Name", 0)) return;
+            tabDetails.SelectedTab = tabDetails.TabPages[1];
+        }
+
+        private void roundButton3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnGenerate_MouseHover(object sender, EventArgs e)
+        {
+            
+        }
     }
 
+    public class RoundButton : Button
+    {
+        protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
+        {
+            GraphicsPath grPath = new GraphicsPath();
+            grPath.AddEllipse(0, 0, ClientSize.Width, ClientSize.Height);
+            this.Region = new System.Drawing.Region(grPath);
+            base.OnPaint(e);
+        }
+    }
 
 }
