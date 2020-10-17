@@ -196,6 +196,9 @@ namespace SCIA
         string SystemDrive = "C:";
         string StatusMessage = string.Empty;
         string DefaultStatusMessage = "Happy Sitecoring!";
+        //int tabIndex = 0;
+        const int const_Port_Tab = 9;
+        const int const_Redis_Tab = 6;
 
         private void SetStatusMessage(string statusmsg, Color color)
         {
@@ -226,6 +229,7 @@ namespace SCIA
             txtSitecoreIdentityServerUrl.Text = "https://" + txtIDServerSiteName.Text;
             txtStorefrontIndexPrefix.Text = txtSiteName.Text;
             tabDetails.Region = new Region(tabDetails.DisplayRectangle);
+            tabDetails.SelectedIndex = TabIndexValue;
         }
 
         void LaunchPSScript(string scriptname)
@@ -825,7 +829,7 @@ namespace SCIA
             if (!ValidateData(txtStorefrontIndexPrefix, "Storefront Index Prefix",4)) return false;
 
             if (!ValidateData(txtRedisHost, "Redis Host",5)) return false;
-            if (!ValidatePortNumber(txtRedisPort, "Redis Port",5)) return false;
+            //if (!ValidatePortNumber(txtRedisPort, "Redis Port",5)) return false;
 
             if (!ValidateData(txtCommerceServicesDBServer, "Commerce DB Server",6)) return false;
             if (!ValidateData(txtCommerceDbName, "Commerce DB Name",6)) return false;
@@ -833,16 +837,17 @@ namespace SCIA
             if (!ValidateData(txtCommerceSvcPostFix, "Sitecore Commerce Svc Post Fix",6)) return false;
             if (!ValidateData(txtCommerceServicesHostPostFix, "Sitecore Commerce Svc Host Post Fix",6)) return false;
 
-            if (!ValidatePortNumber(txtCommerceOpsSvcPort, "Commerce Ops Svc Port",7)) return false;
-            if (!ValidatePortNumber(txtCommerceShopsServicesPort, "Commerce Shops Svc Port",7)) return false;
-            if (!ValidatePortNumber(txtCommerceAuthSvcPort, "Commerce Auth Svc Port",7)) return false;
-            if (!ValidatePortNumber(txtCommerceMinionsSvcPort, "Commerce Minions Svc Port",7)) return false;
-            if (!ValidatePortNumber(txtBizFxPort, "BizFx Port Number",7)) return false;
-            if (!IsPortNotinUse(txtCommerceOpsSvcPort,7)) return false;
-            if (!IsPortNotinUse(txtCommerceShopsServicesPort,7)) return false;
-            if (!IsPortNotinUse(txtCommerceAuthSvcPort,7)) return false;
-            if (!IsPortNotinUse(txtCommerceMinionsSvcPort,7)) return false;
-            if (!IsPortNotinUse(txtBizFxPort,7)) return false;
+            //if (!ValidatePortNumber(txtCommerceOpsSvcPort, "Commerce Ops Svc Port",7)) return false;
+            //if (!ValidatePortNumber(txtCommerceShopsServicesPort, "Commerce Shops Svc Port",7)) return false;
+            //if (!ValidatePortNumber(txtCommerceAuthSvcPort, "Commerce Auth Svc Port",7)) return false;
+            //if (!ValidatePortNumber(txtCommerceMinionsSvcPort, "Commerce Minions Svc Port",7)) return false;
+            //if (!ValidatePortNumber(txtBizFxPort, "BizFx Port Number",7)) return false;
+            //if (!IsPortNotinUse(txtCommerceOpsSvcPort,7)) return false;
+            //if (!IsPortNotinUse(txtCommerceShopsServicesPort,7)) return false;
+            //if (!IsPortNotinUse(txtCommerceAuthSvcPort,7)) return false;
+            //if (!IsPortNotinUse(txtCommerceMinionsSvcPort,7)) return false;
+            //if (!IsPortNotinUse(txtBizFxPort,7)) return false;
+            if (!PerformPortValidations()) return false;
             if (!ValidateData(txtBizFxName, "BizFx Name",7)) return false;
 
             if (!ValidateData(txtUserDomain, "Win User Domain",9)) return false;
@@ -855,6 +860,47 @@ namespace SCIA
             if (!ValidateData(txtBraintreeEnvironment, "Braintree Environment", 10)) return false;
             
             return true;
+        }
+
+        private bool PerformPortValidations()
+        {
+            string portString = string.Empty;
+            
+            if (!ValidatePortNumber(txtRedisPort, "Redis Port", const_Redis_Tab)) return false;
+
+            if (!ValidatePortNumber(txtCommerceOpsSvcPort, "Commerce Ops Svc Port", const_Port_Tab)) return false;
+            if (!ValidatePortNumber(txtCommerceShopsServicesPort, "Commerce Shops Svc Port", const_Port_Tab)) return false;
+            if (!ValidatePortNumber(txtCommerceAuthSvcPort, "Commerce Auth Svc Port", const_Port_Tab)) return false;
+            if (!ValidatePortNumber(txtCommerceMinionsSvcPort, "Commerce Minions Svc Port", const_Port_Tab)) return false;
+            if (!ValidatePortNumber(txtBizFxPort, "BizFx Port Number", const_Port_Tab)) return false;
+            if (!IsPortNotinUse(txtCommerceOpsSvcPort, const_Port_Tab)) return false;
+            if (!IsPortNotinUse(txtCommerceShopsServicesPort, const_Port_Tab)) return false;
+            if (!IsPortNotinUse(txtCommerceAuthSvcPort, const_Port_Tab)) return false;
+            if (!IsPortNotinUse(txtCommerceMinionsSvcPort, const_Port_Tab)) return false;
+            if (!IsPortNotinUse(txtBizFxPort, const_Port_Tab)) return false;
+
+            if (IsPortDuplicated(AddPortstoArray())) { lblStatus.Text = "Duplicate port numbers detected! provide unique port numbers...."; return false; }
+
+            portString = StatusMessageBuilder(portString);
+            if (!string.IsNullOrWhiteSpace(portString))
+            { lblStatus.Text = "Port(s) in use... provide different numbers for - " + portString; lblStatus.ForeColor = Color.Red; }
+            
+            return true;
+        }
+
+        private bool ValidatePortNumber(NumericUpDown control, string controlString, int tabIndex)
+        {
+            bool Valid = true;
+            if (control.Value < 1024)
+            {
+                lblStatus.Text = controlString + " must be between 1024 to 49151... ";
+                lblStatus.ForeColor = Color.Red;
+                control.Focus();
+                tabDetails.SelectedIndex = tabIndex;
+                AssignStepStatus(tabIndex);
+                Valid = false;
+            }
+            return Valid;
         }
 
         private bool ValidateData(TextBox control, string controlString,int tabIndex)
@@ -870,19 +916,7 @@ namespace SCIA
             return Valid;
         }
 
-        private bool ValidatePortNumber(NumericUpDown control, string controlString, int tabIndex)
-        {
-            bool Valid = true;
-            if (control.Value<1024)
-            {
-                lblStatus.Text = controlString + " must be between 1024 to 49151... ";
-                lblStatus.ForeColor = Color.Red;
-                control.Focus();
-                tabDetails.SelectedIndex = tabIndex;
-                Valid = false;
-            }
-            return Valid;
-        }
+       
 
         private bool IsPortDuplicated(List<int> ports)
         {
@@ -1077,6 +1111,7 @@ namespace SCIA
                 lblStatus.Text = control.Value + " port in use... provide a different number...";
                 lblStatus.ForeColor = Color.Red;
                 tabDetails.SelectedIndex = tabIndex;
+                AssignStepStatus(tabIndex);
                 return false;                
             }
             return true;
@@ -1338,31 +1373,102 @@ namespace SCIA
             prereq.ShowDialog();
         }
 
+        private void AssignStepStatus(int tabIndex)
+        {
+            switch (tabIndex)
+            {
+                case 0:
+                    lblStepInfo.Text= "Step 1 of 13: DB Connection";
+                    break;
+                case 1:
+                    lblStepInfo.Text = "Step 2 of 13: Site Info";
+                    break;
+                case 2:
+                    lblStepInfo.Text = "Step 3 of 13: General Info";
+                    break;
+                case 3:
+                    lblStepInfo.Text = "Step 4 of 13: Install Details"; 
+                    break;
+                case 4:
+                    lblStepInfo.Text = "Step 5 of 13: Sitecore Details"; 
+                    break;
+                case 5:
+                    lblStepInfo.Text = "Step 6 of 13: Solr Details"; 
+                    break;
+                case 6:
+                    lblStepInfo.Text = "Step 7 of 13: Redis Details";
+                    break;
+                case 7:
+                    lblStepInfo.Text = "Step 8 of 13: Sitecore DB Details";
+                    break;
+                case 8:
+                    lblStepInfo.Text = "Step 9 of 13: Commerce Details";
+                    break;
+                case 9:
+                    lblStepInfo.Text = "Step 10 of 13: Port Details";
+                    break;
+                case 10:
+                    lblStepInfo.Text = "Step 11 of 13: Environment Details";
+                    break;
+                case 11:
+                    lblStepInfo.Text = "Step 12 of 13: Win User Details";
+                    break;
+                case 12:
+                    lblStepInfo.Text = "Step 13 of 13: Braintree Details";
+                    break;
+            }
+        }
+
+        public int TabIndexValue { get; set; }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            if (TabIndexValue >= 0 && TabIndexValue <= tabDetails.TabCount - 2) TabIndexValue += 1;
+            tabDetails.SelectedIndex = TabIndexValue;
+            AssignStepStatus(TabIndexValue);
+        }
+
+        private void btnLast_Click(object sender, EventArgs e)
+        {
+            TabIndexValue = tabDetails.TabCount - 1;
+            tabDetails.SelectedIndex = TabIndexValue;
+            AssignStepStatus(TabIndexValue);
+        }
+
+        private void btnFirst_Click(object sender, EventArgs e)
+        {
+            TabIndexValue = 0;
+            tabDetails.SelectedIndex = TabIndexValue;
+            AssignStepStatus(TabIndexValue);
+        }
+
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+            if (TabIndexValue >= 1 && TabIndexValue <= tabDetails.TabCount-1) TabIndexValue -= 1;
+            tabDetails.SelectedIndex = TabIndexValue;
+            AssignStepStatus(TabIndexValue);
+        }
+
         private void btnProceed_Click(object sender, EventArgs e)
         {
             if (!ValidateData(txtSiteName, "Site Name", 0)) return;
             tabDetails.SelectedTab = tabDetails.TabPages[1];
         }
 
-        private void roundButton3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnGenerate_MouseHover(object sender, EventArgs e)
         {
             
         }
-    }
 
-    public class RoundButton : Button
-    {
-        protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
+        private void btnPortCheck_Click(object sender, EventArgs e)
         {
-            GraphicsPath grPath = new GraphicsPath();
-            grPath.AddEllipse(0, 0, ClientSize.Width, ClientSize.Height);
-            this.Region = new System.Drawing.Region(grPath);
-            base.OnPaint(e);
+            //PortCheck portCheck = new PortCheck((int)txtCommerceOpsSvcPort.Value, (int)txtCommerceShopsServicesPort.Value,(int)txtCommerceAuthSvcPort.Value,(int)//txtCommerceMinionsSvcPort.Value,(int)txtBizFxPort.Value);
+            //portCheck.ShowDialog();
+            if (PerformPortValidations())
+            {
+                lblStatus.Text = "Ports are unique and fine...";
+                lblStatus.ForeColor = Color.DarkGreen;
+            }
         }
     }
 

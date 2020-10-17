@@ -51,7 +51,7 @@
             this.chkCommerceEngineSolr = new System.Windows.Forms.CheckBox();
             this.chkHabitatImages = new System.Windows.Forms.CheckBox();
             this.chkPowershellExtensions = new System.Windows.Forms.CheckBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblStatus = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // chkMsBuild
@@ -276,16 +276,16 @@
             this.chkPowershellExtensions.Text = "Sitecore.PowerShell.Extensions-6.1.1.scwdp.zip";
             this.chkPowershellExtensions.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // lblStatus
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.Color.DarkGreen;
-            this.label2.Location = new System.Drawing.Point(12, 421);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(133, 20);
-            this.label2.TabIndex = 52;
-            this.label2.Text = "Happy Sitecoring!";
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblStatus.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblStatus.Location = new System.Drawing.Point(12, 421);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(133, 20);
+            this.lblStatus.TabIndex = 52;
+            this.lblStatus.Text = "Happy Sitecoring!";
             // 
             // Prerequisites
             // 
@@ -293,7 +293,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Menu;
             this.ClientSize = new System.Drawing.Size(1140, 450);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.chkPowershellExtensions);
             this.Controls.Add(this.chkHabitatImages);
             this.Controls.Add(this.chkCommerceEngineSolr);
@@ -351,6 +351,6 @@
         private System.Windows.Forms.CheckBox chkCommerceEngineSolr;
         private System.Windows.Forms.CheckBox chkHabitatImages;
         private System.Windows.Forms.CheckBox chkPowershellExtensions;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblStatus;
     }
 }
