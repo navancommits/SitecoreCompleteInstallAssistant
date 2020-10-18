@@ -197,9 +197,19 @@ namespace SCIA
         string StatusMessage = string.Empty;
         string DefaultStatusMessage = "Happy Sitecoring!";
         //int tabIndex = 0;
-        const int const_Port_Tab = 9;
+        const int const_DBConn_Tab = 0;
+        const int const_SiteInfo_Tab = 1;
+        const int const_General_Tab = 2;
+        const int const_Install_Details_Tab = 3;
+        const int const_Sitecore_Tab = 4;
+        const int const_Solr_Tab = 5;
         const int const_Redis_Tab = 6;
-
+        const int const_Sitecore_DB_Tab = 7;
+        const int const_Commerce_Tab = 8;
+        const int const_Port_Tab = 9;
+        const int const_Environments_Tab = 10;
+        const int const_Win_User_Tab = 11;
+        const int const_Braintree_User_Tab = 12;
         private void SetStatusMessage(string statusmsg, Color color)
         {
             lblStatus.ForeColor = color;
@@ -230,6 +240,9 @@ namespace SCIA
             txtStorefrontIndexPrefix.Text = txtSiteName.Text;
             tabDetails.Region = new Region(tabDetails.DisplayRectangle);
             tabDetails.SelectedIndex = TabIndexValue;
+            //chkStepsList.SelectedIndex = TabIndexValue;
+            //chkStepsList.SetItemChecked(TabIndexValue, true);
+            AssignStepStatus(TabIndexValue);
         }
 
         void LaunchPSScript(string scriptname)
@@ -362,9 +375,9 @@ namespace SCIA
             file.WriteLine("\t# The name of the Sitecore core database.");
             file.WriteLine("\t[string]$SitecoreCoreDbName = \"$($SqlDbPrefix)_Core\",");
             file.WriteLine("\t# A SQL user with sysadmin privileges.");
-            file.WriteLine("\t[string]$SqlUser = \"" + txtSqlUser.Text + "\",");
+            file.WriteLine("\t[string]$SqlUser = \"" + txtSitecoreSqlUser.Text + "\",");
             file.WriteLine("\t# The password for $SQLAdminUser.");
-            file.WriteLine("\t[string]$SqlPass = \"" + txtSqlPass.Text + "\",");
+            file.WriteLine("\t[string]$SqlPass = \"" + txtSitecoreSqlPass.Text + "\",");
             file.WriteLine();
             file.WriteLine("\t# The name of the Sitecore domain.");
             file.WriteLine("\t[string]$SitecoreDomain = \"" + txtSitecoreDomain.Text + "\",");
@@ -782,7 +795,7 @@ namespace SCIA
             portString = StatusMessageBuilder(portString);
             if (!string.IsNullOrWhiteSpace(portString))
             { lblStatus.Text = "Port(s) in use... provide different numbers for - " + portString; lblStatus.ForeColor = Color.Red; }
-            bool habitatExists = HabitatExists(BuildConnectionString(txtSitecoreDbServer.Text, txtSqlDbPrefix.Text + "_master", txtSqlUser.Text, txtSqlPass.Text));
+            bool habitatExists = HabitatExists(BuildConnectionString(txtSitecoreDbServer.Text, txtSqlDbPrefix.Text + "_master", txtSitecoreSqlUser.Text, txtSitecoreSqlPass.Text));
 
             WriteFile(txtSiteName.Text + "_Install_Script.ps1", habitatExists, false);
             //ResetIIS();
@@ -801,41 +814,41 @@ namespace SCIA
 
         private bool ValidateAll()
         {
-            if (!ValidateData(txtSiteName, "Site Name",0)) return false;
-            if (!ValidateData(txtIDServerSiteName, "ID Server Site Name",0)) return false;
-            if (!ValidateData(txtSitecoreIdentityServerUrl, "Sitecore Id Server Url",0)) return false;
-            if (!ValidateData(txtCommerceEngineConnectClientId, "Sitecore Commerce Connect Client Id",0)) return false;
-            if (!ValidateData(txtCommerceEngineConnectClientSecret, "Sitecore Commerce Connect Client Secret",0)) return false;
-            if (!ValidateData(txtSiteHostHeaderName, "Site Host Header Name",0)) return false;
+            if (!ValidateData(txtSiteName, "Site Name",const_SiteInfo_Tab)) return false;
+            if (!ValidateData(txtIDServerSiteName, "ID Server Site Name", const_General_Tab)) return false;
+            if (!ValidateData(txtSitecoreIdentityServerUrl, "Sitecore Id Server Url", const_General_Tab)) return false;
+            if (!ValidateData(txtCommerceEngineConnectClientId, "Sitecore Commerce Connect Client Id", const_General_Tab)) return false;
+            if (!ValidateData(txtCommerceEngineConnectClientSecret, "Sitecore Commerce Connect Client Secret", const_General_Tab)) return false;
+            if (!ValidateData(txtSiteHostHeaderName, "Site Host Header Name",const_General_Tab)) return false;
 
-            if (!ValidateData(txtSXAInstallDir, "Sitecore SXA Install Directory",1)) return false;
-            if (!ValidateData(txtxConnectInstallDir, "Sitecore xConnect Install Directory",1)) return false;
-            if (!ValidateData(txtCommerceInstallRoot, "Commerce Install Root",1)) return false;
+            if (!ValidateData(txtSXAInstallDir, "Sitecore SXA Install Directory", const_Install_Details_Tab)) return false;
+            if (!ValidateData(txtxConnectInstallDir, "Sitecore xConnect Install Directory", const_Install_Details_Tab)) return false;
+            if (!ValidateData(txtCommerceInstallRoot, "Commerce Install Root",const_Install_Details_Tab)) return false;
 
-            if (!ValidateData(txtSqlDbPrefix, "Sql Db Prefix",2)) return false;
-            if (!ValidateData(txtSitecoreDbServer, "Sitecore Db Server",2)) return false;
-            if (!ValidateData(txtSitecoreCoreDbName, "Sitecore Core Db Name",2)) return false;
-            if (!ValidateData(txtSqlUser, "Sql User",2)) return false;
-            if (!ValidateData(txtSqlPass, "Sql Password",2)) return false;
+            if (!ValidateData(txtSqlDbPrefix, "Sql Db Prefix",7)) return false;
+            if (!ValidateData(txtSqlDbServer, "Sitecore Db Server", const_DBConn_Tab)) return false;
+            if (!ValidateData(txtSitecoreCoreDbName, "Sitecore Core Db Name",const_Sitecore_DB_Tab)) return false;
+            if (!ValidateData(txtSqlUser, "Sql User",const_DBConn_Tab)) return false;
+            if (!ValidateData(txtSqlPass, "Sql Password", const_DBConn_Tab)) return false;
 
-            if (!ValidateData(txtSitecoreDomain, "Sitecore Domain",3)) return false;
-            if (!ValidateData(txtSitecoreUsername, "Sitecore Username",3)) return false;
-            if (!ValidateData(txtSitecoreUserPassword, "Sitecore User Password",3)) return false;
+            if (!ValidateData(txtSitecoreDomain, "Sitecore Domain",const_Sitecore_Tab)) return false;
+            if (!ValidateData(txtSitecoreUsername, "Sitecore Username", const_Sitecore_Tab)) return false;
+            if (!ValidateData(txtSitecoreUserPassword, "Sitecore User Password", const_Sitecore_Tab)) return false;
 
-            if (!ValidateData(txtSearchIndexPrefix, "Search Index Prefix",4)) return false;
-            if (!ValidateData(txtSolrUrl, "Solr Url",4)) return false;
-            if (!ValidateData(txtSolrRoot, "Solr Root Path",4)) return false;
-            if (!ValidateData(txtSolrService, "Solr Service Name",4)) return false;
-            if (!ValidateData(txtStorefrontIndexPrefix, "Storefront Index Prefix",4)) return false;
+            if (!ValidateData(txtSearchIndexPrefix, "Search Index Prefix",const_Solr_Tab)) return false;
+            if (!ValidateData(txtSolrUrl, "Solr Url", const_Solr_Tab)) return false;
+            if (!ValidateData(txtSolrRoot, "Solr Root Path", const_Solr_Tab)) return false;
+            if (!ValidateData(txtSolrService, "Solr Service Name", const_Solr_Tab)) return false;
+            if (!ValidateData(txtStorefrontIndexPrefix, "Storefront Index Prefix", const_Solr_Tab)) return false;
 
-            if (!ValidateData(txtRedisHost, "Redis Host",5)) return false;
+            if (!ValidateData(txtRedisHost, "Redis Host",const_Redis_Tab)) return false;
             //if (!ValidatePortNumber(txtRedisPort, "Redis Port",5)) return false;
 
-            if (!ValidateData(txtCommerceServicesDBServer, "Commerce DB Server",6)) return false;
-            if (!ValidateData(txtCommerceDbName, "Commerce DB Name",6)) return false;
-            if (!ValidateData(txtCommerceGlobalDbName, "Sitecore Commerce Global Db Name",6)) return false;
-            if (!ValidateData(txtCommerceSvcPostFix, "Sitecore Commerce Svc Post Fix",6)) return false;
-            if (!ValidateData(txtCommerceServicesHostPostFix, "Sitecore Commerce Svc Host Post Fix",6)) return false;
+            if (!ValidateData(txtCommerceServicesDBServer, "Commerce DB Server",const_Commerce_Tab)) return false;
+            if (!ValidateData(txtCommerceDbName, "Commerce DB Name", const_Commerce_Tab)) return false;
+            if (!ValidateData(txtCommerceGlobalDbName, "Sitecore Commerce Global Db Name", const_Commerce_Tab)) return false;
+            if (!ValidateData(txtCommerceSvcPostFix, "Sitecore Commerce Svc Post Fix", const_Commerce_Tab)) return false;
+            if (!ValidateData(txtCommerceServicesHostPostFix, "Sitecore Commerce Svc Host Post Fix", const_Commerce_Tab)) return false;
 
             //if (!ValidatePortNumber(txtCommerceOpsSvcPort, "Commerce Ops Svc Port",7)) return false;
             //if (!ValidatePortNumber(txtCommerceShopsServicesPort, "Commerce Shops Svc Port",7)) return false;
@@ -848,16 +861,16 @@ namespace SCIA
             //if (!IsPortNotinUse(txtCommerceMinionsSvcPort,7)) return false;
             //if (!IsPortNotinUse(txtBizFxPort,7)) return false;
             if (!PerformPortValidations()) return false;
-            if (!ValidateData(txtBizFxName, "BizFx Name",7)) return false;
+            if (!ValidateData(txtBizFxName, "BizFx Name",const_Redis_Tab)) return false;
 
-            if (!ValidateData(txtUserDomain, "Win User Domain",9)) return false;
-            if (!ValidateData(txtUserName, "Win User Name",9)) return false;
-            if (!ValidateData(txtUserPassword, "Win User Password",9)) return false;
+            if (!ValidateData(txtUserDomain, "Win User Domain",const_Win_User_Tab)) return false;
+            if (!ValidateData(txtUserName, "Win User Name", const_Win_User_Tab)) return false;
+            if (!ValidateData(txtUserPassword, "Win User Password", const_Win_User_Tab)) return false;
 
-            if (!ValidateData(txttxtBraintreeMerchantId, "Braintree Merchant Id", 10)) return false;
-            if (!ValidateData(txtBraintreePublicKey, "Braintree Public Key", 10)) return false;
-            if (!ValidateData(txtBraintreePrivateKey, "Braintree Private Key", 10)) return false;
-            if (!ValidateData(txtBraintreeEnvironment, "Braintree Environment", 10)) return false;
+            if (!ValidateData(txttxtBraintreeMerchantId, "Braintree Merchant Id", const_Braintree_User_Tab)) return false;
+            if (!ValidateData(txtBraintreePublicKey, "Braintree Public Key", const_Braintree_User_Tab)) return false;
+            if (!ValidateData(txtBraintreePrivateKey, "Braintree Private Key", const_Braintree_User_Tab)) return false;
+            if (!ValidateData(txtBraintreeEnvironment, "Braintree Environment", const_Braintree_User_Tab)) return false;
             
             return true;
         }
@@ -1000,7 +1013,7 @@ namespace SCIA
             portString = StatusMessageBuilder(portString);
             if (!string.IsNullOrWhiteSpace(portString))
             { lblStatus.Text = "Port(s) in use... provide different numbers for - " + portString; lblStatus.ForeColor = Color.Red; }
-            bool habitatExists = HabitatExists(BuildConnectionString(txtSitecoreDbServer.Text, txtSqlDbPrefix.Text + "_master", txtSqlUser.Text, txtSqlPass.Text));
+            bool habitatExists = HabitatExists(BuildConnectionString(txtSitecoreDbServer.Text, txtSqlDbPrefix.Text + "_master", txtSitecoreSqlUser.Text, txtSitecoreSqlPass.Text));
 
             WriteFile(txtSiteName.Text + "_Uninstall_Script.ps1", habitatExists, true);
             WriteFile(txtSiteName.Text + "_Install_Script.ps1", habitatExists, false);
@@ -1071,7 +1084,7 @@ namespace SCIA
             portString = StatusMessageBuilder(portString);
             if (!string.IsNullOrWhiteSpace(portString))
             { lblStatus.Text = "Port(s) in use... provide different numbers for - " + portString; lblStatus.ForeColor = Color.Red; }
-            bool habitatExists = HabitatExists(BuildConnectionString(txtSitecoreDbServer.Text, txtSqlDbPrefix.Text + "_master", txtSqlUser.Text, txtSqlPass.Text));
+            bool habitatExists = HabitatExists(BuildConnectionString(txtSitecoreDbServer.Text, txtSqlDbPrefix.Text + "_master", txtSitecoreSqlUser.Text, txtSitecoreSqlPass.Text));
 
             WriteFile(txtSiteName.Text + "_UnInstall_Script.ps1", habitatExists, true);
             LaunchPSScript(txtSiteName.Text + "_UnInstall_Script.ps1");
@@ -1367,14 +1380,10 @@ namespace SCIA
             SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
         }
 
-        private void btnPrerequisites_Click(object sender, EventArgs e)
-        {
-            Prerequisites prereq = new Prerequisites();
-            prereq.ShowDialog();
-        }
-
         private void AssignStepStatus(int tabIndex)
         {
+            chkStepsList.SelectedIndex = tabIndex;
+            chkStepsList.SetItemChecked(tabIndex, true);
             switch (tabIndex)
             {
                 case 0:
@@ -1424,28 +1433,28 @@ namespace SCIA
         private void btnNext_Click(object sender, EventArgs e)
         {
             if (TabIndexValue >= 0 && TabIndexValue <= tabDetails.TabCount - 2) TabIndexValue += 1;
-            tabDetails.SelectedIndex = TabIndexValue;
+            tabDetails.SelectedIndex = TabIndexValue;            
             AssignStepStatus(TabIndexValue);
         }
 
         private void btnLast_Click(object sender, EventArgs e)
         {
             TabIndexValue = tabDetails.TabCount - 1;
-            tabDetails.SelectedIndex = TabIndexValue;
+            tabDetails.SelectedIndex = TabIndexValue;            
             AssignStepStatus(TabIndexValue);
         }
 
         private void btnFirst_Click(object sender, EventArgs e)
         {
             TabIndexValue = 0;
-            tabDetails.SelectedIndex = TabIndexValue;
+            tabDetails.SelectedIndex = TabIndexValue;            
             AssignStepStatus(TabIndexValue);
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)
         {
             if (TabIndexValue >= 1 && TabIndexValue <= tabDetails.TabCount-1) TabIndexValue -= 1;
-            tabDetails.SelectedIndex = TabIndexValue;
+            tabDetails.SelectedIndex = TabIndexValue;            
             AssignStepStatus(TabIndexValue);
         }
 
@@ -1469,6 +1478,56 @@ namespace SCIA
                 lblStatus.Text = "Ports are unique and fine...";
                 lblStatus.ForeColor = Color.DarkGreen;
             }
+        }
+
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void chkStepsList_Click(object sender, EventArgs e)
+        {
+            TabIndexValue = chkStepsList.SelectedIndex;
+            tabDetails.SelectedIndex = TabIndexValue;
+            AssignStepStatus(TabIndexValue);
+        }
+
+        private void chkStepsList_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            for (int ix = 0; ix < chkStepsList.Items.Count; ++ix)
+                if (ix != e.Index) chkStepsList.SetItemChecked(ix, false);
+        }
+
+        private void btnDbConn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPrerequisites_Click(object sender, EventArgs e)
+        {
+            Prerequisites prerequisites = new Prerequisites();
+            prerequisites.ShowDialog();
+        }        
+
+        private void btnAppSettings_Click(object sender, EventArgs e)
+        {
+            Settings settings = new Settings();
+            settings.ShowDialog();
+        }
+
+        private void txtSqlUser_TextChanged(object sender, EventArgs e)
+        {
+            txtSitecoreSqlUser.Text = txtSqlUser.Text;
+        }
+
+        private void txtSqlPass_TextChanged(object sender, EventArgs e)
+        {
+            txtSitecoreSqlPass.Text = txtSqlPass.Text;
+        }
+
+        private void txtSqlDbServer_TextChanged(object sender, EventArgs e)
+        {
+            txtSitecoreDbServer.Text = txtSqlDbServer.Text;
         }
     }
 

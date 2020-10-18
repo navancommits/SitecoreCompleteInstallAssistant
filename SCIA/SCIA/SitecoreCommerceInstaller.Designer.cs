@@ -33,11 +33,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tabDetails = new System.Windows.Forms.TabControl();
             this.tabPgDBConnection = new System.Windows.Forms.TabPage();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtSqlPass = new System.Windows.Forms.TextBox();
             this.label49 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtSqlUser = new System.Windows.Forms.TextBox();
             this.label48 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtSqlDbServer = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabpgSiteInfo = new System.Windows.Forms.TabPage();
             this.label38 = new System.Windows.Forms.Label();
@@ -87,8 +87,8 @@
             this.txtRedisHost = new System.Windows.Forms.TextBox();
             this.tabPgSitecoreDb = new System.Windows.Forms.TabPage();
             this.label13 = new System.Windows.Forms.Label();
-            this.txtSqlPass = new System.Windows.Forms.TextBox();
-            this.txtSqlUser = new System.Windows.Forms.TextBox();
+            this.txtSitecoreSqlPass = new System.Windows.Forms.TextBox();
+            this.txtSitecoreSqlUser = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.txtSitecoreCoreDbName = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -166,6 +166,8 @@
             this.button3 = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.lblStepInfo = new System.Windows.Forms.Label();
+            this.chkStepsList = new System.Windows.Forms.CheckedListBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.tabDetails.SuspendLayout();
             this.tabPgDBConnection.SuspendLayout();
             this.tabpgSiteInfo.SuspendLayout();
@@ -187,6 +189,7 @@
             this.tabPgWinUser.SuspendLayout();
             this.tabPgBraintree.SuspendLayout();
             this.pnlDetails.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtIDServerSiteName
@@ -224,36 +227,37 @@
             this.tabDetails.Controls.Add(this.tabPgEnvironments);
             this.tabDetails.Controls.Add(this.tabPgWinUser);
             this.tabDetails.Controls.Add(this.tabPgBraintree);
-            this.tabDetails.Location = new System.Drawing.Point(13, 162);
+            this.tabDetails.Location = new System.Drawing.Point(4, -2);
             this.tabDetails.Multiline = true;
             this.tabDetails.Name = "tabDetails";
             this.tabDetails.SelectedIndex = 0;
-            this.tabDetails.Size = new System.Drawing.Size(783, 270);
+            this.tabDetails.Size = new System.Drawing.Size(783, 290);
             this.tabDetails.TabIndex = 2;
             // 
             // tabPgDBConnection
             // 
-            this.tabPgDBConnection.Controls.Add(this.textBox4);
+            this.tabPgDBConnection.Controls.Add(this.txtSqlPass);
             this.tabPgDBConnection.Controls.Add(this.label49);
-            this.tabPgDBConnection.Controls.Add(this.textBox3);
+            this.tabPgDBConnection.Controls.Add(this.txtSqlUser);
             this.tabPgDBConnection.Controls.Add(this.label48);
-            this.tabPgDBConnection.Controls.Add(this.textBox1);
+            this.tabPgDBConnection.Controls.Add(this.txtSqlDbServer);
             this.tabPgDBConnection.Controls.Add(this.label1);
             this.tabPgDBConnection.Location = new System.Drawing.Point(4, 54);
             this.tabPgDBConnection.Name = "tabPgDBConnection";
-            this.tabPgDBConnection.Size = new System.Drawing.Size(775, 212);
+            this.tabPgDBConnection.Size = new System.Drawing.Size(775, 232);
             this.tabPgDBConnection.TabIndex = 13;
             this.tabPgDBConnection.Text = "DB Connection";
             // 
-            // textBox4
+            // txtSqlPass
             // 
-            this.textBox4.Location = new System.Drawing.Point(179, 83);
-            this.textBox4.MaxLength = 15;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(593, 27);
-            this.textBox4.TabIndex = 15;
-            this.textBox4.UseSystemPasswordChar = true;
-            this.textBox4.Leave += new System.EventHandler(this.txtSqlPass_Leave);
+            this.txtSqlPass.Location = new System.Drawing.Point(179, 83);
+            this.txtSqlPass.MaxLength = 15;
+            this.txtSqlPass.Name = "txtSqlPass";
+            this.txtSqlPass.Size = new System.Drawing.Size(593, 27);
+            this.txtSqlPass.TabIndex = 15;
+            this.txtSqlPass.UseSystemPasswordChar = true;
+            this.txtSqlPass.TextChanged += new System.EventHandler(this.txtSqlPass_TextChanged);
+            this.txtSqlPass.Leave += new System.EventHandler(this.txtSqlPass_Leave);
             // 
             // label49
             // 
@@ -264,15 +268,16 @@
             this.label49.TabIndex = 0;
             this.label49.Text = "SqlPass:";
             // 
-            // textBox3
+            // txtSqlUser
             // 
-            this.textBox3.Location = new System.Drawing.Point(179, 50);
-            this.textBox3.MaxLength = 20;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(593, 27);
-            this.textBox3.TabIndex = 14;
-            this.textBox3.Text = "sa";
-            this.textBox3.Leave += new System.EventHandler(this.txtSqlUser_Leave);
+            this.txtSqlUser.Location = new System.Drawing.Point(179, 50);
+            this.txtSqlUser.MaxLength = 20;
+            this.txtSqlUser.Name = "txtSqlUser";
+            this.txtSqlUser.Size = new System.Drawing.Size(593, 27);
+            this.txtSqlUser.TabIndex = 14;
+            this.txtSqlUser.Text = "sa";
+            this.txtSqlUser.TextChanged += new System.EventHandler(this.txtSqlUser_TextChanged);
+            this.txtSqlUser.Leave += new System.EventHandler(this.txtSqlUser_Leave);
             // 
             // label48
             // 
@@ -283,15 +288,16 @@
             this.label48.TabIndex = 0;
             this.label48.Text = "SqlUser:";
             // 
-            // textBox1
+            // txtSqlDbServer
             // 
-            this.textBox1.Location = new System.Drawing.Point(179, 17);
-            this.textBox1.MaxLength = 25;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(593, 27);
-            this.textBox1.TabIndex = 12;
-            this.textBox1.Text = "(local)";
-            this.textBox1.Leave += new System.EventHandler(this.txtSitecoreDbServer_Leave);
+            this.txtSqlDbServer.Location = new System.Drawing.Point(179, 17);
+            this.txtSqlDbServer.MaxLength = 25;
+            this.txtSqlDbServer.Name = "txtSqlDbServer";
+            this.txtSqlDbServer.Size = new System.Drawing.Size(593, 27);
+            this.txtSqlDbServer.TabIndex = 12;
+            this.txtSqlDbServer.Text = "(local)";
+            this.txtSqlDbServer.TextChanged += new System.EventHandler(this.txtSqlDbServer_TextChanged);
+            this.txtSqlDbServer.Leave += new System.EventHandler(this.txtSitecoreDbServer_Leave);
             // 
             // label1
             // 
@@ -312,7 +318,7 @@
             this.tabpgSiteInfo.Controls.Add(this.txtSiteName);
             this.tabpgSiteInfo.Location = new System.Drawing.Point(4, 54);
             this.tabpgSiteInfo.Name = "tabpgSiteInfo";
-            this.tabpgSiteInfo.Size = new System.Drawing.Size(775, 212);
+            this.tabpgSiteInfo.Size = new System.Drawing.Size(775, 232);
             this.tabpgSiteInfo.TabIndex = 12;
             this.tabpgSiteInfo.Text = "Site Info";
             // 
@@ -392,7 +398,7 @@
             this.tabPgGeneral.Location = new System.Drawing.Point(4, 54);
             this.tabPgGeneral.Name = "tabPgGeneral";
             this.tabPgGeneral.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPgGeneral.Size = new System.Drawing.Size(775, 212);
+            this.tabPgGeneral.Size = new System.Drawing.Size(775, 232);
             this.tabPgGeneral.TabIndex = 0;
             this.tabPgGeneral.Text = "General";
             // 
@@ -480,7 +486,7 @@
             this.tabPgInstallDetails.Controls.Add(this.label4);
             this.tabPgInstallDetails.Location = new System.Drawing.Point(4, 54);
             this.tabPgInstallDetails.Name = "tabPgInstallDetails";
-            this.tabPgInstallDetails.Size = new System.Drawing.Size(775, 212);
+            this.tabPgInstallDetails.Size = new System.Drawing.Size(775, 232);
             this.tabPgInstallDetails.TabIndex = 2;
             this.tabPgInstallDetails.Text = "Install Details";
             // 
@@ -551,7 +557,7 @@
             this.tabPgSitecore.Controls.Add(this.txtSitecoreDomain);
             this.tabPgSitecore.Location = new System.Drawing.Point(4, 54);
             this.tabPgSitecore.Name = "tabPgSitecore";
-            this.tabPgSitecore.Size = new System.Drawing.Size(775, 212);
+            this.tabPgSitecore.Size = new System.Drawing.Size(775, 232);
             this.tabPgSitecore.TabIndex = 4;
             this.tabPgSitecore.Text = "Sitecore";
             // 
@@ -628,7 +634,7 @@
             this.tabPgSolr.Controls.Add(this.label17);
             this.tabPgSolr.Location = new System.Drawing.Point(4, 54);
             this.tabPgSolr.Name = "tabPgSolr";
-            this.tabPgSolr.Size = new System.Drawing.Size(775, 212);
+            this.tabPgSolr.Size = new System.Drawing.Size(775, 232);
             this.tabPgSolr.TabIndex = 5;
             this.tabPgSolr.Text = "Solr";
             // 
@@ -734,7 +740,7 @@
             this.tabPgRedis.Controls.Add(this.txtRedisHost);
             this.tabPgRedis.Location = new System.Drawing.Point(4, 54);
             this.tabPgRedis.Name = "tabPgRedis";
-            this.tabPgRedis.Size = new System.Drawing.Size(775, 212);
+            this.tabPgRedis.Size = new System.Drawing.Size(775, 232);
             this.tabPgRedis.TabIndex = 6;
             this.tabPgRedis.Text = "Redis";
             // 
@@ -787,8 +793,8 @@
             // tabPgSitecoreDb
             // 
             this.tabPgSitecoreDb.Controls.Add(this.label13);
-            this.tabPgSitecoreDb.Controls.Add(this.txtSqlPass);
-            this.tabPgSitecoreDb.Controls.Add(this.txtSqlUser);
+            this.tabPgSitecoreDb.Controls.Add(this.txtSitecoreSqlPass);
+            this.tabPgSitecoreDb.Controls.Add(this.txtSitecoreSqlUser);
             this.tabPgSitecoreDb.Controls.Add(this.label12);
             this.tabPgSitecoreDb.Controls.Add(this.txtSitecoreCoreDbName);
             this.tabPgSitecoreDb.Controls.Add(this.label11);
@@ -798,7 +804,7 @@
             this.tabPgSitecoreDb.Controls.Add(this.txtSqlDbPrefix);
             this.tabPgSitecoreDb.Location = new System.Drawing.Point(4, 54);
             this.tabPgSitecoreDb.Name = "tabPgSitecoreDb";
-            this.tabPgSitecoreDb.Size = new System.Drawing.Size(775, 212);
+            this.tabPgSitecoreDb.Size = new System.Drawing.Size(775, 232);
             this.tabPgSitecoreDb.TabIndex = 3;
             this.tabPgSitecoreDb.Text = "Sitecore DB";
             // 
@@ -811,25 +817,25 @@
             this.label13.TabIndex = 0;
             this.label13.Text = "SqlPass:";
             // 
-            // txtSqlPass
+            // txtSitecoreSqlPass
             // 
-            this.txtSqlPass.Location = new System.Drawing.Point(179, 148);
-            this.txtSqlPass.MaxLength = 15;
-            this.txtSqlPass.Name = "txtSqlPass";
-            this.txtSqlPass.Size = new System.Drawing.Size(593, 27);
-            this.txtSqlPass.TabIndex = 15;
-            this.txtSqlPass.UseSystemPasswordChar = true;
-            this.txtSqlPass.Leave += new System.EventHandler(this.txtSqlPass_Leave);
+            this.txtSitecoreSqlPass.Location = new System.Drawing.Point(179, 148);
+            this.txtSitecoreSqlPass.MaxLength = 15;
+            this.txtSitecoreSqlPass.Name = "txtSitecoreSqlPass";
+            this.txtSitecoreSqlPass.Size = new System.Drawing.Size(593, 27);
+            this.txtSitecoreSqlPass.TabIndex = 15;
+            this.txtSitecoreSqlPass.UseSystemPasswordChar = true;
+            this.txtSitecoreSqlPass.Leave += new System.EventHandler(this.txtSqlPass_Leave);
             // 
-            // txtSqlUser
+            // txtSitecoreSqlUser
             // 
-            this.txtSqlUser.Location = new System.Drawing.Point(179, 115);
-            this.txtSqlUser.MaxLength = 20;
-            this.txtSqlUser.Name = "txtSqlUser";
-            this.txtSqlUser.Size = new System.Drawing.Size(593, 27);
-            this.txtSqlUser.TabIndex = 14;
-            this.txtSqlUser.Text = "sa";
-            this.txtSqlUser.Leave += new System.EventHandler(this.txtSqlUser_Leave);
+            this.txtSitecoreSqlUser.Location = new System.Drawing.Point(179, 115);
+            this.txtSitecoreSqlUser.MaxLength = 20;
+            this.txtSitecoreSqlUser.Name = "txtSitecoreSqlUser";
+            this.txtSitecoreSqlUser.Size = new System.Drawing.Size(593, 27);
+            this.txtSitecoreSqlUser.TabIndex = 14;
+            this.txtSitecoreSqlUser.Text = "sa";
+            this.txtSitecoreSqlUser.Leave += new System.EventHandler(this.txtSqlUser_Leave);
             // 
             // label12
             // 
@@ -912,7 +918,7 @@
             this.tabPgCommerce.Controls.Add(this.txtCommerceDbName);
             this.tabPgCommerce.Location = new System.Drawing.Point(4, 54);
             this.tabPgCommerce.Name = "tabPgCommerce";
-            this.tabPgCommerce.Size = new System.Drawing.Size(775, 212);
+            this.tabPgCommerce.Size = new System.Drawing.Size(775, 232);
             this.tabPgCommerce.TabIndex = 7;
             this.tabPgCommerce.Text = "Commerce";
             // 
@@ -1031,7 +1037,7 @@
             this.tabPgPorts.Controls.Add(this.label32);
             this.tabPgPorts.Location = new System.Drawing.Point(4, 54);
             this.tabPgPorts.Name = "tabPgPorts";
-            this.tabPgPorts.Size = new System.Drawing.Size(775, 212);
+            this.tabPgPorts.Size = new System.Drawing.Size(775, 232);
             this.tabPgPorts.TabIndex = 8;
             this.tabPgPorts.Text = "Ports";
             // 
@@ -1250,7 +1256,7 @@
             this.tabPgEnvironments.Controls.Add(this.label41);
             this.tabPgEnvironments.Location = new System.Drawing.Point(4, 54);
             this.tabPgEnvironments.Name = "tabPgEnvironments";
-            this.tabPgEnvironments.Size = new System.Drawing.Size(775, 212);
+            this.tabPgEnvironments.Size = new System.Drawing.Size(775, 232);
             this.tabPgEnvironments.TabIndex = 9;
             this.tabPgEnvironments.Text = "Environments";
             // 
@@ -1293,7 +1299,7 @@
             this.tabPgWinUser.Controls.Add(this.txtUserName);
             this.tabPgWinUser.Location = new System.Drawing.Point(4, 54);
             this.tabPgWinUser.Name = "tabPgWinUser";
-            this.tabPgWinUser.Size = new System.Drawing.Size(775, 212);
+            this.tabPgWinUser.Size = new System.Drawing.Size(775, 232);
             this.tabPgWinUser.TabIndex = 10;
             this.tabPgWinUser.Text = "Win User";
             // 
@@ -1367,7 +1373,7 @@
             this.tabPgBraintree.Controls.Add(this.label40);
             this.tabPgBraintree.Location = new System.Drawing.Point(4, 54);
             this.tabPgBraintree.Name = "tabPgBraintree";
-            this.tabPgBraintree.Size = new System.Drawing.Size(775, 212);
+            this.tabPgBraintree.Size = new System.Drawing.Size(775, 232);
             this.tabPgBraintree.TabIndex = 11;
             this.tabPgBraintree.Text = "Braintree";
             // 
@@ -1450,7 +1456,7 @@
             this.btnPrevious.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPrevious.BackgroundImage")));
             this.btnPrevious.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnPrevious.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPrevious.Location = new System.Drawing.Point(312, 107);
+            this.btnPrevious.Location = new System.Drawing.Point(317, 110);
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(47, 44);
             this.btnPrevious.TabIndex = 48;
@@ -1462,7 +1468,7 @@
             this.btnFirst.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFirst.BackgroundImage")));
             this.btnFirst.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnFirst.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFirst.Location = new System.Drawing.Point(268, 107);
+            this.btnFirst.Location = new System.Drawing.Point(273, 110);
             this.btnFirst.Name = "btnFirst";
             this.btnFirst.Size = new System.Drawing.Size(47, 44);
             this.btnFirst.TabIndex = 48;
@@ -1474,7 +1480,7 @@
             this.btnLast.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnLast.BackgroundImage")));
             this.btnLast.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnLast.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLast.Location = new System.Drawing.Point(399, 107);
+            this.btnLast.Location = new System.Drawing.Point(404, 110);
             this.btnLast.Name = "btnLast";
             this.btnLast.Size = new System.Drawing.Size(47, 44);
             this.btnLast.TabIndex = 48;
@@ -1486,7 +1492,7 @@
             this.btnNext.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnNext.BackgroundImage")));
             this.btnNext.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnNext.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNext.Location = new System.Drawing.Point(356, 107);
+            this.btnNext.Location = new System.Drawing.Point(361, 110);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(47, 44);
             this.btnNext.TabIndex = 48;
@@ -1508,9 +1514,9 @@
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panel1.Location = new System.Drawing.Point(12, 10);
+            this.panel1.Location = new System.Drawing.Point(12, 6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(105, 96);
+            this.panel1.Size = new System.Drawing.Size(105, 95);
             this.panel1.TabIndex = 5;
             // 
             // label25
@@ -1519,7 +1525,7 @@
             this.label25.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label25.Location = new System.Drawing.Point(123, 9);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(673, 95);
+            this.label25.Size = new System.Drawing.Size(918, 92);
             this.label25.TabIndex = 8;
             this.label25.Text = "Sitecore Commerce Install Assistant (SCIA)";
             this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1530,11 +1536,12 @@
             // 
             // btnGenerate
             // 
-            this.btnGenerate.BackColor = System.Drawing.SystemColors.Desktop;
+            this.btnGenerate.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnGenerate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnGenerate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnGenerate.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnGenerate.Location = new System.Drawing.Point(208, 450);
+            this.btnGenerate.Location = new System.Drawing.Point(656, 493);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(139, 38);
             this.btnGenerate.TabIndex = 46;
@@ -1545,11 +1552,12 @@
             // 
             // btnInstall
             // 
-            this.btnInstall.BackColor = System.Drawing.SystemColors.ControlText;
+            this.btnInstall.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnInstall.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnInstall.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnInstall.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnInstall.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnInstall.Location = new System.Drawing.Point(353, 450);
+            this.btnInstall.Location = new System.Drawing.Point(801, 493);
             this.btnInstall.Name = "btnInstall";
             this.btnInstall.Size = new System.Drawing.Size(120, 38);
             this.btnInstall.TabIndex = 47;
@@ -1559,11 +1567,12 @@
             // 
             // btnUninstall
             // 
-            this.btnUninstall.BackColor = System.Drawing.SystemColors.ControlText;
+            this.btnUninstall.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnUninstall.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnUninstall.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnUninstall.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnUninstall.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnUninstall.Location = new System.Drawing.Point(479, 450);
+            this.btnUninstall.Location = new System.Drawing.Point(927, 493);
             this.btnUninstall.Name = "btnUninstall";
             this.btnUninstall.Size = new System.Drawing.Size(114, 38);
             this.btnUninstall.TabIndex = 48;
@@ -1576,7 +1585,7 @@
             this.btnPrerequisites.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPrerequisites.BackgroundImage")));
             this.btnPrerequisites.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnPrerequisites.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPrerequisites.Location = new System.Drawing.Point(52, 107);
+            this.btnPrerequisites.Location = new System.Drawing.Point(57, 110);
             this.btnPrerequisites.Name = "btnPrerequisites";
             this.btnPrerequisites.Size = new System.Drawing.Size(47, 44);
             this.btnPrerequisites.TabIndex = 48;
@@ -1588,20 +1597,22 @@
             this.btnAppSettings.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAppSettings.BackgroundImage")));
             this.btnAppSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnAppSettings.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAppSettings.Location = new System.Drawing.Point(9, 107);
+            this.btnAppSettings.Location = new System.Drawing.Point(14, 110);
             this.btnAppSettings.Name = "btnAppSettings";
             this.btnAppSettings.Size = new System.Drawing.Size(47, 44);
             this.btnAppSettings.TabIndex = 50;
             this.btnAppSettings.UseVisualStyleBackColor = true;
+            this.btnAppSettings.Click += new System.EventHandler(this.btnAppSettings_Click);
             // 
             // pnlDetails
             // 
             this.pnlDetails.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.pnlDetails.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnlDetails.Controls.Add(this.lblStepStatus);
-            this.pnlDetails.Location = new System.Drawing.Point(13, 162);
+            this.pnlDetails.Controls.Add(this.tabDetails);
+            this.pnlDetails.Location = new System.Drawing.Point(14, 169);
             this.pnlDetails.Name = "pnlDetails";
-            this.pnlDetails.Size = new System.Drawing.Size(789, 282);
+            this.pnlDetails.Size = new System.Drawing.Size(809, 301);
             this.pnlDetails.TabIndex = 51;
             // 
             // lblStepStatus
@@ -1618,19 +1629,19 @@
             this.btnDbConn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnDbConn.BackgroundImage")));
             this.btnDbConn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnDbConn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDbConn.Location = new System.Drawing.Point(96, 107);
+            this.btnDbConn.Location = new System.Drawing.Point(101, 110);
             this.btnDbConn.Name = "btnDbConn";
             this.btnDbConn.Size = new System.Drawing.Size(47, 44);
             this.btnDbConn.TabIndex = 48;
             this.btnDbConn.UseVisualStyleBackColor = true;
-            this.btnDbConn.Click += new System.EventHandler(this.btnPrerequisites_Click);
+            this.btnDbConn.Click += new System.EventHandler(this.btnDbConn_Click);
             // 
             // button1
             // 
             this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.Location = new System.Drawing.Point(139, 107);
+            this.button1.Location = new System.Drawing.Point(144, 110);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(47, 44);
             this.button1.TabIndex = 48;
@@ -1642,7 +1653,7 @@
             this.btnPortCheck.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPortCheck.BackgroundImage")));
             this.btnPortCheck.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnPortCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPortCheck.Location = new System.Drawing.Point(180, 107);
+            this.btnPortCheck.Location = new System.Drawing.Point(185, 110);
             this.btnPortCheck.Name = "btnPortCheck";
             this.btnPortCheck.Size = new System.Drawing.Size(47, 44);
             this.btnPortCheck.TabIndex = 48;
@@ -1654,7 +1665,7 @@
             this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
             this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.Location = new System.Drawing.Point(224, 107);
+            this.button3.Location = new System.Drawing.Point(229, 110);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(47, 44);
             this.button3.TabIndex = 48;
@@ -1666,7 +1677,7 @@
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblStatus.ForeColor = System.Drawing.Color.DarkGreen;
-            this.lblStatus.Location = new System.Drawing.Point(17, 498);
+            this.lblStatus.Location = new System.Drawing.Point(18, 524);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(133, 20);
             this.lblStatus.TabIndex = 52;
@@ -1676,12 +1687,50 @@
             // 
             this.lblStepInfo.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblStepInfo.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lblStepInfo.Location = new System.Drawing.Point(524, 128);
+            this.lblStepInfo.Location = new System.Drawing.Point(769, 131);
             this.lblStepInfo.Name = "lblStepInfo";
             this.lblStepInfo.Size = new System.Drawing.Size(272, 23);
             this.lblStepInfo.TabIndex = 52;
             this.lblStepInfo.Text = "Step 1 of 13: DB Connection";
             this.lblStepInfo.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // chkStepsList
+            // 
+            this.chkStepsList.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.chkStepsList.CheckOnClick = true;
+            this.chkStepsList.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chkStepsList.FormattingEnabled = true;
+            this.chkStepsList.Items.AddRange(new object[] {
+            "DB Connection",
+            "Site Info",
+            "General",
+            "Install Details",
+            "Sitecore ",
+            "Solr",
+            "Redis",
+            "Sitecore DB",
+            "Commerce",
+            "Ports",
+            "Environments",
+            "Win User",
+            "Braintree"});
+            this.chkStepsList.Location = new System.Drawing.Point(-2, -2);
+            this.chkStepsList.Name = "chkStepsList";
+            this.chkStepsList.Size = new System.Drawing.Size(195, 290);
+            this.chkStepsList.TabIndex = 53;
+            this.chkStepsList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.chkStepsList_ItemCheck);
+            this.chkStepsList.Click += new System.EventHandler(this.chkStepsList_Click);
+            this.chkStepsList.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.chkStepsList);
+            this.panel2.Location = new System.Drawing.Point(829, 169);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(212, 300);
+            this.panel2.TabIndex = 54;
             // 
             // SitecoreCommerceInstaller
             // 
@@ -1689,7 +1738,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Menu;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(808, 522);
+            this.ClientSize = new System.Drawing.Size(1053, 554);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.btnPrevious);
             this.Controls.Add(this.lblStepInfo);
             this.Controls.Add(this.btnFirst);
@@ -1707,7 +1757,6 @@
             this.Controls.Add(this.btnGenerate);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.tabDetails);
             this.Controls.Add(this.pnlDetails);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1750,6 +1799,7 @@
             this.tabPgBraintree.PerformLayout();
             this.pnlDetails.ResumeLayout(false);
             this.pnlDetails.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1778,8 +1828,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TabPage tabPgSitecoreDb;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox txtSqlPass;
-        private System.Windows.Forms.TextBox txtSqlUser;
+        private System.Windows.Forms.TextBox txtSitecoreSqlPass;
+        private System.Windows.Forms.TextBox txtSitecoreSqlUser;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtSitecoreCoreDbName;
         private System.Windows.Forms.Label label11;
@@ -1887,11 +1937,13 @@
         private System.Windows.Forms.Button btnLast;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.TabPage tabPgDBConnection;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtSqlPass;
         private System.Windows.Forms.Label label49;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtSqlUser;
         private System.Windows.Forms.Label label48;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtSqlDbServer;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckedListBox chkStepsList;
+        private System.Windows.Forms.Panel panel2;
     }
 }
