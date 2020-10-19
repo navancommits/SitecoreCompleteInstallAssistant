@@ -924,6 +924,7 @@ namespace SCIA
                 lblStatus.Text = controlString + " needed... ";
                 lblStatus.ForeColor = Color.Red;
                 tabDetails.SelectedIndex = tabIndex;
+                AssignStepStatus(tabIndex);
                 Valid = false;
             }
             return Valid;
