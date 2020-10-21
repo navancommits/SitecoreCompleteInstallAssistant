@@ -1071,7 +1071,7 @@ namespace SCIA
         private void btnUninstall_Click(object sender, EventArgs e)
         {
             string portString = string.Empty;
-            if (!ValidateAll()) return;
+            if (!ValidateAll(true)) return;
             if (IsPortDuplicated(AddPortstoArray())) { lblStatus.Text = "Duplicate port numbers detected! Provide unique port numbers...."; return; }
             if (!Directory.Exists(txtSXAInstallDir.Text))
             {
@@ -1534,7 +1534,25 @@ namespace SCIA
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if (!ValidateData(txtSiteName, "Site Name", const_SiteInfo_Tab)) return;
+            if (!ValidateData(txtIDServerSiteName, "ID Server Site Name", const_General_Tab)) return;
+            if (!ValidateData(txtSitecoreIdentityServerUrl, "Sitecore Id Server Url", const_General_Tab)) return;
+           
+            if (!ValidateData(txtSXAInstallDir, "Sitecore SXA Install Directory", const_Install_Details_Tab)) return;
+            if (!ValidateData(txtxConnectInstallDir, "Sitecore xConnect Install Directory", const_Install_Details_Tab)) return;
+            if (!ValidateData(txtCommerceInstallRoot, "Commerce Install Root", const_Install_Details_Tab)) return ;
+
+            if (!ValidateData(txtSqlDbServer, "Sitecore Db Server", const_DBConn_Tab)) return;
+            if (!ValidateData(txtSqlUser, "Sql User", const_DBConn_Tab)) return;
+            if (!ValidateData(txtSqlPass, "Sql Password", const_DBConn_Tab)) return;
+
+            if (!ValidateData(txtSolrUrl, "Solr Url", const_Solr_Tab)) return;
+            if (!ValidateData(txtSolrRoot, "Solr Root Path", const_Solr_Tab)) return;
+            if (!ValidateData(txtSolrService, "Solr Service Name", const_Solr_Tab)) return;
+
             DeleteScript(txtSiteName.Text + "_Delete_Script.ps1");
+            DeleteAll deleteAll = new DeleteAll(txtSiteName.Text + "_Delete_Script.ps1");
+            deleteAll.ShowDialog();
         }
 
         private void DeleteScript(string path)
@@ -1809,9 +1827,9 @@ namespace SCIA
             file.WriteLine("rm " + usersFolderPath + "$UserFolder -force -recurse -ea ig");            
             file.WriteLine("Write-Host \"Website Folders removed from c:\\Users folder\"");
 
-            file.WriteLine("rm " + certificatesFolderPath +  "$Prefix" + storefrontCertExt + " -force");
-            file.WriteLine("rm " + certificatesFolderPath + "$SitecoreIdentityServerSiteName" + ".pfx  -force");
-            file.WriteLine("rm " + certificatesFolderPath + "$SitecorexConnectSiteName" + ".pfx -force");
+            file.WriteLine("rm " + certificatesFolderPath +  "$Prefix" + storefrontCertExt + " -force -recurse -ea ig");
+            file.WriteLine("rm " + certificatesFolderPath + "$SitecoreIdentityServerSiteName" + ".pfx  -force -recurse -ea ig");
+            file.WriteLine("rm " + certificatesFolderPath + "$SitecorexConnectSiteName" + ".pfx -force -recurse -ea ig");
             file.WriteLine("pop-location");
         }
 

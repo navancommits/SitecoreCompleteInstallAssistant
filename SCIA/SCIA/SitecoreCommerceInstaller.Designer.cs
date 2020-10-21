@@ -1573,7 +1573,7 @@
             this.btnPrevious.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPrevious.BackgroundImage")));
             this.btnPrevious.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnPrevious.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPrevious.Location = new System.Drawing.Point(515, 176);
+            this.btnPrevious.Location = new System.Drawing.Point(593, 177);
             this.btnPrevious.Margin = new System.Windows.Forms.Padding(5);
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(76, 70);
@@ -1586,7 +1586,7 @@
             this.btnFirst.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFirst.BackgroundImage")));
             this.btnFirst.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnFirst.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFirst.Location = new System.Drawing.Point(444, 176);
+            this.btnFirst.Location = new System.Drawing.Point(522, 177);
             this.btnFirst.Margin = new System.Windows.Forms.Padding(5);
             this.btnFirst.Name = "btnFirst";
             this.btnFirst.Size = new System.Drawing.Size(76, 70);
@@ -1599,7 +1599,7 @@
             this.btnLast.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnLast.BackgroundImage")));
             this.btnLast.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnLast.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLast.Location = new System.Drawing.Point(656, 176);
+            this.btnLast.Location = new System.Drawing.Point(734, 177);
             this.btnLast.Margin = new System.Windows.Forms.Padding(5);
             this.btnLast.Name = "btnLast";
             this.btnLast.Size = new System.Drawing.Size(76, 70);
@@ -1612,7 +1612,7 @@
             this.btnNext.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnNext.BackgroundImage")));
             this.btnNext.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnNext.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNext.Location = new System.Drawing.Point(587, 176);
+            this.btnNext.Location = new System.Drawing.Point(665, 177);
             this.btnNext.Margin = new System.Windows.Forms.Padding(5);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(76, 70);
@@ -1875,7 +1875,7 @@
             this.btnDelete.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnDelete.BackgroundImage")));
             this.btnDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDelete.Location = new System.Drawing.Point(732, 177);
+            this.btnDelete.Location = new System.Drawing.Point(446, 177);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(5);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(76, 70);
