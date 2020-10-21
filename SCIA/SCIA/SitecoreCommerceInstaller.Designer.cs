@@ -168,6 +168,7 @@
             this.lblStepInfo = new System.Windows.Forms.Label();
             this.chkStepsList = new System.Windows.Forms.CheckedListBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.tabDetails.SuspendLayout();
             this.tabPgDBConnection.SuspendLayout();
             this.tabpgSiteInfo.SuspendLayout();
@@ -1869,6 +1870,19 @@
             this.panel2.Size = new System.Drawing.Size(342, 478);
             this.panel2.TabIndex = 54;
             // 
+            // btnDelete
+            // 
+            this.btnDelete.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnDelete.BackgroundImage")));
+            this.btnDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDelete.Location = new System.Drawing.Point(732, 177);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(5);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(76, 70);
+            this.btnDelete.TabIndex = 48;
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // SitecoreCommerceInstaller
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
@@ -1876,6 +1890,7 @@
             this.BackColor = System.Drawing.SystemColors.Menu;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1711, 886);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.btnPrevious);
             this.Controls.Add(this.lblStepInfo);
@@ -2083,5 +2098,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckedListBox chkStepsList;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnDelete;
     }
 }

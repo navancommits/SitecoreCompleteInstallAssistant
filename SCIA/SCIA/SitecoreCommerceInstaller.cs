@@ -472,7 +472,7 @@ namespace SCIA
             file.WriteLine("\t[string]$BraintreeEnvironment = \"sandbox\",");
             file.WriteLine();
             file.WriteLine("\t# List of comma-separated task names to skip during Sitecore XC deployment.");
-            if (habitatflag)
+            if (habitatflag && !uninstallscript)
             {
                 file.WriteLine("\t[string]$TasksToSkip = \"Module-HabitatImages_InstallWDPModuleMasterCore,Module-HabitatImages_InstallWDPModuleMaster,Module-HabitatImages_InstallWDPModuleCore,Module-AdventureWorksImages_InstallWDPModuleMasterCore,Module-AdventureWorksImages_InstallWDPModuleMaster,Module-AdventureWorksImages_InstallWDPModuleCore,RebuildIndexes_RebuildIndex-Master,RebuildIndexes_RebuildIndex-Web\"");
             }
@@ -812,7 +812,7 @@ namespace SCIA
             txtSearchIndexPrefix.Text = txtSiteName.Text;
         }
 
-        private bool ValidateAll()
+        private bool ValidateAll(bool unInstall=false)
         {
             if (!ValidateData(txtSiteName, "Site Name",const_SiteInfo_Tab)) return false;
             if (!ValidateData(txtIDServerSiteName, "ID Server Site Name", const_General_Tab)) return false;
@@ -860,13 +860,14 @@ namespace SCIA
             //if (!IsPortNotinUse(txtCommerceAuthSvcPort,7)) return false;
             //if (!IsPortNotinUse(txtCommerceMinionsSvcPort,7)) return false;
             //if (!IsPortNotinUse(txtBizFxPort,7)) return false;
-            if (!PerformPortValidations()) return false;
+            if (!PerformPortValidations(unInstall)) return false;
             if (!ValidateData(txtBizFxName, "BizFx Name",const_Redis_Tab)) return false;
 
             if (!ValidateData(txtUserDomain, "Win User Domain",const_Win_User_Tab)) return false;
             if (!ValidateData(txtUserName, "Win User Name", const_Win_User_Tab)) return false;
             if (!ValidateData(txtUserPassword, "Win User Password", const_Win_User_Tab)) return false;
 
+            if (unInstall) return true;
             if (!ValidateData(txttxtBraintreeMerchantId, "Braintree Merchant Id", const_Braintree_User_Tab)) return false;
             if (!ValidateData(txtBraintreePublicKey, "Braintree Public Key", const_Braintree_User_Tab)) return false;
             if (!ValidateData(txtBraintreePrivateKey, "Braintree Private Key", const_Braintree_User_Tab)) return false;
@@ -875,7 +876,7 @@ namespace SCIA
             return true;
         }
 
-        private bool PerformPortValidations()
+        private bool PerformPortValidations(bool unInstall=false)
         {
             string portString = string.Empty;
             
@@ -886,12 +887,14 @@ namespace SCIA
             if (!ValidatePortNumber(txtCommerceAuthSvcPort, "Commerce Auth Svc Port", const_Port_Tab)) return false;
             if (!ValidatePortNumber(txtCommerceMinionsSvcPort, "Commerce Minions Svc Port", const_Port_Tab)) return false;
             if (!ValidatePortNumber(txtBizFxPort, "BizFx Port Number", const_Port_Tab)) return false;
-            if (!IsPortNotinUse(txtCommerceOpsSvcPort, const_Port_Tab)) return false;
-            if (!IsPortNotinUse(txtCommerceShopsServicesPort, const_Port_Tab)) return false;
-            if (!IsPortNotinUse(txtCommerceAuthSvcPort, const_Port_Tab)) return false;
-            if (!IsPortNotinUse(txtCommerceMinionsSvcPort, const_Port_Tab)) return false;
-            if (!IsPortNotinUse(txtBizFxPort, const_Port_Tab)) return false;
-
+            if (!unInstall)
+            {
+                if (!IsPortNotinUse(txtCommerceOpsSvcPort, const_Port_Tab)) return false;
+                if (!IsPortNotinUse(txtCommerceShopsServicesPort, const_Port_Tab)) return false;
+                if (!IsPortNotinUse(txtCommerceAuthSvcPort, const_Port_Tab)) return false;
+                if (!IsPortNotinUse(txtCommerceMinionsSvcPort, const_Port_Tab)) return false;
+                if (!IsPortNotinUse(txtBizFxPort, const_Port_Tab)) return false;
+            }
             if (IsPortDuplicated(AddPortstoArray())) { lblStatus.Text = "Duplicate port numbers detected! provide unique port numbers...."; return false; }
 
             portString = StatusMessageBuilder(portString);
@@ -1440,9 +1443,7 @@ namespace SCIA
 
         private void btnLast_Click(object sender, EventArgs e)
         {
-            TabIndexValue = tabDetails.TabCount - 1;
-            tabDetails.SelectedIndex = TabIndexValue;            
-            AssignStepStatus(TabIndexValue);
+
         }
 
         private void btnFirst_Click(object sender, EventArgs e)
@@ -1529,6 +1530,308 @@ namespace SCIA
         private void txtSqlDbServer_TextChanged(object sender, EventArgs e)
         {
             txtSitecoreDbServer.Text = txtSqlDbServer.Text;
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DeleteScript(txtSiteName.Text + "_Delete_Script.ps1");
+        }
+
+        private void DeleteScript(string path)
+        {
+            var appcmdExe = "C:\\windows\\system32\\inetsrv\\appcmd.exe";
+            var stoppedStatus = "Stopped";
+            var commerceOpsSitePath = "IIS:\\Sites\\Default Web Site\\$CommerceOpsSiteName";
+            var commerceShopsSitePath= "IIS:\\Sites\\Default Web Site\\$CommerceShopsSiteName";
+            var commerceAuthSitePath = "IIS:\\Sites\\Default Web Site\\$CommerceAuthoringSiteName";
+            var commerceMinionsSitePath = "IIS:\\Sites\\Default Web Site\\$CommerceMinionsSiteName";
+            var commerceBizFxSitePath = "IIS:\\Sites\\Default Web Site\\$SitecoreBizFxSiteName";
+            var idServerSitePath = "IIS:\\Sites\\Default Web Site\\$SitecoreIdentityServerSiteName";
+            var sitePath = "IIS:\\Sites\\Default Web Site\\$SiteName";
+            var xConnectSitePath = "IIS:\\Sites\\Default Web Site\\$SitecorexConnectSiteName";
+
+            var commerceOpsAppPool = "IIS:\\AppPools\\$CommerceOpsSiteName";
+            var commerceShopsAppPool = "IIS:\\AppPools\\Default Web Site\\$CommerceShopsSiteName";
+            var commerceAuthAppPool = "IIS:\\AppPools\\Default Web Site\\$CommerceAuthoringSiteName";
+            var commerceMinionsAppPool = "IIS:\\AppPools\\Default Web Site\\$CommerceMinionsSiteName";
+            var commerceBizFxAppPool = "IIS:\\AppPools\\Default Web Site\\$SitecoreBizFxSiteName";
+            var idServerAppPool = "IIS:\\AppPools\\$SitecoreIdentityServerSiteName";
+            var siteAppPool = "IIS:\\AppPools\\$SiteName";
+            var xConnectAppPool = "IIS:\\AppPools\\$SitecorexConnectSiteName";
+
+            var dropStmtstring = "DROP DATABASE IF EXISTS [";
+            var coreDBSuffix = "_Core";
+            var masterDBSuffix = "_Master";
+            var webDBSuffix = "_Web";
+            var exmMasterDBSuffix = "_EXM.Master";
+            var refDataDBSuffix = "_ReferenceData";
+            var reportingDBSuffix = "_Reporting";
+            var expFormsDBSuffix = "_ExperienceForms";
+            var marketingAutomationDBSuffix = "_MarketingAutomation";
+            var processingPoolsDBSuffix = "_Processing.Pools";
+            var processingTasksDBSuffix = "_Processing.Tasks";
+            var processingEngineStorageDBSuffix = "_ProcessingEngineStorage";
+            var processingEngineTasksDBSuffix = "_ProcessingEngineTasks";
+            var collectionShard0DBSuffix = "_Xdb.Collection.Shard0";
+            var collectionShard1DBSuffix = "_Xdb.Collection.Shard1";
+            var collectionShardMapManagerDBSuffix = "_Xdb.Collection.ShardMapManager";
+            var messagingDBSuffix = "_Messaging";
+            var globalDBSuffix = "_Global";
+            var sharedenvDBSuffix = "_SharedEnvironments";
+
+            var webRootPath = "c:\\inetpub\\wwwroot\\";
+            var usersFolderPath = "c:\\users\\";
+            var certificatesFolderPath = "c:\\certificates\\";
+            var storefrontCertExt = ".storefront.com.crt";
+
+            using var file = new StreamWriter(path);
+            file.WriteLine("Param(");
+            file.WriteLine("\t[string]$Prefix = \"" + txtSiteNamePrefix.Text + "\",");
+            file.WriteLine("\t[string]$UserFolder = \"" + txtSiteNamePrefix.Text + "sc_User" + "\",");
+            file.WriteLine("\t[string]$CommDbPrefix = \"" + txtSiteNamePrefix.Text + "_SitecoreCommerce" + "\",");
+            file.WriteLine("\t[string]$SiteName = \"" + txtSiteName.Text + "\",");
+            file.WriteLine("\t[string]$SitecoreBizFxSiteName = \"" + txtBizFxName.Text + "\",");
+            file.WriteLine("\t[string]$CommerceServicesPostfix = \"" + txtCommerceSvcPostFix.Text + "\",");
+            file.WriteLine("\t[string]$SolrService = \"" + txtCommerceSvcPostFix.Text + "\",");
+            file.WriteLine("\t[string]$PathToSolr = \"" + txtSolrRoot.Text + "\",");
+            file.WriteLine("\t[string]$SqlServer = \"" + txtSitecoreDbServer.Text + "\",");
+            file.WriteLine("\t[string]$SqlAccount = \"" + txtSitecoreSqlUser.Text + "\",");
+            file.WriteLine("\t[string]$SqlPassword = \"" + txtSitecoreSqlPass.Text + "\",");
+            file.WriteLine("\t[string]$SitecorexConnectSiteName = \"" + txtSiteNamePrefix.Text + "xconnect" + txtSiteNameSuffix.Text + "\",");
+            file.WriteLine("\t[string]$SitecoreIdentityServerSiteName = \"" + txtIDServerSiteName.Text + "\",");
+            file.WriteLine("\t[string]$CommerceServicesHostPostfix = \"" + txtCommerceServicesHostPostFix.Text + "\",");
+            file.WriteLine("\t[string]$CommerceOpsSiteName = \"CommerceOps_$CommerceServicesPostfix\", ");           
+            file.WriteLine("\t[string]$CommerceShopsSiteName = \"CommerceShops_$CommerceServicesPostfix\", ");
+            file.WriteLine("\t[string]$CommerceAuthoringSiteName = \"CommerceAuthoring_$CommerceServicesPostfix\", ");
+            file.WriteLine("\t[string]$CommerceMinionsSiteName = \"CommerceMinions_$CommerceServicesPostfix\", ");
+            file.WriteLine("\t[string]$SitecoreMarketingAutomationService=\"$SitecorexConnectSiteName-MarketingAutomationService\", ");
+            file.WriteLine("\t[string]$SitecoreProcessingEngineService=\"$SitecorexConnectSiteName-ProcessingEngineService\", ");
+            file.WriteLine("\t[string]$SitecoreIndexWorkerService=\"$SitecorexConnectSiteName-IndexWorker\"");
+            file.WriteLine(")");
+            file.WriteLine();
+
+            file.WriteLine("Function Remove-Service{");
+            file.WriteLine("\t[CmdletBinding()]");
+            file.WriteLine("\tparam(");
+            file.WriteLine("\t\t[string]$serviceName");
+            file.WriteLine("\t)");
+            file.WriteLine("\tif(Get-Service $serviceName -ErrorAction SilentlyContinue){");
+            file.WriteLine("\t\tsc.exe delete $serviceName -Force");
+            file.WriteLine("\t}");
+            file.WriteLine("}");
+            file.WriteLine();
+
+            file.WriteLine("Function Stop-Service{");
+            file.WriteLine("\t[CmdletBinding()]");
+            file.WriteLine("\tparam(");
+            file.WriteLine("\t\t[string]$serviceName");
+            file.WriteLine("\t)");
+            file.WriteLine("\tif(Get-Service $serviceName -ErrorAction SilentlyContinue){");
+            file.WriteLine("\t\tsc.exe stop $serviceName -Force");
+            file.WriteLine("\t}");
+            file.WriteLine("}");
+            file.WriteLine();
+
+            file.WriteLine("Function Remove-Website{");
+            file.WriteLine("\t[CmdletBinding()]");
+            file.WriteLine("\tparam(");
+            file.WriteLine("\t\t[string]$siteName");
+            file.WriteLine("\t)");
+            file.WriteLine("\t$appCmd=\"" + appcmdExe + "\"");
+            file.WriteLine("\t& $appCmd delete site $siteName");            
+            file.WriteLine("}");
+            file.WriteLine();
+
+            file.WriteLine("Function Stop-WebAppPool{");
+            file.WriteLine("\t[CmdletBinding()]");
+            file.WriteLine("\tparam(");
+            file.WriteLine("\t\t[string]$appPoolName");
+            file.WriteLine("\t)");
+            file.WriteLine("\t\t$ApplicationPoolStatus = Get-WebAppPoolState $appPoolName");
+            file.WriteLine("\t\t$ApplicationPoolStatusValue = $ApplicationPoolStatus.Value");
+            file.WriteLine("\t\t#Write-Host \"$appPoolName-> $ApplicationPoolStatusValue\"");
+
+            file.WriteLine("\t\tif ($ApplicationPoolStatus.Value -ne \"" + stoppedStatus + "\")");
+            file.WriteLine("\t\t{");
+            file.WriteLine("\t\t\tStop-WebAppPool -Name $appPoolName");            
+            file.WriteLine("\t\t}");
+            file.WriteLine("}");
+            file.WriteLine();
+
+            file.WriteLine("Function Remove-AppPool{");
+            file.WriteLine("\t[CmdletBinding()]");
+            file.WriteLine("\tparam(");
+            file.WriteLine("\t\t[string]$appPoolName");
+            file.WriteLine("\t)");
+            file.WriteLine("\t$appCmd=\"" + appcmdExe + "\"");
+            file.WriteLine("\t& $appCmd delete apppool $appPoolName");
+            file.WriteLine("}");
+
+            file.WriteLine("if (Test-Path \"" + commerceShopsSitePath + "\") { Stop-Website -Name $CommerceShopsSiteName }");
+            file.WriteLine("if (Test-Path \"" + commerceOpsSitePath + "\") { Stop-Website -Name $CommerceOpsSiteName }");
+            file.WriteLine("if (Test-Path \"" + commerceAuthSitePath + "\") { Stop-Website -Name $CommerceAuthoringSiteName }");
+            file.WriteLine("if (Test-Path \"" + commerceMinionsSitePath + "\") { Stop-Website -Name $CommerceMinionsSiteName }");
+            file.WriteLine("if (Test-Path \"" + commerceBizFxSitePath + "\") { Stop-Website -Name $SitecoreBizFxSiteName }");
+            file.WriteLine("if (Test-Path \"" + idServerSitePath + "\") { Stop-Website -Name $SitecoreIdentityServerSiteName }");
+            file.WriteLine("if (Test-Path \"" + sitePath + "\") { Stop-Website -Name $SiteName }");
+            file.WriteLine("if (Test-Path \"" + xConnectSitePath + "\") { Stop-Website -Name $SitecorexConnectSiteName }");
+            file.WriteLine();
+
+            file.WriteLine("if (Test-Path \"" + commerceShopsAppPool + "\") { Stop-WebAppPool -appPoolName $CommerceShopsSiteName }");
+            file.WriteLine("if (Test-Path \"" + commerceOpsAppPool + "\") { Stop-WebAppPool -appPoolName $CommerceOpsSiteName }");
+            file.WriteLine("if (Test-Path \"" + commerceAuthAppPool + "\") { Stop-WebAppPool -appPoolName $CommerceAuthoringSiteName }");
+            file.WriteLine("if (Test-Path \"" + commerceMinionsAppPool + "\") { Stop-WebAppPool -appPoolName $CommerceMinionsSiteName }");
+            file.WriteLine("if (Test-Path \"" + commerceBizFxAppPool + "\") { Stop-WebAppPool -appPoolName $SitecoreBizFxSiteName }");
+            file.WriteLine("if (Test-Path \"" + idServerAppPool + "\") { Stop-WebAppPool -appPoolName $SitecoreIdentityServerSiteName }");
+            file.WriteLine("if (Test-Path \"" + siteAppPool + "\") { Stop-WebAppPool -appPoolName $SiteName }");
+            file.WriteLine("if (Test-Path \"" + xConnectAppPool + "\") { Stop-WebAppPool -appPoolName $SitecorexConnectSiteName }");
+            file.WriteLine();
+
+            file.WriteLine("Write-Host \"Stopping solr service\"");
+            file.WriteLine("Stop-Service $SolrService");
+            file.WriteLine("Write-Host \"Solr service stopped successfully\"");
+            file.WriteLine();
+
+            file.WriteLine("Write-Host \"Stopping Marketing Automation service\"");
+            file.WriteLine("Stop-Service $SitecoreMarketingAutomationService ");
+            file.WriteLine("Write-Host \"Marketing Automation service stopped successfully\"");
+            file.WriteLine();
+
+            file.WriteLine("Write-Host \"Stopping Processing Engine service\"");
+            file.WriteLine("Stop-Service $SitecoreProcessingEngineService ");
+            file.WriteLine("Write-Host \"Processing Engine service stopped successfully\"");
+            file.WriteLine();
+
+            file.WriteLine("Write-Host \"Stopping Index Worker service\"");
+            file.WriteLine("Stop-Service $SitecoreIndexWorkerService ");
+            file.WriteLine("Write-Host \"Index Worker service stopped successfully\"");
+            file.WriteLine();
+
+            file.WriteLine("Write-Host \"Deleting App Pools\"");
+            file.WriteLine("Remove-AppPool -appPoolName $CommerceOpsSiteName");
+            file.WriteLine("Remove-AppPool -appPoolName $CommerceShopsSiteName");
+            file.WriteLine("Remove-AppPool -appPoolName $CommerceAuthoringSiteName");
+            file.WriteLine("Remove-AppPool -appPoolName $CommerceMinionsSiteName");
+            file.WriteLine("Remove-AppPool -appPoolName $SitecoreBizFxSiteName");
+            file.WriteLine("Remove-AppPool -appPoolName $SitecoreIdentityServerSiteName");
+            file.WriteLine("Remove-AppPool -appPoolName $SiteName");
+            file.WriteLine("Remove-AppPool -appPoolName $SitecorexConnectSiteName");
+            file.WriteLine("Write-Host \"App Pools deleted successfully\"");
+            file.WriteLine();
+
+            file.WriteLine("Write-Host \"Deleting Websites from IIS\"");
+            file.WriteLine("Remove-Website -siteName $CommerceOpsSiteName");
+            file.WriteLine("Remove-Website -siteName $CommerceShopsSiteName");
+            file.WriteLine("Remove-Website -siteName $CommerceAuthoringSiteName");
+            file.WriteLine("Remove-Website -siteName $CommerceMinionsSiteName");
+            file.WriteLine("Remove-Website -siteName $SitecoreBizFxSiteName");
+            file.WriteLine("Remove-Website -siteName $SitecoreIdentityServerSiteName");
+            file.WriteLine("Remove-Website -siteName $SiteName");
+            file.WriteLine("Remove-Website -siteName $SitecorexConnectSiteName");
+            file.WriteLine("Write-Host \"IIS Websites deleted successfully\"");
+            file.WriteLine();
+
+            file.WriteLine("#Drop databases from SQL");
+            file.WriteLine("Write-Host \"Dropping databases from SQL server\"");
+            file.WriteLine("push-location");
+            file.WriteLine("import-module sqlps");
+
+            file.WriteLine("Write-Host \"Dropping databases from SQL server\"");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + coreDBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + masterDBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + webDBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + exmMasterDBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + refDataDBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + reportingDBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + expFormsDBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + marketingAutomationDBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + processingPoolsDBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + processingTasksDBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + processingEngineStorageDBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + processingEngineTasksDBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + collectionShard0DBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + collectionShard1DBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + collectionShardMapManagerDBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + messagingDBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + sharedenvDBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + globalDBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+
+            file.WriteLine("Write-Host \"Databases dropped successfully\"");
+            file.WriteLine();
+
+            file.WriteLine("Write-Host \"Removing Services\"");
+            file.WriteLine("Remove-Service $SolrService");
+            file.WriteLine("Remove-Service $SitecoreMarketingAutomationService");
+            file.WriteLine("Remove-Service $SitecoreProcessingEngineService");
+            file.WriteLine("Remove-Service $SitecoreIndexWorkerService");
+            file.WriteLine("Write-Host \"Solr, Marketing Automation, Processing Engine, Index Worker services removed\"");
+            file.WriteLine();
+
+            file.WriteLine("# Delete solr cores");
+            file.WriteLine("Write-Host \"Deleting Solr directory\"");
+            file.WriteLine("$pathToCores = $PathToSolr");
+            file.WriteLine("rm $PathToSolr -recurse -force -ea ig");
+            file.WriteLine("Write-Host \"Solr folder deleted successfully\"");
+
+            file.WriteLine("Write-Host \"Deleting Websites from wwwroot\"");
+            file.WriteLine("rm " + webRootPath + "$CommerceOpsSiteName -force -recurse -ea ig");
+            file.WriteLine("rm " + webRootPath + "$CommerceShopsSiteName -force -recurse -ea ig");
+            file.WriteLine("rm " + webRootPath + "$CommerceAuthoringSiteName -force -recurse -ea ig");
+            file.WriteLine("rm " + webRootPath + "$CommerceMinionsSiteName -force -recurse -ea ig");
+            file.WriteLine("rm " + webRootPath + "$SitecoreBizFxSiteName -force -recurse -ea ig");
+            file.WriteLine("rm " + webRootPath + "$SitecoreIdentityServerSiteName -force -recurse -ea ig");
+            file.WriteLine("rm " + webRootPath + "$SiteName -force -recurse -ea ig");
+            file.WriteLine("rm " + webRootPath + "$SitecorexConnectSiteName -force -recurse -ea ig");
+            file.WriteLine("Write-Host \"Websites removed from wwwroot\"");
+
+            file.WriteLine("Write-Host \"Deleting Windows Users from c:\\users\"");
+            file.WriteLine("rm " + usersFolderPath + "$SitecorexConnectSiteName -force -recurse -ea ig");
+            file.WriteLine("rm " + usersFolderPath + "$SitecoreIdentityServerSiteName -force -recurse -ea ig");
+            file.WriteLine("rm " + usersFolderPath + "$SiteName -force -recurse -ea ig");
+            file.WriteLine("rm " + usersFolderPath + "$UserFolder -force -recurse -ea ig");            
+            file.WriteLine("Write-Host \"Website Folders removed from c:\\Users folder\"");
+
+            file.WriteLine("rm " + certificatesFolderPath +  "$Prefix" + storefrontCertExt + " -force");
+            file.WriteLine("rm " + certificatesFolderPath + "$SitecoreIdentityServerSiteName" + ".pfx  -force");
+            file.WriteLine("rm " + certificatesFolderPath + "$SitecorexConnectSiteName" + ".pfx -force");
+            file.WriteLine("pop-location");
+        }
+
+        private void DeleteDB(string path)
+        {
+            using var file = new StreamWriter(path);
+            
+            file.WriteLine("param(");
+            file.WriteLine("\t# The root folder with WDP files.");
+            file.WriteLine("\t[string]$Prefix = \"" + txtSiteNamePrefix.Text + "\",");
+            file.WriteLine("\t[string]$CommDbPrefix = \"" + txtSiteNamePrefix.Text + "\",");
+            file.WriteLine("\t# The root folder of SIF.Sitecore.Commerce package.");
+            file.WriteLine("\t[string]$XCSIFInstallRoot = $PWD,");
+            file.WriteLine(
+                "\t# Specifies whether or not to bypass the installation of the default SXA Storefront. By default, the Sitecore XC installation script also deploys the SXA Storefront.");
+            file.WriteLine("\t[bool]$SkipInstallDefaultStorefront = $false,");
+            file.WriteLine("\t# Specifies whether or not to bypass the installation of the SXA Storefront packages.");
+            file.WriteLine(
+                "\t# If set to $true, $TasksToSkip parameter will be populated with the list of tasks to skip in order to bypass SXA Storefront packages installation.");
+            file.WriteLine("\t[bool]$SkipDeployStorefrontPackages = $false,");
         }
     }
 
