@@ -1811,7 +1811,7 @@
         CEIUghCFIIQhSL2/oFZux+07UIUmL0j9qVqP7PdvBCE/wf1uEIQghCEKQQhCkEIQpP/Z
 </value>
   </data>
-  <data name="button1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing.Common" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnSolr.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing.Common" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAABGdBTUEAALGPC/xhBQAAAIpQTFRF////
         AAAA8/Pz/v7+9PT0/f399fX1BAQE/Pz89vb29/f3+vr6+/v7+Pj46OjoPj4+jo6OtLS0MDAw39/fz8/P
@@ -1998,7 +1998,7 @@
         RERERERERERERERERERERKR27HgaZ6cV5ARHJ6QAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="button3.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing.Common" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnValidateAll.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing.Common" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAOEAAADgCAMAAADCMfHtAAAABGdBTUEAALGPC/xhBQAAAIdQTFRFUa85
         ////Tq41TK0yRasoSKwtQqokTK0zP6kfRaspSawv+v359vv1/v/9ms6Pn9CU4vHfkcqEo9KZV7JAgcNy

@@ -161,9 +161,9 @@
             this.pnlDetails = new System.Windows.Forms.Panel();
             this.lblStepStatus = new System.Windows.Forms.Label();
             this.btnDbConn = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnSolr = new System.Windows.Forms.Button();
             this.btnPortCheck = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnValidateAll = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.lblStepInfo = new System.Windows.Forms.Label();
             this.chkStepsList = new System.Windows.Forms.CheckedListBox();
@@ -195,6 +195,7 @@
             // 
             // txtIDServerSiteName
             // 
+            this.txtIDServerSiteName.Enabled = false;
             this.txtIDServerSiteName.Location = new System.Drawing.Point(291, 21);
             this.txtIDServerSiteName.Margin = new System.Windows.Forms.Padding(5);
             this.txtIDServerSiteName.MaxLength = 50;
@@ -390,6 +391,7 @@
             // 
             // txtSiteName
             // 
+            this.txtSiteName.Enabled = false;
             this.txtSiteName.Location = new System.Drawing.Point(286, 144);
             this.txtSiteName.Margin = new System.Windows.Forms.Padding(5);
             this.txtSiteName.MaxLength = 100;
@@ -433,6 +435,7 @@
             // 
             // txtSiteHostHeaderName
             // 
+            this.txtSiteHostHeaderName.Enabled = false;
             this.txtSiteHostHeaderName.Location = new System.Drawing.Point(291, 232);
             this.txtSiteHostHeaderName.Margin = new System.Windows.Forms.Padding(5);
             this.txtSiteHostHeaderName.MaxLength = 100;
@@ -494,6 +497,7 @@
             // 
             // txtSitecoreIdentityServerUrl
             // 
+            this.txtSitecoreIdentityServerUrl.Enabled = false;
             this.txtSitecoreIdentityServerUrl.Location = new System.Drawing.Point(291, 74);
             this.txtSitecoreIdentityServerUrl.Margin = new System.Windows.Forms.Padding(5);
             this.txtSitecoreIdentityServerUrl.MaxLength = 200;
@@ -530,6 +534,7 @@
             // 
             // txtCommerceInstallRoot
             // 
+            this.txtCommerceInstallRoot.Enabled = false;
             this.txtCommerceInstallRoot.Location = new System.Drawing.Point(291, 134);
             this.txtCommerceInstallRoot.Margin = new System.Windows.Forms.Padding(5);
             this.txtCommerceInstallRoot.MaxLength = 200;
@@ -541,6 +546,7 @@
             // 
             // txtxConnectInstallDir
             // 
+            this.txtxConnectInstallDir.Enabled = false;
             this.txtxConnectInstallDir.Location = new System.Drawing.Point(291, 82);
             this.txtxConnectInstallDir.Margin = new System.Windows.Forms.Padding(5);
             this.txtxConnectInstallDir.MaxLength = 200;
@@ -562,6 +568,7 @@
             // 
             // txtSXAInstallDir
             // 
+            this.txtSXAInstallDir.Enabled = false;
             this.txtSXAInstallDir.Location = new System.Drawing.Point(291, 29);
             this.txtSXAInstallDir.Margin = new System.Windows.Forms.Padding(5);
             this.txtSXAInstallDir.MaxLength = 200;
@@ -692,6 +699,7 @@
             // 
             // txtStorefrontIndexPrefix
             // 
+            this.txtStorefrontIndexPrefix.Enabled = false;
             this.txtStorefrontIndexPrefix.Location = new System.Drawing.Point(292, 229);
             this.txtStorefrontIndexPrefix.Margin = new System.Windows.Forms.Padding(5);
             this.txtStorefrontIndexPrefix.MaxLength = 100;
@@ -733,6 +741,7 @@
             // 
             // txtSolrRoot
             // 
+            this.txtSolrRoot.Enabled = false;
             this.txtSolrRoot.Location = new System.Drawing.Point(292, 123);
             this.txtSolrRoot.Margin = new System.Windows.Forms.Padding(5);
             this.txtSolrRoot.MaxLength = 100;
@@ -765,6 +774,7 @@
             // 
             // txtSearchIndexPrefix
             // 
+            this.txtSearchIndexPrefix.Enabled = false;
             this.txtSearchIndexPrefix.Location = new System.Drawing.Point(292, 19);
             this.txtSearchIndexPrefix.Margin = new System.Windows.Forms.Padding(5);
             this.txtSearchIndexPrefix.MaxLength = 50;
@@ -799,6 +809,7 @@
             // 
             // txtRedisPort
             // 
+            this.txtRedisPort.Enabled = false;
             this.txtRedisPort.Location = new System.Drawing.Point(286, 75);
             this.txtRedisPort.Margin = new System.Windows.Forms.Padding(5);
             this.txtRedisPort.Maximum = new decimal(new int[] {
@@ -838,6 +849,7 @@
             // 
             // txtRedisHost
             // 
+            this.txtRedisHost.Enabled = false;
             this.txtRedisHost.Location = new System.Drawing.Point(286, 21);
             this.txtRedisHost.Margin = new System.Windows.Forms.Padding(5);
             this.txtRedisHost.MaxLength = 50;
@@ -878,6 +890,7 @@
             // 
             // txtSitecoreSqlPass
             // 
+            this.txtSitecoreSqlPass.Enabled = false;
             this.txtSitecoreSqlPass.Location = new System.Drawing.Point(291, 237);
             this.txtSitecoreSqlPass.Margin = new System.Windows.Forms.Padding(5);
             this.txtSitecoreSqlPass.MaxLength = 15;
@@ -889,6 +902,7 @@
             // 
             // txtSitecoreSqlUser
             // 
+            this.txtSitecoreSqlUser.Enabled = false;
             this.txtSitecoreSqlUser.Location = new System.Drawing.Point(291, 184);
             this.txtSitecoreSqlUser.Margin = new System.Windows.Forms.Padding(5);
             this.txtSitecoreSqlUser.MaxLength = 20;
@@ -910,6 +924,7 @@
             // 
             // txtSitecoreCoreDbName
             // 
+            this.txtSitecoreCoreDbName.Enabled = false;
             this.txtSitecoreCoreDbName.Location = new System.Drawing.Point(291, 131);
             this.txtSitecoreCoreDbName.Margin = new System.Windows.Forms.Padding(5);
             this.txtSitecoreCoreDbName.MaxLength = 25;
@@ -942,6 +957,7 @@
             // 
             // txtSitecoreDbServer
             // 
+            this.txtSitecoreDbServer.Enabled = false;
             this.txtSitecoreDbServer.Location = new System.Drawing.Point(291, 78);
             this.txtSitecoreDbServer.Margin = new System.Windows.Forms.Padding(5);
             this.txtSitecoreDbServer.MaxLength = 25;
@@ -963,6 +979,7 @@
             // 
             // txtSqlDbPrefix
             // 
+            this.txtSqlDbPrefix.Enabled = false;
             this.txtSqlDbPrefix.Location = new System.Drawing.Point(291, 26);
             this.txtSqlDbPrefix.Margin = new System.Windows.Forms.Padding(5);
             this.txtSqlDbPrefix.MaxLength = 15;
@@ -1003,6 +1020,7 @@
             // 
             // txtCommerceServicesDBServer
             // 
+            this.txtCommerceServicesDBServer.Enabled = false;
             this.txtCommerceServicesDBServer.Location = new System.Drawing.Point(333, 21);
             this.txtCommerceServicesDBServer.Margin = new System.Windows.Forms.Padding(5);
             this.txtCommerceServicesDBServer.MaxLength = 100;
@@ -1033,6 +1051,7 @@
             // 
             // txtCommerceGlobalDbName
             // 
+            this.txtCommerceGlobalDbName.Enabled = false;
             this.txtCommerceGlobalDbName.Location = new System.Drawing.Point(333, 125);
             this.txtCommerceGlobalDbName.Margin = new System.Windows.Forms.Padding(5);
             this.txtCommerceGlobalDbName.MaxLength = 200;
@@ -1054,6 +1073,7 @@
             // 
             // txtCommerceSvcPostFix
             // 
+            this.txtCommerceSvcPostFix.Enabled = false;
             this.txtCommerceSvcPostFix.Location = new System.Drawing.Point(333, 178);
             this.txtCommerceSvcPostFix.Margin = new System.Windows.Forms.Padding(5);
             this.txtCommerceSvcPostFix.MaxLength = 50;
@@ -1075,6 +1095,7 @@
             // 
             // txtCommerceServicesHostPostFix
             // 
+            this.txtCommerceServicesHostPostFix.Enabled = false;
             this.txtCommerceServicesHostPostFix.Location = new System.Drawing.Point(333, 230);
             this.txtCommerceServicesHostPostFix.Margin = new System.Windows.Forms.Padding(5);
             this.txtCommerceServicesHostPostFix.MaxLength = 100;
@@ -1086,6 +1107,7 @@
             // 
             // txtCommerceDbName
             // 
+            this.txtCommerceDbName.Enabled = false;
             this.txtCommerceDbName.Location = new System.Drawing.Point(333, 72);
             this.txtCommerceDbName.Margin = new System.Windows.Forms.Padding(5);
             this.txtCommerceDbName.MaxLength = 200;
@@ -1279,6 +1301,7 @@
             // 
             // txtBizFxName
             // 
+            this.txtBizFxName.Enabled = false;
             this.txtBizFxName.Location = new System.Drawing.Point(333, 275);
             this.txtBizFxName.Margin = new System.Windows.Forms.Padding(5);
             this.txtBizFxName.MaxLength = 100;
@@ -1373,6 +1396,7 @@
             // 
             // textBox16
             // 
+            this.textBox16.Enabled = false;
             this.textBox16.Location = new System.Drawing.Point(333, 21);
             this.textBox16.Margin = new System.Windows.Forms.Padding(5);
             this.textBox16.Name = "textBox16";
@@ -1417,6 +1441,7 @@
             // 
             // txtUserDomain
             // 
+            this.txtUserDomain.Enabled = false;
             this.txtUserDomain.Location = new System.Drawing.Point(301, 37);
             this.txtUserDomain.Margin = new System.Windows.Forms.Padding(5);
             this.txtUserDomain.MaxLength = 50;
@@ -1438,6 +1463,7 @@
             // 
             // txtUserPassword
             // 
+            this.txtUserPassword.Enabled = false;
             this.txtUserPassword.Location = new System.Drawing.Point(301, 141);
             this.txtUserPassword.Margin = new System.Windows.Forms.Padding(5);
             this.txtUserPassword.MaxLength = 20;
@@ -1460,6 +1486,7 @@
             // 
             // txtUserName
             // 
+            this.txtUserName.Enabled = false;
             this.txtUserName.Location = new System.Drawing.Point(301, 88);
             this.txtUserName.Margin = new System.Windows.Forms.Padding(5);
             this.txtUserName.MaxLength = 14;
@@ -1573,6 +1600,7 @@
             this.btnPrevious.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPrevious.BackgroundImage")));
             this.btnPrevious.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnPrevious.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnPrevious.Location = new System.Drawing.Point(593, 177);
             this.btnPrevious.Margin = new System.Windows.Forms.Padding(5);
             this.btnPrevious.Name = "btnPrevious";
@@ -1586,6 +1614,7 @@
             this.btnFirst.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFirst.BackgroundImage")));
             this.btnFirst.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnFirst.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFirst.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnFirst.Location = new System.Drawing.Point(522, 177);
             this.btnFirst.Margin = new System.Windows.Forms.Padding(5);
             this.btnFirst.Name = "btnFirst";
@@ -1599,6 +1628,7 @@
             this.btnLast.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnLast.BackgroundImage")));
             this.btnLast.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnLast.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLast.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLast.Location = new System.Drawing.Point(734, 177);
             this.btnLast.Margin = new System.Windows.Forms.Padding(5);
             this.btnLast.Name = "btnLast";
@@ -1612,6 +1642,7 @@
             this.btnNext.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnNext.BackgroundImage")));
             this.btnNext.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnNext.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnNext.Location = new System.Drawing.Point(665, 177);
             this.btnNext.Margin = new System.Windows.Forms.Padding(5);
             this.btnNext.Name = "btnNext";
@@ -1671,6 +1702,7 @@
             this.btnGenerate.TabIndex = 46;
             this.btnGenerate.Text = "Generate Scripts";
             this.btnGenerate.UseVisualStyleBackColor = false;
+            this.btnGenerate.EnabledChanged += new System.EventHandler(this.btnGenerate_EnabledChanged);
             this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
             this.btnGenerate.MouseHover += new System.EventHandler(this.btnGenerate_MouseHover);
             // 
@@ -1688,6 +1720,7 @@
             this.btnInstall.TabIndex = 47;
             this.btnInstall.Text = "Install";
             this.btnInstall.UseVisualStyleBackColor = false;
+            this.btnInstall.EnabledChanged += new System.EventHandler(this.btnInstall_EnabledChanged);
             this.btnInstall.Click += new System.EventHandler(this.btnInstall_Click);
             // 
             // btnUninstall
@@ -1704,6 +1737,7 @@
             this.btnUninstall.TabIndex = 48;
             this.btnUninstall.Text = "Uninstall";
             this.btnUninstall.UseVisualStyleBackColor = false;
+            this.btnUninstall.EnabledChanged += new System.EventHandler(this.btnUninstall_EnabledChanged);
             this.btnUninstall.Click += new System.EventHandler(this.btnUninstall_Click);
             // 
             // btnPrerequisites
@@ -1711,6 +1745,7 @@
             this.btnPrerequisites.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPrerequisites.BackgroundImage")));
             this.btnPrerequisites.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnPrerequisites.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPrerequisites.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnPrerequisites.Location = new System.Drawing.Point(93, 176);
             this.btnPrerequisites.Margin = new System.Windows.Forms.Padding(5);
             this.btnPrerequisites.Name = "btnPrerequisites";
@@ -1724,6 +1759,8 @@
             this.btnAppSettings.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAppSettings.BackgroundImage")));
             this.btnAppSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnAppSettings.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAppSettings.Enabled = false;
+            this.btnAppSettings.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAppSettings.Location = new System.Drawing.Point(23, 176);
             this.btnAppSettings.Margin = new System.Windows.Forms.Padding(5);
             this.btnAppSettings.Name = "btnAppSettings";
@@ -1759,6 +1796,7 @@
             this.btnDbConn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnDbConn.BackgroundImage")));
             this.btnDbConn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnDbConn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDbConn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnDbConn.Location = new System.Drawing.Point(164, 176);
             this.btnDbConn.Margin = new System.Windows.Forms.Padding(5);
             this.btnDbConn.Name = "btnDbConn";
@@ -1767,24 +1805,26 @@
             this.btnDbConn.UseVisualStyleBackColor = true;
             this.btnDbConn.Click += new System.EventHandler(this.btnDbConn_Click);
             // 
-            // button1
+            // btnSolr
             // 
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.Location = new System.Drawing.Point(234, 176);
-            this.button1.Margin = new System.Windows.Forms.Padding(5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(76, 70);
-            this.button1.TabIndex = 48;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.btnPrerequisites_Click);
+            this.btnSolr.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSolr.BackgroundImage")));
+            this.btnSolr.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSolr.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSolr.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSolr.Location = new System.Drawing.Point(234, 176);
+            this.btnSolr.Margin = new System.Windows.Forms.Padding(5);
+            this.btnSolr.Name = "btnSolr";
+            this.btnSolr.Size = new System.Drawing.Size(76, 70);
+            this.btnSolr.TabIndex = 48;
+            this.btnSolr.UseVisualStyleBackColor = true;
+            this.btnSolr.Click += new System.EventHandler(this.btnSolr_Click);
             // 
             // btnPortCheck
             // 
             this.btnPortCheck.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPortCheck.BackgroundImage")));
             this.btnPortCheck.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnPortCheck.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPortCheck.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnPortCheck.Location = new System.Drawing.Point(301, 176);
             this.btnPortCheck.Margin = new System.Windows.Forms.Padding(5);
             this.btnPortCheck.Name = "btnPortCheck";
@@ -1793,18 +1833,19 @@
             this.btnPortCheck.UseVisualStyleBackColor = true;
             this.btnPortCheck.Click += new System.EventHandler(this.btnPortCheck_Click);
             // 
-            // button3
+            // btnValidateAll
             // 
-            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.Location = new System.Drawing.Point(372, 176);
-            this.button3.Margin = new System.Windows.Forms.Padding(5);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(76, 70);
-            this.button3.TabIndex = 48;
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.btnPrerequisites_Click);
+            this.btnValidateAll.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnValidateAll.BackgroundImage")));
+            this.btnValidateAll.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnValidateAll.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnValidateAll.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnValidateAll.Location = new System.Drawing.Point(372, 176);
+            this.btnValidateAll.Margin = new System.Windows.Forms.Padding(5);
+            this.btnValidateAll.Name = "btnValidateAll";
+            this.btnValidateAll.Size = new System.Drawing.Size(76, 70);
+            this.btnValidateAll.TabIndex = 48;
+            this.btnValidateAll.UseVisualStyleBackColor = true;
+            this.btnValidateAll.Click += new System.EventHandler(this.btnValidateAll_Click);
             // 
             // lblStatus
             // 
@@ -1875,6 +1916,7 @@
             this.btnDelete.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnDelete.BackgroundImage")));
             this.btnDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnDelete.Location = new System.Drawing.Point(446, 177);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(5);
             this.btnDelete.Name = "btnDelete";
@@ -1898,9 +1940,9 @@
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnLast);
             this.Controls.Add(this.btnNext);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btnValidateAll);
             this.Controls.Add(this.btnPortCheck);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnSolr);
             this.Controls.Add(this.btnDbConn);
             this.Controls.Add(this.btnAppSettings);
             this.Controls.Add(this.btnPrerequisites);
@@ -1959,6 +2001,7 @@
         }
 
         #endregion
+
         private System.Windows.Forms.TextBox txtIDServerSiteName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TabControl tabDetails;
@@ -2079,9 +2122,9 @@
         private System.Windows.Forms.Button btnAppSettings;
         private System.Windows.Forms.Panel pnlDetails;
         private System.Windows.Forms.Button btnDbConn;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSolr;
         private System.Windows.Forms.Button btnPortCheck;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnValidateAll;
         private System.Windows.Forms.Label lblStepStatus;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Label lblStepInfo;

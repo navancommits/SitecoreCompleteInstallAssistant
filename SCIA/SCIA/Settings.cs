@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Windows.Forms;
+using Microsoft.PowerShell.Commands;
 
 namespace SCIA
 {
@@ -29,13 +32,55 @@ namespace SCIA
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            SqlConnection connection = null;
 
+            if (!CommonFunctions.CheckDatabaseExists("SettingsDB", txtDbServer.Text, txtSqlUser.Text, txtSqlPass.Text))
+            {
+                connection = CreateDatabase("SettingsDB");
+                if (connection==null)
+                {
+                    SetStatusMessage("Database Connectivity issues....", Color.Red);
+                    return;
+                }
+            }
+
+            connection = new SqlConnection(CommonFunctions.BuildConnectionString(txtDbServer.Text, "SettingsDB", txtSqlUser.Text, txtSqlPass.Text));
+            if (!CommonFunctions.DbTableExists("Settings", connection))
+            {
+                CommonFunctions.CreateSettingsTable(connection, CommonFunctions.BuildConnectionString(txtDbServer.Text, "SettingsDB", txtSqlUser.Text, txtSqlPass.Text));
+            }
+
+            SaveSettingsDatatoDBSuccess(connection);
+        }
+
+        public bool SaveSettingsDatatoDBSuccess(SqlConnection sqlConn)
+        {
+            try
+            {
+                sqlConn.Open();
+
+                var query = " INSERT INTO Settings([SiteSuffix], [SitePrefixAdditional]) VALUES (@siteSuffix, @siteNamePrefixAdditional)";
+
+                SqlCommand sqlcommand = new SqlCommand(query, sqlConn);
+                sqlcommand.Parameters.AddWithValue("@siteSuffix", txtSiteNameSuffix.Text);
+                sqlcommand.Parameters.AddWithValue("@siteNamePrefixAdditional", txtSitePrefixAdditional.Text);
+
+                int numberOfInsertedRows = sqlcommand.ExecuteNonQuery();
+            }
+            catch
+            {
+                CommonFunctions.WritetoEventLog("SCIA - Error saving settings data to Settings DB", EventLogEntryType.Error);
+                return false;
+            }
+            finally { sqlConn.Close(); }
+            
+            return true;
         }
 
         private void SetStatusMessage(string statusmsg, Color color)
         {
-            lblStatusInfo.ForeColor = color;
-            lblStatusInfo.Text = statusmsg;
+            lblStepStatus.ForeColor = color;
+            lblStepStatus.Text = statusmsg;
         }
 
         private void txtCommerceMinionsSvcPort_Leave(object sender, EventArgs e)
@@ -271,37 +316,37 @@ namespace SCIA
             switch (tabIndex)
             {
                 case 0:
-                    lblStatusInfo.Text = "Step 1 of 11: DB Connection";
+                    lblStepStatus.Text = "Step 1 of 11: DB Connection";
                     break;
                 case 1:
-                    lblStatusInfo.Text = "Step 2 of 11: Site Info";
+                    lblStepStatus.Text = "Step 2 of 11: Site Info";
                     break;
                 case 2:
-                    lblStatusInfo.Text = "Step 3 of 11: General Info";
+                    lblStepStatus.Text = "Step 3 of 11: General Info";
                     break;
                 case 3:
-                    lblStatusInfo.Text = "Step 4 of 11: Install Details";
+                    lblStepStatus.Text = "Step 4 of 11: Install Details";
                     break;
                 case 4:
-                    lblStatusInfo.Text = "Step 5 of 11 Sitecore Details";
+                    lblStepStatus.Text = "Step 5 of 11 Sitecore Details";
                     break;
                 case 5:
-                    lblStatusInfo.Text = "Step 6 of 11: Solr Details";
+                    lblStepStatus.Text = "Step 6 of 11: Solr Details";
                     break;
                 case 6:
-                    lblStatusInfo.Text = "Step 7 of 11: Redis Details";
+                    lblStepStatus.Text = "Step 7 of 11: Redis Details";
                     break;                
                 case 7:
-                    lblStatusInfo.Text = "Step 8 of 11: Port Details";
+                    lblStepStatus.Text = "Step 8 of 11: Port Details";
                     break;
                 case 8:
-                    lblStatusInfo.Text = "Step 9 of 11: Environment Details";
+                    lblStepStatus.Text = "Step 9 of 11: Environment Details";
                     break;
                 case 9:
-                    lblStatusInfo.Text = "Step 10 of 11: Win User Details";
+                    lblStepStatus.Text = "Step 10 of 11: Win User Details";
                     break;
                 case 10:
-                    lblStatusInfo.Text = "Step 11 of 11: Braintree Details";
+                    lblStepStatus.Text = "Step 11 of 11: Braintree Details";
                     break;
             }
         }
@@ -328,8 +373,8 @@ namespace SCIA
             bool Valid = true;
             if (string.IsNullOrWhiteSpace(control.Text))
             {
-                lblStatus.Text = controlString + " needed... ";
-                lblStatus.ForeColor = Color.Red;
+                lblStatusInfo.Text = controlString + " needed... ";
+                lblStatusInfo.ForeColor = Color.Red;
                 tabSiteDetails.SelectedIndex = tabIndex;
                 Valid = false;
             }
@@ -341,8 +386,8 @@ namespace SCIA
             bool Valid = true;
             if (control.Value < 1024)
             {
-                lblStatus.Text = controlString + " must be between 1024 to 49151... ";
-                lblStatus.ForeColor = Color.Red;
+                lblStatusInfo.Text = controlString + " must be between 1024 to 49151... ";
+                lblStatusInfo.ForeColor = Color.Red;
                 control.Focus();
                 tabSiteDetails.SelectedIndex = tabIndex;
                 AssignStepStatus(tabIndex);
@@ -355,8 +400,8 @@ namespace SCIA
         {
             if (PortInUse(Convert.ToInt32(control.Value)))
             {
-                lblStatus.Text = control.Value + " port in use... provide a different number...";
-                lblStatus.ForeColor = Color.Red;
+                lblStatusInfo.Text = control.Value + " port in use... provide a different number...";
+                lblStatusInfo.ForeColor = Color.Red;
                 tabSiteDetails.SelectedIndex = tabIndex;
                 AssignStepStatus(tabIndex);
                 return false;
@@ -381,11 +426,11 @@ namespace SCIA
             if (!IsPortNotinUse(txtCommerceMinionsSvcPort, const_Port_Tab)) return false;
             if (!IsPortNotinUse(txtBizFxPort, const_Port_Tab)) return false;
 
-            if (IsPortDuplicated(AddPortstoArray())) { lblStatus.Text = "Duplicate port numbers detected! provide unique port numbers...."; return false; }
+            if (IsPortDuplicated(AddPortstoArray())) { lblStatusInfo.Text = "Duplicate port numbers detected! provide unique port numbers...."; return false; }
 
             portString = StatusMessageBuilder(portString);
             if (!string.IsNullOrWhiteSpace(portString))
-            { lblStatus.Text = "Port(s) in use... provide different numbers for - " + portString; lblStatus.ForeColor = Color.Red; }
+            { lblStatusInfo.Text = "Port(s) in use... provide different numbers for - " + portString; lblStatusInfo.ForeColor = Color.Red; }
 
             return true;
         }
@@ -447,11 +492,30 @@ namespace SCIA
             return portDuplicated;
         }
 
-        private string BuildConnectionString(string datasource, string dbname, string uid, string pwd)
+        public SqlConnection CreateDatabase(string database)
         {
+            string appPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            CommonFunctions.GrantAccess(appPath); //Need to assign the permission for current application to allow create database on server (if you are in domain).
+            
+            using SqlConnection sqlConnection = new SqlConnection(CommonFunctions.BuildConnectionString(txtDbServer.Text, "SettingsDB", txtSqlUser.Text, txtSqlPass.Text,true));
+            {
+                sqlConnection.Open();
+                string createDBString = "CREATE DATABASE " + database + "; ";
+                SqlCommand command = new SqlCommand(createDBString, sqlConnection);
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    CommonFunctions.WritetoEventLog("Unable to create Settings DB" + ex.Message, EventLogEntryType.Error);
+                    return null;
 
-            return "Data Source=" + datasource + "; Initial Catalog=" + dbname + "; User ID=" + uid + "; Password=" + pwd;
+                }
 
+                return sqlConnection;
+            }
+            
         }
 
         private List<int> AddPortstoArray()

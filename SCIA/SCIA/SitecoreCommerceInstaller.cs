@@ -14,6 +14,7 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Windows.Forms;
+using SCIA.Common;
 
 namespace SCIA
 {
@@ -239,7 +240,6 @@ namespace SCIA
             txtSitecoreIdentityServerUrl.Text = "https://" + txtIDServerSiteName.Text;
             txtStorefrontIndexPrefix.Text = txtSiteName.Text;
             tabDetails.Region = new Region(tabDetails.DisplayRectangle);
-            tabDetails.SelectedIndex = TabIndexValue;
             //chkStepsList.SelectedIndex = TabIndexValue;
             //chkStepsList.SetItemChecked(TabIndexValue, true);
             AssignStepStatus(TabIndexValue);
@@ -251,7 +251,7 @@ namespace SCIA
             var startInfo = new ProcessStartInfo()
             {
                 FileName = "powershell.exe",
-                Arguments = $"-NoProfile -noexit -ExecutionPolicy unrestricted \"{script}\"",
+                Arguments = $"-NoProfile -noexit -ExecutionPolicy Bypass \"{script}\"",
                 UseShellExecute = false
             };
             Process.Start(startInfo);
@@ -777,25 +777,8 @@ namespace SCIA
         
         private void btnInstall_Click(object sender, EventArgs e)
         {
-            string portString = string.Empty;
-            if (!ValidateAll()) return;
-            if (IsPortDuplicated(AddPortstoArray())) { lblStatus.Text = "Duplicate port numbers detected! provide unique port numbers...."; return; }
-            if (!Directory.Exists(txtSXAInstallDir.Text))
-            {
-                lblStatus.Text = "Missing Directory! Install SXA-site at - " + txtSXAInstallDir.Text;
-                lblStatus.ForeColor = Color.Red;
-                return;
-            }
-            if (!Directory.Exists(txtSXAInstallDir.Text + "\\App_Config\\Modules\\SXA"))
-            {
-                lblStatus.Text = txtSiteName.Text + " is not an SXA-enabled site";
-                lblStatus.ForeColor = Color.Red;
-                return;
-            }
-            portString = StatusMessageBuilder(portString);
-            if (!string.IsNullOrWhiteSpace(portString))
-            { lblStatus.Text = "Port(s) in use... provide different numbers for - " + portString; lblStatus.ForeColor = Color.Red; }
-            bool habitatExists = HabitatExists(BuildConnectionString(txtSitecoreDbServer.Text, txtSqlDbPrefix.Text + "_master", txtSitecoreSqlUser.Text, txtSitecoreSqlPass.Text));
+            if (!ValidateAll(false)) return;
+            bool habitatExists = HabitatExists(CommonFunctions.BuildConnectionString(txtSitecoreDbServer.Text, txtSqlDbPrefix.Text + "_master", txtSitecoreSqlUser.Text, txtSitecoreSqlPass.Text));
 
             WriteFile(txtSiteName.Text + "_Install_Script.ps1", habitatExists, false);
             //ResetIIS();
@@ -825,7 +808,7 @@ namespace SCIA
             if (!ValidateData(txtxConnectInstallDir, "Sitecore xConnect Install Directory", const_Install_Details_Tab)) return false;
             if (!ValidateData(txtCommerceInstallRoot, "Commerce Install Root",const_Install_Details_Tab)) return false;
 
-            if (!ValidateData(txtSqlDbPrefix, "Sql Db Prefix",7)) return false;
+            if (!ValidateData(txtSqlDbPrefix, "Sql Db Prefix",const_Sitecore_DB_Tab)) return false;
             if (!ValidateData(txtSqlDbServer, "Sitecore Db Server", const_DBConn_Tab)) return false;
             if (!ValidateData(txtSitecoreCoreDbName, "Sitecore Core Db Name",const_Sitecore_DB_Tab)) return false;
             if (!ValidateData(txtSqlUser, "Sql User",const_DBConn_Tab)) return false;
@@ -912,7 +895,6 @@ namespace SCIA
                 lblStatus.Text = controlString + " must be between 1024 to 49151... ";
                 lblStatus.ForeColor = Color.Red;
                 control.Focus();
-                tabDetails.SelectedIndex = tabIndex;
                 AssignStepStatus(tabIndex);
                 Valid = false;
             }
@@ -926,7 +908,6 @@ namespace SCIA
             {
                 lblStatus.Text = controlString + " needed... ";
                 lblStatus.ForeColor = Color.Red;
-                tabDetails.SelectedIndex = tabIndex;
                 AssignStepStatus(tabIndex);
                 Valid = false;
             }
@@ -990,34 +971,44 @@ namespace SCIA
             return true;
         }
 
-        private string BuildConnectionString(string datasource, string dbname, string uid, string pwd)
-        {
-            
-            return "Data Source=" + datasource + "; Initial Catalog=" + dbname + "; User ID=" + uid + "; Password=" + pwd;
-            
-        }
-
-        private void btnGenerate_Click(object sender, EventArgs e)
+        
+        private bool CheckAllValidations(bool uninstall=false)
         {
             string portString = string.Empty;
-            if (!ValidateAll()) return;
-            if (IsPortDuplicated(AddPortstoArray())) { lblStatus.Text = "Duplicate port numbers detected! Provide unique port numbers...."; return; }
+            ToggleEnableControls(false);
+            if (!ValidateAll(uninstall)) return false;
+            if (IsPortDuplicated(AddPortstoArray())) { lblStatus.Text = "Duplicate port numbers detected! Provide unique port numbers...."; return false; }
             if (!Directory.Exists(txtSXAInstallDir.Text))
             {
                 lblStatus.Text = "Missing Directory! Install SXA-site at - " + txtSXAInstallDir.Text;
+                TabIndexValue = const_SiteInfo_Tab;
+                AssignStepStatus(TabIndexValue);
                 lblStatus.ForeColor = Color.Red;
-                return;
+                return false;
             }
             if (!Directory.Exists(txtSXAInstallDir.Text + "\\App_Config\\Modules\\SXA"))
             {
                 lblStatus.Text = txtSiteName.Text + " is not an SXA-enabled site";
+                TabIndexValue = const_SiteInfo_Tab;
+                AssignStepStatus(TabIndexValue);
                 lblStatus.ForeColor = Color.Red;
-                return;
+                return false;
             }
             portString = StatusMessageBuilder(portString);
             if (!string.IsNullOrWhiteSpace(portString))
-            { lblStatus.Text = "Port(s) in use... provide different numbers for - " + portString; lblStatus.ForeColor = Color.Red; }
-            bool habitatExists = HabitatExists(BuildConnectionString(txtSitecoreDbServer.Text, txtSqlDbPrefix.Text + "_master", txtSitecoreSqlUser.Text, txtSitecoreSqlPass.Text));
+            { lblStatus.Text = "Port(s) in use... provide different numbers for - " + portString; lblStatus.ForeColor = Color.Red;
+                TabIndexValue = const_Port_Tab;
+                AssignStepStatus(TabIndexValue);
+                return false; 
+            }
+            ToggleEnableControls(true);
+            return true;
+        }
+
+        private void btnGenerate_Click(object sender, EventArgs e)
+        {
+            if (!ValidateAll(false)) return;
+            bool habitatExists = HabitatExists(CommonFunctions.BuildConnectionString(txtSitecoreDbServer.Text, txtSqlDbPrefix.Text + "_master", txtSitecoreSqlUser.Text, txtSitecoreSqlPass.Text));
 
             WriteFile(txtSiteName.Text + "_Uninstall_Script.ps1", habitatExists, true);
             WriteFile(txtSiteName.Text + "_Install_Script.ps1", habitatExists, false);
@@ -1070,25 +1061,8 @@ namespace SCIA
 
         private void btnUninstall_Click(object sender, EventArgs e)
         {
-            string portString = string.Empty;
-            if (!ValidateAll(true)) return;
-            if (IsPortDuplicated(AddPortstoArray())) { lblStatus.Text = "Duplicate port numbers detected! Provide unique port numbers...."; return; }
-            if (!Directory.Exists(txtSXAInstallDir.Text))
-            {
-                lblStatus.Text = "Missing Directory! Install SXA-site at - " + txtSXAInstallDir.Text;
-                lblStatus.ForeColor = Color.Red;
-                return;
-            }
-            if (!Directory.Exists(txtSXAInstallDir.Text + "\\App_Config\\Modules\\SXA"))
-            {
-                lblStatus.Text = txtSiteName.Text + " is not an SXA-enabled site";
-                lblStatus.ForeColor = Color.Red;
-                return;
-            }
-            portString = StatusMessageBuilder(portString);
-            if (!string.IsNullOrWhiteSpace(portString))
-            { lblStatus.Text = "Port(s) in use... provide different numbers for - " + portString; lblStatus.ForeColor = Color.Red; }
-            bool habitatExists = HabitatExists(BuildConnectionString(txtSitecoreDbServer.Text, txtSqlDbPrefix.Text + "_master", txtSitecoreSqlUser.Text, txtSitecoreSqlPass.Text));
+            if (!ValidateAll()) return;
+            bool habitatExists = HabitatExists(CommonFunctions.BuildConnectionString(txtSitecoreDbServer.Text, txtSqlDbPrefix.Text + "_master", txtSitecoreSqlUser.Text, txtSitecoreSqlPass.Text));
 
             WriteFile(txtSiteName.Text + "_UnInstall_Script.ps1", habitatExists, true);
             LaunchPSScript(txtSiteName.Text + "_UnInstall_Script.ps1");
@@ -1127,8 +1101,7 @@ namespace SCIA
             {
                 lblStatus.Text = control.Value + " port in use... provide a different number...";
                 lblStatus.ForeColor = Color.Red;
-                tabDetails.SelectedIndex = tabIndex;
-                AssignStepStatus(tabIndex);
+                AssignStepStatus(const_Port_Tab);
                 return false;                
             }
             return true;
@@ -1387,6 +1360,7 @@ namespace SCIA
         private void AssignStepStatus(int tabIndex)
         {
             chkStepsList.SelectedIndex = tabIndex;
+            tabDetails.SelectedIndex = tabIndex;
             chkStepsList.SetItemChecked(tabIndex, true);
             switch (tabIndex)
             {
@@ -1437,7 +1411,6 @@ namespace SCIA
         private void btnNext_Click(object sender, EventArgs e)
         {
             if (TabIndexValue >= 0 && TabIndexValue <= tabDetails.TabCount - 2) TabIndexValue += 1;
-            tabDetails.SelectedIndex = TabIndexValue;            
             AssignStepStatus(TabIndexValue);
         }
 
@@ -1447,22 +1420,19 @@ namespace SCIA
         }
 
         private void btnFirst_Click(object sender, EventArgs e)
-        {
-            TabIndexValue = 0;
-            tabDetails.SelectedIndex = TabIndexValue;            
-            AssignStepStatus(TabIndexValue);
+        {                     
+            AssignStepStatus(const_DBConn_Tab);
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)
         {
             if (TabIndexValue >= 1 && TabIndexValue <= tabDetails.TabCount-1) TabIndexValue -= 1;
-            tabDetails.SelectedIndex = TabIndexValue;            
             AssignStepStatus(TabIndexValue);
         }
 
         private void btnProceed_Click(object sender, EventArgs e)
         {
-            if (!ValidateData(txtSiteName, "Site Name", 0)) return;
+            if (!ValidateData(txtSiteName, "Site Name", const_SiteInfo_Tab)) return;
             tabDetails.SelectedTab = tabDetails.TabPages[1];
         }
 
@@ -1490,7 +1460,6 @@ namespace SCIA
         private void chkStepsList_Click(object sender, EventArgs e)
         {
             TabIndexValue = chkStepsList.SelectedIndex;
-            tabDetails.SelectedIndex = TabIndexValue;
             AssignStepStatus(TabIndexValue);
         }
 
@@ -1502,7 +1471,29 @@ namespace SCIA
 
         private void btnDbConn_Click(object sender, EventArgs e)
         {
+            
+            if (!CommonFunctions.IsServerConnected(CommonFunctions.BuildConnectionString(txtSitecoreDbServer.Text, "master", txtSitecoreSqlUser.Text, txtSitecoreSqlPass.Text)))
+            {
+                SetStatusMessage("Check Connection Details, Unable to establish DB Connection", Color.Red);
+                TabIndexValue = const_DBConn_Tab;
+                AssignStepStatus(TabIndexValue);
+                ToggleEnableControls(false);
+                return;
+            }
+            ToggleEnableControls(true);
+            SetStatusMessage("Successfully established DB Connection", Color.DarkGreen);
+        }
 
+        private void ToggleEnableControls(bool enabled)
+        {
+            //btnFirst.Enabled = enabled;
+            //btnLast.Enabled = enabled;
+            //btnPrevious.Enabled = enabled;
+            //btnNext.Enabled = enabled;
+            btnInstall.Enabled = enabled;
+            btnUninstall.Enabled = enabled;
+            btnGenerate.Enabled = enabled;
+            btnDelete.Enabled = enabled;
         }
 
         private void btnPrerequisites_Click(object sender, EventArgs e)
@@ -1530,6 +1521,7 @@ namespace SCIA
         private void txtSqlDbServer_TextChanged(object sender, EventArgs e)
         {
             txtSitecoreDbServer.Text = txtSqlDbServer.Text;
+            txtCommerceServicesDBServer.Text = txtSqlDbServer.Text;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -1850,6 +1842,83 @@ namespace SCIA
             file.WriteLine(
                 "\t# If set to $true, $TasksToSkip parameter will be populated with the list of tasks to skip in order to bypass SXA Storefront packages installation.");
             file.WriteLine("\t[bool]$SkipDeployStorefrontPackages = $false,");
+        }
+
+        private void btnSolr_Click(object sender, EventArgs e)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            btnSolr.Enabled = false;
+            SetStatusMessage("Processing....", Color.Orange);
+            if (!ValidSolrUrl(txtSolrUrl.Text))
+            {
+                TabIndexValue = const_Solr_Tab;
+                AssignStepStatus(TabIndexValue);
+                ToggleEnableControls(false);
+                btnSolr.Enabled = true;
+                SetStatusMessage("Wrong Solr Url....", Color.Red);
+                return;
+            }
+           
+            SolrInfo info = CommonFunctions.GetSolrInformation(txtSolrUrl.Text);
+            txtSolrRoot.Text = info.solr_home.Replace("\\server\\solr",string.Empty);
+            //txtSolrService.Text = info.system.name;
+            if (info.lucene.SolrSpecVersion!="8.4.0")
+            {
+                TabIndexValue = const_Solr_Tab;
+                AssignStepStatus(TabIndexValue);
+                ToggleEnableControls(false);
+                btnSolr.Enabled = true;
+                SetStatusMessage("That Solr Url doesn't run on Solr 8.4.0....", Color.Red);
+                return;
+            }
+
+            ToggleEnableControls(true);
+            SetStatusMessage("All seems fine with Solr Url....", Color.DarkGreen);
+            btnSolr.Enabled = true;            
+            Cursor.Current = Cursors.Default;
+        }
+
+        private bool ValidSolrUrl(string url)
+        {
+            try
+            {
+                using (WebClientResponse client = new WebClientResponse())
+                {
+                    client.HeadOnly = true;
+                    string downloadString = client.DownloadString(url);
+                }
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private void btnValidateAll_Click(object sender, EventArgs e)
+        {
+            if(CheckAllValidations()) SetStatusMessage("Congrats! Passed all Validations!",Color.DarkGreen);
+        }
+
+        private void btnGenerate_EnabledChanged(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            btn.ForeColor = btn.Enabled == false ? Color.DarkGray : Color.White;
+            btn.BackColor = btn.Enabled == false ? Color.Gray : Color.Black; ;
+        }
+
+        private void btnInstall_EnabledChanged(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            btn.ForeColor = btn.Enabled == false ? Color.DarkGray : Color.White;
+            btn.BackColor = btn.Enabled == false ? Color.Gray : Color.Black; ;
+        }
+
+        private void btnUninstall_EnabledChanged(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            btn.ForeColor = btn.Enabled == false ? Color.DarkGray : Color.White;
+            btn.BackColor = btn.Enabled == false ? Color.Gray : Color.Black; ;
         }
     }
 
