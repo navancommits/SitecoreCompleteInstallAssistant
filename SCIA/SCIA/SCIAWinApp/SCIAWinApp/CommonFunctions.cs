@@ -10,8 +10,10 @@ using System.Security.AccessControl;
 using System.Security.Cryptography;
 using System.Security.Principal;
 using System.Text;
-using Newtonsoft.Json;
+using System.Runtime.Serialization.Json;
+//using Newtonsoft.Json;
 using SCIA.Common;
+
 
 namespace SCIA
 {
@@ -139,12 +141,6 @@ namespace SCIA
             }
         }
 
-       
-
-        private static Stream RequestAndGetResponseStream(string url)
-        {
-            return WebRequestHelper.RequestAndGetResponse(url).GetResponseStream();
-        }
 
         public static void WritetoEventLog(string message,EventLogEntryType type, string application = "Application")
         {
@@ -155,13 +151,45 @@ namespace SCIA
             }
         }
 
+        public static SolrInfo DeserializeJson(string url)
+        {
+            using (WebClient client = new WebClient())
+            {
+
+                //add HTTP headers for content type, and others
+                client.Headers["Content-type"] = "application/json";
+
+                //add HTTP header for remote authentication credentials for web service 
+                //( in this case the Default Network Credentials, because the service is ours)
+                client.UseDefaultCredentials = true;
+                client.Credentials = CredentialCache.DefaultNetworkCredentials;
+
+                //add HTTP headers to authenticate to our web proxy 
+                //( in this case the Default Network Credentials)
+                client.Proxy.Credentials = CredentialCache.DefaultNetworkCredentials;
+
+                // call the service & return the results to a byte array.
+                // (Some error handling might be good here)
+                byte[] bytedata = client.DownloadData(url);
+
+                // load this to a memory stream
+                MemoryStream ms = new MemoryStream();
+                ms = new MemoryStream(bytedata);
+
+                //Now Deserialize to a c# objects....
+                var serializer = new DataContractJsonSerializer(typeof(SolrInfo));
+                SolrInfo solrInfo = (SolrInfo)serializer.ReadObject(ms);
+
+                return solrInfo;
+            }
+        }
+
+
         public static SolrInfo GetSolrInformation(string url)
         {
             string solrInfoUrl = $"{url}/admin/info/system";
-            Stream response = RequestAndGetResponseStream(solrInfoUrl);
-            string responseAsString = GetStringFromStream(response);
-            SolrInfo solrObj = JsonConvert.DeserializeObject<SolrInfo>(responseAsString);
-            
+            SolrInfo solrObj = DeserializeJson(solrInfoUrl);
+
             return solrObj;
         }
 
