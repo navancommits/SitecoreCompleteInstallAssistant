@@ -1,195 +1,15 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
-using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.IO;
 using System.Net;
 using System.Net.NetworkInformation;
-using System.Text;
 using System.Windows.Forms;
-using SCIA.Common;
 
 namespace SCIA
 {
-    /*# The root folder with WDP files.
-    [string]$XCInstallRoot = "..",
-    # The root folder of SIF.Sitecore.Commerce package.
-    [string]$XCSIFInstallRoot = $PWD,
-    # Specifies whether or not to bypass the installation of the default SXA Storefront. By default, the Sitecore XC installation script also deploys the SXA Storefront.
-    [bool]$SkipInstallDefaultStorefront = $false,
-    # Specifies whether or not to bypass the installation of the SXA Storefront packages.
-    # If set to $true, $TasksToSkip parameter will be populated with the list of tasks to skip in order to bypass SXA Storefront packages installation.
-    [bool]$SkipDeployStorefrontPackages = $false,
-
-    # Path to the Master_SingleServer.json file provided in the SIF.Sitecore.Commerce package.
-    [string]$Path = "$XCSIFInstallRoot\Configuration\Commerce\Master_SingleServer.json",
-    # Path to the Commerce Solr schemas provided as part of the SIF.Sitecore.Commerce package.
-    [string]$SolrSchemas = "$XCSIFInstallRoot\SolrSchemas",
-    # Path to the SiteUtilityPages folder provided as part of the SIF.Sitecore.Commerce package.
-    [string]$SiteUtilitiesSrc = "$XCSIFInstallRoot\SiteUtilityPages",
-    # Path to the location where you downloaded the Microsoft.Web.XmlTransform.dll file.
-    [string]$MergeToolFullPath = "$XCInstallRoot\MSBuild.Microsoft.VisualStudio.Web.targets*\tools\VSToolsPath\Web\Microsoft.Web.XmlTransform.dll",
-    # Path to the Adventure Works Images.OnPrem SCWDP file
-    [string]$AdventureWorksImagesWdpFullPath = "$XCInstallRoot\Adventure Works Images.OnPrem.scwdp.zip",
-    # Path to the Sitecore Commerce Connect Core SCWDP file.
-    [string]$CommerceConnectWdpFullPath = "$XCInstallRoot\Sitecore Commerce Connect Core*.scwdp.zip",
-    # Path to the Sitecore Commerce Engine Connect OnPrem SCWDP file.
-    [string]$CEConnectWdpFullPath = "$XCInstallRoot\Sitecore Commerce Engine Connect*.scwdp.zip",
-    # Path to the Sitecore Commerce Experience Accelerator SCWDP file.
-    [string]$SXACommerceWdpFullPath = "$XCInstallRoot\Sitecore Commerce Experience Accelerator*.scwdp.zip",
-    # Path to the Sitecore Commerce Experience Accelerator Habitat Catalog SCWDP file.
-    [string]$SXAStorefrontCatalogWdpFullPath = "$XCInstallRoot\Sitecore Commerce Experience Accelerator Habitat*.scwdp.zip",
-    # Path to the Sitecore Commerce Experience Accelerator Storefront SCWDP file.
-    [string]$SXAStorefrontWdpFullPath = "$XCInstallRoot\Sitecore Commerce Experience Accelerator Storefront*.scwdp.zip",
-    # Path to the Sitecore Commerce Experience Accelerator Storefront Themes SCWDP file.
-    [string]$SXAStorefrontThemeWdpFullPath = "$XCInstallRoot\Sitecore Commerce Experience Accelerator Storefront Themes*.scwdp.zip",
-    # Path to the Sitecore Commerce Experience Analytics Core SCWDP file.
-    [string]$CommercexAnalyticsWdpFullPath = "$XCInstallRoot\Sitecore Commerce ExperienceAnalytics Core*.scwdp.zip",
-    # Path to the Sitecore Commerce Experience Profile Core SCWDP file.
-    [string]$CommercexProfilesWdpFullPath = "$XCInstallRoot\Sitecore Commerce ExperienceProfile Core*.scwdp.zip",
-    # Path to the Sitecore Commerce Marketing Automation Core SCWDP file.
-    [string]$CommerceMAWdpFullPath = "$XCInstallRoot\Sitecore Commerce Marketing Automation Core*.scwdp.zip",
-    # Path to the Sitecore Commerce Marketing Automation for AutomationEngine zip file.
-    [string]$CommerceMAForAutomationEngineZIPFullPath = "$XCInstallRoot\Sitecore Commerce Marketing Automation for AutomationEngine*.zip",
-    # Path to the Sitecore Experience Accelerator zip file.
-    [string]$SXAModuleZIPFullPath = "$XCInstallRoot\Sitecore Experience Accelerator*.zip",
-    # Path to the Sitecore.PowerShell.Extensions zip file.
-    [string]$PowerShellExtensionsModuleZIPFullPath = "$XCInstallRoot\Sitecore.PowerShell.Extensions*.zip",
-    # Path to the Sitecore BizFx Server SCWDP file.
-    [string]$BizFxPackage = "$XCInstallRoot\Sitecore.BizFx.OnPrem*scwdp.zip",
-    # Path to the Commerce Engine Service SCWDP file.
-    [string]$CommerceEngineWdpFullPath = "$XCInstallRoot\Sitecore.Commerce.Engine.OnPrem.Solr.*scwdp.zip",
-    # Path to the Sitecore.Commerce.Habitat.Images.OnPrem SCWDP file.
-    [string]$HabitatImagesWdpFullPath = "$XCInstallRoot\Sitecore.Commerce.Habitat.Images.OnPrem.scwdp.zip",
-
-    # The prefix that will be used on SOLR, Website and Database instances. The default value matches the Sitecore XP default.
-    [string]$SiteNamePrefix = "XP0",
-    # The name of the Sitecore site instance.
-    [string]$SiteName = "$SiteNamePrefix.sc",
-    # Identity Server site name.
-    [string]$IdentityServerSiteName = "$SiteNamePrefix.IdentityServer",
-    # The url of the Sitecore Identity server.
-    [string]$SitecoreIdentityServerUrl = "https://$IdentityServerSiteName",
-    # The Commerce Engine Connect Client Id for the Sitecore Identity Server
-    [string]$CommerceEngineConnectClientId = "CommerceEngineConnect",
-    # The Commerce Engine Connect Client Secret for the Sitecore Identity Server
-    [string]$CommerceEngineConnectClientSecret = "",
-    # The host header name for the Sitecore storefront site.
-    [string]$SiteHostHeaderName = "sxa.storefront.com",
-
-    # The path of the Sitecore XP site.
-    [string]$InstallDir = "$($Env:SYSTEMDRIVE)\inetpub\wwwroot\$SiteName",
-    # The path of the Sitecore XConnect site.
-    [string]$XConnectInstallDir = "$($Env:SYSTEMDRIVE)\inetpub\wwwroot\$SiteNamePrefix.xconnect",
-    # The path to the inetpub folder where Commerce is installed.
-    [string]$CommerceInstallRoot = "$($Env:SYSTEMDRIVE)\inetpub\wwwroot\",
-
-    # The prefix for Sitecore core and master databases.
-    [string]$SqlDbPrefix = $SiteNamePrefix,
-    # The location of the database server where Sitecore XP databases are hosted. In case of named SQL instance, use "SQLServerName\\SQLInstanceName"
-    [string]$SitecoreDbServer = $($Env:COMPUTERNAME),
-    # The name of the Sitecore core database.
-    [string]$SitecoreCoreDbName = "$($SqlDbPrefix)_Core",
-    # A SQL user with sysadmin privileges.
-    [string]$SqlUser = "sa",
-    # The password for $SQLAdminUser.
-    [string]$SqlPass = "12345",
-
-    # The name of the Sitecore domain.
-    [string]$SitecoreDomain = "sitecore",
-    # The name of the Sitecore user account.
-    [string]$SitecoreUsername = "admin",
-    # The password for the $SitecoreUsername.
-    [string]$SitecoreUserPassword = "b",
-
-    # The prefix for the Search index. Using the SiteName value for the prefix is recommended.
-    [string]$SearchIndexPrefix = "",
-    # The URL of the Solr Server.
-    [string]$SolrUrl = "https://localhost:8995/solr",
-    # The folder that Solr has been installed to.
-    [string]$SolrRoot = "$($Env:SYSTEMDRIVE)\solr-8.4.0",
-    # The name of the Solr Service.
-    [string]$SolrService = "solr-8.4.0",
-    # The prefix for the Storefront index. The default value is the SiteNamePrefix.
-    [string]$StorefrontIndexPrefix = $SiteNamePrefix,
-
-    # The host name where Redis is hosted.
-    [string]$RedisHost = "localhost",
-    # The port number on which Redis is running.
-    [string]$RedisPort = "6379",
-    # The name of the Redis instance.
-    [string]$RedisInstanceName = "Redis",
-    # The path to the redis-cli executable.
-    [string]$RedisCliPath = "$($Env:SYSTEMDRIVE)\Program Files\Redis\redis-cli.exe",
-
-    # The location of the database server where Commerce databases should be deployed. In case of named SQL instance, use "SQLServerName\\SQLInstanceName"
-    [string]$CommerceServicesDbServer = $($Env:COMPUTERNAME),
-    # The name of the shared database for the Commerce Services.
-    [string]$CommerceServicesDbName = "SitecoreCommerce_SharedEnvironments",
-    # The name of the global database for the Commerce Services.
-    [string]$CommerceServicesGlobalDbName = "SitecoreCommerce_Global",
-    # The port for the Commerce Ops Service.
-    [string]$CommerceOpsServicesPort = "5015",
-    # The port for the Commerce Shops Service
-    [string]$CommerceShopsServicesPort = "5005",
-    # The port for the Commerce Authoring Service.
-    [string]$CommerceAuthoringServicesPort = "5000",
-    # The port for the Commerce Minions Service.
-    [string]$CommerceMinionsServicesPort = "5010",
-    # The postfix appended to Commerce services folders names and sitenames.
-    # The postfix allows you to host more than one Commerce installment on one server.
-    [string]$CommerceServicesPostfix = "Sc",
-    # The postfix used as the root domain name (two-levels) to append as the hostname for Commerce services.
-    # By default, all Commerce services are configured as sub-domains of the domain identified by the postfix.
-    # Postfix validation enforces the following rules:
-    # 1. The first level (TopDomainName) must be 2-7 characters in length and can contain alphabetical characters (a-z, A-Z) only. Numeric and special characters are not valid.
-    # 2. The second level (DomainName) can contain alpha-numeric characters (a-z, A-Z,and 0-9) and can include one hyphen (-) character.
-    # Special characters (wildcard (*)), for example, are not valid.
-    [string]$CommerceServicesHostPostfix = "sc.com",
-
-    # The name of the Sitecore XC Business Tools server.
-    [string]$BizFxSiteName = "SitecoreBizFx",
-    # The port of the Sitecore XC Business Tools server.
-    [string]$BizFxPort = "4200",
-
-    # The prefix used in the EnvironmentName setting in the config.json file for each Commerce Engine role.
-    [string]$EnvironmentsPrefix = "Habitat",
-    # The list of Commerce environment names. By default, the script deploys the AdventureWorks and the Habitat environments.
-    [array]$Environments = @("AdventureWorksAuthoring", "HabitatAuthoring"),
-    # Commerce environments GUIDs used to clean existing Redis cache during deployment. Default parameter values correspond to the default Commerce environment GUIDS.
-    [array]$EnvironmentsGuids = @("78a1ea611f3742a7ac899a3f46d60ca5", "40e77b7b4be94186b53b5bfd89a6a83b"),
-    # The environments running the minions service. (This is required, for example, for running indexing minions).
-    [array]$MinionEnvironments = @("AdventureWorksMinions", "HabitatMinions"),
-    # whether to deploy sample data for each environment.
-    [bool]$DeploySampleData = $true,
-
-    # The domain of the local account used for the various application pools created as part of the deployment.
-    [string]$UserDomain = $Env:COMPUTERNAME,
-    # The user name for a local account to be set up for the various application pools that are created as part of the deployment.
-    [string]$UserName = "CSFndRuntimeUser",
-    # The password for the $UserName.
-    [string]$UserPassword = "q5Y8tA3FRMZf3xKN!",
-
-    # The Braintree Merchant Id.
-    [string]$BraintreeMerchantId = "",
-    # The Braintree Public Key.
-    [string]$BraintreePublicKey = "",
-    # The Braintree Private Key.
-    [string]$BraintreePrivateKey = "",
-    # The Braintree Environment.
-    [string]$BraintreeEnvironment = "",
-
-    # List of comma-separated task names to skip during Sitecore XC deployment.
-    [string]$TasksToSkip = ""
-     *
-     *
-     */
 
     public partial class SitecoreCommerceInstaller : Form
     {
@@ -1484,17 +1304,15 @@ namespace SCIA
             SetStatusMessage("Successfully established DB Connection", Color.DarkGreen);
         }
 
+
         private void ToggleEnableControls(bool enabled)
         {
-            //btnFirst.Enabled = enabled;
-            //btnLast.Enabled = enabled;
-            //btnPrevious.Enabled = enabled;
-            //btnNext.Enabled = enabled;
             btnInstall.Enabled = enabled;
             btnUninstall.Enabled = enabled;
             btnGenerate.Enabled = enabled;
             btnDelete.Enabled = enabled;
         }
+
 
         private void btnPrerequisites_Click(object sender, EventArgs e)
         {
@@ -1504,7 +1322,14 @@ namespace SCIA
 
         private void btnAppSettings_Click(object sender, EventArgs e)
         {
-            Settings settings = new Settings();
+            DBServerDetails dBServerDetails = new DBServerDetails
+            {
+                Server = txtSqlDbServer.Text,
+                Username = txtSqlUser.Text,
+                Password = txtSqlPass.Text
+            };
+
+            Settings settings = new Settings(dBServerDetails);
             settings.ShowDialog();
         }
 
@@ -1844,25 +1669,6 @@ namespace SCIA
             file.WriteLine("rm " + certificatesFolderPath + "$SitecoreIdentityServerSiteName" + ".pfx  -force -recurse -ea ig");
             file.WriteLine("rm " + certificatesFolderPath + "$SitecorexConnectSiteName" + ".pfx -force -recurse -ea ig");
             file.WriteLine("pop-location");
-        }
-
-        private void DeleteDB(string path)
-        {
-            using var file = new StreamWriter(path);
-            
-            file.WriteLine("param(");
-            file.WriteLine("\t# The root folder with WDP files.");
-            file.WriteLine("\t[string]$Prefix = \"" + txtSiteNamePrefix.Text + "\",");
-            file.WriteLine("\t[string]$CommDbPrefix = \"" + txtSiteNamePrefix.Text + "\",");
-            file.WriteLine("\t# The root folder of SIF.Sitecore.Commerce package.");
-            file.WriteLine("\t[string]$XCSIFInstallRoot = $PWD,");
-            file.WriteLine(
-                "\t# Specifies whether or not to bypass the installation of the default SXA Storefront. By default, the Sitecore XC installation script also deploys the SXA Storefront.");
-            file.WriteLine("\t[bool]$SkipInstallDefaultStorefront = $false,");
-            file.WriteLine("\t# Specifies whether or not to bypass the installation of the SXA Storefront packages.");
-            file.WriteLine(
-                "\t# If set to $true, $TasksToSkip parameter will be populated with the list of tasks to skip in order to bypass SXA Storefront packages installation.");
-            file.WriteLine("\t[bool]$SkipDeployStorefrontPackages = $false,");
         }
 
         private void btnSolr_Click(object sender, EventArgs e)

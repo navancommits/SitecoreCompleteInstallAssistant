@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SCIA
 {
     public partial class DeleteAll : Form
     {
-        string FileName = string.Empty;
+        readonly string FileName = string.Empty;
         public DeleteAll(string fileName)
         {
             InitializeComponent();

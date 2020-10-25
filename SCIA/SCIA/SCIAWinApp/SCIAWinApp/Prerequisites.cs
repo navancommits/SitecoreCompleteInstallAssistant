@@ -8,7 +8,6 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using WindowsInstaller;
 
 namespace SCIA
 {
@@ -18,8 +17,8 @@ namespace SCIA
         public Prerequisites()
         {
             InitializeComponent();
-            this.Width = 900;
-            this.Height = 470;
+            this.Width = 890;
+            this.Height = 570;
             CheckPrerequisites();
             if (AllChecked)
             {
@@ -30,26 +29,27 @@ namespace SCIA
 
         private void CheckPrerequisites()
         {
-            if (FolderExists("..\\msbuild.microsoft.visualstudio.web.targets.14.0.0.3"))  chkMsBuild.Checked = true;
-            if (FolderExists("..\\SIF.Sitecore.Commerce.5.0.49")) chkSIF.Checked = true;
-            if (FileExists("..\\Adventure Works Images.OnPrem.scwdp.zip")) chkAdvworksImages.Checked = true;
-            if (FileExists("..\\Sitecore Commerce Connect Core OnPrem 15.0.26.scwdp.zip")) chkCommerceConnectCore.Checked = true;
-            if (FileExists("..\\Sitecore Commerce Engine Connect OnPrem 6.0.77.scwdp.zip")) chkCommerceEngConnect.Checked = true;
-            if (FileExists("..\\Sitecore Commerce Experience Accelerator 5.0.106.scwdp.zip")) chkCommerceExperienceAccelerator.Checked = true;
-            if (FileExists("..\\Sitecore Commerce Experience Accelerator Habitat Catalog 5.0.106.scwdp.zip")) chkExperienceAcceleratorHabitat.Checked = true;
-            if (FileExists("..\\Sitecore Commerce Experience Accelerator Storefront 5.0.106.scwdp.zip")) chkCommerceExperienceAcceleratorStorefront.Checked = true;
-            if (FileExists("..\\Sitecore Commerce Experience Accelerator Storefront Themes 5.0.106.scwdp.zip")) chkExperienceAcceleratorStorefront.Checked = true;
-            if (FileExists("..\\Sitecore Commerce ExperienceAnalytics Core OnPrem 15.0.26.scwdp.zip")) chkCommerceXACore.Checked = true;
-            if (FileExists("..\\Sitecore Commerce ExperienceProfile Core OnPrem 15.0.26.scwdp.zip")) chkExperienceProfile.Checked = true;
-            if (FileExists("..\\Sitecore Commerce Marketing Automation Core OnPrem 15.0.26.scwdp.zip")) chkCommerceMarketingAutomationCore.Checked = true;
-            if (FileExists("..\\Sitecore Commerce Marketing Automation for AutomationEngine 15.0.26.zip")) chkMarketingAutomationAutomationEngine.Checked = true;
-            if (FileExists("..\\Sitecore Experience Accelerator 10.0.0.3138.scwdp.zip")) chkSitecoreExperienceAccelerator.Checked = true;
-            if (FileExists("..\\Sitecore.BizFx.OnPrem.5.0.12.scwdp.zip")) chkBizFxOnPrem.Checked = true;
-            if (FileExists("..\\Sitecore.BizFX.SDK.5.0.12.zip")) chkBizFxSdk.Checked = true;
-            if (FileExists("..\\Sitecore.Commerce.Engine.OnPrem.Solr.6.0.238.scwdp.zip")) chkCommerceEngineSolr.Checked = true;
-            if (FileExists("..\\Sitecore.Commerce.Habitat.Images.OnPrem.scwdp.zip")) chkHabitatImages.Checked = true;
-            if (FileExists("..\\Sitecore.PowerShell.Extensions-6.1.1.scwdp.zip")) chkPowershellExtensions.Checked = true;
-            
+            if (FolderExists("..\\msbuild.microsoft.visualstudio.web.targets.14.0.0.3")) { chkMsBuild.Checked = true; chkMsBuild.BackColor = Color.LightGreen; }
+            if (FolderExists("..\\SIF.Sitecore.Commerce.5.0.49")) { chkSIF.Checked = true; chkSIF.BackColor = Color.LightGreen; }
+            if (FileExists("..\\Adventure Works Images.OnPrem.scwdp.zip")) { chkAdvworksImages.Checked = true; chkAdvworksImages.BackColor = Color.LightGreen; }
+            if (FileExists("..\\Sitecore Commerce Connect Core OnPrem 15.0.26.scwdp.zip")) { chkCommerceConnectCore.Checked = true; chkCommerceConnectCore.BackColor = Color.LightGreen; }
+            if (FileExists("..\\Sitecore Commerce Engine Connect OnPrem 6.0.77.scwdp.zip")) { chkCommerceEngConnect.Checked = true; chkCommerceEngConnect.BackColor = Color.LightGreen; }
+            if (FileExists("..\\Sitecore Commerce Experience Accelerator 5.0.106.scwdp.zip")) { chkCommerceExperienceAccelerator.Checked = true; chkCommerceExperienceAccelerator.BackColor = Color.LightGreen; }
+            if (FileExists("..\\Sitecore Commerce Experience Accelerator Habitat Catalog 5.0.106.scwdp.zip")) { chkExperienceAcceleratorHabitat.Checked = true; chkExperienceAcceleratorHabitat.BackColor = Color.LightGreen; }
+            if (FileExists("..\\Sitecore Commerce Experience Accelerator Storefront 5.0.106.scwdp.zip")) { chkCommerceExperienceAcceleratorStorefront.Checked = true; chkCommerceExperienceAcceleratorStorefront.BackColor = Color.LightGreen; }
+            if (FileExists("..\\Sitecore Commerce Experience Accelerator Storefront Themes 5.0.106.scwdp.zip")) { chkExperienceAcceleratorStorefront.Checked = true; chkExperienceAcceleratorStorefront.BackColor = Color.LightGreen; }
+            if (FileExists("..\\Sitecore Commerce ExperienceAnalytics Core OnPrem 15.0.26.scwdp.zip")) { chkCommerceXACore.Checked = true; chkCommerceXACore.BackColor = Color.LightGreen; }
+            if (FileExists("..\\Sitecore Commerce ExperienceProfile Core OnPrem 15.0.26.scwdp.zip")) { chkExperienceProfile.Checked = true; chkExperienceProfile.BackColor = Color.LightGreen; }
+            if (FileExists("..\\Sitecore Commerce Marketing Automation Core OnPrem 15.0.26.scwdp.zip")) { chkCommerceMarketingAutomationCore.Checked = true; chkCommerceMarketingAutomationCore.BackColor = Color.LightGreen; }
+            if (FileExists("..\\Sitecore Commerce Marketing Automation for AutomationEngine 15.0.26.zip")) { chkMarketingAutomationAutomationEngine.Checked = true; chkMarketingAutomationAutomationEngine.BackColor = Color.LightGreen; }
+            if (FileExists("..\\Sitecore Experience Accelerator 10.0.0.3138.scwdp.zip")) { chkSitecoreExperienceAccelerator.Checked = true; chkSitecoreExperienceAccelerator.BackColor = Color.LightGreen; }
+            if (FileExists("..\\Sitecore.BizFx.OnPrem.5.0.12.scwdp.zip")) { chkBizFxOnPrem.Checked = true; chkBizFxOnPrem.BackColor = Color.LightGreen; }
+            if (FileExists("..\\Sitecore.BizFX.SDK.5.0.12.zip")) { chkBizFxSdk.Checked = true; chkBizFxSdk.BackColor = Color.LightGreen; }
+            if (FileExists("..\\Sitecore.Commerce.Engine.OnPrem.Solr.6.0.238.scwdp.zip")) { chkCommerceEngineSolr.Checked = true; chkCommerceEngineSolr.BackColor = Color.LightGreen; }
+            if (FileExists("..\\Sitecore.Commerce.Habitat.Images.OnPrem.scwdp.zip")) { chkHabitatImages.Checked = true; chkHabitatImages.BackColor = Color.LightGreen; }
+            if (FileExists("..\\Sitecore.PowerShell.Extensions-6.1.1.scwdp.zip")) { chkPowershellExtensions.Checked = true; chkPowershellExtensions.BackColor = Color.LightGreen; }
+            if (FolderExists("C:\\Program Files\\dotnet\\shared\\Microsoft.AspNetCore.App\\3.1.8") || FolderExists("C:\\Program Files\\dotnet\\shared\\Microsoft.AspNetCore.App\\3.1.7")) { chkCoreRuntime.Checked = true; chkCoreRuntime.BackColor = Color.LightGreen; }
+            if (FolderExists("C:\\Program Files\\Redis")) { chkRedis.Checked = true; chkRedis.BackColor = Color.LightGreen; }
         }
 
         private bool FolderExists(string folderPath)
@@ -102,174 +102,6 @@ namespace SCIA
             return res;
         }
 
-        private int _OnExternalUI(IntPtr context, uint messageType, string message)
-        {
-            MsiInstallMessage msg =
-              (MsiInstallMessage)(MsiInterop.MessageTypeMask & messageType);
-
-            Debug.WriteLine(string.Format("MSI:  {0} {1}", msg, message));
-
-            try
-            {
-                switch (msg)
-                {
-                    case MsiInstallMessage.ActionData:
-                        //   set a label's text to the message
-
-                        Application.DoEvents();
-
-                        return (int)DialogResult.OK;
-
-                    case MsiInstallMessage.ActionStart:
-                        //   set a label's text to the message, with the
-                        //   message.Substring(message.LastIndexOf(".") + 1);
-                        //   being the action start description
-
-                        Application.DoEvents();
-
-                        return (int)DialogResult.OK;
-
-                    case MsiInstallMessage.CommonData:
-                        string[] data = _ParseCommonData(message);
-
-                        if (data != null && data[0] != null)
-                        {
-                            switch (data[0][0])
-                            {
-                                case '0':   //   language
-                                    break;
-
-                                case '1':   //   caption
-                                            //   store data[1] for dialog captions
-
-                                    break;
-
-                                case '2':   //   CancelShow
-                                    //if ("0" == data[1])
-                        //   hide / disable the "cancel" button
-                     //else
-                                                //   show / enable the cancel button
-
-                                                break;
-
-                                default: break;
-                            }
-                        }
-
-                        Application.DoEvents();
-
-                        return (int)DialogResult.OK;
-
-                    case MsiInstallMessage.Error:
-                        return (int)MessageBox.Show(message,
-                           "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
-                    case MsiInstallMessage.FatalExit:
-                        return (int)MessageBox.Show(message,
-                           "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                    case MsiInstallMessage.FilesInUse:
-                        //   display in use files in a dialog, informing the user
-                        //   that they should close whatever applications are using
-                        //   them.  You must return the DialogResult to the service
-                        //   if displayed.
-
-                        Application.DoEvents();
-
-                        return 0;   //   we didn't handle it in this case!
-
-                    case MsiInstallMessage.Info:
-                        Application.DoEvents();
-
-                        return (int)DialogResult.OK;
-
-                    case MsiInstallMessage.Initialize:
-                        Application.DoEvents();
-
-                        return (int)DialogResult.OK;
-
-                    case MsiInstallMessage.OutOfDiskSpace:
-                        Application.DoEvents();
-
-                        break;
-
-                    case MsiInstallMessage.Progress:
-                        string[] fields = _ParseProgressString(message);
-
-                        if (null == fields || null == fields[0])
-                        {
-                            Application.DoEvents();
-
-                            return (int)DialogResult.OK;
-                        }
-
-                        switch (fields[0][0])
-                        {
-                            case '0':   //   reset progress bar
-                                        //   1 = total, 2 = direction , 3 = in progress, 4 = state
-
-                                break;
-
-                            case '1':   //   action info
-                                        //   1 = # ticks for the step size, 2 = actuall step it?
-
-                                break;
-
-                            case '2':   //   progress
-                                        //   1 = how far the progress bar moved,
-                                        //   forward / backward, based on case '0'
-
-                                break;
-
-                            default: break;
-                        }
-
-                        Application.DoEvents();
-
-                        //if (/*  the user cancelled */)
-                            return (int)DialogResult.Cancel;
-                        //else
-                        //    return (int)DialogResult.OK;
-
-                    case MsiInstallMessage.ResolveSource:
-                        Application.DoEvents();
-
-                        return 0;
-
-                    case MsiInstallMessage.ShowDialog:
-                        Application.DoEvents();
-
-                        return (int)DialogResult.OK;
-
-                    case MsiInstallMessage.Terminate:
-                        Application.DoEvents();
-
-                        return (int)DialogResult.OK;
-
-                    case MsiInstallMessage.User:
-                        //   get message, parse
-
-                        Application.DoEvents();
-
-                        return (int)DialogResult.OK;
-
-                    case MsiInstallMessage.Warning:
-                        return (int)MessageBox.Show(message,
-                           "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                    default: break;
-                }
-            }
-            catch (Exception e)
-            {
-                //   do something meaningful, but don't rethrow here.
-                Debug.WriteLine("EXCEPTION -- " + e.ToString());
-            }
-
-            Application.DoEvents();
-
-            return 0;
-        }
 
         private void btnInstaller_Click(object sender, EventArgs e)
         {

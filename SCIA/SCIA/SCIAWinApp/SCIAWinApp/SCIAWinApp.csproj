@@ -50,12 +50,13 @@
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>sitecorelogo.ico</ApplicationIcon>
+    <ApplicationIcon>sitecorelogomall.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -68,23 +69,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonFunctions.cs" />
-    <Compile Include="Common\SolrInformation.cs" />
-    <Compile Include="Common\StringExtensions.cs" />
-    <Compile Include="Common\WebRequestHelper.cs" />
-    <Compile Include="Common\XmlDocumentEx.cs" />
     <Compile Include="DeleteAll.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DeleteAll.designer.cs">
       <DependentUpon>DeleteAll.cs</DependentUpon>
-    </Compile>
-    <Compile Include="JsonSerializer.cs" />
-    <Compile Include="Common\MsiInterop.cs" />
-    <Compile Include="PrerequisiteDetails.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PrerequisiteDetails.Designer.cs">
-      <DependentUpon>PrerequisiteDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Prerequisites.cs">
       <SubType>Form</SubType>
@@ -94,6 +83,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Include="Settings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,38 +104,20 @@
     <EmbeddedResource Include="DeleteAll.resx">
       <DependentUpon>DeleteAll.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PrerequisiteDetails.resx">
-      <DependentUpon>PrerequisiteDetails.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Prerequisites.resx">
       <DependentUpon>Prerequisites.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SitecoreCommerceInstaller.resx">
       <DependentUpon>SitecoreCommerceInstaller.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -159,7 +135,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="sitecorelogo.ico" />
+    <Content Include="sitecorelogomall.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

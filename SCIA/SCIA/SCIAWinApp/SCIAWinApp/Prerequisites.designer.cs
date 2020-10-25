@@ -59,6 +59,9 @@
             this.label25 = new System.Windows.Forms.Label();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
+            this.chkRedis = new System.Windows.Forms.CheckBox();
+            this.chkCoreRuntime = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.pnlContainer.SuspendLayout();
             this.SuspendLayout();
@@ -66,123 +69,134 @@
             // chkMsBuild
             // 
             this.chkMsBuild.AutoSize = true;
+            this.chkMsBuild.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.chkMsBuild.Location = new System.Drawing.Point(15, 39);
-            this.chkMsBuild.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkMsBuild.Margin = new System.Windows.Forms.Padding(4);
             this.chkMsBuild.Name = "chkMsBuild";
             this.chkMsBuild.Size = new System.Drawing.Size(599, 29);
             this.chkMsBuild.TabIndex = 0;
             this.chkMsBuild.Text = "msbuild.microsoft.visualstudio.web.targets.14.0.0.3 Folder";
-            this.chkMsBuild.UseVisualStyleBackColor = true;
+            this.chkMsBuild.UseVisualStyleBackColor = false;
             // 
             // chkSIF
             // 
             this.chkSIF.AutoSize = true;
+            this.chkSIF.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.chkSIF.Location = new System.Drawing.Point(15, 76);
-            this.chkSIF.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkSIF.Margin = new System.Windows.Forms.Padding(4);
             this.chkSIF.Name = "chkSIF";
             this.chkSIF.Size = new System.Drawing.Size(403, 29);
             this.chkSIF.TabIndex = 0;
             this.chkSIF.Text = "SIF.Sitecore.Commerce.5.0.49 Folder";
-            this.chkSIF.UseVisualStyleBackColor = true;
+            this.chkSIF.UseVisualStyleBackColor = false;
             // 
             // chkAdvworksImages
             // 
             this.chkAdvworksImages.AutoSize = true;
+            this.chkAdvworksImages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.chkAdvworksImages.Location = new System.Drawing.Point(15, 113);
-            this.chkAdvworksImages.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkAdvworksImages.Margin = new System.Windows.Forms.Padding(4);
             this.chkAdvworksImages.Name = "chkAdvworksImages";
             this.chkAdvworksImages.Size = new System.Drawing.Size(469, 29);
             this.chkAdvworksImages.TabIndex = 0;
             this.chkAdvworksImages.Text = "Adventure Works Images.OnPrem.scwdp.zip";
-            this.chkAdvworksImages.UseVisualStyleBackColor = true;
+            this.chkAdvworksImages.UseVisualStyleBackColor = false;
             // 
             // chkCommerceConnectCore
             // 
             this.chkCommerceConnectCore.AutoSize = true;
+            this.chkCommerceConnectCore.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.chkCommerceConnectCore.Location = new System.Drawing.Point(15, 188);
-            this.chkCommerceConnectCore.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkCommerceConnectCore.Margin = new System.Windows.Forms.Padding(4);
             this.chkCommerceConnectCore.Name = "chkCommerceConnectCore";
             this.chkCommerceConnectCore.Size = new System.Drawing.Size(633, 29);
             this.chkCommerceConnectCore.TabIndex = 0;
             this.chkCommerceConnectCore.Text = "Sitecore Commerce Connect Core OnPrem 15.0.26.scwdp.zip";
-            this.chkCommerceConnectCore.UseVisualStyleBackColor = true;
+            this.chkCommerceConnectCore.UseVisualStyleBackColor = false;
             // 
             // chkCommerceEngConnect
             // 
             this.chkCommerceEngConnect.AutoSize = true;
+            this.chkCommerceEngConnect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.chkCommerceEngConnect.Location = new System.Drawing.Point(15, 225);
-            this.chkCommerceEngConnect.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkCommerceEngConnect.Margin = new System.Windows.Forms.Padding(4);
             this.chkCommerceEngConnect.Name = "chkCommerceEngConnect";
             this.chkCommerceEngConnect.Size = new System.Drawing.Size(642, 29);
             this.chkCommerceEngConnect.TabIndex = 0;
             this.chkCommerceEngConnect.Text = "Sitecore Commerce Engine Connect OnPrem 6.0.77.scwdp.zip";
-            this.chkCommerceEngConnect.UseVisualStyleBackColor = true;
+            this.chkCommerceEngConnect.UseVisualStyleBackColor = false;
             // 
             // chkCommerceExperienceAccelerator
             // 
             this.chkCommerceExperienceAccelerator.AutoSize = true;
+            this.chkCommerceExperienceAccelerator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.chkCommerceExperienceAccelerator.Location = new System.Drawing.Point(15, 263);
-            this.chkCommerceExperienceAccelerator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkCommerceExperienceAccelerator.Margin = new System.Windows.Forms.Padding(4);
             this.chkCommerceExperienceAccelerator.Name = "chkCommerceExperienceAccelerator";
             this.chkCommerceExperienceAccelerator.Size = new System.Drawing.Size(640, 29);
             this.chkCommerceExperienceAccelerator.TabIndex = 0;
             this.chkCommerceExperienceAccelerator.Text = "Sitecore Commerce Experience Accelerator 5.0.106.scwdp.zip";
-            this.chkCommerceExperienceAccelerator.UseVisualStyleBackColor = true;
+            this.chkCommerceExperienceAccelerator.UseVisualStyleBackColor = false;
             // 
             // chkExperienceAcceleratorHabitat
             // 
             this.chkExperienceAcceleratorHabitat.AutoSize = true;
+            this.chkExperienceAcceleratorHabitat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.chkExperienceAcceleratorHabitat.Location = new System.Drawing.Point(15, 299);
-            this.chkExperienceAcceleratorHabitat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkExperienceAcceleratorHabitat.Margin = new System.Windows.Forms.Padding(4);
             this.chkExperienceAcceleratorHabitat.Name = "chkExperienceAcceleratorHabitat";
             this.chkExperienceAcceleratorHabitat.Size = new System.Drawing.Size(794, 29);
             this.chkExperienceAcceleratorHabitat.TabIndex = 0;
             this.chkExperienceAcceleratorHabitat.Text = "Sitecore Commerce Experience Accelerator Habitat Catalog 5.0.106.scwdp.zip";
-            this.chkExperienceAcceleratorHabitat.UseVisualStyleBackColor = true;
+            this.chkExperienceAcceleratorHabitat.UseVisualStyleBackColor = false;
             // 
             // chkCommerceExperienceAcceleratorStorefront
             // 
             this.chkCommerceExperienceAcceleratorStorefront.AutoSize = true;
+            this.chkCommerceExperienceAcceleratorStorefront.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.chkCommerceExperienceAcceleratorStorefront.Location = new System.Drawing.Point(865, 301);
-            this.chkCommerceExperienceAcceleratorStorefront.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkCommerceExperienceAcceleratorStorefront.Margin = new System.Windows.Forms.Padding(4);
             this.chkCommerceExperienceAcceleratorStorefront.Name = "chkCommerceExperienceAcceleratorStorefront";
             this.chkCommerceExperienceAcceleratorStorefront.Size = new System.Drawing.Size(740, 29);
             this.chkCommerceExperienceAcceleratorStorefront.TabIndex = 0;
             this.chkCommerceExperienceAcceleratorStorefront.Text = "Sitecore Commerce Experience Accelerator Storefront 5.0.106.scwdp.zip";
-            this.chkCommerceExperienceAcceleratorStorefront.UseVisualStyleBackColor = true;
+            this.chkCommerceExperienceAcceleratorStorefront.UseVisualStyleBackColor = false;
             // 
             // chkExperienceAcceleratorStorefront
             // 
             this.chkExperienceAcceleratorStorefront.AutoSize = true;
+            this.chkExperienceAcceleratorStorefront.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.chkExperienceAcceleratorStorefront.Location = new System.Drawing.Point(15, 336);
-            this.chkExperienceAcceleratorStorefront.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkExperienceAcceleratorStorefront.Margin = new System.Windows.Forms.Padding(4);
             this.chkExperienceAcceleratorStorefront.Name = "chkExperienceAcceleratorStorefront";
             this.chkExperienceAcceleratorStorefront.Size = new System.Drawing.Size(823, 29);
             this.chkExperienceAcceleratorStorefront.TabIndex = 0;
             this.chkExperienceAcceleratorStorefront.Text = "Sitecore Commerce Experience Accelerator Storefront Themes 5.0.106.scwdp.zip";
-            this.chkExperienceAcceleratorStorefront.UseVisualStyleBackColor = true;
+            this.chkExperienceAcceleratorStorefront.UseVisualStyleBackColor = false;
             // 
             // chkCommerceXACore
             // 
             this.chkCommerceXACore.AutoSize = true;
+            this.chkCommerceXACore.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.chkCommerceXACore.Location = new System.Drawing.Point(865, 338);
-            this.chkCommerceXACore.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkCommerceXACore.Margin = new System.Windows.Forms.Padding(4);
             this.chkCommerceXACore.Name = "chkCommerceXACore";
             this.chkCommerceXACore.Size = new System.Drawing.Size(748, 29);
             this.chkCommerceXACore.TabIndex = 0;
             this.chkCommerceXACore.Text = "Sitecore Commerce ExperienceAnalytics Core OnPrem 15.0.26.scwdp.zip";
-            this.chkCommerceXACore.UseVisualStyleBackColor = true;
+            this.chkCommerceXACore.UseVisualStyleBackColor = false;
             // 
             // chkExperienceProfile
             // 
             this.chkExperienceProfile.AutoSize = true;
+            this.chkExperienceProfile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.chkExperienceProfile.Location = new System.Drawing.Point(15, 374);
-            this.chkExperienceProfile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkExperienceProfile.Margin = new System.Windows.Forms.Padding(4);
             this.chkExperienceProfile.Name = "chkExperienceProfile";
             this.chkExperienceProfile.Size = new System.Drawing.Size(722, 29);
             this.chkExperienceProfile.TabIndex = 0;
             this.chkExperienceProfile.Text = "Sitecore Commerce ExperienceProfile Core OnPrem 15.0.26.scwdp.zip";
-            this.chkExperienceProfile.UseVisualStyleBackColor = true;
+            this.chkExperienceProfile.UseVisualStyleBackColor = false;
             // 
             // panel1
             // 
@@ -190,7 +204,7 @@
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.panel1.Location = new System.Drawing.Point(16, 8);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(158, 120);
             this.panel1.TabIndex = 5;
@@ -198,97 +212,105 @@
             // chkCommerceMarketingAutomationCore
             // 
             this.chkCommerceMarketingAutomationCore.AutoSize = true;
+            this.chkCommerceMarketingAutomationCore.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.chkCommerceMarketingAutomationCore.Location = new System.Drawing.Point(865, 38);
-            this.chkCommerceMarketingAutomationCore.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkCommerceMarketingAutomationCore.Margin = new System.Windows.Forms.Padding(4);
             this.chkCommerceMarketingAutomationCore.Name = "chkCommerceMarketingAutomationCore";
             this.chkCommerceMarketingAutomationCore.Size = new System.Drawing.Size(762, 29);
             this.chkCommerceMarketingAutomationCore.TabIndex = 0;
             this.chkCommerceMarketingAutomationCore.Text = "Sitecore Commerce Marketing Automation Core OnPrem 15.0.26.scwdp.zip";
-            this.chkCommerceMarketingAutomationCore.UseVisualStyleBackColor = true;
+            this.chkCommerceMarketingAutomationCore.UseVisualStyleBackColor = false;
             // 
             // chkMarketingAutomationAutomationEngine
             // 
             this.chkMarketingAutomationAutomationEngine.AutoSize = true;
+            this.chkMarketingAutomationAutomationEngine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.chkMarketingAutomationAutomationEngine.Location = new System.Drawing.Point(865, 75);
-            this.chkMarketingAutomationAutomationEngine.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkMarketingAutomationAutomationEngine.Margin = new System.Windows.Forms.Padding(4);
             this.chkMarketingAutomationAutomationEngine.Name = "chkMarketingAutomationAutomationEngine";
             this.chkMarketingAutomationAutomationEngine.Size = new System.Drawing.Size(771, 29);
             this.chkMarketingAutomationAutomationEngine.TabIndex = 0;
             this.chkMarketingAutomationAutomationEngine.Text = "Sitecore Commerce Marketing Automation for AutomationEngine 15.0.26.zip";
-            this.chkMarketingAutomationAutomationEngine.UseVisualStyleBackColor = true;
+            this.chkMarketingAutomationAutomationEngine.UseVisualStyleBackColor = false;
             // 
             // chkSitecoreExperienceAccelerator
             // 
             this.chkSitecoreExperienceAccelerator.AutoSize = true;
+            this.chkSitecoreExperienceAccelerator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.chkSitecoreExperienceAccelerator.Location = new System.Drawing.Point(865, 113);
-            this.chkSitecoreExperienceAccelerator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkSitecoreExperienceAccelerator.Margin = new System.Windows.Forms.Padding(4);
             this.chkSitecoreExperienceAccelerator.Name = "chkSitecoreExperienceAccelerator";
             this.chkSitecoreExperienceAccelerator.Size = new System.Drawing.Size(573, 29);
             this.chkSitecoreExperienceAccelerator.TabIndex = 0;
             this.chkSitecoreExperienceAccelerator.Text = "Sitecore Experience Accelerator 10.0.0.3138.scwdp.zip";
-            this.chkSitecoreExperienceAccelerator.UseVisualStyleBackColor = true;
+            this.chkSitecoreExperienceAccelerator.UseVisualStyleBackColor = false;
             // 
             // chkBizFxOnPrem
             // 
             this.chkBizFxOnPrem.AutoSize = true;
+            this.chkBizFxOnPrem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.chkBizFxOnPrem.Location = new System.Drawing.Point(865, 151);
-            this.chkBizFxOnPrem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkBizFxOnPrem.Margin = new System.Windows.Forms.Padding(4);
             this.chkBizFxOnPrem.Name = "chkBizFxOnPrem";
             this.chkBizFxOnPrem.Size = new System.Drawing.Size(434, 29);
             this.chkBizFxOnPrem.TabIndex = 0;
             this.chkBizFxOnPrem.Text = "Sitecore.BizFx.OnPrem.5.0.12.scwdp.zip";
-            this.chkBizFxOnPrem.UseVisualStyleBackColor = true;
+            this.chkBizFxOnPrem.UseVisualStyleBackColor = false;
             // 
             // chkBizFxSdk
             // 
             this.chkBizFxSdk.AutoSize = true;
+            this.chkBizFxSdk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.chkBizFxSdk.Location = new System.Drawing.Point(865, 188);
-            this.chkBizFxSdk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkBizFxSdk.Margin = new System.Windows.Forms.Padding(4);
             this.chkBizFxSdk.Name = "chkBizFxSdk";
             this.chkBizFxSdk.Size = new System.Drawing.Size(335, 29);
             this.chkBizFxSdk.TabIndex = 0;
             this.chkBizFxSdk.Text = "Sitecore.BizFX.SDK.5.0.12.zip";
-            this.chkBizFxSdk.UseVisualStyleBackColor = true;
+            this.chkBizFxSdk.UseVisualStyleBackColor = false;
             // 
             // chkCommerceEngineSolr
             // 
             this.chkCommerceEngineSolr.AutoSize = true;
+            this.chkCommerceEngineSolr.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.chkCommerceEngineSolr.Location = new System.Drawing.Point(865, 225);
-            this.chkCommerceEngineSolr.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkCommerceEngineSolr.Margin = new System.Windows.Forms.Padding(4);
             this.chkCommerceEngineSolr.Name = "chkCommerceEngineSolr";
             this.chkCommerceEngineSolr.Size = new System.Drawing.Size(612, 29);
             this.chkCommerceEngineSolr.TabIndex = 0;
             this.chkCommerceEngineSolr.Text = "Sitecore.Commerce.Engine.OnPrem.Solr.6.0.238.scwdp.zip";
-            this.chkCommerceEngineSolr.UseVisualStyleBackColor = true;
+            this.chkCommerceEngineSolr.UseVisualStyleBackColor = false;
             // 
             // chkHabitatImages
             // 
             this.chkHabitatImages.AutoSize = true;
+            this.chkHabitatImages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.chkHabitatImages.Location = new System.Drawing.Point(15, 151);
-            this.chkHabitatImages.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkHabitatImages.Margin = new System.Windows.Forms.Padding(4);
             this.chkHabitatImages.Name = "chkHabitatImages";
             this.chkHabitatImages.Size = new System.Drawing.Size(566, 29);
             this.chkHabitatImages.TabIndex = 0;
             this.chkHabitatImages.Text = "Sitecore.Commerce.Habitat.Images.OnPrem.scwdp.zip";
-            this.chkHabitatImages.UseVisualStyleBackColor = true;
+            this.chkHabitatImages.UseVisualStyleBackColor = false;
             // 
             // chkPowershellExtensions
             // 
             this.chkPowershellExtensions.AutoSize = true;
+            this.chkPowershellExtensions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.chkPowershellExtensions.Location = new System.Drawing.Point(865, 263);
-            this.chkPowershellExtensions.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkPowershellExtensions.Margin = new System.Windows.Forms.Padding(4);
             this.chkPowershellExtensions.Name = "chkPowershellExtensions";
             this.chkPowershellExtensions.Size = new System.Drawing.Size(505, 29);
             this.chkPowershellExtensions.TabIndex = 0;
             this.chkPowershellExtensions.Text = "Sitecore.PowerShell.Extensions-6.1.1.scwdp.zip";
-            this.chkPowershellExtensions.UseVisualStyleBackColor = true;
+            this.chkPowershellExtensions.UseVisualStyleBackColor = false;
             // 
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.lblStatus.ForeColor = System.Drawing.Color.DarkGreen;
-            this.lblStatus.Location = new System.Drawing.Point(19, 785);
+            this.lblStatus.Location = new System.Drawing.Point(19, 974);
             this.lblStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(220, 32);
@@ -298,7 +320,7 @@
             // linkLabelSitecoreCommerce
             // 
             this.linkLabelSitecoreCommerce.AutoSize = true;
-            this.linkLabelSitecoreCommerce.Location = new System.Drawing.Point(35, 651);
+            this.linkLabelSitecoreCommerce.Location = new System.Drawing.Point(35, 819);
             this.linkLabelSitecoreCommerce.Name = "linkLabelSitecoreCommerce";
             this.linkLabelSitecoreCommerce.Size = new System.Drawing.Size(559, 25);
             this.linkLabelSitecoreCommerce.TabIndex = 53;
@@ -309,7 +331,7 @@
             // linkLabelMsBuild
             // 
             this.linkLabelMsBuild.AutoSize = true;
-            this.linkLabelMsBuild.Location = new System.Drawing.Point(885, 651);
+            this.linkLabelMsBuild.Location = new System.Drawing.Point(885, 819);
             this.linkLabelMsBuild.Name = "linkLabelMsBuild";
             this.linkLabelMsBuild.Size = new System.Drawing.Size(681, 25);
             this.linkLabelMsBuild.TabIndex = 54;
@@ -320,7 +342,7 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(35, 692);
+            this.linkLabel1.Location = new System.Drawing.Point(35, 860);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(369, 25);
             this.linkLabel1.TabIndex = 55;
@@ -331,7 +353,7 @@
             // linklabelCoreRuntime
             // 
             this.linklabelCoreRuntime.AutoSize = true;
-            this.linklabelCoreRuntime.Location = new System.Drawing.Point(885, 692);
+            this.linklabelCoreRuntime.Location = new System.Drawing.Point(885, 860);
             this.linklabelCoreRuntime.Name = "linklabelCoreRuntime";
             this.linklabelCoreRuntime.Size = new System.Drawing.Size(317, 25);
             this.linklabelCoreRuntime.TabIndex = 56;
@@ -342,6 +364,8 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.Control;
+            this.panel2.Controls.Add(this.chkCoreRuntime);
+            this.panel2.Controls.Add(this.chkRedis);
             this.panel2.Controls.Add(this.chkMsBuild);
             this.panel2.Controls.Add(this.chkSIF);
             this.panel2.Controls.Add(this.chkAdvworksImages);
@@ -364,7 +388,7 @@
             this.panel2.Location = new System.Drawing.Point(13, 32);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1648, 415);
+            this.panel2.Size = new System.Drawing.Size(1648, 479);
             this.panel2.TabIndex = 2;
             // 
             // pnlContainer
@@ -374,7 +398,7 @@
             this.pnlContainer.Location = new System.Drawing.Point(12, 153);
             this.pnlContainer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlContainer.Name = "pnlContainer";
-            this.pnlContainer.Size = new System.Drawing.Size(1720, 474);
+            this.pnlContainer.Size = new System.Drawing.Size(1720, 576);
             this.pnlContainer.TabIndex = 57;
             // 
             // label25
@@ -392,7 +416,7 @@
             // linkLabel2
             // 
             this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(35, 731);
+            this.linkLabel2.Location = new System.Drawing.Point(35, 899);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(749, 25);
             this.linkLabel2.TabIndex = 59;
@@ -403,7 +427,7 @@
             // linkLabel3
             // 
             this.linkLabel3.AutoSize = true;
-            this.linkLabel3.Location = new System.Drawing.Point(885, 731);
+            this.linkLabel3.Location = new System.Drawing.Point(885, 899);
             this.linkLabel3.Name = "linkLabel3";
             this.linkLabel3.Size = new System.Drawing.Size(841, 25);
             this.linkLabel3.TabIndex = 60;
@@ -412,12 +436,46 @@
     "oads";
             this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
             // 
+            // chkRedis
+            // 
+            this.chkRedis.AutoSize = true;
+            this.chkRedis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chkRedis.Location = new System.Drawing.Point(865, 375);
+            this.chkRedis.Margin = new System.Windows.Forms.Padding(4);
+            this.chkRedis.Name = "chkRedis";
+            this.chkRedis.Size = new System.Drawing.Size(371, 29);
+            this.chkRedis.TabIndex = 1;
+            this.chkRedis.Text = "Redis (Windows): 3.0.5.4 (or later)";
+            this.chkRedis.UseVisualStyleBackColor = false;
+            // 
+            // chkCoreRuntime
+            // 
+            this.chkCoreRuntime.AutoSize = true;
+            this.chkCoreRuntime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chkCoreRuntime.Location = new System.Drawing.Point(15, 411);
+            this.chkCoreRuntime.Margin = new System.Windows.Forms.Padding(4);
+            this.chkCoreRuntime.Name = "chkCoreRuntime";
+            this.chkCoreRuntime.Size = new System.Drawing.Size(404, 29);
+            this.chkCoreRuntime.TabIndex = 2;
+            this.chkCoreRuntime.Text = "ASP.NET Core Runtime 3.1.7 or 3.1.8";
+            this.chkCoreRuntime.UseVisualStyleBackColor = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(20, 771);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(170, 25);
+            this.label1.TabIndex = 61;
+            this.label1.Text = "Download Links:";
+            // 
             // Prerequisites
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Menu;
-            this.ClientSize = new System.Drawing.Size(1761, 832);
+            this.ClientSize = new System.Drawing.Size(1761, 1028);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.linkLabel3);
             this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.label25);
@@ -430,12 +488,12 @@
             this.Controls.Add(this.pnlContainer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Prerequisites";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Prerequisites";
+            this.Text = "Sitecore Commerce Install Assistant (SCIA) - Prerequisites";
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.pnlContainer.ResumeLayout(false);
@@ -476,5 +534,8 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.LinkLabel linkLabel3;
+        private System.Windows.Forms.CheckBox chkCoreRuntime;
+        private System.Windows.Forms.CheckBox chkRedis;
+        private System.Windows.Forms.Label label1;
     }
 }

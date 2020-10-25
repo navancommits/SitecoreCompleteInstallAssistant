@@ -108,11 +108,6 @@
             this.txtCommerceServicesHostPostFix = new System.Windows.Forms.TextBox();
             this.txtCommerceDbName = new System.Windows.Forms.TextBox();
             this.tabPgPorts = new System.Windows.Forms.TabPage();
-            this.btnBizFxPort = new System.Windows.Forms.Button();
-            this.btnCommerceMinionsSvcPort = new System.Windows.Forms.Button();
-            this.btnCommerceAuthSvcPort = new System.Windows.Forms.Button();
-            this.btnCommerceShopsSvcPort = new System.Windows.Forms.Button();
-            this.btnCommerceOpsSvcPort = new System.Windows.Forms.Button();
             this.txtBizFxPort = new System.Windows.Forms.NumericUpDown();
             this.txtCommerceMinionsSvcPort = new System.Windows.Forms.NumericUpDown();
             this.txtCommerceAuthSvcPort = new System.Windows.Forms.NumericUpDown();
@@ -236,7 +231,7 @@
             this.tabDetails.Multiline = true;
             this.tabDetails.Name = "tabDetails";
             this.tabDetails.SelectedIndex = 0;
-            this.tabDetails.Size = new System.Drawing.Size(1174, 388);
+            this.tabDetails.Size = new System.Drawing.Size(1174, 396);
             this.tabDetails.TabIndex = 2;
             // 
             // tabPgDBConnection
@@ -250,7 +245,7 @@
             this.tabPgDBConnection.Location = new System.Drawing.Point(8, 70);
             this.tabPgDBConnection.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabPgDBConnection.Name = "tabPgDBConnection";
-            this.tabPgDBConnection.Size = new System.Drawing.Size(1158, 310);
+            this.tabPgDBConnection.Size = new System.Drawing.Size(1158, 318);
             this.tabPgDBConnection.TabIndex = 13;
             this.tabPgDBConnection.Text = "DB Connection";
             // 
@@ -331,7 +326,7 @@
             this.tabpgSiteInfo.Location = new System.Drawing.Point(8, 70);
             this.tabpgSiteInfo.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabpgSiteInfo.Name = "tabpgSiteInfo";
-            this.tabpgSiteInfo.Size = new System.Drawing.Size(1158, 291);
+            this.tabpgSiteInfo.Size = new System.Drawing.Size(1158, 318);
             this.tabpgSiteInfo.TabIndex = 12;
             this.tabpgSiteInfo.Text = "Site Info";
             // 
@@ -419,7 +414,7 @@
             this.tabPgGeneral.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabPgGeneral.Name = "tabPgGeneral";
             this.tabPgGeneral.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.tabPgGeneral.Size = new System.Drawing.Size(1158, 291);
+            this.tabPgGeneral.Size = new System.Drawing.Size(1158, 318);
             this.tabPgGeneral.TabIndex = 0;
             this.tabPgGeneral.Text = "General";
             // 
@@ -518,7 +513,7 @@
             this.tabPgInstallDetails.Location = new System.Drawing.Point(8, 70);
             this.tabPgInstallDetails.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabPgInstallDetails.Name = "tabPgInstallDetails";
-            this.tabPgInstallDetails.Size = new System.Drawing.Size(1158, 291);
+            this.tabPgInstallDetails.Size = new System.Drawing.Size(1158, 318);
             this.tabPgInstallDetails.TabIndex = 2;
             this.tabPgInstallDetails.Text = "Install Details";
             // 
@@ -599,7 +594,7 @@
             this.tabPgSitecore.Location = new System.Drawing.Point(8, 70);
             this.tabPgSitecore.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabPgSitecore.Name = "tabPgSitecore";
-            this.tabPgSitecore.Size = new System.Drawing.Size(1158, 291);
+            this.tabPgSitecore.Size = new System.Drawing.Size(1158, 318);
             this.tabPgSitecore.TabIndex = 4;
             this.tabPgSitecore.Text = "Sitecore";
             // 
@@ -683,7 +678,7 @@
             this.tabPgSolr.Location = new System.Drawing.Point(8, 70);
             this.tabPgSolr.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabPgSolr.Name = "tabPgSolr";
-            this.tabPgSolr.Size = new System.Drawing.Size(1158, 291);
+            this.tabPgSolr.Size = new System.Drawing.Size(1158, 318);
             this.tabPgSolr.TabIndex = 5;
             this.tabPgSolr.Text = "Solr";
             // 
@@ -726,7 +721,6 @@
             this.txtSolrService.Name = "txtSolrService";
             this.txtSolrService.Size = new System.Drawing.Size(886, 31);
             this.txtSolrService.TabIndex = 22;
-            this.txtSolrService.Text = "solr-8.4.0";
             this.txtSolrService.Leave += new System.EventHandler(this.txtSolrService_Leave);
             // 
             // label19
@@ -748,7 +742,6 @@
             this.txtSolrRoot.Name = "txtSolrRoot";
             this.txtSolrRoot.Size = new System.Drawing.Size(886, 31);
             this.txtSolrRoot.TabIndex = 21;
-            this.txtSolrRoot.Text = "C:\\Solr\\solr-8.4.0";
             this.txtSolrRoot.Leave += new System.EventHandler(this.txtSolrRoot_Leave);
             // 
             // txtSolrUrl
@@ -759,7 +752,6 @@
             this.txtSolrUrl.Name = "txtSolrUrl";
             this.txtSolrUrl.Size = new System.Drawing.Size(886, 31);
             this.txtSolrUrl.TabIndex = 20;
-            this.txtSolrUrl.Text = "https://solr:8984/solr";
             this.txtSolrUrl.Leave += new System.EventHandler(this.txtSolrUrl_Leave);
             // 
             // label18
@@ -803,7 +795,7 @@
             this.tabPgRedis.Location = new System.Drawing.Point(8, 70);
             this.tabPgRedis.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabPgRedis.Name = "tabPgRedis";
-            this.tabPgRedis.Size = new System.Drawing.Size(1158, 291);
+            this.tabPgRedis.Size = new System.Drawing.Size(1158, 318);
             this.tabPgRedis.TabIndex = 6;
             this.tabPgRedis.Text = "Redis";
             // 
@@ -874,7 +866,7 @@
             this.tabPgSitecoreDb.Location = new System.Drawing.Point(8, 70);
             this.tabPgSitecoreDb.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabPgSitecoreDb.Name = "tabPgSitecoreDb";
-            this.tabPgSitecoreDb.Size = new System.Drawing.Size(1158, 291);
+            this.tabPgSitecoreDb.Size = new System.Drawing.Size(1158, 318);
             this.tabPgSitecoreDb.TabIndex = 3;
             this.tabPgSitecoreDb.Text = "Sitecore DB";
             // 
@@ -1004,7 +996,7 @@
             this.tabPgCommerce.Location = new System.Drawing.Point(8, 70);
             this.tabPgCommerce.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabPgCommerce.Name = "tabPgCommerce";
-            this.tabPgCommerce.Size = new System.Drawing.Size(1158, 291);
+            this.tabPgCommerce.Size = new System.Drawing.Size(1158, 318);
             this.tabPgCommerce.TabIndex = 7;
             this.tabPgCommerce.Text = "Commerce";
             // 
@@ -1045,9 +1037,9 @@
             this.label29.Location = new System.Drawing.Point(19, 175);
             this.label29.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(216, 52);
+            this.label29.Size = new System.Drawing.Size(211, 52);
             this.label29.TabIndex = 0;
-            this.label29.Text = "CommerceServicesHostPostfix:";
+            this.label29.Text = "CommerceServices HostPostfix:";
             // 
             // txtCommerceGlobalDbName
             // 
@@ -1119,11 +1111,6 @@
             // 
             // tabPgPorts
             // 
-            this.tabPgPorts.Controls.Add(this.btnBizFxPort);
-            this.tabPgPorts.Controls.Add(this.btnCommerceMinionsSvcPort);
-            this.tabPgPorts.Controls.Add(this.btnCommerceAuthSvcPort);
-            this.tabPgPorts.Controls.Add(this.btnCommerceShopsSvcPort);
-            this.tabPgPorts.Controls.Add(this.btnCommerceOpsSvcPort);
             this.tabPgPorts.Controls.Add(this.txtBizFxPort);
             this.tabPgPorts.Controls.Add(this.txtCommerceMinionsSvcPort);
             this.tabPgPorts.Controls.Add(this.txtCommerceAuthSvcPort);
@@ -1139,69 +1126,9 @@
             this.tabPgPorts.Location = new System.Drawing.Point(8, 70);
             this.tabPgPorts.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabPgPorts.Name = "tabPgPorts";
-            this.tabPgPorts.Size = new System.Drawing.Size(1158, 291);
+            this.tabPgPorts.Size = new System.Drawing.Size(1158, 318);
             this.tabPgPorts.TabIndex = 8;
             this.tabPgPorts.Text = "Ports";
-            // 
-            // btnBizFxPort
-            // 
-            this.btnBizFxPort.Location = new System.Drawing.Point(543, 173);
-            this.btnBizFxPort.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.btnBizFxPort.Name = "btnBizFxPort";
-            this.btnBizFxPort.Size = new System.Drawing.Size(141, 36);
-            this.btnBizFxPort.TabIndex = 37;
-            this.btnBizFxPort.Text = "Check Port";
-            this.btnBizFxPort.UseVisualStyleBackColor = true;
-            this.btnBizFxPort.Visible = false;
-            this.btnBizFxPort.Click += new System.EventHandler(this.btnBizFxPort_Click);
-            // 
-            // btnCommerceMinionsSvcPort
-            // 
-            this.btnCommerceMinionsSvcPort.Location = new System.Drawing.Point(543, 131);
-            this.btnCommerceMinionsSvcPort.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.btnCommerceMinionsSvcPort.Name = "btnCommerceMinionsSvcPort";
-            this.btnCommerceMinionsSvcPort.Size = new System.Drawing.Size(141, 36);
-            this.btnCommerceMinionsSvcPort.TabIndex = 37;
-            this.btnCommerceMinionsSvcPort.Text = "Check Port";
-            this.btnCommerceMinionsSvcPort.UseVisualStyleBackColor = true;
-            this.btnCommerceMinionsSvcPort.Visible = false;
-            this.btnCommerceMinionsSvcPort.Click += new System.EventHandler(this.btnCommerceMinionsSvcPort_Click);
-            // 
-            // btnCommerceAuthSvcPort
-            // 
-            this.btnCommerceAuthSvcPort.Location = new System.Drawing.Point(543, 90);
-            this.btnCommerceAuthSvcPort.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.btnCommerceAuthSvcPort.Name = "btnCommerceAuthSvcPort";
-            this.btnCommerceAuthSvcPort.Size = new System.Drawing.Size(141, 36);
-            this.btnCommerceAuthSvcPort.TabIndex = 37;
-            this.btnCommerceAuthSvcPort.Text = "Check Port";
-            this.btnCommerceAuthSvcPort.UseVisualStyleBackColor = true;
-            this.btnCommerceAuthSvcPort.Visible = false;
-            this.btnCommerceAuthSvcPort.Click += new System.EventHandler(this.btnCommerceAuthSvcPort_Click);
-            // 
-            // btnCommerceShopsSvcPort
-            // 
-            this.btnCommerceShopsSvcPort.Location = new System.Drawing.Point(543, 50);
-            this.btnCommerceShopsSvcPort.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.btnCommerceShopsSvcPort.Name = "btnCommerceShopsSvcPort";
-            this.btnCommerceShopsSvcPort.Size = new System.Drawing.Size(141, 36);
-            this.btnCommerceShopsSvcPort.TabIndex = 37;
-            this.btnCommerceShopsSvcPort.Text = "Check Port";
-            this.btnCommerceShopsSvcPort.UseVisualStyleBackColor = true;
-            this.btnCommerceShopsSvcPort.Visible = false;
-            this.btnCommerceShopsSvcPort.Click += new System.EventHandler(this.btnCommerceShopsSvcPort_Click);
-            // 
-            // btnCommerceOpsSvcPort
-            // 
-            this.btnCommerceOpsSvcPort.Location = new System.Drawing.Point(543, 9);
-            this.btnCommerceOpsSvcPort.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.btnCommerceOpsSvcPort.Name = "btnCommerceOpsSvcPort";
-            this.btnCommerceOpsSvcPort.Size = new System.Drawing.Size(141, 36);
-            this.btnCommerceOpsSvcPort.TabIndex = 37;
-            this.btnCommerceOpsSvcPort.Text = "Check Port";
-            this.btnCommerceOpsSvcPort.UseVisualStyleBackColor = true;
-            this.btnCommerceOpsSvcPort.Visible = false;
-            this.btnCommerceOpsSvcPort.Click += new System.EventHandler(this.btnCommerceOpsSvcPort_Click);
             // 
             // txtBizFxPort
             // 
@@ -1377,7 +1304,7 @@
             this.tabPgEnvironments.Location = new System.Drawing.Point(8, 70);
             this.tabPgEnvironments.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabPgEnvironments.Name = "tabPgEnvironments";
-            this.tabPgEnvironments.Size = new System.Drawing.Size(1158, 291);
+            this.tabPgEnvironments.Size = new System.Drawing.Size(1158, 318);
             this.tabPgEnvironments.TabIndex = 9;
             this.tabPgEnvironments.Text = "Environments";
             // 
@@ -1425,7 +1352,7 @@
             this.tabPgWinUser.Location = new System.Drawing.Point(8, 70);
             this.tabPgWinUser.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabPgWinUser.Name = "tabPgWinUser";
-            this.tabPgWinUser.Size = new System.Drawing.Size(1158, 291);
+            this.tabPgWinUser.Size = new System.Drawing.Size(1158, 310);
             this.tabPgWinUser.TabIndex = 10;
             this.tabPgWinUser.Text = "Win User";
             // 
@@ -1509,7 +1436,7 @@
             this.tabPgBraintree.Location = new System.Drawing.Point(8, 70);
             this.tabPgBraintree.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabPgBraintree.Name = "tabPgBraintree";
-            this.tabPgBraintree.Size = new System.Drawing.Size(1158, 291);
+            this.tabPgBraintree.Size = new System.Drawing.Size(1158, 310);
             this.tabPgBraintree.TabIndex = 11;
             this.tabPgBraintree.Text = "Braintree";
             // 
@@ -1759,7 +1686,6 @@
             this.btnAppSettings.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAppSettings.BackgroundImage")));
             this.btnAppSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnAppSettings.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAppSettings.Enabled = false;
             this.btnAppSettings.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAppSettings.Location = new System.Drawing.Point(21, 155);
             this.btnAppSettings.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -2104,11 +2030,6 @@
         private System.Windows.Forms.NumericUpDown txtBizFxPort;
         private System.Windows.Forms.NumericUpDown txtCommerceMinionsSvcPort;
         private System.Windows.Forms.NumericUpDown txtRedisPort;
-        private System.Windows.Forms.Button btnCommerceShopsSvcPort;
-        private System.Windows.Forms.Button btnCommerceOpsSvcPort;
-        private System.Windows.Forms.Button btnBizFxPort;
-        private System.Windows.Forms.Button btnCommerceMinionsSvcPort;
-        private System.Windows.Forms.Button btnCommerceAuthSvcPort;
         private System.Windows.Forms.TabPage tabpgSiteInfo;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label label26;
