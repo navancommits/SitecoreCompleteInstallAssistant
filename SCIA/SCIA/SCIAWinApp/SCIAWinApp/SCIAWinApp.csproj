@@ -81,6 +81,12 @@
     <Compile Include="Prerequisites.designer.cs">
       <DependentUpon>Prerequisites.cs</DependentUpon>
     </Compile>
+    <Compile Include="ScriptPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScriptPreview.Designer.cs">
+      <DependentUpon>ScriptPreview.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -106,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Prerequisites.resx">
       <DependentUpon>Prerequisites.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptPreview.resx">
+      <DependentUpon>ScriptPreview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <SubType>Designer</SubType>

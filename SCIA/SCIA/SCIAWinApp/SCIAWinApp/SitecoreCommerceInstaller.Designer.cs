@@ -122,7 +122,7 @@
             this.label32 = new System.Windows.Forms.Label();
             this.tabPgEnvironments = new System.Windows.Forms.TabPage();
             this.chkDeploySampleData = new System.Windows.Forms.CheckBox();
-            this.textBox16 = new System.Windows.Forms.TextBox();
+            this.txtEnvironmentsPrefix = new System.Windows.Forms.TextBox();
             this.label41 = new System.Windows.Forms.Label();
             this.tabPgWinUser = new System.Windows.Forms.TabPage();
             this.label43 = new System.Windows.Forms.Label();
@@ -164,6 +164,7 @@
             this.chkStepsList = new System.Windows.Forms.CheckedListBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.btnScriptPreview = new System.Windows.Forms.Button();
             this.tabDetails.SuspendLayout();
             this.tabPgDBConnection.SuspendLayout();
             this.tabpgSiteInfo.SuspendLayout();
@@ -197,7 +198,6 @@
             this.txtIDServerSiteName.Name = "txtIDServerSiteName";
             this.txtIDServerSiteName.Size = new System.Drawing.Size(887, 31);
             this.txtIDServerSiteName.TabIndex = 3;
-            this.txtIDServerSiteName.Text = "scom10sxaIdentityserver.dev.local";
             this.txtIDServerSiteName.TextChanged += new System.EventHandler(this.txtIDServerSiteName_TextChanged);
             this.txtIDServerSiteName.Leave += new System.EventHandler(this.txtIDServerSiteName_Leave);
             // 
@@ -255,7 +255,7 @@
             this.txtSqlPass.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSqlPass.MaxLength = 15;
             this.txtSqlPass.Name = "txtSqlPass";
-            this.txtSqlPass.Size = new System.Drawing.Size(887, 31);
+            this.txtSqlPass.Size = new System.Drawing.Size(884, 31);
             this.txtSqlPass.TabIndex = 15;
             this.txtSqlPass.UseSystemPasswordChar = true;
             this.txtSqlPass.TextChanged += new System.EventHandler(this.txtSqlPass_TextChanged);
@@ -277,7 +277,7 @@
             this.txtSqlUser.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSqlUser.MaxLength = 20;
             this.txtSqlUser.Name = "txtSqlUser";
-            this.txtSqlUser.Size = new System.Drawing.Size(887, 31);
+            this.txtSqlUser.Size = new System.Drawing.Size(884, 31);
             this.txtSqlUser.TabIndex = 14;
             this.txtSqlUser.Text = "sa";
             this.txtSqlUser.TextChanged += new System.EventHandler(this.txtSqlUser_TextChanged);
@@ -299,7 +299,7 @@
             this.txtSqlDbServer.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSqlDbServer.MaxLength = 25;
             this.txtSqlDbServer.Name = "txtSqlDbServer";
-            this.txtSqlDbServer.Size = new System.Drawing.Size(887, 31);
+            this.txtSqlDbServer.Size = new System.Drawing.Size(884, 31);
             this.txtSqlDbServer.TabIndex = 12;
             this.txtSqlDbServer.Text = "(local)";
             this.txtSqlDbServer.TextChanged += new System.EventHandler(this.txtSqlDbServer_TextChanged);
@@ -358,7 +358,6 @@
             this.txtSiteNameSuffix.Name = "txtSiteNameSuffix";
             this.txtSiteNameSuffix.Size = new System.Drawing.Size(892, 31);
             this.txtSiteNameSuffix.TabIndex = 1;
-            this.txtSiteNameSuffix.Text = ".dev.local";
             this.txtSiteNameSuffix.TextChanged += new System.EventHandler(this.txtSiteNameSuffix_TextChanged);
             this.txtSiteNameSuffix.Leave += new System.EventHandler(this.txtSiteNameSuffix_Leave);
             // 
@@ -430,7 +429,6 @@
             // 
             // txtSiteHostHeaderName
             // 
-            this.txtSiteHostHeaderName.Enabled = false;
             this.txtSiteHostHeaderName.Location = new System.Drawing.Point(269, 181);
             this.txtSiteHostHeaderName.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSiteHostHeaderName.MaxLength = 100;
@@ -447,7 +445,6 @@
             this.txtCommerceEngineConnectClientSecret.Name = "txtCommerceEngineConnectClientSecret";
             this.txtCommerceEngineConnectClientSecret.Size = new System.Drawing.Size(887, 31);
             this.txtCommerceEngineConnectClientSecret.TabIndex = 6;
-            this.txtCommerceEngineConnectClientSecret.Text = "fe6g2c5+YBGh5180qjB6N91nKGNn+gvgS0n51ixHnNY=";
             this.txtCommerceEngineConnectClientSecret.Leave += new System.EventHandler(this.txtCommerceEngineConnectClientSecret_Leave);
             // 
             // label8
@@ -468,7 +465,6 @@
             this.txtCommerceEngineConnectClientId.Name = "txtCommerceEngineConnectClientId";
             this.txtCommerceEngineConnectClientId.Size = new System.Drawing.Size(887, 31);
             this.txtCommerceEngineConnectClientId.TabIndex = 5;
-            this.txtCommerceEngineConnectClientId.Text = "CommerceEngineConnect";
             // 
             // label7
             // 
@@ -536,7 +532,6 @@
             this.txtCommerceInstallRoot.Name = "txtCommerceInstallRoot";
             this.txtCommerceInstallRoot.Size = new System.Drawing.Size(887, 31);
             this.txtCommerceInstallRoot.TabIndex = 10;
-            this.txtCommerceInstallRoot.Text = "c:\\inetpub\\wwwroot";
             this.txtCommerceInstallRoot.Leave += new System.EventHandler(this.txtCommerceInstallRoot_Leave);
             // 
             // txtxConnectInstallDir
@@ -548,7 +543,6 @@
             this.txtxConnectInstallDir.Name = "txtxConnectInstallDir";
             this.txtxConnectInstallDir.Size = new System.Drawing.Size(887, 31);
             this.txtxConnectInstallDir.TabIndex = 9;
-            this.txtxConnectInstallDir.Text = "c:\\inetpub\\wwwroot";
             this.txtxConnectInstallDir.Leave += new System.EventHandler(this.txtxConnectInstallDir_Leave);
             // 
             // label5
@@ -570,7 +564,6 @@
             this.txtSXAInstallDir.Name = "txtSXAInstallDir";
             this.txtSXAInstallDir.Size = new System.Drawing.Size(887, 31);
             this.txtSXAInstallDir.TabIndex = 8;
-            this.txtSXAInstallDir.Text = "c:\\inetpub\\wwwroot";
             this.txtSXAInstallDir.Leave += new System.EventHandler(this.txtSXAInstallDir_Leave);
             // 
             // label4
@@ -628,7 +621,6 @@
             this.txtSitecoreUsername.Name = "txtSitecoreUsername";
             this.txtSitecoreUsername.Size = new System.Drawing.Size(890, 31);
             this.txtSitecoreUsername.TabIndex = 17;
-            this.txtSitecoreUsername.Text = "admin";
             this.txtSitecoreUsername.Leave += new System.EventHandler(this.txtSitecoreUsername_Leave);
             // 
             // label15
@@ -653,14 +645,12 @@
             // 
             // txtSitecoreDomain
             // 
-            this.txtSitecoreDomain.Enabled = false;
             this.txtSitecoreDomain.Location = new System.Drawing.Point(266, 17);
             this.txtSitecoreDomain.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSitecoreDomain.MaxLength = 20;
             this.txtSitecoreDomain.Name = "txtSitecoreDomain";
             this.txtSitecoreDomain.Size = new System.Drawing.Size(890, 31);
             this.txtSitecoreDomain.TabIndex = 16;
-            this.txtSitecoreDomain.Text = "sitecore";
             this.txtSitecoreDomain.Leave += new System.EventHandler(this.txtSitecoreDomain_Leave);
             // 
             // tabPgSolr
@@ -694,7 +684,6 @@
             // 
             // txtStorefrontIndexPrefix
             // 
-            this.txtStorefrontIndexPrefix.Enabled = false;
             this.txtStorefrontIndexPrefix.Location = new System.Drawing.Point(270, 179);
             this.txtStorefrontIndexPrefix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtStorefrontIndexPrefix.MaxLength = 100;
@@ -735,7 +724,6 @@
             // 
             // txtSolrRoot
             // 
-            this.txtSolrRoot.Enabled = false;
             this.txtSolrRoot.Location = new System.Drawing.Point(270, 96);
             this.txtSolrRoot.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSolrRoot.MaxLength = 100;
@@ -766,14 +754,12 @@
             // 
             // txtSearchIndexPrefix
             // 
-            this.txtSearchIndexPrefix.Enabled = false;
             this.txtSearchIndexPrefix.Location = new System.Drawing.Point(270, 15);
             this.txtSearchIndexPrefix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSearchIndexPrefix.MaxLength = 50;
             this.txtSearchIndexPrefix.Name = "txtSearchIndexPrefix";
             this.txtSearchIndexPrefix.Size = new System.Drawing.Size(886, 31);
             this.txtSearchIndexPrefix.TabIndex = 19;
-            this.txtSearchIndexPrefix.Text = "sitecore";
             this.txtSearchIndexPrefix.Leave += new System.EventHandler(this.txtSearchIndexPrefix_Leave);
             // 
             // label17
@@ -801,7 +787,6 @@
             // 
             // txtRedisPort
             // 
-            this.txtRedisPort.Enabled = false;
             this.txtRedisPort.Location = new System.Drawing.Point(264, 59);
             this.txtRedisPort.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtRedisPort.Maximum = new decimal(new int[] {
@@ -841,14 +826,12 @@
             // 
             // txtRedisHost
             // 
-            this.txtRedisHost.Enabled = false;
             this.txtRedisHost.Location = new System.Drawing.Point(264, 16);
             this.txtRedisHost.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtRedisHost.MaxLength = 50;
             this.txtRedisHost.Name = "txtRedisHost";
             this.txtRedisHost.Size = new System.Drawing.Size(892, 31);
             this.txtRedisHost.TabIndex = 24;
-            this.txtRedisHost.Text = "localhost";
             this.txtRedisHost.Leave += new System.EventHandler(this.txtRedisHost_Leave);
             // 
             // tabPgSitecoreDb
@@ -923,7 +906,6 @@
             this.txtSitecoreCoreDbName.Name = "txtSitecoreCoreDbName";
             this.txtSitecoreCoreDbName.Size = new System.Drawing.Size(887, 31);
             this.txtSitecoreCoreDbName.TabIndex = 13;
-            this.txtSitecoreCoreDbName.Text = "c:\\inetpub\\wwwroot";
             this.txtSitecoreCoreDbName.TextChanged += new System.EventHandler(this.txtSitecoreCoreDbName_TextChanged);
             this.txtSitecoreCoreDbName.Leave += new System.EventHandler(this.txtSitecoreCoreDbName_Leave);
             // 
@@ -1050,7 +1032,6 @@
             this.txtCommerceGlobalDbName.Name = "txtCommerceGlobalDbName";
             this.txtCommerceGlobalDbName.Size = new System.Drawing.Size(849, 31);
             this.txtCommerceGlobalDbName.TabIndex = 28;
-            this.txtCommerceGlobalDbName.Text = "C:\\Solr\\solr-8.4.0";
             this.txtCommerceGlobalDbName.Leave += new System.EventHandler(this.txtCommerceGlobalDbName_Leave);
             // 
             // label28
@@ -1065,14 +1046,12 @@
             // 
             // txtCommerceSvcPostFix
             // 
-            this.txtCommerceSvcPostFix.Enabled = false;
             this.txtCommerceSvcPostFix.Location = new System.Drawing.Point(307, 139);
             this.txtCommerceSvcPostFix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtCommerceSvcPostFix.MaxLength = 50;
             this.txtCommerceSvcPostFix.Name = "txtCommerceSvcPostFix";
             this.txtCommerceSvcPostFix.Size = new System.Drawing.Size(849, 31);
             this.txtCommerceSvcPostFix.TabIndex = 29;
-            this.txtCommerceSvcPostFix.Text = "solr-8.4.0";
             this.txtCommerceSvcPostFix.Leave += new System.EventHandler(this.txtCommerceSvcPostFix_Leave);
             // 
             // label27
@@ -1087,14 +1066,12 @@
             // 
             // txtCommerceServicesHostPostFix
             // 
-            this.txtCommerceServicesHostPostFix.Enabled = false;
             this.txtCommerceServicesHostPostFix.Location = new System.Drawing.Point(307, 180);
             this.txtCommerceServicesHostPostFix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtCommerceServicesHostPostFix.MaxLength = 100;
             this.txtCommerceServicesHostPostFix.Name = "txtCommerceServicesHostPostFix";
             this.txtCommerceServicesHostPostFix.Size = new System.Drawing.Size(849, 31);
             this.txtCommerceServicesHostPostFix.TabIndex = 30;
-            this.txtCommerceServicesHostPostFix.Text = "solr-8.4.0";
             this.txtCommerceServicesHostPostFix.Leave += new System.EventHandler(this.txtCommerceServicesHostPostFix_Leave);
             // 
             // txtCommerceDbName
@@ -1106,7 +1083,6 @@
             this.txtCommerceDbName.Name = "txtCommerceDbName";
             this.txtCommerceDbName.Size = new System.Drawing.Size(849, 31);
             this.txtCommerceDbName.TabIndex = 27;
-            this.txtCommerceDbName.Text = "https://solr840:8988/solr";
             this.txtCommerceDbName.Leave += new System.EventHandler(this.txtCommerceDbName_Leave);
             // 
             // tabPgPorts
@@ -1228,14 +1204,12 @@
             // 
             // txtBizFxName
             // 
-            this.txtBizFxName.Enabled = false;
             this.txtBizFxName.Location = new System.Drawing.Point(307, 215);
             this.txtBizFxName.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtBizFxName.MaxLength = 100;
             this.txtBizFxName.Name = "txtBizFxName";
             this.txtBizFxName.Size = new System.Drawing.Size(849, 31);
             this.txtBizFxName.TabIndex = 36;
-            this.txtBizFxName.Text = "SitecoreBizFx";
             this.txtBizFxName.Leave += new System.EventHandler(this.txtBizFxName_Leave);
             // 
             // label37
@@ -1299,7 +1273,7 @@
             // tabPgEnvironments
             // 
             this.tabPgEnvironments.Controls.Add(this.chkDeploySampleData);
-            this.tabPgEnvironments.Controls.Add(this.textBox16);
+            this.tabPgEnvironments.Controls.Add(this.txtEnvironmentsPrefix);
             this.tabPgEnvironments.Controls.Add(this.label41);
             this.tabPgEnvironments.Location = new System.Drawing.Point(8, 70);
             this.tabPgEnvironments.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -1321,15 +1295,14 @@
             this.chkDeploySampleData.Text = "DeploySampleData";
             this.chkDeploySampleData.UseVisualStyleBackColor = true;
             // 
-            // textBox16
+            // txtEnvironmentsPrefix
             // 
-            this.textBox16.Enabled = false;
-            this.textBox16.Location = new System.Drawing.Point(307, 16);
-            this.textBox16.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(849, 31);
-            this.textBox16.TabIndex = 37;
-            this.textBox16.Text = "Habitat";
+            this.txtEnvironmentsPrefix.Enabled = false;
+            this.txtEnvironmentsPrefix.Location = new System.Drawing.Point(307, 16);
+            this.txtEnvironmentsPrefix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtEnvironmentsPrefix.Name = "txtEnvironmentsPrefix";
+            this.txtEnvironmentsPrefix.Size = new System.Drawing.Size(849, 31);
+            this.txtEnvironmentsPrefix.TabIndex = 37;
             // 
             // label41
             // 
@@ -1352,7 +1325,7 @@
             this.tabPgWinUser.Location = new System.Drawing.Point(8, 70);
             this.tabPgWinUser.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabPgWinUser.Name = "tabPgWinUser";
-            this.tabPgWinUser.Size = new System.Drawing.Size(1158, 310);
+            this.tabPgWinUser.Size = new System.Drawing.Size(1158, 318);
             this.tabPgWinUser.TabIndex = 10;
             this.tabPgWinUser.Text = "Win User";
             // 
@@ -1368,14 +1341,12 @@
             // 
             // txtUserDomain
             // 
-            this.txtUserDomain.Enabled = false;
             this.txtUserDomain.Location = new System.Drawing.Point(278, 29);
             this.txtUserDomain.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtUserDomain.MaxLength = 50;
             this.txtUserDomain.Name = "txtUserDomain";
             this.txtUserDomain.Size = new System.Drawing.Size(878, 31);
             this.txtUserDomain.TabIndex = 39;
-            this.txtUserDomain.Text = "sitecore";
             this.txtUserDomain.Leave += new System.EventHandler(this.txtUserDomain_Leave);
             // 
             // label42
@@ -1390,14 +1361,12 @@
             // 
             // txtUserPassword
             // 
-            this.txtUserPassword.Enabled = false;
             this.txtUserPassword.Location = new System.Drawing.Point(278, 110);
             this.txtUserPassword.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtUserPassword.MaxLength = 20;
             this.txtUserPassword.Name = "txtUserPassword";
             this.txtUserPassword.Size = new System.Drawing.Size(878, 31);
             this.txtUserPassword.TabIndex = 41;
-            this.txtUserPassword.Text = "q5Y8tA3FRMZf3xKN!";
             this.txtUserPassword.UseSystemPasswordChar = true;
             this.txtUserPassword.Leave += new System.EventHandler(this.txtUserPassword_Leave);
             // 
@@ -1420,7 +1389,6 @@
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(878, 31);
             this.txtUserName.TabIndex = 40;
-            this.txtUserName.Text = "CSFndRuntimeUser";
             this.txtUserName.Leave += new System.EventHandler(this.txtUserName_Leave);
             // 
             // tabPgBraintree
@@ -1436,7 +1404,7 @@
             this.tabPgBraintree.Location = new System.Drawing.Point(8, 70);
             this.tabPgBraintree.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabPgBraintree.Name = "tabPgBraintree";
-            this.tabPgBraintree.Size = new System.Drawing.Size(1158, 310);
+            this.tabPgBraintree.Size = new System.Drawing.Size(1158, 318);
             this.tabPgBraintree.TabIndex = 11;
             this.tabPgBraintree.Text = "Braintree";
             // 
@@ -1509,7 +1477,6 @@
             this.txtBraintreeEnvironment.Name = "txtBraintreeEnvironment";
             this.txtBraintreeEnvironment.Size = new System.Drawing.Size(878, 31);
             this.txtBraintreeEnvironment.TabIndex = 45;
-            this.txtBraintreeEnvironment.Text = "sandbox";
             this.txtBraintreeEnvironment.Leave += new System.EventHandler(this.txtBraintreeEnvironment_Leave);
             // 
             // label40
@@ -1524,58 +1491,62 @@
             // 
             // btnPrevious
             // 
+            this.btnPrevious.BackColor = System.Drawing.Color.White;
             this.btnPrevious.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPrevious.BackgroundImage")));
             this.btnPrevious.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnPrevious.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPrevious.Location = new System.Drawing.Point(547, 155);
+            this.btnPrevious.Location = new System.Drawing.Point(619, 155);
             this.btnPrevious.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(70, 55);
             this.btnPrevious.TabIndex = 48;
-            this.btnPrevious.UseVisualStyleBackColor = true;
+            this.btnPrevious.UseVisualStyleBackColor = false;
             this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
             // btnFirst
             // 
+            this.btnFirst.BackColor = System.Drawing.Color.White;
             this.btnFirst.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFirst.BackgroundImage")));
             this.btnFirst.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnFirst.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFirst.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnFirst.Location = new System.Drawing.Point(482, 155);
+            this.btnFirst.Location = new System.Drawing.Point(554, 155);
             this.btnFirst.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnFirst.Name = "btnFirst";
             this.btnFirst.Size = new System.Drawing.Size(70, 55);
             this.btnFirst.TabIndex = 48;
-            this.btnFirst.UseVisualStyleBackColor = true;
+            this.btnFirst.UseVisualStyleBackColor = false;
             this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
             // 
             // btnLast
             // 
+            this.btnLast.BackColor = System.Drawing.Color.White;
             this.btnLast.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnLast.BackgroundImage")));
             this.btnLast.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnLast.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLast.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnLast.Location = new System.Drawing.Point(678, 155);
+            this.btnLast.Location = new System.Drawing.Point(750, 155);
             this.btnLast.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnLast.Name = "btnLast";
             this.btnLast.Size = new System.Drawing.Size(70, 55);
             this.btnLast.TabIndex = 48;
-            this.btnLast.UseVisualStyleBackColor = true;
+            this.btnLast.UseVisualStyleBackColor = false;
             this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
             // 
             // btnNext
             // 
+            this.btnNext.BackColor = System.Drawing.Color.White;
             this.btnNext.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnNext.BackgroundImage")));
             this.btnNext.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnNext.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNext.Location = new System.Drawing.Point(614, 155);
+            this.btnNext.Location = new System.Drawing.Point(686, 155);
             this.btnNext.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(70, 55);
             this.btnNext.TabIndex = 48;
-            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.UseVisualStyleBackColor = false;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // tabPage2
@@ -1622,7 +1593,7 @@
             this.btnGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnGenerate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnGenerate.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnGenerate.Location = new System.Drawing.Point(1008, 690);
+            this.btnGenerate.Location = new System.Drawing.Point(1007, 690);
             this.btnGenerate.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(209, 48);
@@ -1657,7 +1628,7 @@
             this.btnUninstall.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnUninstall.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnUninstall.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnUninstall.Location = new System.Drawing.Point(1414, 690);
+            this.btnUninstall.Location = new System.Drawing.Point(1416, 690);
             this.btnUninstall.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnUninstall.Name = "btnUninstall";
             this.btnUninstall.Size = new System.Drawing.Size(171, 48);
@@ -1850,6 +1821,21 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
+            // btnScriptPreview
+            // 
+            this.btnScriptPreview.BackColor = System.Drawing.Color.White;
+            this.btnScriptPreview.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnScriptPreview.BackgroundImage")));
+            this.btnScriptPreview.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnScriptPreview.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnScriptPreview.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnScriptPreview.Location = new System.Drawing.Point(483, 155);
+            this.btnScriptPreview.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.btnScriptPreview.Name = "btnScriptPreview";
+            this.btnScriptPreview.Size = new System.Drawing.Size(70, 55);
+            this.btnScriptPreview.TabIndex = 55;
+            this.btnScriptPreview.UseVisualStyleBackColor = false;
+            this.btnScriptPreview.Click += new System.EventHandler(this.btnScriptPreview_Click);
+            // 
             // SitecoreCommerceInstaller
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -1857,6 +1843,7 @@
             this.BackColor = System.Drawing.SystemColors.Menu;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1609, 790);
+            this.Controls.Add(this.btnScriptPreview);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.btnPrevious);
@@ -2004,7 +1991,7 @@
         private System.Windows.Forms.TextBox txtBizFxName;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.CheckBox chkDeploySampleData;
-        private System.Windows.Forms.TextBox textBox16;
+        private System.Windows.Forms.TextBox txtEnvironmentsPrefix;
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.TextBox txtUserDomain;
@@ -2061,5 +2048,6 @@
         private System.Windows.Forms.CheckedListBox chkStepsList;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnScriptPreview;
     }
 }

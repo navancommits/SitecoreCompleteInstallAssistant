@@ -33,7 +33,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.lblStatusInfo = new System.Windows.Forms.Label();
             this.lblStepStatus = new System.Windows.Forms.Label();
             this.chkStepList = new System.Windows.Forms.CheckedListBox();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -47,6 +46,10 @@
             this.txtSqlUser = new System.Windows.Forms.TextBox();
             this.txtDbServer = new System.Windows.Forms.TextBox();
             this.tabPgSiteInfo = new System.Windows.Forms.TabPage();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtxConnectString = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtIdentityServerNameAdditional = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtSitePrefixAdditional = new System.Windows.Forms.TextBox();
             this.txtSiteNameSuffix = new System.Windows.Forms.TextBox();
@@ -76,6 +79,8 @@
             this.txtBizFxSitePrefix = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.tabPgEnvironments = new System.Windows.Forms.TabPage();
+            this.txtCommerceDbNameString = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.txtEnvironmentPrefix = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.tabPgWinUser = new System.Windows.Forms.TabPage();
@@ -95,12 +100,7 @@
             this.btnLast = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnDbConn = new System.Windows.Forms.Button();
-            this.txtCommerceDbNameString = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txtIdentityServerNameAdditional = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.txtxConnectString = new System.Windows.Forms.TextBox();
+            this.lblStatus = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabSiteDetails.SuspendLayout();
@@ -173,18 +173,6 @@
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.EnabledChanged += new System.EventHandler(this.btnSave_EnabledChanged);
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // lblStatusInfo
-            // 
-            this.lblStatusInfo.AutoSize = true;
-            this.lblStatusInfo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.lblStatusInfo.ForeColor = System.Drawing.Color.DarkGreen;
-            this.lblStatusInfo.Location = new System.Drawing.Point(18, 713);
-            this.lblStatusInfo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblStatusInfo.Name = "lblStatusInfo";
-            this.lblStatusInfo.Size = new System.Drawing.Size(220, 32);
-            this.lblStatusInfo.TabIndex = 52;
-            this.lblStatusInfo.Text = "Happy Sitecoring!";
             // 
             // lblStepStatus
             // 
@@ -367,6 +355,44 @@
             this.tabPgSiteInfo.Size = new System.Drawing.Size(1145, 321);
             this.tabPgSiteInfo.TabIndex = 1;
             this.tabPgSiteInfo.Text = "Site Info";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(14, 148);
+            this.label14.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(284, 25);
+            this.label14.TabIndex = 4;
+            this.label14.Text = "xConnectServerNameString:";
+            // 
+            // txtxConnectString
+            // 
+            this.txtxConnectString.Location = new System.Drawing.Point(312, 145);
+            this.txtxConnectString.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtxConnectString.MaxLength = 50;
+            this.txtxConnectString.Name = "txtxConnectString";
+            this.txtxConnectString.Size = new System.Drawing.Size(818, 31);
+            this.txtxConnectString.TabIndex = 5;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(14, 104);
+            this.label13.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(262, 25);
+            this.label13.TabIndex = 2;
+            this.label13.Text = "IdentityServerNameString:";
+            // 
+            // txtIdentityServerNameAdditional
+            // 
+            this.txtIdentityServerNameAdditional.Location = new System.Drawing.Point(312, 101);
+            this.txtIdentityServerNameAdditional.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtIdentityServerNameAdditional.MaxLength = 50;
+            this.txtIdentityServerNameAdditional.Name = "txtIdentityServerNameAdditional";
+            this.txtIdentityServerNameAdditional.Size = new System.Drawing.Size(818, 31);
+            this.txtIdentityServerNameAdditional.TabIndex = 3;
             // 
             // label6
             // 
@@ -680,6 +706,24 @@
             this.tabPgEnvironments.TabIndex = 8;
             this.tabPgEnvironments.Text = "Environments";
             // 
+            // txtCommerceDbNameString
+            // 
+            this.txtCommerceDbNameString.Location = new System.Drawing.Point(298, 59);
+            this.txtCommerceDbNameString.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtCommerceDbNameString.Name = "txtCommerceDbNameString";
+            this.txtCommerceDbNameString.Size = new System.Drawing.Size(832, 31);
+            this.txtCommerceDbNameString.TabIndex = 39;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(10, 62);
+            this.label12.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(256, 25);
+            this.label12.TabIndex = 38;
+            this.label12.Text = "CommerceDBNameString";
+            // 
             // txtEnvironmentPrefix
             // 
             this.txtEnvironmentPrefix.Location = new System.Drawing.Point(298, 20);
@@ -896,67 +940,23 @@
             this.btnDbConn.UseVisualStyleBackColor = true;
             this.btnDbConn.Click += new System.EventHandler(this.btnDbConn_Click);
             // 
-            // txtCommerceDbNameString
+            // lblStatus
             // 
-            this.txtCommerceDbNameString.Location = new System.Drawing.Point(298, 59);
-            this.txtCommerceDbNameString.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtCommerceDbNameString.Name = "txtCommerceDbNameString";
-            this.txtCommerceDbNameString.Size = new System.Drawing.Size(832, 31);
-            this.txtCommerceDbNameString.TabIndex = 39;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(10, 62);
-            this.label12.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(256, 25);
-            this.label12.TabIndex = 38;
-            this.label12.Text = "CommerceDBNameString";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(14, 104);
-            this.label13.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(262, 25);
-            this.label13.TabIndex = 2;
-            this.label13.Text = "IdentityServerNameString:";
-            // 
-            // txtIdentityServerNameAdditional
-            // 
-            this.txtIdentityServerNameAdditional.Location = new System.Drawing.Point(312, 101);
-            this.txtIdentityServerNameAdditional.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtIdentityServerNameAdditional.MaxLength = 50;
-            this.txtIdentityServerNameAdditional.Name = "txtIdentityServerNameAdditional";
-            this.txtIdentityServerNameAdditional.Size = new System.Drawing.Size(818, 31);
-            this.txtIdentityServerNameAdditional.TabIndex = 3;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(14, 148);
-            this.label14.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(284, 25);
-            this.label14.TabIndex = 4;
-            this.label14.Text = "xConnectServerNameString:";
-            // 
-            // txtxConnectString
-            // 
-            this.txtxConnectString.Location = new System.Drawing.Point(312, 145);
-            this.txtxConnectString.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtxConnectString.MaxLength = 50;
-            this.txtxConnectString.Name = "txtxConnectString";
-            this.txtxConnectString.Size = new System.Drawing.Size(818, 31);
-            this.txtxConnectString.TabIndex = 5;
+            this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblStatus.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblStatus.Location = new System.Drawing.Point(21, 718);
+            this.lblStatus.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(948, 38);
+            this.lblStatus.TabIndex = 62;
+            this.lblStatus.Text = "Happy Sitecoring!";
             // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1584, 765);
+            this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnPrevious);
             this.Controls.Add(this.btnFirst);
             this.Controls.Add(this.btnLast);
@@ -965,7 +965,6 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.lblStepStatus);
-            this.Controls.Add(this.lblStatusInfo);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.panel1);
@@ -1003,7 +1002,6 @@
             this.tabPgBraintree.ResumeLayout(false);
             this.tabPgBraintree.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -1012,7 +1010,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Label lblStatusInfo;
         private System.Windows.Forms.Label lblStepStatus;
         private System.Windows.Forms.CheckedListBox chkStepList;
         private System.Windows.Forms.Panel panel3;
@@ -1080,5 +1077,6 @@
         private System.Windows.Forms.TextBox txtxConnectString;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtIdentityServerNameAdditional;
+        private System.Windows.Forms.Label lblStatus;
     }
 }

@@ -219,8 +219,8 @@ namespace SCIA
 
         private void SetStatusMessage(string statusmsg, Color color)
         {            
-            lblStatusInfo.ForeColor = color;
-            lblStatusInfo.Text = statusmsg;
+            lblStatus.ForeColor = color;
+            lblStatus.Text = statusmsg;
         }
 
         private void txtBizFxPort_Leave(object sender, EventArgs e)
@@ -497,8 +497,8 @@ namespace SCIA
             bool Valid = true;
             if (string.IsNullOrWhiteSpace(control.Text))
             {
-                lblStatusInfo.Text = controlString + " needed... ";
-                lblStatusInfo.ForeColor = Color.Red;
+                lblStatus.Text = controlString + " needed... ";
+                lblStatus.ForeColor = Color.Red;
                 tabSiteDetails.SelectedIndex = tabIndex;
                 Valid = false;
             }
