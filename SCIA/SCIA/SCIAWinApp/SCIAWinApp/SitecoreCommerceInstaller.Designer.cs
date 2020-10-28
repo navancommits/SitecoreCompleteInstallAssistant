@@ -352,6 +352,7 @@
             // 
             // txtSiteNameSuffix
             // 
+            this.txtSiteNameSuffix.Enabled = false;
             this.txtSiteNameSuffix.Location = new System.Drawing.Point(264, 64);
             this.txtSiteNameSuffix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSiteNameSuffix.MaxLength = 50;
@@ -379,7 +380,6 @@
             this.txtSiteNamePrefix.Name = "txtSiteNamePrefix";
             this.txtSiteNamePrefix.Size = new System.Drawing.Size(892, 31);
             this.txtSiteNamePrefix.TabIndex = 1;
-            this.txtSiteNamePrefix.Text = "scom10sxa";
             this.txtSiteNamePrefix.TextChanged += new System.EventHandler(this.txtSiteNamePrefix_TextChanged);
             this.txtSiteNamePrefix.Leave += new System.EventHandler(this.txtSiteNamePrefix_Leave);
             // 
@@ -1300,6 +1300,7 @@
             this.txtEnvironmentsPrefix.Enabled = false;
             this.txtEnvironmentsPrefix.Location = new System.Drawing.Point(307, 16);
             this.txtEnvironmentsPrefix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtEnvironmentsPrefix.MaxLength = 200;
             this.txtEnvironmentsPrefix.Name = "txtEnvironmentsPrefix";
             this.txtEnvironmentsPrefix.Size = new System.Drawing.Size(849, 31);
             this.txtEnvironmentsPrefix.TabIndex = 37;
@@ -1361,12 +1362,14 @@
             // 
             // txtUserPassword
             // 
+            this.txtUserPassword.Enabled = false;
             this.txtUserPassword.Location = new System.Drawing.Point(278, 110);
             this.txtUserPassword.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtUserPassword.MaxLength = 20;
             this.txtUserPassword.Name = "txtUserPassword";
             this.txtUserPassword.Size = new System.Drawing.Size(878, 31);
             this.txtUserPassword.TabIndex = 41;
+            this.txtUserPassword.Text = "q5Y8tA3FRMZf3xKN!";
             this.txtUserPassword.UseSystemPasswordChar = true;
             this.txtUserPassword.Leave += new System.EventHandler(this.txtUserPassword_Leave);
             // 
@@ -1664,6 +1667,7 @@
             this.btnAppSettings.Size = new System.Drawing.Size(70, 55);
             this.btnAppSettings.TabIndex = 50;
             this.btnAppSettings.UseVisualStyleBackColor = true;
+            this.btnAppSettings.EnabledChanged += new System.EventHandler(this.btnAppSettings_EnabledChanged);
             this.btnAppSettings.Click += new System.EventHandler(this.btnAppSettings_Click);
             // 
             // pnlDetails
@@ -1751,7 +1755,7 @@
             this.lblStatus.Location = new System.Drawing.Point(23, 743);
             this.lblStatus.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(948, 38);
+            this.lblStatus.Size = new System.Drawing.Size(1564, 38);
             this.lblStatus.TabIndex = 52;
             this.lblStatus.Text = "Happy Sitecoring!";
             // 
@@ -1827,6 +1831,7 @@
             this.btnScriptPreview.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnScriptPreview.BackgroundImage")));
             this.btnScriptPreview.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnScriptPreview.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnScriptPreview.Enabled = false;
             this.btnScriptPreview.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnScriptPreview.Location = new System.Drawing.Point(483, 155);
             this.btnScriptPreview.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);

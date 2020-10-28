@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
+using System.Transactions;
 using System.Windows.Forms;
 
 namespace SCIA
@@ -36,6 +39,7 @@ namespace SCIA
         string siteRootDir = string.Empty;//"c:\\intetpub\\wwwroot\\
         string bizFxSitenamePrefix = string.Empty;//SitecoreBizFx-
         string commerceDbNameString = string.Empty;//"_sitecore_commerce_
+        bool Uninstall = false;
 
         private void SetStatusMessage(string statusmsg, Color color)
         {
@@ -65,8 +69,127 @@ namespace SCIA
             //txtSitecoreIdentityServerUrl.Text = "https://" + txtIDServerSiteName.Text;
             //txtStorefrontIndexPrefix.Text = txtSiteName.Text;
             tabDetails.Region = new Region(tabDetails.DisplayRectangle);
+            ToggleEnableControls(false);
             AssignStepStatus(TabIndexValue);
         }
+
+
+        private void PopulateSettingsData()
+        {
+            SqlConnection connection;
+            if (CommonFunctions.CheckDatabaseExists("SCIA_DB", txtSqlDbServer.Text, txtSqlUser.Text, txtSqlPass.Text))
+            {
+                using (connection = new SqlConnection(CommonFunctions.BuildConnectionString(txtSqlDbServer.Text, "SCIA_DB", txtSqlUser.Text, txtSqlPass.Text)))
+                {
+                    connection.Open();
+                    if (CommonFunctions.DbTableExists("Settings", connection))
+                    {
+
+                        if (settingsData != null)
+                        {
+                            
+                                txtSiteNameSuffix.Text = settingsData.SiteNameSuffix.Trim();
+                                siteNamePrefixString = settingsData.SitePrefixString.Trim();
+                                identityServerNameString = settingsData.IdentityServerNameString.Trim();
+                                xConnectServerNameString = settingsData.xConnectServerNameString.Trim();
+                                txtCommerceEngineConnectClientId.Text = settingsData.CommerceEngineConnectClientId.Trim();
+                                txtCommerceEngineConnectClientSecret.Text = settingsData.CommerceEngineConnectClientSecret.Trim();
+                                siteRootDir = settingsData.SiteRootDir.Trim();
+                                txtSitecoreDomain.Text = settingsData.SitecoreDomain.Trim();
+                                txtSitecoreUsername.Text = settingsData.SitecoreUsername.Trim();
+                                txtSearchIndexPrefix.Text = settingsData.SearchIndexPrefix.Trim();
+                                txtRedisHost.Text = settingsData.RedisHost.Trim();
+                                txtRedisPort.Text = settingsData.RedisPort.Trim();
+                                bizFxSitenamePrefix = settingsData.BizFxSitenamePrefix.Trim();
+                                txtEnvironmentsPrefix.Text = settingsData.EnvironmentsPrefix.Trim();
+                                commerceDbNameString = settingsData.CommerceDbNameString.Trim();
+                                txtUserDomain.Text = settingsData.UserDomain.Trim();
+                                txtBraintreeEnvironment.Text = settingsData.BraintreeEnvironment.Trim();
+                                txtBraintreePrivateKey.Text = settingsData.BraintreePrivateKey.Trim();
+                                txtBraintreePublicKey.Text = settingsData.BraintreePublicKey.Trim();
+                                txttxtBraintreeMerchantId.Text = settingsData.BraintreeMerchantId.Trim();
+                                txtCommerceInstallRoot.Text = siteRootDir;
+
+                        }
+                        else
+                        {
+                            txtSiteNameSuffix.Text = ".dev.local";
+                            siteNamePrefixString = "sc";
+                            identityServerNameString = "identityserver";
+                            xConnectServerNameString = "xconnect";
+                            txtCommerceEngineConnectClientId.Text = "CommerceEngineConnect";
+                            txtCommerceEngineConnectClientSecret.Text = "fe6g2c5+YBGh5180qjB6N91nKGNn+gvgS0n51ixHnNY=";
+                            siteRootDir = "c:\\inetpub\\wwwroot";
+                            txtSitecoreDomain.Text = "sitecore";
+                            txtSitecoreUsername.Text = "admin";
+                            txtSearchIndexPrefix.Text = "sitecore";
+                            txtRedisHost.Text = "localhost";
+                            txtRedisPort.Text = "6379";
+                            bizFxSitenamePrefix = "SitecoreBizFx-";
+                            txtEnvironmentsPrefix.Text = "Habitat";
+                            commerceDbNameString = "_SitecoreCommerce_";
+                            txtUserDomain.Text = "sitecore";
+                            txtBraintreeEnvironment.Text = "sandbox";
+                            txtBraintreePrivateKey.Text = string.Empty;
+                            txtBraintreePublicKey.Text = string.Empty;
+                            txttxtBraintreeMerchantId.Text = string.Empty;
+                        }
+                        SetFieldValues();
+                    }
+
+                }
+            }
+        }
+
+        private void PopulateSCIAData()
+        {
+            SqlConnection connection;
+                using (connection = new SqlConnection(CommonFunctions.BuildConnectionString(txtSqlDbServer.Text, "SCIA_DB", txtSqlUser.Text, txtSqlPass.Text)))
+                {
+                    connection.Open();
+                    SiteDetails siteData = CommonFunctions.GetSCIAData(CommonFunctions.BuildConnectionString(txtSqlDbServer.Text, "SCIA_DB", txtSqlUser.Text, txtSqlPass.Text), txtSiteName.Text);
+                    if (siteData == null) return;
+
+                    txtSiteNameSuffix.Text = siteData.SiteNameSuffix.Trim();
+                    txtSiteNameSuffix.Text = siteData.SiteNameSuffix.Trim();
+                    txtIDServerSiteName.Text = siteData.IDServerSiteName.Trim();
+                    txtSitecoreIdentityServerUrl.Text = siteData.SitecoreIdentityServerUrl.Trim();
+                    txtCommerceEngineConnectClientId.Text = siteData.CommerceEngineConnectClientId.Trim();
+                    txtCommerceEngineConnectClientSecret.Text = siteData.CommerceEngineConnectClientSecret.Trim();
+                    txtCommerceAuthSvcPort.Text = siteData.CommerceAuthSvcPort;
+                    txtCommerceOpsSvcPort.Text = siteData.CommerceOpsSvcPort;
+                    txtCommerceShopsServicesPort.Text = siteData.CommerceOpsSvcPort;
+                    txtBizFxPort.Text = siteData.BizFxPort;
+                    txtCommerceMinionsSvcPort.Text = siteData.CommerceMinionsSvcPort;
+                    txtSitecoreDomain.Text = siteData.SitecoreDomain.Trim();
+                    txtSitecoreUsername.Text = siteData.SitecoreUsername.Trim();
+                    txtSearchIndexPrefix.Text = siteData.SearchIndexPrefix.Trim();
+                    txtRedisHost.Text = siteData.RedisHost.Trim();
+                    txtRedisPort.Text = siteData.RedisPort.Trim();
+                    txtBizFxName.Text = siteData.BizFxName.Trim();
+                    txtEnvironmentsPrefix.Text = siteData.EnvironmentsPrefix.Trim();
+                    txtUserPassword.Text = siteData.UserPassword.Trim();
+                    txtUserDomain.Text = siteData.UserDomain.Trim();
+                    txtBraintreeEnvironment.Text = siteData.BraintreeEnvironment.Trim();
+                    txtBraintreePrivateKey.Text = settingsData.BraintreePrivateKey.Trim();
+                    txtBraintreePublicKey.Text = settingsData.BraintreePublicKey.Trim();
+                    txttxtBraintreeMerchantId.Text = settingsData.BraintreeMerchantId.Trim();
+                    txtCommerceInstallRoot.Text = siteData.CommerceInstallRoot;
+                    txtSXAInstallDir.Text = siteData.SXAInstallDir;
+                    chkDeploySampleData.Checked = siteData.DeploySampleData;
+                    txtSitecoreCoreDbName.Text = siteData.SitecoreCoreDbName;
+                    txtCommerceDbName.Text = siteData.CommerceDbName;
+                    txtCommerceGlobalDbName.Text = siteData.CommerceGlobalDbName;
+                    txtCommerceSvcPostFix.Text = siteData.CommerceSvcPostFix;
+                    txtCommerceServicesHostPostFix.Text = siteData.CommerceServicesHostPostFix;
+                    txtSolrRoot.Text = siteData.SolrRoot;
+                    txtSolrUrl.Text = siteData.SolrUrl;
+                    txtSolrService.Text = siteData.SolrService;
+
+                    Uninstall = true;
+                }
+        }
+
 
         private void PopulateSettingsInfo()
         {
@@ -105,15 +228,15 @@ namespace SCIA
                                 txtBraintreePrivateKey.Text = reader["BraintreePrivateKey"].ToString().Trim();
                                 txtBraintreePublicKey.Text = reader["BraintreePublicKey"].ToString().Trim();
                                 txttxtBraintreeMerchantId.Text = reader["BraintreeMerchantId"].ToString().Trim();
-                                txtSiteHostHeaderName.Text = txtSiteNamePrefix.Text + ".storefront.com";
-                                txtSitecoreCoreDbName.Text = txtSqlDbPrefix.Text + "_Core";
-                                txtCommerceSvcPostFix.Text = txtSiteNamePrefix.Text + siteNamePrefixString;
-                                txtCommerceServicesHostPostFix.Text = txtCommerceSvcPostFix.Text + ".com";
-                                txtBizFxName.Text = bizFxSitenamePrefix + txtCommerceSvcPostFix.Text;
-                                txtUserName.Text = txtCommerceSvcPostFix.Text + "_User";
+                                //txtSiteHostHeaderName.Text = txtSiteNamePrefix.Text + ".storefront.com";
+                                //txtSitecoreCoreDbName.Text = txtSqlDbPrefix.Text + "_Core";
+                                //txtCommerceSvcPostFix.Text = txtSiteNamePrefix.Text + siteNamePrefixString;
+                                //txtCommerceServicesHostPostFix.Text = txtCommerceSvcPostFix.Text + ".com";
+                                //txtBizFxName.Text = bizFxSitenamePrefix + txtCommerceSvcPostFix.Text;
+                                //txtUserName.Text = txtCommerceSvcPostFix.Text + "_User";
                                 txtCommerceInstallRoot.Text = siteRootDir;
-                                txtCommerceDbName.Text = txtSiteNamePrefix.Text + commerceDbNameString + "SharedEnvironments";
-                                txtCommerceGlobalDbName.Text = txtSiteNamePrefix.Text + commerceDbNameString + "Global";
+                                //txtCommerceDbName.Text = txtSiteNamePrefix.Text + commerceDbNameString + "SharedEnvironments";
+                                //txtCommerceGlobalDbName.Text = txtSiteNamePrefix.Text + commerceDbNameString + "Global";
 
                             }
 
@@ -665,15 +788,107 @@ namespace SCIA
 
             return portMessageString;
         }
-                
+
+        private void SaveSCIAData()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            btnInstall.Enabled = false;
+            try
+            {
+                using TransactionScope scope = new TransactionScope();
+
+                using (SqlConnection connection = new SqlConnection(CommonFunctions.BuildConnectionString(txtSqlDbServer.Text, "SCIA_DB", txtSqlUser.Text, txtSqlPass.Text)))
+                {
+                    connection.Open();
+
+                    SaveSCIADatatoDBSuccess(connection);
+                }
+
+                // if all the coperations complete successfully, this would be called and commit the transaction. 
+                // In case of an exception, it wont be called and transaction is rolled back
+                scope.Complete();
+            }
+            catch(Exception ex)
+            {
+                CommonFunctions.WritetoEventLog("Error saving SCIA Data - " + ex.Message, EventLogEntryType.Error);
+            }
+            Cursor.Current = Cursors.Default;
+        }
+
+        private bool SaveSCIADatatoDBSuccess(SqlConnection sqlConn)
+        {
+            try
+            {
+
+                var query = "delete from  SCIA where SiteName='" + txtSiteName.Text + "'; INSERT INTO SCIA(SiteNameSuffix ,SitePrefix,SiteName ,IdentityServerSiteName, SitecoreIdServerUrl ,SXASiteInstallDir ,XConnectInstallDir ,CommerceInstallRoot  , CommerceEngineConnectClientId , CommerceEngineConnectClientSecret , SiteHostHeaderName , SitecoreDomain , SitecoreUsername ,SitecoreUserPassword ,SearchIndexPrefix  ,SolrUrl , SolrRoot , SolrService ,StorefrontIndexPrefix ,RedisHost , RedisPort  ,SqlDbPrefix  ,SitecoreDbServer ,SitecoreCoreDbName ,CommerceDbServer, CommerceDbName,CommerceGlobalDbName ,CommerceServicesPostFix ,CommerceServicesHostPostFix,CommerceOpsSvcPort ,CommerceShopsSvcPort ,CommerceAuthSvcPort , CommerceMinionsSvcPort ,BizFxPort , BizFxSitename  ,EnvironmentsPrefix  ,DeploySampleData ,UserDomain,UserName , UserPassword, BraintreeMerchantId ,BraintreePublicKey ,BraintreePrivateKey ,BraintreeEnvironment) VALUES (@SiteNameSuffix, @SitePrefix,@SiteName, @IdentityServerSiteName, @SitecoreIdServerUrl, @SXASiteInstallDir, @XConnectInstallDir, @CommerceInstallRoot, @CommerceEngineConnectClientId, @CommerceEngineConnectClientSecret, @SiteHostHeaderName, @SitecoreDomain, @SitecoreUsername, @SitecoreUserPassword, @SearchIndexPrefix, @SolrUrl, @SolrRoot, @SolrService, @StorefrontIndexPrefix, @RedisHost, @RedisPort, @SqlDbPrefix, @SitecoreDbServer, @SitecoreCoreDbName, @CommerceDbServer, @CommerceDbName, @CommerceGlobalDbName, @CommerceServicesPostFix, @CommerceServicesHostPostFix, @CommerceOpsSvcPort, @CommerceShopsSvcPort, @CommerceAuthSvcPort, @CommerceMinionsSvcPort, @BizFxPort, @BizFxSitename, @EnvironmentsPrefix, @DeploySampleData, @UserDomain, @UserName, @UserPassword, @BraintreeMerchantId, @BraintreePublicKey, @BraintreePrivateKey, @BraintreeEnvironment)";
+
+                SqlCommand sqlcommand = new SqlCommand(query, sqlConn);
+                sqlcommand.Parameters.AddWithValue("@SiteNameSuffix", txtSiteNameSuffix.Text);
+                sqlcommand.Parameters.AddWithValue("@SitePrefix", txtSiteNamePrefix.Text);
+                sqlcommand.Parameters.AddWithValue("@SiteName", txtSiteName.Text);
+                sqlcommand.Parameters.AddWithValue("@IdentityServerSiteName", txtIDServerSiteName.Text);
+                sqlcommand.Parameters.AddWithValue("@SitecoreIdServerUrl", txtSitecoreIdentityServerUrl.Text);
+                sqlcommand.Parameters.AddWithValue("@SXASiteInstallDir", txtSXAInstallDir.Text);
+                sqlcommand.Parameters.AddWithValue("@XConnectInstallDir", txtxConnectInstallDir.Text);
+                sqlcommand.Parameters.AddWithValue("@CommerceInstallRoot", txtCommerceInstallRoot.Text);
+                sqlcommand.Parameters.AddWithValue("@CommerceEngineConnectClientId", txtCommerceEngineConnectClientId.Text);
+                sqlcommand.Parameters.AddWithValue("@CommerceEngineConnectClientSecret", txtCommerceEngineConnectClientSecret.Text);
+                sqlcommand.Parameters.AddWithValue("@SiteHostHeaderName", txtSiteHostHeaderName.Text);
+                sqlcommand.Parameters.AddWithValue("@SitecoreDomain", txtSitecoreDomain.Text);
+                sqlcommand.Parameters.AddWithValue("@SitecoreUsername", txtSitecoreUsername.Text);
+                sqlcommand.Parameters.AddWithValue("@SitecoreUserPassword", txtUserPassword.Text);
+                sqlcommand.Parameters.AddWithValue("@SearchIndexPrefix", txtSearchIndexPrefix.Text);
+                sqlcommand.Parameters.AddWithValue("@SolrUrl", txtSolrUrl.Text);
+                sqlcommand.Parameters.AddWithValue("@SolrRoot", txtSolrRoot.Text);
+                sqlcommand.Parameters.AddWithValue("@SolrService", txtSolrService.Text);
+                sqlcommand.Parameters.AddWithValue("@StorefrontIndexPrefix", txtStorefrontIndexPrefix.Text);
+                sqlcommand.Parameters.AddWithValue("@RedisHost", txtRedisHost.Text);
+                sqlcommand.Parameters.AddWithValue("@RedisPort", txtRedisPort.Text);
+                sqlcommand.Parameters.AddWithValue("@SqlDbPrefix", txtSqlDbPrefix.Text);
+                sqlcommand.Parameters.AddWithValue("@SitecoreDbServer", txtSitecoreDbServer.Text);
+                sqlcommand.Parameters.AddWithValue("@SitecoreCoreDbName", txtSitecoreCoreDbName.Text);
+                    sqlcommand.Parameters.AddWithValue("@CommerceDbServer", txtCommerceServicesDBServer.Text);
+                sqlcommand.Parameters.AddWithValue("@CommerceDbName", txtCommerceDbName.Text);
+                sqlcommand.Parameters.AddWithValue("@CommerceGlobalDbName", txtCommerceGlobalDbName.Text);
+                sqlcommand.Parameters.AddWithValue("@CommerceServicesPostFix", txtCommerceSvcPostFix.Text);
+                sqlcommand.Parameters.AddWithValue("@CommerceServicesHostPostFix", txtCommerceServicesHostPostFix.Text);
+                sqlcommand.Parameters.AddWithValue("@CommerceOpsSvcPort", txtCommerceOpsSvcPort.Value);
+                sqlcommand.Parameters.AddWithValue("@CommerceShopsSvcPort", txtCommerceShopsServicesPort.Value);
+                sqlcommand.Parameters.AddWithValue("@CommerceAuthSvcPort", txtCommerceAuthSvcPort.Value);
+                sqlcommand.Parameters.AddWithValue("@CommerceMinionsSvcPort", txtCommerceMinionsSvcPort.Value);
+                sqlcommand.Parameters.AddWithValue("@BizFxPort", txtBizFxPort.Value);
+                sqlcommand.Parameters.AddWithValue("@BizFxSitename", txtBizFxName.Text);
+                sqlcommand.Parameters.AddWithValue("@EnvironmentsPrefix", txtEnvironmentsPrefix.Text);
+                sqlcommand.Parameters.AddWithValue("@DeploySampleData", chkDeploySampleData.Checked);
+                sqlcommand.Parameters.AddWithValue("@UserDomain", txtUserDomain.Text);
+                sqlcommand.Parameters.AddWithValue("@UserName", txtUserName.Text);
+                sqlcommand.Parameters.AddWithValue("@UserPassword", txtUserPassword.Text);
+                sqlcommand.Parameters.AddWithValue("@braintreeMerchantId", txttxtBraintreeMerchantId.Text);
+                sqlcommand.Parameters.AddWithValue("@braintreePublicKey", txtBraintreePublicKey.Text);
+                sqlcommand.Parameters.AddWithValue("@braintreePrivateKey", txtBraintreePrivateKey.Text);
+                sqlcommand.Parameters.AddWithValue("@braintreeEnvironment", txtBraintreeEnvironment.Text);
+
+                int numberOfInsertedRows = sqlcommand.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                CommonFunctions.WritetoEventLog("SCIA - Error saving settings data to SCIA_DB DB table " + ex.Message, EventLogEntryType.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+
         private void btnInstall_Click(object sender, EventArgs e)
         {
-            if (!ValidateAll(false)) return;
+            if (!CheckAllValidations()) return;
             bool habitatExists = HabitatExists(CommonFunctions.BuildConnectionString(txtSitecoreDbServer.Text, txtSqlDbPrefix.Text + "_master", txtSitecoreSqlUser.Text, txtSitecoreSqlPass.Text));
 
             WriteFile(txtSiteName.Text + "_Install_Script.ps1", habitatExists, false);
             LaunchPSScript(txtSiteName.Text + "_Install_Script.ps1");
             lblStatus.Text = "Installation successfully launched through Powershell....";
+            SaveSCIAData();
             lblStatus.ForeColor = Color.DarkGreen;             
         }
 
@@ -685,9 +900,26 @@ namespace SCIA
             txtSearchIndexPrefix.Text = txtSiteName.Text;
         }
 
+        private bool DbConnTabValidations()
+        {
+            if (!ValidateData(txtSqlDbServer, "Db Server", const_DBConn_Tab)) return false;
+            if (!ValidateData(txtSqlUser, "Sql User", const_DBConn_Tab)) return false;
+            if (!ValidateData(txtSqlPass, "Sql Password", const_DBConn_Tab)) return false;
+
+            return true;
+        }
+
+        private bool SiteInfoTabValidations()
+        {
+            if (!ValidateData(txtSiteNamePrefix, "Site Prefix", const_SiteInfo_Tab)) return false;
+            return true;
+        }
+
         private bool ValidateAll(bool unInstall=false)
         {
-            if (!ValidateData(txtSiteName, "Site Name",const_SiteInfo_Tab)) return false;
+            if (!DbConnTabValidations()) return false;
+            if (!SiteInfoTabValidations()) return false;
+
             if (!ValidateData(txtIDServerSiteName, "ID Server Site Name", const_General_Tab)) return false;
             if (!ValidateData(txtSitecoreIdentityServerUrl, "Sitecore Id Server Url", const_General_Tab)) return false;
             if (!ValidateData(txtCommerceEngineConnectClientId, "Sitecore Commerce Connect Client Id", const_General_Tab)) return false;
@@ -699,11 +931,8 @@ namespace SCIA
             if (!ValidateData(txtCommerceInstallRoot, "Commerce Install Root",const_Install_Details_Tab)) return false;
 
             if (!ValidateData(txtSqlDbPrefix, "Sql Db Prefix",const_Sitecore_DB_Tab)) return false;
-            if (!ValidateData(txtSqlDbServer, "Sitecore Db Server", const_DBConn_Tab)) return false;
             if (!ValidateData(txtSitecoreCoreDbName, "Sitecore Core Db Name",const_Sitecore_DB_Tab)) return false;
-            if (!ValidateData(txtSqlUser, "Sql User",const_DBConn_Tab)) return false;
-            if (!ValidateData(txtSqlPass, "Sql Password", const_DBConn_Tab)) return false;
-
+           
             if (!ValidateData(txtSitecoreDomain, "Sitecore Domain",const_Sitecore_Tab)) return false;
             if (!ValidateData(txtSitecoreUsername, "Sitecore Username", const_Sitecore_Tab)) return false;
             if (!ValidateData(txtSitecoreUserPassword, "Sitecore User Password", const_Sitecore_Tab)) return false;
@@ -865,7 +1094,7 @@ namespace SCIA
         private bool CheckAllValidations(bool uninstall=false)
         {
             string portString = string.Empty;
-            ToggleEnableControls(false);
+            ToggleButtonControls(false);
             if (!ValidateAll(uninstall)) return false;
             if (IsPortDuplicated(AddPortstoArray())) { lblStatus.Text = "Duplicate port numbers detected! Provide unique port numbers...."; return false; }
             if (!Directory.Exists(txtSXAInstallDir.Text))
@@ -897,7 +1126,7 @@ namespace SCIA
 
         private void btnGenerate_Click(object sender, EventArgs e)
         {
-            if (!ValidateAll(false)) return;
+            if (!CheckAllValidations(false)) return;
             bool habitatExists = HabitatExists(CommonFunctions.BuildConnectionString(txtSitecoreDbServer.Text, txtSqlDbPrefix.Text + "_master", txtSitecoreSqlUser.Text, txtSitecoreSqlPass.Text));
 
             WriteFile(txtSiteName.Text + "_Uninstall_Script.ps1", habitatExists, true);
@@ -933,6 +1162,30 @@ namespace SCIA
             txtStorefrontIndexPrefix.Text = txtSiteName.Text;
         }
 
+        private string GetSolrUrl(string webSitePath)
+        {
+            var configFilePath = webSitePath + "\\App_Config\\ConnectionStrings.Config";
+            var solrUrl = string.Empty;
+            if (File.Exists(configFilePath))
+            {
+                string[] lines = File.ReadAllLines(configFilePath);
+
+                IEnumerable<string> selectLines = lines.Where(line => line.Contains("solr.search"));
+
+                foreach (var item in selectLines)
+                {
+                    int indexofSolr = item.LastIndexOf("solr");
+                    int indexofhttp = item.LastIndexOf("http");
+                    int indexofSolrFinish = indexofSolr+4;
+                    int lengthOfSolrUrl = indexofSolrFinish - indexofhttp;
+
+                    solrUrl = item.Substring(indexofhttp, lengthOfSolrUrl);
+                }
+            }
+
+            return solrUrl;
+        }
+
         private string StatusMessageBuilder(string msg)
         {
             string portString = string.Empty;
@@ -956,7 +1209,7 @@ namespace SCIA
 
         private void btnUninstall_Click(object sender, EventArgs e)
         {
-            if (!ValidateAll()) return;
+            if (!CheckAllValidations(true)) return;
             bool habitatExists = HabitatExists(CommonFunctions.BuildConnectionString(txtSitecoreDbServer.Text, txtSqlDbPrefix.Text + "_master", txtSitecoreSqlUser.Text, txtSitecoreSqlPass.Text));
 
             WriteFile(txtSiteName.Text + "_UnInstall_Script.ps1", habitatExists, true);
@@ -1252,6 +1505,8 @@ namespace SCIA
             SetStatusMessage(DefaultStatusMessage, Color.DarkGreen);
         }
 
+        private SettingsData settingsData { get; set; }
+
         private void AssignStepStatus(int tabIndex)
         {
             TabIndexValue = tabIndex;
@@ -1260,44 +1515,62 @@ namespace SCIA
             chkStepsList.SetItemChecked(tabIndex, true);
             switch (tabIndex)
             {
-                case 0:
+                case const_DBConn_Tab:
                     lblStepInfo.Text= "Step 1 of 13: DB Connection";
                     break;
-                case 1:
-                    PopulateSettingsInfo();
+                case const_SiteInfo_Tab:
+                    ToggleEnableControls(false);
+                    btnNext.Enabled = true;
+                    btnAppSettings.Enabled = true;
                     lblStepInfo.Text = "Step 2 of 13: Site Info";
                     break;
-                case 2:
+                case const_General_Tab:
+                    ToggleEnableControls(true);
+                    btnValidateAll.Enabled = true;
                     lblStepInfo.Text = "Step 3 of 13: General Info";
                     break;
-                case 3:
+                case const_Install_Details_Tab:
+                    btnValidateAll.Enabled = true;
                     lblStepInfo.Text = "Step 4 of 13: Install Details"; 
                     break;
-                case 4:
+                case const_Sitecore_Tab:
+                    btnValidateAll.Enabled = true;
                     lblStepInfo.Text = "Step 5 of 13: Sitecore Details"; 
                     break;
-                case 5:
+                case const_Solr_Tab:
+                    btnSolr.Enabled = true;
+                    btnValidateAll.Enabled = true;
+                    txtSolrUrl.Text = GetSolrUrl(txtSXAInstallDir.Text);
+
                     lblStepInfo.Text = "Step 6 of 13: Solr Details"; 
                     break;
-                case 6:
+                case const_Redis_Tab:
+                    btnValidateAll.Enabled = true;
                     lblStepInfo.Text = "Step 7 of 13: Redis Details";
                     break;
-                case 7:
+                case const_Sitecore_DB_Tab:
+                    btnValidateAll.Enabled = true;
                     lblStepInfo.Text = "Step 8 of 13: Sitecore DB Details";
                     break;
-                case 8:
+                case const_Commerce_Tab:
+                    btnValidateAll.Enabled = true;
                     lblStepInfo.Text = "Step 9 of 13: Commerce Details";
                     break;
-                case 9:
+                case const_Port_Tab:
+                    btnPortCheck.Enabled = true;
+                    btnValidateAll.Enabled = true;
                     lblStepInfo.Text = "Step 10 of 13: Port Details";
                     break;
-                case 10:
+                case const_Environments_Tab:
+                    btnValidateAll.Enabled = true;
                     lblStepInfo.Text = "Step 11 of 13: Environment Details";
                     break;
-                case 11:
+                case const_Win_User_Tab:
+                    btnValidateAll.Enabled = true;
                     lblStepInfo.Text = "Step 12 of 13: Win User Details";
                     break;
-                case 12:
+                case const_Braintree_User_Tab:
+                    btnValidateAll.Enabled = true;
                     lblStepInfo.Text = "Step 13 of 13: Braintree Details";
                     break;
             }
@@ -1307,6 +1580,14 @@ namespace SCIA
 
         private void btnNext_Click(object sender, EventArgs e)
         {
+            if(TabIndexValue == 0) if (!DbConnTabValidations() || settingsData==null) return;
+            if (TabIndexValue == const_SiteInfo_Tab) if (!SiteInfoTabValidations()) return;
+            //Get data from SCIA table
+            if (TabIndexValue == const_SiteInfo_Tab)
+            {
+                PopulateSCIAData();
+                if (Uninstall) btnInstall.Enabled = false;
+            }
             if (TabIndexValue >= 0 && TabIndexValue <= tabDetails.TabCount - 2) TabIndexValue += 1;
             AssignStepStatus(TabIndexValue);
         }
@@ -1377,15 +1658,69 @@ namespace SCIA
             }
             ToggleEnableControls(true);
             SetStatusMessage("Successfully established DB Connection", Color.DarkGreen);
+            settingsData = CommonFunctions.GetSettingsData(CommonFunctions.BuildConnectionString(txtSitecoreDbServer.Text, "SCIA_DB", txtSitecoreSqlUser.Text, txtSitecoreSqlPass.Text));
+            PopulateSettingsData();
+            ToggleEnableDbControls(false);
+            if (settingsData==null)
+            {                
+                ToggleEnableControls(false);
+                btnDbConn.Enabled = true;
+                //DBServerDetails dBServerDetails = new DBServerDetails
+                //{
+                //    Server = txtSqlDbServer.Text,
+                //    Username = txtSqlUser.Text,
+                //    Password = txtSqlPass.Text
+                //};
+                //Settings settings = new Settings(dBServerDetails);
+                //settings.ShowDialog();
+            }
+            else
+            {
+                ToggleEnableControls(true);
+                btnDbConn.Enabled = false;
+                AssignStepStatus(const_SiteInfo_Tab); 
+            }
+            /*AssignStepStatus(const_SiteInfo_Tab);
+             * if no records in settings table, just enable settings button
+             * else load next tab
+             * */
+        }
+
+        private void ToggleEnableDbControls(bool enabled)
+        {
+            txtSqlPass.Enabled = enabled;
+            txtSqlUser.Enabled = enabled;
+            txtSqlDbServer.Enabled = enabled;
         }
 
 
         private void ToggleEnableControls(bool enabled)
         {
+            ToggleButtonControls(enabled);
+            MenubarControls(enabled);
+        }
+
+        private void MenubarControls(bool enabled)
+        {
+            btnDelete.Enabled = enabled;
+            btnLast.Enabled = enabled;
+            btnFirst.Enabled = enabled;
+            btnPrevious.Enabled = enabled;
+            btnPortCheck.Enabled = enabled;
+            btnSolr.Enabled = enabled;
+            btnAppSettings.Enabled = enabled;
+            chkStepsList.Enabled = enabled;
+            btnNext.Enabled = enabled;
+            btnValidateAll.Enabled = enabled;
+        }
+
+        private void ToggleButtonControls(bool enabled)
+        {
             btnInstall.Enabled = enabled;
+            if (Uninstall) btnInstall.Enabled = false;
+
             btnUninstall.Enabled = enabled;
             btnGenerate.Enabled = enabled;
-            btnDelete.Enabled = enabled;
         }
 
 
@@ -1746,33 +2081,71 @@ namespace SCIA
             file.WriteLine("pop-location");
         }
 
+        private void FillSolrDetails()
+        {
+            SolrInfo info = CommonFunctions.GetSolrInformation(txtSolrUrl.Text);
+            txtSolrRoot.Text = info.solr_home.Replace("\\server\\solr", string.Empty);
+            int lastIndexofSlash= txtSolrRoot.Text.LastIndexOf("\\");
+            txtSolrService.Text = StringRight(txtSolrRoot.Text, txtSolrRoot.Text.Length- lastIndexofSlash);
+        }
+
+        private string StringRight(string str, int length)
+        {
+            return str.Substring(str.Length - length, length);
+        }
+
         private void btnSolr_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
             btnSolr.Enabled = false;
             SetStatusMessage("Processing....", Color.Orange);
-            if (!ValidSolrUrl(txtSolrUrl.Text))
+
+            
+            SolrInfo info = CommonFunctions.GetSolrInformation(txtSolrUrl.Text);
+
+            if (string.IsNullOrWhiteSpace(txtSolrUrl.Text) || info == null || info?.lucene?.SolrSpecVersion != "8.4.0")
             {
                 TabIndexValue = const_Solr_Tab;
+                ToggleButtonControls(false);
+                MenubarControls(true);
                 AssignStepStatus(TabIndexValue);
-                ToggleEnableControls(false);
                 btnSolr.Enabled = true;
-                SetStatusMessage("Wrong Solr Url....", Color.Red);
+            }
+
+            if (string.IsNullOrWhiteSpace(txtSolrUrl.Text))
+            {
+                SetStatusMessage("Missing ConnectionStrings Config file at - " + txtSXAInstallDir.Text, Color.Red);
                 return;
             }
-           
-            SolrInfo info = CommonFunctions.GetSolrInformation(txtSolrUrl.Text);
-            txtSolrRoot.Text = info.solr_home.Replace("\\server\\solr",string.Empty);
-            //txtSolrService.Text = info.system.name;
-            if (info.lucene.SolrSpecVersion!="8.4.0")
+
+            if (info==null)
             {
-                TabIndexValue = const_Solr_Tab;
-                AssignStepStatus(TabIndexValue);
-                ToggleEnableControls(false);
-                btnSolr.Enabled = true;
+                SetStatusMessage("Missing Solr Url Info... check if Solr is hosted and running...", Color.Red);
+                return;
+            }
+
+            if (info.lucene.SolrSpecVersion != "8.4.0")
+            {
                 SetStatusMessage("That Solr Url doesn't run on Solr 8.4.0....", Color.Red);
                 return;
             }
+
+            txtSolrRoot.Text = info.solr_home.Replace("\\server\\solr", string.Empty);
+            FillSolrDetails();
+               
+            //if (!ValidSolrUrl(txtSolrUrl.Text))
+            //{
+            //    TabIndexValue = const_Solr_Tab;
+            //    AssignStepStatus(TabIndexValue);
+            //    ToggleEnableControls(false);
+            //    btnSolr.Enabled = true;
+            //    SetStatusMessage("Wrong Solr Url....", Color.Red);
+            //    return;
+            //}
+           
+            
+            //txtSolrService.Text = info.system.name;
+            
 
             ToggleEnableControls(true);
             SetStatusMessage("All seems fine with Solr Url....", Color.DarkGreen);
@@ -1872,6 +2245,10 @@ namespace SCIA
             };
             ScriptPreview preview = new ScriptPreview(siteDetails: siteDetails);
             preview.ShowDialog();
+        }
+
+        private void btnAppSettings_EnabledChanged(object sender, EventArgs e)
+        {
         }
     }
 

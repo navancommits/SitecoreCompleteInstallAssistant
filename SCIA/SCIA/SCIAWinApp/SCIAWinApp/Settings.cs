@@ -61,33 +61,30 @@ namespace SCIA
                     if (CommonFunctions.DbTableExists("Settings", connection))
                     {
 
-                        SqlDataReader reader=CommonFunctions.GetSettingsData(connection);
+                        SettingsData settingsData = CommonFunctions.GetSettingsData(CommonFunctions.BuildConnectionString(dbServer.Server, "SCIA_DB", dbServer.Username, dbServer.Password));
 
-                        if (reader!=null)
+                        if (settingsData!=null)
                         {
-                            while (reader.Read())
-                            {
-                                txtSiteNameSuffix.Text = reader["SiteNameSuffix"].ToString().Trim();
-                                txtSitePrefixAdditional.Text = reader["SitePrefixString"].ToString().Trim();
-                                txtIdentityServerNameAdditional.Text = reader["IdentityServerNameString"].ToString().Trim();
-                                txtxConnectString.Text = reader["xConnectServerNameString"].ToString().Trim();
-                                txtCommerceEngineConnectClientId.Text = reader["CommerceEngineConnectClientId"].ToString().Trim();
-                                txtCommerceEngineConnectClientSecret.Text = reader["CommerceEngineConnectClientSecret"].ToString().Trim();
-                                txtSiteRootDir.Text = reader["SiteRootDir"].ToString().Trim();
-                                txtSitecoreDomain.Text = reader["SitecoreDomain"].ToString().Trim();
-                                txtSitecoreUserName.Text = reader["SitecoreUsername"].ToString().Trim();
-                                txtSearchIndexPrefix.Text = reader["SearchIndexPrefix"].ToString().Trim();
-                                txtRedisHost.Text = reader["RedisHost"].ToString().Trim();
-                                txtRedisPort.Text = reader["RedisPort"].ToString().Trim();
-                                txtBizFxSitePrefix.Text = reader["BizFxSitenamePrefix"].ToString().Trim();
-                                txtEnvironmentPrefix.Text = reader["EnvironmentsPrefix"].ToString().Trim();
-                                txtCommerceDbNameString.Text = reader["CommerceDbNameString"].ToString().Trim();
-                                txtUserDomain.Text = reader["UserDomain"].ToString().Trim();
-                                txtBraintreeEnvironment.Text = reader["BraintreeEnvironment"].ToString().Trim();
-                                txtBraintreePrivateKey.Text = reader["BraintreePrivateKey"].ToString().Trim();
-                                txtBraintreePublicKey.Text = reader["BraintreePublicKey"].ToString().Trim();
-                                txtBraintreeMerchantId.Text = reader["BraintreeMerchantId"].ToString().Trim();
-                            }
+                                txtSiteNameSuffix.Text = settingsData.SiteNameSuffix.Trim();
+                                txtSitePrefixAdditional.Text = settingsData.SitePrefixString.Trim();
+                                txtIdentityServerNameAdditional.Text = settingsData.IdentityServerNameString.Trim();
+                                txtxConnectString.Text = settingsData.xConnectServerNameString.Trim();
+                                txtCommerceEngineConnectClientId.Text = settingsData.CommerceEngineConnectClientId.Trim();
+                                txtCommerceEngineConnectClientSecret.Text = settingsData.CommerceEngineConnectClientSecret.Trim();
+                                txtSiteRootDir.Text = settingsData.SiteRootDir.Trim();
+                                txtSitecoreDomain.Text = settingsData.SitecoreDomain.Trim();
+                                txtSitecoreUserName.Text = settingsData.SitecoreUsername.Trim();
+                                txtSearchIndexPrefix.Text = settingsData.SearchIndexPrefix.Trim();
+                                txtRedisHost.Text = settingsData.RedisHost.Trim();
+                                txtRedisPort.Text = settingsData.RedisPort.Trim();
+                                txtBizFxSitePrefix.Text = settingsData.BizFxSitenamePrefix.Trim();
+                                txtEnvironmentPrefix.Text = settingsData.EnvironmentsPrefix.Trim();
+                                txtCommerceDbNameString.Text = settingsData.CommerceDbNameString.Trim();
+                                txtUserDomain.Text = settingsData.UserDomain.Trim();
+                                txtBraintreeEnvironment.Text = settingsData.BraintreeEnvironment.Trim();
+                                txtBraintreePrivateKey.Text = settingsData.BraintreePrivateKey.Trim();
+                                txtBraintreePublicKey.Text = settingsData.BraintreePublicKey.Trim();
+                                txtBraintreeMerchantId.Text = settingsData.BraintreeMerchantId.Trim();
                            
                         }
                         else
@@ -154,6 +151,11 @@ namespace SCIA
                         CommonFunctions.CreateSettingsTable(connection);
                     }
 
+                    if (!CommonFunctions.DbTableExists("SCIA", connection))
+                    {
+                        CommonFunctions.CreateSCIATable(connection);
+                    }
+
                     SaveSettingsDatatoDBSuccess(connection);
                 }
 
@@ -163,7 +165,7 @@ namespace SCIA
 
                 Cursor.Current = Cursors.Default;
                 btnSave.Enabled = true;
-                SetStatusMessage("Settings saved successfully...", Color.DarkGreen);
+                SetStatusMessage("Settings saved successfully... Close and re-open application to see latest changes....", Color.DarkGreen);
 
             }
             catch (Exception ex)

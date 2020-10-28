@@ -99,7 +99,6 @@
             this.btnFirst = new System.Windows.Forms.Button();
             this.btnLast = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
-            this.btnDbConn = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -876,7 +875,7 @@
             this.btnPrevious.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnPrevious.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPrevious.Location = new System.Drawing.Point(159, 152);
+            this.btnPrevious.Location = new System.Drawing.Point(93, 152);
             this.btnPrevious.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(70, 55);
@@ -890,7 +889,7 @@
             this.btnFirst.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnFirst.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFirst.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnFirst.Location = new System.Drawing.Point(94, 152);
+            this.btnFirst.Location = new System.Drawing.Point(28, 152);
             this.btnFirst.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnFirst.Name = "btnFirst";
             this.btnFirst.Size = new System.Drawing.Size(70, 55);
@@ -904,7 +903,7 @@
             this.btnLast.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnLast.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLast.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnLast.Location = new System.Drawing.Point(290, 152);
+            this.btnLast.Location = new System.Drawing.Point(224, 152);
             this.btnLast.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnLast.Name = "btnLast";
             this.btnLast.Size = new System.Drawing.Size(70, 55);
@@ -918,27 +917,13 @@
             this.btnNext.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnNext.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNext.Location = new System.Drawing.Point(226, 152);
+            this.btnNext.Location = new System.Drawing.Point(160, 152);
             this.btnNext.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(70, 55);
             this.btnNext.TabIndex = 58;
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
-            // 
-            // btnDbConn
-            // 
-            this.btnDbConn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnDbConn.BackgroundImage")));
-            this.btnDbConn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnDbConn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDbConn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnDbConn.Location = new System.Drawing.Point(27, 152);
-            this.btnDbConn.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.btnDbConn.Name = "btnDbConn";
-            this.btnDbConn.Size = new System.Drawing.Size(70, 55);
-            this.btnDbConn.TabIndex = 61;
-            this.btnDbConn.UseVisualStyleBackColor = true;
-            this.btnDbConn.Click += new System.EventHandler(this.btnDbConn_Click);
             // 
             // lblStatus
             // 
@@ -961,7 +946,6 @@
             this.Controls.Add(this.btnFirst);
             this.Controls.Add(this.btnLast);
             this.Controls.Add(this.btnNext);
-            this.Controls.Add(this.btnDbConn);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.lblStepStatus);
@@ -1070,7 +1054,6 @@
         private System.Windows.Forms.Button btnFirst;
         private System.Windows.Forms.Button btnLast;
         private System.Windows.Forms.Button btnNext;
-        private System.Windows.Forms.Button btnDbConn;
         private System.Windows.Forms.TextBox txtCommerceDbNameString;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label14;

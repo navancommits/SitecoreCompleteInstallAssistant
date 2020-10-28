@@ -38,6 +38,8 @@ namespace SCIA
 
         void WritePreviewFile(string path, bool habitatflag, bool uninstallscript)
         {
+
+
             using var file = new StreamWriter(path);
 
             file.WriteLine("#Requires -Version 3");
@@ -118,8 +120,10 @@ namespace SCIA
             file.WriteLine();
             file.WriteLine(
                 "\t# The prefix that will be used on SOLR, Website and Database instances. The default value matches the Sitecore XP default.");
+            Color foreColor = new Color();
+
             file.WriteLine(
-                "\t[string]$SiteNamePrefix = \"" + sitedetails.SiteNamePrefix + "\",");
+                "\t[string]$SiteNamePrefix = \"" + sitedetails.SiteNamePrefix + "\",", foreColor.R);
 
             file.WriteLine("\t# The name of the Sitecore site instance.");
             file.WriteLine("\t[string]$SiteName = \"" + sitedetails.SiteName + "\",");

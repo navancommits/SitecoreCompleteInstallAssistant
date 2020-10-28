@@ -7,8 +7,10 @@ using System.Net;
 using System.Security.AccessControl;
 using System.Security.Principal;
 using System.Runtime.Serialization.Json;
-
-
+using System.Data.Linq;
+using System.Linq;
+using System.Drawing.Imaging;
+using System.Drawing;
 
 namespace SCIA
 {
@@ -143,7 +145,7 @@ namespace SCIA
             // Open the connection [SiteNameSuffix], [SitePrefixString],[IdentityServerNameAdditional] 
             var sql = "CREATE TABLE Settings" +
             "(" +
-            "SiteNameSuffix CHAR(50), SitePrefixString CHAR(50), IdentityServerNameString CHAR(50), xConnectServerNameString CHAR(50), CommerceEngineConnectClientId CHAR(50), CommerceEngineConnectClientSecret CHAR(50), SiteRootDir CHAR(100), SitecoreDomain CHAR(50), SitecoreUsername CHAR(50),SearchIndexPrefix  CHAR(50),RedisHost  CHAR(50),RedisPort  CHAR(10),BizFxSitenamePrefix  CHAR(50),EnvironmentsPrefix  CHAR(50),CommerceDbNameString  CHAR(50),UserDomain CHAR(50), BraintreeMerchantId CHAR(100),BraintreePublicKey CHAR(100),BraintreePrivateKey CHAR(100),BraintreeEnvironment CHAR(100),created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP)";
+            "SiteNameSuffix VARCHAR(50), SitePrefixString VARCHAR(50), IdentityServerNameString VARCHAR(50), xConnectServerNameString VARCHAR(50), CommerceEngineConnectClientId VARCHAR(50), CommerceEngineConnectClientSecret VARCHAR(50), SiteRootDir VARCHAR(100), SitecoreDomain VARCHAR(50), SitecoreUsername VARCHAR(50),SearchIndexPrefix  VARCHAR(50),RedisHost  VARCHAR(50),RedisPort  VARCHAR(10),BizFxSitenamePrefix  VARCHAR(50),EnvironmentsPrefix  VARCHAR(200),CommerceDbNameString  VARCHAR(50),UserDomain VARCHAR(50), BraintreeMerchantId VARCHAR(100),BraintreePublicKey VARCHAR(100),BraintreePrivateKey VARCHAR(100),BraintreeEnvironment VARCHAR(100),created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP)";
             SqlCommand cmd = new SqlCommand(sql, conn);
             int success;
             try
@@ -156,6 +158,30 @@ namespace SCIA
             {
                 success = 0;
                 WritetoEventLog("SCIA - Unable to create Settings Table" + ex.Message, EventLogEntryType.Error);
+            }
+
+            return success;
+        }
+
+        public static int CreateSCIATable(SqlConnection conn)
+        {
+            if (DbTableExists("dbo.SCIA", conn)) return 1;
+            // Open the connection [SiteNameSuffix], [SitePrefixString],[IdentityServerNameAdditional] 
+            var sql = "CREATE TABLE SCIA" +
+            "(" +
+            "SiteNameSuffix VARCHAR(50), SitePrefix VARCHAR(50), SiteName VARCHAR(100), IdentityServerSiteName VARCHAR(100), SitecoreIdServerUrl VARCHAR(200), SXASiteInstallDir VARCHAR(200), XConnectInstallDir VARCHAR(200),CommerceInstallRoot  VARCHAR(200), CommerceEngineConnectClientId VARCHAR(50), CommerceEngineConnectClientSecret VARCHAR(100), SiteHostHeaderName VARCHAR(100), SitecoreDomain VARCHAR(50), SitecoreUsername VARCHAR(50),SitecoreUserPassword VARCHAR(20),SearchIndexPrefix  VARCHAR(50),SolrUrl Varchar(200), SolrRoot VARCHAR(200), SolrService Varchar(50),StorefrontIndexPrefix VARCHAR(100),RedisHost  VARCHAR(50),RedisPort  VARCHAR(10),SqlDbPrefix  VARCHAR(50),SitecoreDbServer Varchar(50),SitecoreCoreDbName Varchar(50),SqlUser Varchar(50),SqlPass Varchar(50),CommerceDbServer VARCHAR(100), CommerceDbName Varchar(200),CommerceGlobalDbName Varchar(200),CommerceServicesPostFix Varchar(50),CommerceServicesHostPostFix Varchar(100),CommerceOpsSvcPort smallint, CommerceShopsSvcPort smallint,CommerceAuthSvcPort smallint, CommerceMinionsSvcPort Smallint,BizFxPort SmallInt, BizFxSitename  Varchar(100),EnvironmentsPrefix  VARCHAR(200),DeploySampleData boolean,UserDomain VARCHAR(50),UserName VARCHAR(50), UserPassword varchar(20), BraintreeMerchantId VARCHAR(100),BraintreePublicKey VARCHAR(100),BraintreePrivateKey VARCHAR(100),BraintreeEnvironment VARCHAR(100),created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP)";
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            int success;
+            try
+            {
+
+                success = cmd.ExecuteNonQuery();
+
+            }
+            catch (SqlException ex)
+            {
+                success = 0;
+                WritetoEventLog("SCIA - Unable to create SCIA Table" + ex.Message, EventLogEntryType.Error);
             }
 
             return success;
@@ -180,6 +206,43 @@ namespace SCIA
             }
 
             return reader;
+        }
+
+
+        public static SettingsData GetSettingsData(string connectionString)
+        {
+            try
+            {
+                using var dc = new DataContext(connectionString);
+                var settings = dc.ExecuteQuery<SettingsData>(@"select top(1)* FROM [settings]");
+
+                return settings.FirstOrDefault();
+            }
+
+            catch (SqlException ex)
+            {
+                CommonFunctions.WritetoEventLog("Get Settings Data - SQL Connectivity issues... check server and credential details...." + ex.Message, EventLogEntryType.Error);
+                return null;
+            }
+
+        }
+
+        public static SiteDetails GetSCIAData(string connectionString,string siteName)
+        {
+            try
+            {
+                using var dc = new DataContext(connectionString);
+                var siteData = dc.ExecuteQuery<SiteDetails>(@"select top(1)* FROM [SCIA] where SiteName='" + siteName);
+
+                return siteData.FirstOrDefault();
+            }
+
+            catch (SqlException ex)
+            {
+                CommonFunctions.WritetoEventLog("Get SCIA Data - SQL Connectivity issues... check server and credential details...." + ex.Message, EventLogEntryType.Error);
+                return null;
+            }
+
         }
 
 
@@ -219,34 +282,42 @@ namespace SCIA
 
         public static SolrInfo DeserializeJson(string url)
         {
-            using (WebClient client = new WebClient())
+            try
             {
+                using (WebClient client = new WebClient())
+                {
 
-                //add HTTP headers for content type, and others
-                client.Headers["Content-type"] = "application/json";
+                    //add HTTP headers for content type, and others
+                    client.Headers["Content-type"] = "application/json";
 
-                //add HTTP header for remote authentication credentials for web service 
-                //( in this case the Default Network Credentials, because the service is ours)
-                client.UseDefaultCredentials = true;
-                client.Credentials = CredentialCache.DefaultNetworkCredentials;
+                    //add HTTP header for remote authentication credentials for web service 
+                    //( in this case the Default Network Credentials, because the service is ours)
+                    client.UseDefaultCredentials = true;
+                    client.Credentials = CredentialCache.DefaultNetworkCredentials;
 
-                //add HTTP headers to authenticate to our web proxy 
-                //( in this case the Default Network Credentials)
-                client.Proxy.Credentials = CredentialCache.DefaultNetworkCredentials;
+                    //add HTTP headers to authenticate to our web proxy 
+                    //( in this case the Default Network Credentials)
+                    client.Proxy.Credentials = CredentialCache.DefaultNetworkCredentials;
 
-                // call the service & return the results to a byte array.
-                // (Some error handling might be good here)
-                byte[] bytedata = client.DownloadData(url);
+                    // call the service & return the results to a byte array.
+                    // (Some error handling might be good here)
+                    byte[] bytedata = client.DownloadData(url);
 
-                // load this to a memory stream
-                MemoryStream ms = new MemoryStream();
-                ms = new MemoryStream(bytedata);
+                    // load this to a memory stream
+                    MemoryStream ms = new MemoryStream();
+                    ms = new MemoryStream(bytedata);
 
-                //Now Deserialize to a c# objects....
-                var serializer = new DataContractJsonSerializer(typeof(SolrInfo));
-                SolrInfo solrInfo = (SolrInfo)serializer.ReadObject(ms);
+                    //Now Deserialize to a c# objects....
+                    var serializer = new DataContractJsonSerializer(typeof(SolrInfo));
+                    SolrInfo solrInfo = (SolrInfo)serializer.ReadObject(ms);
 
-                return solrInfo;
+                    return solrInfo;
+                }
+            }
+            catch(Exception ex)
+            {
+                WritetoEventLog("Could not establish connection with Solr - " + url + ex.Message, EventLogEntryType.Error);
+                return null;
             }
         }
 
@@ -288,4 +359,5 @@ namespace SCIA
         public string Password { get; set; }
         public string Server { get; set; }
     }
+
 }

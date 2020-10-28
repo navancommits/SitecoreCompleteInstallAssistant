@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace SCIA
 {
@@ -19,6 +20,36 @@ namespace SCIA
         [DataMember]
         public Lucene lucene { get; set; }
         
+    }
+
+    public class SiteDetailsRecord
+    {
+        public List<SiteDetails> SiteDetailsList { get; set; }
+    }
+
+    public class SettingsData
+    {
+        public string SiteNameSuffix { get; set; }
+        public string SitePrefixString { get; set; }
+        public string IdentityServerNameString { get; set; }
+        public string xConnectServerNameString { get; set; }
+        public string CommerceEngineConnectClientId { get; set; }
+        public string CommerceEngineConnectClientSecret { get; set; }
+        public string SiteRootDir { get; set; }
+        public string SitecoreDomain { get; set; }
+        public string SitecoreUsername { get; set; }
+        public string SearchIndexPrefix { get; set; }
+        public string RedisHost { get; set; }
+        public string RedisPort { get; set; }
+        public string BizFxSitenamePrefix { get; set; }
+        public string EnvironmentsPrefix { get; set; }
+        public string CommerceDbNameString { get; set; }
+        public string UserDomain { get; set; }
+        public string BraintreeMerchantId { get; set; }
+        public string BraintreePublicKey { get; set; }
+        public string BraintreePrivateKey { get; set; }
+        public string BraintreeEnvironment { get; set; }
+
     }
 
     public class SiteDetails
@@ -58,14 +89,15 @@ namespace SCIA
         public string BizFxName { get; set; }
         public string BizFxPort { get; set; }
         public string EnvironmentsPrefix { get; set; }
+        public string SitecoreCoreDbName { get; set; }
         public bool DeploySampleData { get; set; }
         public string UserName { get; set; }
+        public string UserDomain { get; set; }
         public string UserPassword { get; set; }
         public string BraintreeMerchantId { get; set; }
         public string BraintreePublicKey { get; set; }
         public string BraintreePrivateKey { get; set; }
-        public string BraintreeEnvironment { get; set; }
-
+        public string BraintreeEnvironment { get; set; }       
         public bool HabitatExists { get; set; }
     }
 }
