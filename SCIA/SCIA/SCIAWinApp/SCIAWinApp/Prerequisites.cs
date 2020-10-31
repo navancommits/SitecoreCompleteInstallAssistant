@@ -193,5 +193,29 @@ namespace SCIA
             //with a URL:
             System.Diagnostics.Process.Start("https://dev.sitecore.net/Downloads/Sitecore_Experience_Accelerator/10x/Sitecore_Experience_Accelerator_1000.aspx");
         }
+
+        private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            linkLabel4.LinkVisited = true;
+            //Call the Process.Start method to open the default browser
+            //with a URL:
+            Process.Start("https://www.braintreepayments.com/sandbox");
+        
+        }
+
+        private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            WritePSFile(".\\PSVersion7.ps1");
+            CommonFunctions.LaunchPSScript(".\\PSVersion7.ps1");
+        }
+
+        void WritePSFile(string path)
+        {
+            using var file = new StreamWriter(path);
+
+            file.WriteLine("if (($PSVersionTable.PSVersion.Major -lt 6)) {");
+            file.WriteLine("iex \"& { $(irm https://aka.ms/install-powershell.ps1) } -UseMSI\"");
+            file.WriteLine("}");
+        }
     }
 }

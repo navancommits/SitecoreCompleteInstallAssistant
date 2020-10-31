@@ -100,6 +100,22 @@
             this.btnLast = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
+            this.txtStorefrontHostSuffix = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtHostSuffix = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txtUserSuffix = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.txtCommerceGlobalDbSuffix = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.txtCommSharedDbSuffix = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.txtCoreDbSuffix = new System.Windows.Forms.TextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.txtHttpsString = new System.Windows.Forms.TextBox();
+            this.txtUserPassword = new System.Windows.Forms.TextBox();
+            this.label32 = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabSiteDetails.SuspendLayout();
@@ -339,6 +355,8 @@
             // tabPgSiteInfo
             // 
             this.tabPgSiteInfo.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPgSiteInfo.Controls.Add(this.label31);
+            this.tabPgSiteInfo.Controls.Add(this.txtHttpsString);
             this.tabPgSiteInfo.Controls.Add(this.label14);
             this.tabPgSiteInfo.Controls.Add(this.txtxConnectString);
             this.tabPgSiteInfo.Controls.Add(this.label13);
@@ -358,7 +376,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(14, 148);
+            this.label14.Location = new System.Drawing.Point(14, 143);
             this.label14.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(284, 25);
@@ -367,7 +385,7 @@
             // 
             // txtxConnectString
             // 
-            this.txtxConnectString.Location = new System.Drawing.Point(312, 145);
+            this.txtxConnectString.Location = new System.Drawing.Point(312, 140);
             this.txtxConnectString.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtxConnectString.MaxLength = 50;
             this.txtxConnectString.Name = "txtxConnectString";
@@ -472,7 +490,7 @@
             this.txtCommerceEngineConnectClientId.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtCommerceEngineConnectClientId.MaxLength = 50;
             this.txtCommerceEngineConnectClientId.Name = "txtCommerceEngineConnectClientId";
-            this.txtCommerceEngineConnectClientId.Size = new System.Drawing.Size(887, 31);
+            this.txtCommerceEngineConnectClientId.Size = new System.Drawing.Size(871, 31);
             this.txtCommerceEngineConnectClientId.TabIndex = 5;
             // 
             // txtCommerceEngineConnectClientSecret
@@ -481,7 +499,7 @@
             this.txtCommerceEngineConnectClientSecret.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtCommerceEngineConnectClientSecret.MaxLength = 100;
             this.txtCommerceEngineConnectClientSecret.Name = "txtCommerceEngineConnectClientSecret";
-            this.txtCommerceEngineConnectClientSecret.Size = new System.Drawing.Size(887, 31);
+            this.txtCommerceEngineConnectClientSecret.Size = new System.Drawing.Size(871, 31);
             this.txtCommerceEngineConnectClientSecret.TabIndex = 6;
             this.txtCommerceEngineConnectClientSecret.Leave += new System.EventHandler(this.txtCommerceEngineConnectClientSecret_Leave);
             // 
@@ -518,6 +536,12 @@
             // 
             // tabPgSitecore
             // 
+            this.tabPgSitecore.Controls.Add(this.label23);
+            this.tabPgSitecore.Controls.Add(this.txtCoreDbSuffix);
+            this.tabPgSitecore.Controls.Add(this.label21);
+            this.tabPgSitecore.Controls.Add(this.txtCommSharedDbSuffix);
+            this.tabPgSitecore.Controls.Add(this.label20);
+            this.tabPgSitecore.Controls.Add(this.txtCommerceGlobalDbSuffix);
             this.tabPgSitecore.Controls.Add(this.label10);
             this.tabPgSitecore.Controls.Add(this.label9);
             this.tabPgSitecore.Controls.Add(this.txtSitecoreUserName);
@@ -679,7 +703,7 @@
             this.txtBizFxSitePrefix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtBizFxSitePrefix.MaxLength = 100;
             this.txtBizFxSitePrefix.Name = "txtBizFxSitePrefix";
-            this.txtBizFxSitePrefix.Size = new System.Drawing.Size(849, 31);
+            this.txtBizFxSitePrefix.Size = new System.Drawing.Size(831, 31);
             this.txtBizFxSitePrefix.TabIndex = 36;
             this.txtBizFxSitePrefix.Leave += new System.EventHandler(this.txtBizFxName_Leave);
             // 
@@ -694,6 +718,10 @@
             // 
             // tabPgEnvironments
             // 
+            this.tabPgEnvironments.Controls.Add(this.txtHostSuffix);
+            this.tabPgEnvironments.Controls.Add(this.label18);
+            this.tabPgEnvironments.Controls.Add(this.txtStorefrontHostSuffix);
+            this.tabPgEnvironments.Controls.Add(this.label11);
             this.tabPgEnvironments.Controls.Add(this.txtCommerceDbNameString);
             this.tabPgEnvironments.Controls.Add(this.label12);
             this.tabPgEnvironments.Controls.Add(this.txtEnvironmentPrefix);
@@ -743,6 +771,10 @@
             // 
             // tabPgWinUser
             // 
+            this.tabPgWinUser.Controls.Add(this.txtUserPassword);
+            this.tabPgWinUser.Controls.Add(this.label32);
+            this.tabPgWinUser.Controls.Add(this.txtUserSuffix);
+            this.tabPgWinUser.Controls.Add(this.label19);
             this.tabPgWinUser.Controls.Add(this.txtUserDomain);
             this.tabPgWinUser.Controls.Add(this.label25);
             this.tabPgWinUser.Location = new System.Drawing.Point(8, 39);
@@ -795,7 +827,7 @@
             this.txtBraintreeMerchantId.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtBraintreeMerchantId.MaxLength = 100;
             this.txtBraintreeMerchantId.Name = "txtBraintreeMerchantId";
-            this.txtBraintreeMerchantId.Size = new System.Drawing.Size(878, 31);
+            this.txtBraintreeMerchantId.Size = new System.Drawing.Size(858, 31);
             this.txtBraintreeMerchantId.TabIndex = 42;
             this.txtBraintreeMerchantId.Leave += new System.EventHandler(this.txttxtBraintreeMerchantId_Leave);
             // 
@@ -815,7 +847,7 @@
             this.txtBraintreePublicKey.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtBraintreePublicKey.MaxLength = 100;
             this.txtBraintreePublicKey.Name = "txtBraintreePublicKey";
-            this.txtBraintreePublicKey.Size = new System.Drawing.Size(878, 31);
+            this.txtBraintreePublicKey.Size = new System.Drawing.Size(858, 31);
             this.txtBraintreePublicKey.TabIndex = 43;
             this.txtBraintreePublicKey.Leave += new System.EventHandler(this.txtBraintreePublicKey_Leave);
             // 
@@ -835,7 +867,7 @@
             this.txtBraintreePrivateKey.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtBraintreePrivateKey.MaxLength = 100;
             this.txtBraintreePrivateKey.Name = "txtBraintreePrivateKey";
-            this.txtBraintreePrivateKey.Size = new System.Drawing.Size(878, 31);
+            this.txtBraintreePrivateKey.Size = new System.Drawing.Size(858, 31);
             this.txtBraintreePrivateKey.TabIndex = 44;
             this.txtBraintreePrivateKey.Leave += new System.EventHandler(this.txtBraintreePrivateKey_Leave);
             // 
@@ -865,7 +897,7 @@
             this.txtBraintreeEnvironment.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtBraintreeEnvironment.MaxLength = 100;
             this.txtBraintreeEnvironment.Name = "txtBraintreeEnvironment";
-            this.txtBraintreeEnvironment.Size = new System.Drawing.Size(878, 31);
+            this.txtBraintreeEnvironment.Size = new System.Drawing.Size(858, 31);
             this.txtBraintreeEnvironment.TabIndex = 45;
             this.txtBraintreeEnvironment.Leave += new System.EventHandler(this.txtBraintreeEnvironment_Leave);
             // 
@@ -935,6 +967,158 @@
             this.lblStatus.Size = new System.Drawing.Size(948, 38);
             this.lblStatus.TabIndex = 62;
             this.lblStatus.Text = "Happy Sitecoring!";
+            // 
+            // txtStorefrontHostSuffix
+            // 
+            this.txtStorefrontHostSuffix.Location = new System.Drawing.Point(298, 98);
+            this.txtStorefrontHostSuffix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtStorefrontHostSuffix.MaxLength = 50;
+            this.txtStorefrontHostSuffix.Name = "txtStorefrontHostSuffix";
+            this.txtStorefrontHostSuffix.Size = new System.Drawing.Size(832, 31);
+            this.txtStorefrontHostSuffix.TabIndex = 41;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(10, 101);
+            this.label11.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(204, 25);
+            this.label11.TabIndex = 40;
+            this.label11.Text = "StorefrontHostSuffix";
+            // 
+            // txtHostSuffix
+            // 
+            this.txtHostSuffix.Location = new System.Drawing.Point(298, 137);
+            this.txtHostSuffix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtHostSuffix.MaxLength = 10;
+            this.txtHostSuffix.Name = "txtHostSuffix";
+            this.txtHostSuffix.Size = new System.Drawing.Size(832, 31);
+            this.txtHostSuffix.TabIndex = 43;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(10, 140);
+            this.label18.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(110, 25);
+            this.label18.TabIndex = 42;
+            this.label18.Text = "HostSuffix";
+            // 
+            // txtUserSuffix
+            // 
+            this.txtUserSuffix.Location = new System.Drawing.Point(269, 60);
+            this.txtUserSuffix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtUserSuffix.MaxLength = 50;
+            this.txtUserSuffix.Name = "txtUserSuffix";
+            this.txtUserSuffix.Size = new System.Drawing.Size(862, 31);
+            this.txtUserSuffix.TabIndex = 41;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(10, 64);
+            this.label19.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(117, 25);
+            this.label19.TabIndex = 40;
+            this.label19.Text = "UserSuffix:";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(14, 103);
+            this.label20.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(222, 25);
+            this.label20.TabIndex = 18;
+            this.label20.Text = "CommGlobalDbSuffix:";
+            // 
+            // txtCommerceGlobalDbSuffix
+            // 
+            this.txtCommerceGlobalDbSuffix.Location = new System.Drawing.Point(271, 99);
+            this.txtCommerceGlobalDbSuffix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtCommerceGlobalDbSuffix.MaxLength = 20;
+            this.txtCommerceGlobalDbSuffix.Name = "txtCommerceGlobalDbSuffix";
+            this.txtCommerceGlobalDbSuffix.Size = new System.Drawing.Size(859, 31);
+            this.txtCommerceGlobalDbSuffix.TabIndex = 19;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(14, 142);
+            this.label21.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(229, 25);
+            this.label21.TabIndex = 20;
+            this.label21.Text = "CommSharedDbSuffix:";
+            // 
+            // txtCommSharedDbSuffix
+            // 
+            this.txtCommSharedDbSuffix.Location = new System.Drawing.Point(271, 138);
+            this.txtCommSharedDbSuffix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtCommSharedDbSuffix.MaxLength = 20;
+            this.txtCommSharedDbSuffix.Name = "txtCommSharedDbSuffix";
+            this.txtCommSharedDbSuffix.Size = new System.Drawing.Size(859, 31);
+            this.txtCommSharedDbSuffix.TabIndex = 21;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(14, 181);
+            this.label23.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(145, 25);
+            this.label23.TabIndex = 22;
+            this.label23.Text = "CoreDbSuffix:";
+            // 
+            // txtCoreDbSuffix
+            // 
+            this.txtCoreDbSuffix.Location = new System.Drawing.Point(271, 177);
+            this.txtCoreDbSuffix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtCoreDbSuffix.MaxLength = 15;
+            this.txtCoreDbSuffix.Name = "txtCoreDbSuffix";
+            this.txtCoreDbSuffix.Size = new System.Drawing.Size(859, 31);
+            this.txtCoreDbSuffix.TabIndex = 23;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(14, 182);
+            this.label31.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(124, 25);
+            this.label31.TabIndex = 6;
+            this.label31.Text = "HttpsString:";
+            // 
+            // txtHttpsString
+            // 
+            this.txtHttpsString.Location = new System.Drawing.Point(312, 179);
+            this.txtHttpsString.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtHttpsString.MaxLength = 20;
+            this.txtHttpsString.Name = "txtHttpsString";
+            this.txtHttpsString.Size = new System.Drawing.Size(818, 31);
+            this.txtHttpsString.TabIndex = 7;
+            // 
+            // txtUserPassword
+            // 
+            this.txtUserPassword.Location = new System.Drawing.Point(269, 99);
+            this.txtUserPassword.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtUserPassword.MaxLength = 50;
+            this.txtUserPassword.Name = "txtUserPassword";
+            this.txtUserPassword.Size = new System.Drawing.Size(862, 31);
+            this.txtUserPassword.TabIndex = 43;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(10, 103);
+            this.label32.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(157, 25);
+            this.label32.TabIndex = 42;
+            this.label32.Text = "UserPassword:";
             // 
             // Settings
             // 
@@ -1061,5 +1245,21 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtIdentityServerNameAdditional;
         private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.TextBox txtHostSuffix;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox txtStorefrontHostSuffix;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtUserSuffix;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox txtCommSharedDbSuffix;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox txtCommerceGlobalDbSuffix;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox txtCoreDbSuffix;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.TextBox txtHttpsString;
+        private System.Windows.Forms.TextBox txtUserPassword;
+        private System.Windows.Forms.Label label32;
     }
 }

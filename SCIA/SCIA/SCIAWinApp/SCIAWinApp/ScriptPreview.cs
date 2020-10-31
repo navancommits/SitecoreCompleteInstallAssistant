@@ -225,7 +225,7 @@ namespace SCIA
             file.WriteLine("\t# The environments running the minions service. (This is required, for example, for running indexing minions).");
             file.WriteLine("\t[array]$MinionEnvironments = @(\"AdventureWorksMinions\", \"HabitatMinions\"),");
             file.WriteLine("\t# whether to deploy sample data for each environment.");
-            if (sitedetails.DeploySampleData)
+            if (sitedetails.DeploySampleData=="Y")
             {
                 file.WriteLine("\t[bool]$DeploySampleData = $true,");
             }

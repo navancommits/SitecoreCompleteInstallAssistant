@@ -37,7 +37,6 @@ namespace SCIA
             txtSqlUser.Text = dbServer.Username;
             txtSqlPass.Text = dbServer.Password;
             AssignStepStatus(const_DBConn_Tab);
-            ToggleButtonEnable(false);
 
         }
 
@@ -50,70 +49,86 @@ namespace SCIA
             btnLast.Enabled = state;
         }
 
+        private void LoadDefaultSettingsData()
+        {
+            txtSiteNameSuffix.Text = ".dev.local";
+            txtSitePrefixAdditional.Text = "sc";
+            txtIdentityServerNameAdditional.Text = "identityserver";
+            txtxConnectString.Text = "xconnect";
+            txtCommerceEngineConnectClientId.Text = "CommerceEngineConnect";
+            txtCommerceEngineConnectClientSecret.Text = "fe6g2c5+YBGh5180qjB6N91nKGNn+gvgS0n51ixHnNY=";
+            txtSiteRootDir.Text = "c:\\inetpub\\wwwroot\\";
+            txtSitecoreDomain.Text = "sitecore";
+            txtSitecoreUserName.Text = "admin";
+            txtSearchIndexPrefix.Text = "sitecore";
+            txtRedisHost.Text = "localhost";
+            txtRedisPort.Text = "6379";
+            txtBizFxSitePrefix.Text = "SitecoreBizFx-";
+            txtEnvironmentPrefix.Text = "Habitat";
+            txtCommerceDbNameString.Text = "_SitecoreCommerce_";
+            txtUserDomain.Text = "sitecore";
+            txtBraintreeEnvironment.Text = "sandbox";
+            txtBraintreePrivateKey.Text = string.Empty;
+            txtBraintreePublicKey.Text = string.Empty;
+            txtBraintreeMerchantId.Text = string.Empty;
+            txtCoreDbSuffix.Text= "_Core";
+            txtCommerceGlobalDbSuffix.Text= "Global";
+            txtCommSharedDbSuffix.Text= "SharedEnvironments";
+            txtUserSuffix.Text= "_User";
+            txtStorefrontHostSuffix.Text= ".storefront.com";
+            txtHostSuffix.Text = ".com";
+            txtHttpsString.Text = "https://";
+            txtUserPassword.Text = "q5Y8tA3FRMZf3xKN!";
+        }
+
         private void PopulateSettingsInfo()
         {
             SqlConnection connection;
-            if (CommonFunctions.CheckDatabaseExists("SCIA_DB", dbServer.Server, dbServer.Username, dbServer.Password))
+            if (!dbServer.IsSettingsPresent)
             {
-                using (connection = new SqlConnection(CommonFunctions.BuildConnectionString(dbServer.Server, "SCIA_DB", dbServer.Username, dbServer.Password)))
+                LoadDefaultSettingsData();
+                return;
+            }
+              
+            using (connection = new SqlConnection(CommonFunctions.BuildConnectionString(dbServer.Server, "SCIA_DB", dbServer.Username, dbServer.Password)))
+            {
+                connection.Open();
+                if (CommonFunctions.DbTableExists("Settings", connection))
                 {
-                    connection.Open();
-                    if (CommonFunctions.DbTableExists("Settings", connection))
-                    {
 
-                        SettingsData settingsData = CommonFunctions.GetSettingsData(CommonFunctions.BuildConnectionString(dbServer.Server, "SCIA_DB", dbServer.Username, dbServer.Password));
-
-                        if (settingsData!=null)
-                        {
-                                txtSiteNameSuffix.Text = settingsData.SiteNameSuffix.Trim();
-                                txtSitePrefixAdditional.Text = settingsData.SitePrefixString.Trim();
-                                txtIdentityServerNameAdditional.Text = settingsData.IdentityServerNameString.Trim();
-                                txtxConnectString.Text = settingsData.xConnectServerNameString.Trim();
-                                txtCommerceEngineConnectClientId.Text = settingsData.CommerceEngineConnectClientId.Trim();
-                                txtCommerceEngineConnectClientSecret.Text = settingsData.CommerceEngineConnectClientSecret.Trim();
-                                txtSiteRootDir.Text = settingsData.SiteRootDir.Trim();
-                                txtSitecoreDomain.Text = settingsData.SitecoreDomain.Trim();
-                                txtSitecoreUserName.Text = settingsData.SitecoreUsername.Trim();
-                                txtSearchIndexPrefix.Text = settingsData.SearchIndexPrefix.Trim();
-                                txtRedisHost.Text = settingsData.RedisHost.Trim();
-                                txtRedisPort.Text = settingsData.RedisPort.Trim();
-                                txtBizFxSitePrefix.Text = settingsData.BizFxSitenamePrefix.Trim();
-                                txtEnvironmentPrefix.Text = settingsData.EnvironmentsPrefix.Trim();
-                                txtCommerceDbNameString.Text = settingsData.CommerceDbNameString.Trim();
-                                txtUserDomain.Text = settingsData.UserDomain.Trim();
-                                txtBraintreeEnvironment.Text = settingsData.BraintreeEnvironment.Trim();
-                                txtBraintreePrivateKey.Text = settingsData.BraintreePrivateKey.Trim();
-                                txtBraintreePublicKey.Text = settingsData.BraintreePublicKey.Trim();
-                                txtBraintreeMerchantId.Text = settingsData.BraintreeMerchantId.Trim();
-                           
-                        }
-                        else
-                        {
-                            txtSiteNameSuffix.Text = ".dev.local";
-                            txtSitePrefixAdditional.Text = "sc";
-                            txtIdentityServerNameAdditional.Text = "identityserver";
-                            txtxConnectString.Text ="xconnect";
-                            txtCommerceEngineConnectClientId.Text = "CommerceEngineConnect";
-                            txtCommerceEngineConnectClientSecret.Text = "fe6g2c5+YBGh5180qjB6N91nKGNn+gvgS0n51ixHnNY=";
-                            txtSiteRootDir.Text = "c:\\inetpub\\wwwroot";
-                            txtSitecoreDomain.Text = "sitecore";
-                            txtSitecoreUserName.Text = "admin";
-                            txtSearchIndexPrefix.Text = "sitecore";
-                            txtRedisHost.Text = "localhost";
-                            txtRedisPort.Text = "6379";
-                            txtBizFxSitePrefix.Text = "SitecoreBizFx";
-                            txtEnvironmentPrefix.Text = "Habitat";
-                            txtCommerceDbNameString.Text = "_SitecoreCommerce";
-                            txtUserDomain.Text = "sitecore";
-                            txtBraintreeEnvironment.Text = "sandbox";
-                            txtBraintreePrivateKey.Text = string.Empty;
-                            txtBraintreePublicKey.Text = string.Empty;
-                            txtBraintreeMerchantId.Text = string.Empty;
-                        }
-
-                    }
-
+                    SettingsData settingsData = CommonFunctions.GetSettingsData(CommonFunctions.BuildConnectionString(dbServer.Server, "SCIA_DB", dbServer.Username, dbServer.Password));
+                    if (settingsData == null) { LoadDefaultSettingsData(); return; }
+                       
+                    txtSiteNameSuffix.Text = settingsData.SiteNameSuffix.Trim();
+                    txtSitePrefixAdditional.Text = settingsData.SitePrefixString.Trim();
+                    txtIdentityServerNameAdditional.Text = settingsData.IdentityServerNameString.Trim();
+                    txtxConnectString.Text = settingsData.xConnectServerNameString.Trim();
+                    txtCommerceEngineConnectClientId.Text = settingsData.CommerceEngineConnectClientId.Trim();
+                    txtCommerceEngineConnectClientSecret.Text = settingsData.CommerceEngineConnectClientSecret.Trim();
+                    txtSiteRootDir.Text = settingsData.SiteRootDir.Trim();
+                    txtSitecoreDomain.Text = settingsData.SitecoreDomain.Trim();
+                    txtSitecoreUserName.Text = settingsData.SitecoreUsername.Trim();
+                    txtSearchIndexPrefix.Text = settingsData.SearchIndexPrefix.Trim();
+                    txtRedisHost.Text = settingsData.RedisHost.Trim();
+                    txtRedisPort.Text = settingsData.RedisPort.Trim();
+                    txtBizFxSitePrefix.Text = settingsData.BizFxSitenamePrefix.Trim();
+                    txtEnvironmentPrefix.Text = settingsData.EnvironmentsPrefix.Trim();
+                    txtCommerceDbNameString.Text = settingsData.CommerceDbNameString.Trim();
+                    txtUserDomain.Text = settingsData.UserDomain.Trim();
+                    txtBraintreeEnvironment.Text = settingsData.BraintreeEnvironment.Trim();
+                    txtBraintreePrivateKey.Text = settingsData.BraintreePrivateKey.Trim();
+                    txtBraintreePublicKey.Text = settingsData.BraintreePublicKey.Trim();
+                    txtBraintreeMerchantId.Text = settingsData.BraintreeMerchantId.Trim();
+                    txtCoreDbSuffix.Text = settingsData.CoreDbSuffix;
+                    txtCommerceGlobalDbSuffix.Text = settingsData.CommerceGlobalDbSuffix;
+                    txtCommSharedDbSuffix.Text = settingsData.CommSharedDbSuffix;
+                    txtUserSuffix.Text = settingsData.UserSuffix;
+                    txtStorefrontHostSuffix.Text = settingsData.StorefrontHostSuffix;
+                    txtHostSuffix.Text = settingsData.HostSuffix;
+                    txtHttpsString.Text =settingsData.HttpsString;
+                    txtUserPassword.Text = settingsData.UserPassword;
                 }
+
             }
         }
         private void btnReset_Click(object sender, EventArgs e)
@@ -132,7 +147,6 @@ namespace SCIA
                 btnSave.Enabled = false;
                 SetStatusMessage("Processing....", Color.Orange);
 
-                using TransactionScope scope = new TransactionScope();
                 if (!CommonFunctions.CheckDatabaseExists("SCIA_DB", dbServer.Server, dbServer.Username, dbServer.Password))
                 {
                     connection = CreateDatabase("SCIA_DB");
@@ -143,21 +157,17 @@ namespace SCIA
                     }
                 }
 
-                using (connection = new SqlConnection(CommonFunctions.BuildConnectionString(txtDbServer.Text, "SCIA_DB", txtSqlUser.Text, txtSqlPass.Text)))
-                {
-                    connection.Open();
-                    if (!CommonFunctions.DbTableExists("Settings", connection))
+                using TransactionScope scope = new TransactionScope();
+                    using (connection = new SqlConnection(CommonFunctions.BuildConnectionString(txtDbServer.Text, "SCIA_DB", txtSqlUser.Text, txtSqlPass.Text)))
                     {
-                        CommonFunctions.CreateSettingsTable(connection);
-                    }
+                        connection.Open();
+                        if (!CommonFunctions.DbTableExists("Settings", connection))
+                        {
+                            CommonFunctions.CreateSettingsTable(connection);
+                        }
 
-                    if (!CommonFunctions.DbTableExists("SCIA", connection))
-                    {
-                        CommonFunctions.CreateSCIATable(connection);
+                        SaveSettingsDatatoDBSuccess(connection);
                     }
-
-                    SaveSettingsDatatoDBSuccess(connection);
-                }
 
                 // if all the coperations complete successfully, this would be called and commit the transaction. 
                 // In case of an exception, it wont be called and transaction is rolled back
@@ -184,7 +194,7 @@ namespace SCIA
             try
             {
 
-                var query = "delete from  Settings; INSERT INTO Settings([SiteNameSuffix], [SitePrefixString],[IdentityServerNameString],xConnectServerNameString, CommerceEngineConnectClientId, CommerceEngineConnectClientSecret, SiteRootDir, SitecoreDomain, SitecoreUsername ,SearchIndexPrefix  ,RedisHost  ,RedisPort  ,BizFxSitenamePrefix  ,EnvironmentsPrefix  ,CommerceDbNameString  ,UserDomain , BraintreeMerchantId ,BraintreePublicKey ,BraintreePrivateKey ,BraintreeEnvironment) VALUES (@siteNameSuffix, @siteNamePrefixString,@identityServerNameString,@xConnectServerNameString, @commerceEngineConnectClientId, @commerceEngineConnectClientSecret, @siteRootDir, @sitecoreDomain, @sitecoreUsername ,@searchIndexPrefix  ,@redisHost  ,@redisPort  ,@bizFxSitenamePrefix  ,@environmentsPrefix  ,@commerceDbNameString  ,@userDomain , @braintreeMerchantId ,@braintreePublicKey ,@braintreePrivateKey ,@braintreeEnvironment)";
+                var query = "delete from  Settings; INSERT INTO Settings([SiteNameSuffix], [SitePrefixString],[IdentityServerNameString],xConnectServerNameString, CommerceEngineConnectClientId, CommerceEngineConnectClientSecret, SiteRootDir, SitecoreDomain, SitecoreUsername ,SearchIndexPrefix  ,RedisHost  ,RedisPort  ,BizFxSitenamePrefix  ,EnvironmentsPrefix  ,CommerceDbNameString  ,UserDomain , BraintreeMerchantId ,BraintreePublicKey ,BraintreePrivateKey ,BraintreeEnvironment,CoreDbSuffix,CommerceGlobalDbSuffix,CommSharedDbSuffix,UserSuffix,StorefrontHostSuffix,HostSuffix,HttpsString,UserPassword) VALUES (@siteNameSuffix, @siteNamePrefixString,@identityServerNameString,@xConnectServerNameString, @commerceEngineConnectClientId, @commerceEngineConnectClientSecret, @siteRootDir, @sitecoreDomain, @sitecoreUsername ,@searchIndexPrefix  ,@redisHost  ,@redisPort  ,@bizFxSitenamePrefix  ,@environmentsPrefix  ,@commerceDbNameString  ,@userDomain , @braintreeMerchantId ,@braintreePublicKey ,@braintreePrivateKey ,@braintreeEnvironment,@CoreDbSuffix,@CommerceGlobalDbSuffix,@CommSharedDbSuffix,@UserSuffix,@StorefrontHostSuffix,@HostSuffix,@HttpString,@UserPassword)";
 
                 SqlCommand sqlcommand = new SqlCommand(query, sqlConn);
                 sqlcommand.Parameters.AddWithValue("@siteNameSuffix", txtSiteNameSuffix.Text);
@@ -207,6 +217,14 @@ namespace SCIA
                 sqlcommand.Parameters.AddWithValue("@braintreePublicKey", txtBraintreePublicKey.Text);
                 sqlcommand.Parameters.AddWithValue("@braintreePrivateKey", txtBraintreePrivateKey.Text);
                 sqlcommand.Parameters.AddWithValue("@braintreeEnvironment", txtBraintreeEnvironment.Text);
+                sqlcommand.Parameters.AddWithValue("@CoreDbSuffix", txtCoreDbSuffix.Text);
+                sqlcommand.Parameters.AddWithValue("@CommerceGlobalDbSuffix", txtCommerceGlobalDbSuffix.Text);
+                sqlcommand.Parameters.AddWithValue("@CommSharedDbSuffix", txtCommSharedDbSuffix.Text);
+                sqlcommand.Parameters.AddWithValue("@UserSuffix", txtUserSuffix.Text);
+                sqlcommand.Parameters.AddWithValue("@StorefrontHostSuffix", txtStorefrontHostSuffix.Text);
+                sqlcommand.Parameters.AddWithValue("@HostSuffix", txtHostSuffix.Text);
+                sqlcommand.Parameters.AddWithValue("@HttpString", txtHttpsString.Text);
+                sqlcommand.Parameters.AddWithValue("@UserPassword", txtUserPassword.Text);
 
                 int numberOfInsertedRows = sqlcommand.ExecuteNonQuery();
             }
@@ -533,6 +551,15 @@ namespace SCIA
             if (!ValidateData(txtBraintreePublicKey, "Braintree Public Key", const_Braintree_User_Tab)) return false;
             if (!ValidateData(txtBraintreePrivateKey, "Braintree Private Key", const_Braintree_User_Tab)) return false;
             if (!ValidateData(txtBraintreeEnvironment, "Braintree Environment", const_Braintree_User_Tab)) return false;
+
+            if (!ValidateData(txtHttpsString,"Https String", const_SiteInfo_Tab)) return false;
+            if (!ValidateData(txtCommerceGlobalDbSuffix, "Global Db Suffix",  const_Sitecore_Tab)) return false;
+            if (!ValidateData(txtCommSharedDbSuffix, "Shared Db Suffix", const_Sitecore_Tab)) return false;
+            if (!ValidateData(txtCoreDbSuffix,"Core Db Suffix",  const_Sitecore_Tab)) return false;
+            if (!ValidateData(txtStorefrontHostSuffix, "Storefront Host Suffix", const_Environments_Tab)) return false;
+            if (!ValidateData(txtHostSuffix,"Host Suffix", const_Environments_Tab)) return false;
+            if (!ValidateData(txtUserSuffix,"User Suffix", const_Win_User_Tab)) return false;
+            if (!ValidateData(txtUserPassword,"User Password", const_Win_User_Tab)) return false;
 
             return true;
         }

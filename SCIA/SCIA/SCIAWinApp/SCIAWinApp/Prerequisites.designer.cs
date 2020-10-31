@@ -55,13 +55,15 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.linklabelCoreRuntime = new System.Windows.Forms.LinkLabel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.chkCoreRuntime = new System.Windows.Forms.CheckBox();
+            this.chkRedis = new System.Windows.Forms.CheckBox();
             this.pnlContainer = new System.Windows.Forms.Panel();
             this.label25 = new System.Windows.Forms.Label();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
-            this.chkRedis = new System.Windows.Forms.CheckBox();
-            this.chkCoreRuntime = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel5 = new System.Windows.Forms.LinkLabel();
             this.panel2.SuspendLayout();
             this.pnlContainer.SuspendLayout();
             this.SuspendLayout();
@@ -310,7 +312,7 @@
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.lblStatus.ForeColor = System.Drawing.Color.DarkGreen;
-            this.lblStatus.Location = new System.Drawing.Point(19, 974);
+            this.lblStatus.Location = new System.Drawing.Point(19, 987);
             this.lblStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(220, 32);
@@ -364,6 +366,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.Control;
+            this.panel2.Controls.Add(this.linkLabel5);
             this.panel2.Controls.Add(this.chkCoreRuntime);
             this.panel2.Controls.Add(this.chkRedis);
             this.panel2.Controls.Add(this.chkMsBuild);
@@ -390,6 +393,30 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1648, 479);
             this.panel2.TabIndex = 2;
+            // 
+            // chkCoreRuntime
+            // 
+            this.chkCoreRuntime.AutoSize = true;
+            this.chkCoreRuntime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chkCoreRuntime.Location = new System.Drawing.Point(15, 411);
+            this.chkCoreRuntime.Margin = new System.Windows.Forms.Padding(4);
+            this.chkCoreRuntime.Name = "chkCoreRuntime";
+            this.chkCoreRuntime.Size = new System.Drawing.Size(404, 29);
+            this.chkCoreRuntime.TabIndex = 2;
+            this.chkCoreRuntime.Text = "ASP.NET Core Runtime 3.1.7 or 3.1.8";
+            this.chkCoreRuntime.UseVisualStyleBackColor = false;
+            // 
+            // chkRedis
+            // 
+            this.chkRedis.AutoSize = true;
+            this.chkRedis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chkRedis.Location = new System.Drawing.Point(865, 375);
+            this.chkRedis.Margin = new System.Windows.Forms.Padding(4);
+            this.chkRedis.Name = "chkRedis";
+            this.chkRedis.Size = new System.Drawing.Size(371, 29);
+            this.chkRedis.TabIndex = 1;
+            this.chkRedis.Text = "Redis (Windows): 3.0.5.4 (or later)";
+            this.chkRedis.UseVisualStyleBackColor = false;
             // 
             // pnlContainer
             // 
@@ -436,30 +463,6 @@
     "oads";
             this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
             // 
-            // chkRedis
-            // 
-            this.chkRedis.AutoSize = true;
-            this.chkRedis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.chkRedis.Location = new System.Drawing.Point(865, 375);
-            this.chkRedis.Margin = new System.Windows.Forms.Padding(4);
-            this.chkRedis.Name = "chkRedis";
-            this.chkRedis.Size = new System.Drawing.Size(371, 29);
-            this.chkRedis.TabIndex = 1;
-            this.chkRedis.Text = "Redis (Windows): 3.0.5.4 (or later)";
-            this.chkRedis.UseVisualStyleBackColor = false;
-            // 
-            // chkCoreRuntime
-            // 
-            this.chkCoreRuntime.AutoSize = true;
-            this.chkCoreRuntime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.chkCoreRuntime.Location = new System.Drawing.Point(15, 411);
-            this.chkCoreRuntime.Margin = new System.Windows.Forms.Padding(4);
-            this.chkCoreRuntime.Name = "chkCoreRuntime";
-            this.chkCoreRuntime.Size = new System.Drawing.Size(404, 29);
-            this.chkCoreRuntime.TabIndex = 2;
-            this.chkCoreRuntime.Text = "ASP.NET Core Runtime 3.1.7 or 3.1.8";
-            this.chkCoreRuntime.UseVisualStyleBackColor = false;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -469,12 +472,35 @@
             this.label1.TabIndex = 61;
             this.label1.Text = "Download Links:";
             // 
+            // linkLabel4
+            // 
+            this.linkLabel4.AutoSize = true;
+            this.linkLabel4.Location = new System.Drawing.Point(35, 936);
+            this.linkLabel4.Name = "linkLabel4";
+            this.linkLabel4.Size = new System.Drawing.Size(207, 25);
+            this.linkLabel4.TabIndex = 62;
+            this.linkLabel4.TabStop = true;
+            this.linkLabel4.Text = "7. Braintree Account";
+            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
+            // 
+            // linkLabel5
+            // 
+            this.linkLabel5.AutoSize = true;
+            this.linkLabel5.Location = new System.Drawing.Point(860, 415);
+            this.linkLabel5.Name = "linkLabel5";
+            this.linkLabel5.Size = new System.Drawing.Size(481, 25);
+            this.linkLabel5.TabIndex = 63;
+            this.linkLabel5.TabStop = true;
+            this.linkLabel5.Text = "Check and Install Compatible Powershell Version";
+            this.linkLabel5.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel5_LinkClicked);
+            // 
             // Prerequisites
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Menu;
             this.ClientSize = new System.Drawing.Size(1761, 1028);
+            this.Controls.Add(this.linkLabel4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.linkLabel3);
             this.Controls.Add(this.linkLabel2);
@@ -537,5 +563,7 @@
         private System.Windows.Forms.CheckBox chkCoreRuntime;
         private System.Windows.Forms.CheckBox chkRedis;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.LinkLabel linkLabel4;
+        private System.Windows.Forms.LinkLabel linkLabel5;
     }
 }

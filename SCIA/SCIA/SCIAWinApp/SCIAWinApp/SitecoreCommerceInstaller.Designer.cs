@@ -1831,7 +1831,6 @@
             this.btnScriptPreview.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnScriptPreview.BackgroundImage")));
             this.btnScriptPreview.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnScriptPreview.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnScriptPreview.Enabled = false;
             this.btnScriptPreview.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnScriptPreview.Location = new System.Drawing.Point(483, 155);
             this.btnScriptPreview.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -2041,7 +2040,6 @@
         private System.Windows.Forms.Label lblStepInfo;
         private System.Windows.Forms.Button btnPrevious;
         private System.Windows.Forms.Button btnFirst;
-        private System.Windows.Forms.Button btnLast;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.TabPage tabPgDBConnection;
         private System.Windows.Forms.TextBox txtSqlPass;
@@ -2054,5 +2052,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnScriptPreview;
+        private System.Windows.Forms.Button btnLast;
     }
 }

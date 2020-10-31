@@ -11,6 +11,9 @@ using System.Data.Linq;
 using System.Linq;
 using System.Drawing.Imaging;
 using System.Drawing;
+using System.Reflection;
+using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace SCIA
 {
@@ -33,6 +36,22 @@ namespace SCIA
             {
                 WritetoEventLog("SCIA - Error while checking if Server is Connected - IsServerConnected - " + ex.Message, EventLogEntryType.Error);
                 return false;
+            }
+
+        }
+
+        public static SqlConnection GetConnection(string connectionString)
+        {
+            try
+            {
+                using SqlConnection connection = new SqlConnection(connectionString);
+                connection.Open();
+                return connection;
+            }
+            catch (SqlException ex)
+            {
+                WritetoEventLog("SCIA - Error while checking if Server is Connected - IsServerConnected - " + ex.Message, EventLogEntryType.Error);
+                return null;
             }
 
         }
@@ -142,10 +161,10 @@ namespace SCIA
         public static int CreateSettingsTable(SqlConnection conn)
         {
             if (DbTableExists("dbo.Settings", conn)) return 1;
-            // Open the connection [SiteNameSuffix], [SitePrefixString],[IdentityServerNameAdditional] 
+
             var sql = "CREATE TABLE Settings" +
             "(" +
-            "SiteNameSuffix VARCHAR(50), SitePrefixString VARCHAR(50), IdentityServerNameString VARCHAR(50), xConnectServerNameString VARCHAR(50), CommerceEngineConnectClientId VARCHAR(50), CommerceEngineConnectClientSecret VARCHAR(50), SiteRootDir VARCHAR(100), SitecoreDomain VARCHAR(50), SitecoreUsername VARCHAR(50),SearchIndexPrefix  VARCHAR(50),RedisHost  VARCHAR(50),RedisPort  VARCHAR(10),BizFxSitenamePrefix  VARCHAR(50),EnvironmentsPrefix  VARCHAR(200),CommerceDbNameString  VARCHAR(50),UserDomain VARCHAR(50), BraintreeMerchantId VARCHAR(100),BraintreePublicKey VARCHAR(100),BraintreePrivateKey VARCHAR(100),BraintreeEnvironment VARCHAR(100),created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP)";
+            "SiteNameSuffix VARCHAR(50), SitePrefixString VARCHAR(50), IdentityServerNameString VARCHAR(50), xConnectServerNameString VARCHAR(50), CommerceEngineConnectClientId VARCHAR(50), CommerceEngineConnectClientSecret VARCHAR(50), SiteRootDir VARCHAR(100), SitecoreDomain VARCHAR(50), SitecoreUsername VARCHAR(50),SearchIndexPrefix  VARCHAR(50),RedisHost  VARCHAR(50),RedisPort  VARCHAR(10),BizFxSitenamePrefix  VARCHAR(50),EnvironmentsPrefix  VARCHAR(200),CommerceDbNameString  VARCHAR(50),UserDomain VARCHAR(50), BraintreeMerchantId VARCHAR(100),BraintreePublicKey VARCHAR(100),BraintreePrivateKey VARCHAR(100),BraintreeEnvironment VARCHAR(100),HttpsString varchar(20),CoreDbSuffix varchar(15),CommerceGlobalDbSuffix  varchar(20),CommSharedDbSuffix  varchar(20) ,UserSuffix  varchar(50),StorefrontHostSuffix varchar(50), HostSuffix  varchar(10),UserPassword  varchar(50) ,created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP)";
             SqlCommand cmd = new SqlCommand(sql, conn);
             int success;
             try
@@ -163,13 +182,16 @@ namespace SCIA
             return success;
         }
 
+
+
+
         public static int CreateSCIATable(SqlConnection conn)
         {
             if (DbTableExists("dbo.SCIA", conn)) return 1;
             // Open the connection [SiteNameSuffix], [SitePrefixString],[IdentityServerNameAdditional] 
             var sql = "CREATE TABLE SCIA" +
             "(" +
-            "SiteNameSuffix VARCHAR(50), SitePrefix VARCHAR(50), SiteName VARCHAR(100), IdentityServerSiteName VARCHAR(100), SitecoreIdServerUrl VARCHAR(200), SXASiteInstallDir VARCHAR(200), XConnectInstallDir VARCHAR(200),CommerceInstallRoot  VARCHAR(200), CommerceEngineConnectClientId VARCHAR(50), CommerceEngineConnectClientSecret VARCHAR(100), SiteHostHeaderName VARCHAR(100), SitecoreDomain VARCHAR(50), SitecoreUsername VARCHAR(50),SitecoreUserPassword VARCHAR(20),SearchIndexPrefix  VARCHAR(50),SolrUrl Varchar(200), SolrRoot VARCHAR(200), SolrService Varchar(50),StorefrontIndexPrefix VARCHAR(100),RedisHost  VARCHAR(50),RedisPort  VARCHAR(10),SqlDbPrefix  VARCHAR(50),SitecoreDbServer Varchar(50),SitecoreCoreDbName Varchar(50),SqlUser Varchar(50),SqlPass Varchar(50),CommerceDbServer VARCHAR(100), CommerceDbName Varchar(200),CommerceGlobalDbName Varchar(200),CommerceServicesPostFix Varchar(50),CommerceServicesHostPostFix Varchar(100),CommerceOpsSvcPort smallint, CommerceShopsSvcPort smallint,CommerceAuthSvcPort smallint, CommerceMinionsSvcPort Smallint,BizFxPort SmallInt, BizFxSitename  Varchar(100),EnvironmentsPrefix  VARCHAR(200),DeploySampleData boolean,UserDomain VARCHAR(50),UserName VARCHAR(50), UserPassword varchar(20), BraintreeMerchantId VARCHAR(100),BraintreePublicKey VARCHAR(100),BraintreePrivateKey VARCHAR(100),BraintreeEnvironment VARCHAR(100),created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP)";
+            "SiteNameSuffix VARCHAR(50), SiteNamePrefix  VARCHAR(50), SiteName VARCHAR(100), IDServerSiteName  VARCHAR(100), SitecoreIdentityServerUrl  VARCHAR(200), SXAInstallDir  VARCHAR(200), xConnectInstallDir  VARCHAR(200),CommerceInstallRoot   VARCHAR(200), CommerceEngineConnectClientId VARCHAR(50), CommerceEngineConnectClientSecret VARCHAR(100), SiteHostHeaderName VARCHAR(100), SitecoreDomain VARCHAR(50), SitecoreUsername VARCHAR(50),SitecoreUserPassword VARCHAR(20),SearchIndexPrefix  VARCHAR(50),SolrUrl Varchar(200), SolrRoot VARCHAR(200), SolrService Varchar(50),StorefrontIndexPrefix VARCHAR(100),RedisHost  VARCHAR(50),RedisPort  smallint,SqlDbPrefix  VARCHAR(50),SitecoreDbServer Varchar(50),SitecoreCoreDbName  Varchar(50),SqlUser Varchar(50),SqlPass Varchar(50),CommerceServicesDBServer  VARCHAR(100), CommerceDbName Varchar(200),CommerceGlobalDbName Varchar(200),CommerceSvcPostFix  Varchar(50),CommerceServicesHostPostFix  Varchar(100),CommerceOpsSvcPort smallint, CommerceShopsServicesPort  smallint,CommerceAuthSvcPort smallint, CommerceMinionsSvcPort Smallint,BizFxPort SmallInt, BizFxName  Varchar(100),EnvironmentsPrefix  VARCHAR(200),DeploySampleData varchar(1),UserDomain VARCHAR(50),UserName VARCHAR(50), UserPassword varchar(20), BraintreeMerchantId VARCHAR(100),BraintreePublicKey VARCHAR(100),BraintreePrivateKey VARCHAR(100),BraintreeEnvironment VARCHAR(100),created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP)";
             SqlCommand cmd = new SqlCommand(sql, conn);
             int success;
             try
@@ -227,14 +249,72 @@ namespace SCIA
 
         }
 
-        public static SiteDetails GetSCIAData(string connectionString,string siteName)
+        public static bool CheckPrerequisiteList()
+        {
+                if (!Directory.Exists("..\\msbuild.microsoft.visualstudio.web.targets.14.0.0.3")) { return false; }
+                if (!Directory.Exists("..\\SIF.Sitecore.Commerce.5.0.49")) { return false; }
+                if (!File.Exists("..\\Adventure Works Images.OnPrem.scwdp.zip")) { return false; }
+                if (!File.Exists("..\\Sitecore Commerce Connect Core OnPrem 15.0.26.scwdp.zip")) { return false; }
+                if (!File.Exists("..\\Sitecore Commerce Engine Connect OnPrem 6.0.77.scwdp.zip")) { return false; }
+                if (!File.Exists("..\\Sitecore Commerce Experience Accelerator 5.0.106.scwdp.zip")) { return false; }
+                if (!File.Exists("..\\Sitecore Commerce Experience Accelerator Habitat Catalog 5.0.106.scwdp.zip")) { return false; }
+                if (!File.Exists("..\\Sitecore Commerce Experience Accelerator Storefront 5.0.106.scwdp.zip")) { return false; }
+                if (!File.Exists("..\\Sitecore Commerce Experience Accelerator Storefront Themes 5.0.106.scwdp.zip")) { return false; }
+                if (!File.Exists("..\\Sitecore Commerce ExperienceAnalytics Core OnPrem 15.0.26.scwdp.zip")) { return false; }
+                if (!File.Exists("..\\Sitecore Commerce ExperienceProfile Core OnPrem 15.0.26.scwdp.zip")) { return false; }
+                if (!File.Exists("..\\Sitecore Commerce Marketing Automation Core OnPrem 15.0.26.scwdp.zip")) { return false; }
+                if (!File.Exists("..\\Sitecore Commerce Marketing Automation for AutomationEngine 15.0.26.zip")) { return false; }
+                if (!File.Exists("..\\Sitecore Experience Accelerator 10.0.0.3138.scwdp.zip")) { return false; }
+                if (!File.Exists("..\\Sitecore.BizFx.OnPrem.5.0.12.scwdp.zip")) { return false; }
+                if (!File.Exists("..\\Sitecore.BizFX.SDK.5.0.12.zip")) { return false; }
+                if (!File.Exists("..\\Sitecore.Commerce.Engine.OnPrem.Solr.6.0.238.scwdp.zip")) { return false; }
+                if (!File.Exists("..\\Sitecore.Commerce.Habitat.Images.OnPrem.scwdp.zip")) { return false; }
+                if (!File.Exists("..\\Sitecore.PowerShell.Extensions-6.1.1.scwdp.zip")) { return false; }
+                if ((!Directory.Exists("C:\\Program Files\\dotnet\\shared\\Microsoft.AspNetCore.App\\3.1.8")) && (!Directory.Exists("C:\\Program Files\\dotnet\\shared\\Microsoft.AspNetCore.App\\3.1.7"))) { return false; }
+                if (!Directory.Exists("C:\\Program Files\\Redis")) { return false; }
+
+            return true;
+        }
+
+        public static void LaunchPSScript(string scriptname)
+        {
+            var script = @".\" + scriptname;
+            var startInfo = new ProcessStartInfo()
+            {
+                FileName = @"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe",
+                Arguments = $"-NoProfile -noexit -ExecutionPolicy Bypass \"{script}\"",
+                UseShellExecute = false
+            };
+            Process.Start(startInfo);
+        }
+
+        public static bool SCIARecordExists(string connectionString, string siteName)
+        {
+
+            try
+            {
+                using SqlConnection conn = new SqlConnection(connectionString);
+                conn.Open();
+                SqlCommand comm = new SqlCommand("SELECT COUNT(1) FROM [SCIA] where SiteName='" + siteName + "'", conn);
+                int recCount = (int)comm.ExecuteScalar();
+                if (recCount > 0) { return true; } else { return false; }
+            }
+            catch(Exception ex)
+            {
+                CommonFunctions.WritetoEventLog("Get SCIA Record Count - SQL issues... check server and credential details...." + ex.Message, EventLogEntryType.Error);
+                return false;
+            }
+        }
+
+
+        public static SiteDetails GetSCIAData(string connectionString, string siteName)
         {
             try
             {
                 using var dc = new DataContext(connectionString);
-                var siteData = dc.ExecuteQuery<SiteDetails>(@"select top(1)* FROM [SCIA] where SiteName='" + siteName);
+                var siteData = dc.ExecuteQuery<SiteDetails>(@"select top(1)* FROM [SCIA] where SiteName='" + siteName + "'");
 
-                return siteData.FirstOrDefault();
+                return siteData.First();
             }
 
             catch (SqlException ex)
@@ -358,6 +438,8 @@ namespace SCIA
         public string Username { get; set; }
         public string Password { get; set; }
         public string Server { get; set; }
+
+        public bool IsSettingsPresent { get; set; }
     }
 
-}
+ }
