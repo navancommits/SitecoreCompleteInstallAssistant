@@ -9,6 +9,7 @@ using System.Security.Principal;
 using System.Runtime.Serialization.Json;
 using System.Data.Linq;
 using System.Linq;
+using System.Net.Http;
 using System.Drawing.Imaging;
 using System.Drawing;
 using System.Reflection;
@@ -19,6 +20,7 @@ namespace SCIA
 {
     public static class CommonFunctions
     {
+        private static readonly HttpClient client = new HttpClient();
         /// <summary>
         /// Test that the server is connected
         /// </summary>
@@ -38,6 +40,29 @@ namespace SCIA
                 return false;
             }
 
+        }
+
+        public static void InvokeWebRequest()
+        {
+            var values = new Dictionary<string, string>
+            {
+                { "username", Login.username },
+                { "password", Login.password },
+                { "rememberMe", Login.rememberMe.ToString() }
+            };
+
+            var content = new FormUrlEncodedContent(values);
+
+            var loginResponse = client.PostAsync(Login.requestUrl, content);
+
+            if(loginResponse ==null || loginResponse.Result.StatusCode.ToString()!="OK")
+			{
+                WritetoEventLog("Unable to login to " + Login.requestUrl + "  with the supplied credentials.",  EventLogEntryType.Error);
+                Login.Success=false;
+                return;
+			}
+
+            Login.Success = true;
         }
 
         public static SqlConnection GetConnection(string connectionString)
@@ -276,17 +301,32 @@ namespace SCIA
             return true;
         }
 
-        public static void LaunchPSScript(string scriptname)
+        public static void LaunchPSScript(string scriptname,string workingDirectory=".")
         {
-            var script = @".\" + scriptname;
+            var script = scriptname;
             var startInfo = new ProcessStartInfo()
             {
-                FileName = @"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe",
+                FileName = @"powershell.exe",
+                WorkingDirectory = workingDirectory,
                 Arguments = $"-NoProfile -noexit -ExecutionPolicy Bypass \"{script}\"",
                 UseShellExecute = false
             };
             Process.Start(startInfo);
         }
+
+        public static void LaunchCmdScript(string dockerCmd, string workingDirectory = ".")
+        {
+            var script = dockerCmd;
+            var startInfo = new ProcessStartInfo()
+            {
+                FileName = @"cmd.exe",
+                Arguments = "/user:Administrator \"cmd /K " + script + "\"",
+                WorkingDirectory = workingDirectory,
+                UseShellExecute = false
+            };
+            Process.Start(startInfo);
+        }
+
 
         public static bool SCIARecordExists(string connectionString, string siteName)
         {

@@ -60,6 +60,17 @@ namespace SCIA
         public string UserPassword { get; set; }
     }
 
+    public static class Login
+    {
+        public static string username { get; set; }
+        public static string password { get; set; }
+
+        public static bool rememberMe { get; set; }
+        public static string requestUrl { get; set; }
+        public static bool Success { get; set; }
+    }
+
+
     public class SiteDetailList
     {
         public List<SiteDetails> SiteDetailRecords { get; set; }
@@ -98,8 +109,16 @@ namespace SCIA
         public short CommerceShopsServicesPort { get; set; }
         public short CommerceAuthSvcPort { get; set; }
         public short CommerceMinionsSvcPort { get; set; }
-        public string CommerceSvcPostFix { get; set; }
+        public string IdServerSiteHostName { get; set; }
+        public string SiteHostName { get; set; }
+        public string CommerceOpsSiteHostName { get; set; }
+        public string CommerceShopsSiteHostName { get; set; }
+        public string CommerceAuthSiteHostName { get; set; }
+        public string CommerceMinionsSiteHostName { get; set; }
+        public string BizFxSiteHostName { get; set; }
+        public string HostPostFixforContainer { get; set; }
         public string CommerceServicesHostPostFix { get; set; }
+        public string CommerceSvcPostFix { get; set; }
         public string BizFxName { get; set; }
         public short BizFxPort { get; set; }
         public string EnvironmentsPrefix { get; set; }

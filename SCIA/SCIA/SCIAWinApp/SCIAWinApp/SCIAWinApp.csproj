@@ -74,6 +74,10 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -92,11 +96,47 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonFunctions.cs" />
+    <Compile Include="ContainerPrerequisitesInstaller.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ContainerPrerequisitesInstaller.Designer.cs">
+      <DependentUpon>ContainerPrerequisitesInstaller.cs</DependentUpon>
+    </Compile>
     <Compile Include="DeleteAll.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DeleteAll.designer.cs">
       <DependentUpon>DeleteAll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockerPrerequisites.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockerPrerequisites.Designer.cs">
+      <DependentUpon>DockerPrerequisites.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SdnLoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SdnLoginForm.Designer.cs">
+      <DependentUpon>SdnLoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SiaPrerequisites.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SiaPrerequisites.Designer.cs">
+      <DependentUpon>SiaPrerequisites.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SitecoreCommerceContainerInstaller.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SitecoreCommerceContainerInstaller.Designer.cs">
+      <DependentUpon>SitecoreCommerceContainerInstaller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SitecoreLauncher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SitecoreLauncher.Designer.cs">
+      <DependentUpon>SitecoreLauncher.cs</DependentUpon>
     </Compile>
     <Compile Include="Prerequisites.cs">
       <SubType>Form</SubType>
@@ -130,8 +170,26 @@
       <DependentUpon>SitecoreCommerceInstaller.cs</DependentUpon>
     </Compile>
     <Compile Include="SolrObject.cs" />
+    <EmbeddedResource Include="ContainerPrerequisitesInstaller.resx">
+      <DependentUpon>ContainerPrerequisitesInstaller.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DeleteAll.resx">
       <DependentUpon>DeleteAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockerPrerequisites.resx">
+      <DependentUpon>DockerPrerequisites.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SdnLoginForm.resx">
+      <DependentUpon>SdnLoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SiaPrerequisites.resx">
+      <DependentUpon>SiaPrerequisites.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SitecoreCommerceContainerInstaller.resx">
+      <DependentUpon>SitecoreCommerceContainerInstaller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SitecoreLauncher.resx">
+      <DependentUpon>SitecoreLauncher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Prerequisites.resx">
       <DependentUpon>Prerequisites.cs</DependentUpon>
@@ -149,6 +207,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SitecoreCommerceInstaller.resx">
       <DependentUpon>SitecoreCommerceInstaller.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -167,6 +226,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="sia small.png" />
     <Content Include="sitecorelogomall.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

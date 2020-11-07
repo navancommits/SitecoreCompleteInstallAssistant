@@ -13,7 +13,7 @@ namespace SCIA
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SitecoreCommerceInstaller());
+            Application.Run(new mdiSitecoreComplete());
         }
     }
 }
