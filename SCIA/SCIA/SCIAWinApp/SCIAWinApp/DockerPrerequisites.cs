@@ -1,6 +1,8 @@
 ﻿using System.Drawing;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using Microsoft.Win32;
 
 namespace SCIA
 {
@@ -168,27 +170,37 @@ namespace SCIA
         {
             if (FolderExists(destFolder + "\\Sitecore.Commerce.Container.SDK.1.0.214")) { chkSitecoreCommerceContainer.Checked = true; chkSitecoreCommerceContainer.BackColor = Color.LightGreen; }
             if (FileExists(destFolder + "\\Sitecore.Commerce.Container.SDK.1.0.214\\xc0\\license.xml")) { chkLicenseFile.Checked = true; chkLicenseFile.BackColor = Color.LightGreen; }
-            //if (FileExists(destFolder + ".env")) { chkEnvFile.Checked = true; chkEnvFile.BackColor = Color.LightGreen; }
+           if(WindowsVersionOk()) { chkWindowsEdition.Checked = true; chkWindowsEdition.BackColor = Color.LightGreen; };
             if (FolderExists("c:\\program files\\docker")) { chkDocker.Checked = true; chkDocker.BackColor = Color.LightGreen; }
         }
 
-            private bool FolderExists(string folderPath)
-            {
-                if (Directory.Exists(folderPath)) return true;
-                lblStatus.ForeColor = Color.Red;
-                lblStatus.Text = "One or more missing Pre-requisites: " + folderPath;
-                AllChecked = false;
-                return false;
-            }
+        private bool FolderExists(string folderPath)
+        {
+            if (Directory.Exists(folderPath)) return true;
+            lblStatus.ForeColor = Color.Red;
+            lblStatus.Text = "One or more missing Pre-requisites: " + folderPath;
+            AllChecked = false;
+            return false;
+        }
 
-            private bool FileExists(string filePath)
-            {
-                if (File.Exists(filePath)) return true;
-                lblStatus.ForeColor = Color.Red;
-                lblStatus.Text = "One or more missing Pre-requisites: " + filePath;
-                AllChecked = false;
-                return false;
-            }
+        private bool WindowsVersionOk()
+        {
+            string version = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows NT\CurrentVersion", "ProductName", null);
+            if (version == "Windows 10 Pro" || version == "Windows 10 Enterprise") { return true; }
+            lblStatus.ForeColor = Color.Red;
+            lblStatus.Text = "Windows Edition must be Pro or Enterprise Build >=14372 for Docker Windows";
+            AllChecked = false;
+            return false;
+        }
+
+        private bool FileExists(string filePath)
+        {
+            if (File.Exists(filePath)) return true;
+            lblStatus.ForeColor = Color.Red;
+            lblStatus.Text = "One or more missing Pre-requisites: " + filePath;
+            AllChecked = false;
+            return false;
+        }
 
         private void chkLicenseFile_CheckedChanged(object sender, System.EventArgs e)
         {

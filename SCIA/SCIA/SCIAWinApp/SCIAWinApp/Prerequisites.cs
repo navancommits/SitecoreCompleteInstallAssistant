@@ -71,38 +71,6 @@ namespace SCIA
             return false;
         }
 
-        private string[] _ParseCommonData(string s)
-        {
-            string[] res = new string[3];
-            Regex regex = new Regex(@"\d:\w+\s");
-            int i = 0;
-
-            foreach (Match m in regex.Matches(s))
-            {
-                if (i > 3) return null;
-
-                res[i++] = m.Value.Substring(m.Value.IndexOf(":") + 1).Trim();
-            }
-
-            return res;
-        }
-
-        private string[] _ParseProgressString(string s)
-        {
-            string[] res = new string[4];
-            Regex regex = new Regex(@"\d:\s\d+\s");
-            int i = 0;
-
-            foreach (Match m in regex.Matches(s))
-            {
-                if (i > 4) return null;
-
-                res[i++] = m.Value.Substring(m.Value.IndexOf(":") + 2).Trim();
-            }
-
-            return res;
-        }
-
 
         private void btnInstaller_Click(object sender, EventArgs e)
         {

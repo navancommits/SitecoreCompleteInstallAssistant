@@ -33,7 +33,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.chkLicenseFile = new System.Windows.Forms.CheckBox();
-            this.chkEnvFile = new System.Windows.Forms.CheckBox();
+            this.chkWindowsEdition = new System.Windows.Forms.CheckBox();
             this.linkLabel6 = new System.Windows.Forms.LinkLabel();
             this.chkDocker = new System.Windows.Forms.CheckBox();
             this.chkSitecoreCommerceContainer = new System.Windows.Forms.CheckBox();
@@ -70,7 +70,7 @@
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.Control;
             this.panel2.Controls.Add(this.chkLicenseFile);
-            this.panel2.Controls.Add(this.chkEnvFile);
+            this.panel2.Controls.Add(this.chkWindowsEdition);
             this.panel2.Controls.Add(this.linkLabel6);
             this.panel2.Controls.Add(this.chkDocker);
             this.panel2.Controls.Add(this.chkSitecoreCommerceContainer);
@@ -93,17 +93,17 @@
             this.chkLicenseFile.UseVisualStyleBackColor = false;
             this.chkLicenseFile.CheckedChanged += new System.EventHandler(this.chkLicenseFile_CheckedChanged);
             // 
-            // chkEnvFile
+            // chkWindowsEdition
             // 
-            this.chkEnvFile.AutoSize = true;
-            this.chkEnvFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.chkEnvFile.Location = new System.Drawing.Point(32, 149);
-            this.chkEnvFile.Margin = new System.Windows.Forms.Padding(4);
-            this.chkEnvFile.Name = "chkEnvFile";
-            this.chkEnvFile.Size = new System.Drawing.Size(128, 29);
-            this.chkEnvFile.TabIndex = 65;
-            this.chkEnvFile.Text = ".Env File";
-            this.chkEnvFile.UseVisualStyleBackColor = false;
+            this.chkWindowsEdition.AutoSize = true;
+            this.chkWindowsEdition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chkWindowsEdition.Location = new System.Drawing.Point(32, 149);
+            this.chkWindowsEdition.Margin = new System.Windows.Forms.Padding(4);
+            this.chkWindowsEdition.Name = "chkWindowsEdition";
+            this.chkWindowsEdition.Size = new System.Drawing.Size(383, 29);
+            this.chkWindowsEdition.TabIndex = 65;
+            this.chkWindowsEdition.Text = "Windows 10 Pro or Enterprise Build";
+            this.chkWindowsEdition.UseVisualStyleBackColor = false;
             // 
             // linkLabel6
             // 
@@ -188,7 +188,7 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.CheckBox chkEnvFile;
+        private System.Windows.Forms.CheckBox chkWindowsEdition;
         private System.Windows.Forms.LinkLabel linkLabel6;
         private System.Windows.Forms.CheckBox chkDocker;
         private System.Windows.Forms.CheckBox chkSitecoreCommerceContainer;

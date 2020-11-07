@@ -1596,10 +1596,10 @@
             this.btnGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnGenerate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnGenerate.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnGenerate.Location = new System.Drawing.Point(1007, 690);
+            this.btnGenerate.Location = new System.Drawing.Point(965, 690);
             this.btnGenerate.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(209, 48);
+            this.btnGenerate.Size = new System.Drawing.Size(251, 48);
             this.btnGenerate.TabIndex = 46;
             this.btnGenerate.Text = "Generate Scripts";
             this.btnGenerate.UseVisualStyleBackColor = false;
