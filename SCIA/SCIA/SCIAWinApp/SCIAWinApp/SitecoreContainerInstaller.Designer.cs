@@ -1,6 +1,6 @@
 ﻿namespace SCIA
 {
-    partial class SitecoreCommerceContainerInstaller
+    partial class SitecoreContainerInstaller
     {
         /// <summary>
         /// Required designer variable.
@@ -28,8 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SitecoreCommerceContainerInstaller));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SitecoreContainerInstaller));
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnScriptPreview = new System.Windows.Forms.Button();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.btnValidateAll = new System.Windows.Forms.Button();
+            this.btnDbConn = new System.Windows.Forms.Button();
+            this.btnPrerequisites = new System.Windows.Forms.Button();
+            this.btnUninstall = new System.Windows.Forms.Button();
+            this.btnInstall = new System.Windows.Forms.Button();
+            this.btnGenerate = new System.Windows.Forms.Button();
+            this.label25 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlDetails = new System.Windows.Forms.Panel();
+            this.lblStepStatus = new System.Windows.Forms.Label();
             this.tabDetails = new System.Windows.Forms.TabControl();
             this.tabPgDBConnection = new System.Windows.Forms.TabPage();
             this.txtSqlPass = new System.Windows.Forms.TextBox();
@@ -77,30 +89,15 @@
             this.label44 = new System.Windows.Forms.Label();
             this.txtBraintreeEnvironment = new System.Windows.Forms.TextBox();
             this.label40 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.chkStepsList = new System.Windows.Forms.CheckedListBox();
+            this.lblStepInfo = new System.Windows.Forms.Label();
+            this.btnAppSettings = new System.Windows.Forms.Button();
             this.btnPrevious = new System.Windows.Forms.Button();
             this.btnFirst = new System.Windows.Forms.Button();
             this.btnLast = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label25 = new System.Windows.Forms.Label();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.btnGenerate = new System.Windows.Forms.Button();
-            this.btnInstall = new System.Windows.Forms.Button();
-            this.btnUninstall = new System.Windows.Forms.Button();
-            this.btnPrerequisites = new System.Windows.Forms.Button();
-            this.pnlDetails = new System.Windows.Forms.Panel();
-            this.lblStepStatus = new System.Windows.Forms.Label();
-            this.btnDbConn = new System.Windows.Forms.Button();
-            this.btnValidateAll = new System.Windows.Forms.Button();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.lblStepInfo = new System.Windows.Forms.Label();
-            this.chkStepsList = new System.Windows.Forms.CheckedListBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.btnScriptPreview = new System.Windows.Forms.Button();
-            this.btnAppSettings = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.toolTipCommerceContainer = new System.Windows.Forms.ToolTip(this.components);
+            this.pnlDetails.SuspendLayout();
             this.tabDetails.SuspendLayout();
             this.tabPgDBConnection.SuspendLayout();
             this.tabpgSiteInfo.SuspendLayout();
@@ -108,9 +105,177 @@
             this.tabPgSitecore.SuspendLayout();
             this.tabPgSitecoreDb.SuspendLayout();
             this.tabPgBraintree.SuspendLayout();
-            this.pnlDetails.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // button1
+            // 
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button1.Location = new System.Drawing.Point(298, 158);
+            this.button1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(71, 55);
+            this.button1.TabIndex = 69;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // btnScriptPreview
+            // 
+            this.btnScriptPreview.BackColor = System.Drawing.Color.White;
+            this.btnScriptPreview.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnScriptPreview.BackgroundImage")));
+            this.btnScriptPreview.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnScriptPreview.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnScriptPreview.Enabled = false;
+            this.btnScriptPreview.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnScriptPreview.Location = new System.Drawing.Point(368, 158);
+            this.btnScriptPreview.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.btnScriptPreview.Name = "btnScriptPreview";
+            this.btnScriptPreview.Size = new System.Drawing.Size(72, 55);
+            this.btnScriptPreview.TabIndex = 68;
+            this.btnScriptPreview.UseVisualStyleBackColor = false;
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblStatus.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblStatus.Location = new System.Drawing.Point(27, 755);
+            this.lblStatus.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(1564, 38);
+            this.lblStatus.TabIndex = 67;
+            this.lblStatus.Text = "Happy Sitecoring!";
+            // 
+            // btnValidateAll
+            // 
+            this.btnValidateAll.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnValidateAll.BackgroundImage")));
+            this.btnValidateAll.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnValidateAll.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnValidateAll.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnValidateAll.Location = new System.Drawing.Point(230, 158);
+            this.btnValidateAll.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.btnValidateAll.Name = "btnValidateAll";
+            this.btnValidateAll.Size = new System.Drawing.Size(71, 55);
+            this.btnValidateAll.TabIndex = 62;
+            this.btnValidateAll.UseVisualStyleBackColor = true;
+            // 
+            // btnDbConn
+            // 
+            this.btnDbConn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnDbConn.BackgroundImage")));
+            this.btnDbConn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnDbConn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDbConn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnDbConn.Location = new System.Drawing.Point(159, 158);
+            this.btnDbConn.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.btnDbConn.Name = "btnDbConn";
+            this.btnDbConn.Size = new System.Drawing.Size(71, 55);
+            this.btnDbConn.TabIndex = 63;
+            this.btnDbConn.UseVisualStyleBackColor = true;
+            // 
+            // btnPrerequisites
+            // 
+            this.btnPrerequisites.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPrerequisites.BackgroundImage")));
+            this.btnPrerequisites.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnPrerequisites.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPrerequisites.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPrerequisites.Location = new System.Drawing.Point(94, 158);
+            this.btnPrerequisites.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.btnPrerequisites.Name = "btnPrerequisites";
+            this.btnPrerequisites.Size = new System.Drawing.Size(71, 55);
+            this.btnPrerequisites.TabIndex = 64;
+            this.btnPrerequisites.UseVisualStyleBackColor = true;
+            // 
+            // btnUninstall
+            // 
+            this.btnUninstall.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnUninstall.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUninstall.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnUninstall.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnUninstall.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnUninstall.Location = new System.Drawing.Point(1387, 703);
+            this.btnUninstall.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.btnUninstall.Name = "btnUninstall";
+            this.btnUninstall.Size = new System.Drawing.Size(191, 48);
+            this.btnUninstall.TabIndex = 65;
+            this.btnUninstall.Text = "Docker Down";
+            this.btnUninstall.UseVisualStyleBackColor = false;
+            // 
+            // btnInstall
+            // 
+            this.btnInstall.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnInstall.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInstall.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnInstall.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnInstall.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnInstall.Location = new System.Drawing.Point(1197, 703);
+            this.btnInstall.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.btnInstall.Name = "btnInstall";
+            this.btnInstall.Size = new System.Drawing.Size(180, 48);
+            this.btnInstall.TabIndex = 61;
+            this.btnInstall.Text = "Docker Up";
+            this.btnInstall.UseVisualStyleBackColor = false;
+            // 
+            // btnGenerate
+            // 
+            this.btnGenerate.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnGenerate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnGenerate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnGenerate.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnGenerate.Location = new System.Drawing.Point(922, 703);
+            this.btnGenerate.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.btnGenerate.Name = "btnGenerate";
+            this.btnGenerate.Size = new System.Drawing.Size(265, 48);
+            this.btnGenerate.TabIndex = 60;
+            this.btnGenerate.Text = "Generate .env file";
+            this.btnGenerate.UseVisualStyleBackColor = false;
+            this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
+            // 
+            // label25
+            // 
+            this.label25.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label25.Font = new System.Drawing.Font("Segoe UI", 18F);
+            this.label25.Location = new System.Drawing.Point(189, 23);
+            this.label25.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(1402, 115);
+            this.label25.TabIndex = 59;
+            this.label25.Text = "Sitecore Container Installer";
+            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel1.Location = new System.Drawing.Point(22, 20);
+            this.panel1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(158, 119);
+            this.panel1.TabIndex = 58;
+            // 
+            // pnlDetails
+            // 
+            this.pnlDetails.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pnlDetails.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlDetails.Controls.Add(this.lblStepStatus);
+            this.pnlDetails.Controls.Add(this.tabDetails);
+            this.pnlDetails.Location = new System.Drawing.Point(25, 231);
+            this.pnlDetails.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.pnlDetails.Name = "pnlDetails";
+            this.pnlDetails.Size = new System.Drawing.Size(1211, 422);
+            this.pnlDetails.TabIndex = 66;
+            // 
+            // lblStepStatus
+            // 
+            this.lblStepStatus.AutoSize = true;
+            this.lblStepStatus.Location = new System.Drawing.Point(1037, -98);
+            this.lblStepStatus.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblStepStatus.Name = "lblStepStatus";
+            this.lblStepStatus.Size = new System.Drawing.Size(123, 25);
+            this.lblStepStatus.TabIndex = 47;
+            this.lblStepStatus.Text = "Step Status";
             // 
             // tabDetails
             // 
@@ -152,11 +317,7 @@
             this.txtSqlPass.Name = "txtSqlPass";
             this.txtSqlPass.Size = new System.Drawing.Size(866, 31);
             this.txtSqlPass.TabIndex = 15;
-            this.toolTipCommerceContainer.SetToolTip(this.txtSqlPass, "Enter just the password and click on DB Connection Check button to go to next tab" +
-        "");
             this.txtSqlPass.UseSystemPasswordChar = true;
-            this.txtSqlPass.TextChanged += new System.EventHandler(this.txtSqlPass_TextChanged);
-            this.txtSqlPass.Leave += new System.EventHandler(this.txtSqlPass_Leave);
             // 
             // label49
             // 
@@ -178,8 +339,6 @@
             this.txtSqlUser.Size = new System.Drawing.Size(866, 31);
             this.txtSqlUser.TabIndex = 14;
             this.txtSqlUser.Text = "sa";
-            this.txtSqlUser.TextChanged += new System.EventHandler(this.txtSqlUser_TextChanged);
-            this.txtSqlUser.Leave += new System.EventHandler(this.txtSqlUser_Leave);
             // 
             // label48
             // 
@@ -201,8 +360,6 @@
             this.txtSqlDbServer.Size = new System.Drawing.Size(866, 31);
             this.txtSqlDbServer.TabIndex = 12;
             this.txtSqlDbServer.Text = "(local)";
-            this.txtSqlDbServer.TextChanged += new System.EventHandler(this.txtSqlDbServer_TextChanged);
-            this.txtSqlDbServer.Leave += new System.EventHandler(this.txtSitecoreDbServer_Leave);
             // 
             // label1
             // 
@@ -278,8 +435,6 @@
             this.txtSiteNameSuffix.Name = "txtSiteNameSuffix";
             this.txtSiteNameSuffix.Size = new System.Drawing.Size(878, 31);
             this.txtSiteNameSuffix.TabIndex = 1;
-            this.txtSiteNameSuffix.TextChanged += new System.EventHandler(this.txtSiteNameSuffix_TextChanged);
-            this.txtSiteNameSuffix.Leave += new System.EventHandler(this.txtSiteNameSuffix_Leave);
             // 
             // label22
             // 
@@ -299,9 +454,6 @@
             this.txtSiteNamePrefix.Name = "txtSiteNamePrefix";
             this.txtSiteNamePrefix.Size = new System.Drawing.Size(878, 31);
             this.txtSiteNamePrefix.TabIndex = 1;
-            this.toolTipCommerceContainer.SetToolTip(this.txtSiteNamePrefix, "Enter just the site prefix and click the Next button in the menu bar");
-            this.txtSiteNamePrefix.TextChanged += new System.EventHandler(this.txtSiteNamePrefix_TextChanged);
-            this.txtSiteNamePrefix.Leave += new System.EventHandler(this.txtSiteNamePrefix_Leave);
             // 
             // txtSiteName
             // 
@@ -312,8 +464,6 @@
             this.txtSiteName.Size = new System.Drawing.Size(878, 31);
             this.txtSiteName.TabIndex = 2;
             this.txtSiteName.Text = "scom10sxa.dev.local";
-            this.txtSiteName.TextChanged += new System.EventHandler(this.txtSiteName_TextChanged);
-            this.txtSiteName.Leave += new System.EventHandler(this.txtSiteName_Leave);
             // 
             // tabPgCommerceSiteInfo
             // 
@@ -465,7 +615,6 @@
             this.txtSitecoreUserPassword.TabIndex = 18;
             this.txtSitecoreUserPassword.Text = "b";
             this.txtSitecoreUserPassword.UseSystemPasswordChar = true;
-            this.txtSitecoreUserPassword.Leave += new System.EventHandler(this.txtSitecoreUserPassword_Leave);
             // 
             // txtSitecoreUsername
             // 
@@ -476,7 +625,6 @@
             this.txtSitecoreUsername.Name = "txtSitecoreUsername";
             this.txtSitecoreUsername.Size = new System.Drawing.Size(871, 31);
             this.txtSitecoreUsername.TabIndex = 17;
-            this.txtSitecoreUsername.Leave += new System.EventHandler(this.txtSitecoreUsername_Leave);
             // 
             // label15
             // 
@@ -521,7 +669,6 @@
             this.txtSitecoreSqlPass.Size = new System.Drawing.Size(870, 31);
             this.txtSitecoreSqlPass.TabIndex = 15;
             this.txtSitecoreSqlPass.UseSystemPasswordChar = true;
-            this.txtSitecoreSqlPass.Leave += new System.EventHandler(this.txtSqlPass_Leave);
             // 
             // txtSitecoreSqlUser
             // 
@@ -533,7 +680,6 @@
             this.txtSitecoreSqlUser.Size = new System.Drawing.Size(870, 31);
             this.txtSitecoreSqlUser.TabIndex = 14;
             this.txtSitecoreSqlUser.Text = "sa";
-            this.txtSitecoreSqlUser.Leave += new System.EventHandler(this.txtSqlUser_Leave);
             // 
             // label12
             // 
@@ -580,7 +726,6 @@
             this.txttxtBraintreeMerchantId.Name = "txttxtBraintreeMerchantId";
             this.txttxtBraintreeMerchantId.Size = new System.Drawing.Size(858, 31);
             this.txttxtBraintreeMerchantId.TabIndex = 42;
-            this.txttxtBraintreeMerchantId.Leave += new System.EventHandler(this.txttxtBraintreeMerchantId_Leave);
             // 
             // label45
             // 
@@ -600,7 +745,6 @@
             this.txtBraintreePublicKey.Name = "txtBraintreePublicKey";
             this.txtBraintreePublicKey.Size = new System.Drawing.Size(858, 31);
             this.txtBraintreePublicKey.TabIndex = 43;
-            this.txtBraintreePublicKey.Leave += new System.EventHandler(this.txtBraintreePublicKey_Leave);
             // 
             // txtBraintreePrivateKey
             // 
@@ -611,7 +755,6 @@
             this.txtBraintreePrivateKey.Size = new System.Drawing.Size(858, 31);
             this.txtBraintreePrivateKey.TabIndex = 44;
             this.txtBraintreePrivateKey.UseSystemPasswordChar = true;
-            this.txtBraintreePrivateKey.Leave += new System.EventHandler(this.txtBraintreePrivateKey_Leave);
             // 
             // label44
             // 
@@ -631,7 +774,6 @@
             this.txtBraintreeEnvironment.Name = "txtBraintreeEnvironment";
             this.txtBraintreeEnvironment.Size = new System.Drawing.Size(858, 31);
             this.txtBraintreeEnvironment.TabIndex = 45;
-            this.txtBraintreeEnvironment.Leave += new System.EventHandler(this.txtBraintreeEnvironment_Leave);
             // 
             // label40
             // 
@@ -643,251 +785,16 @@
             this.label40.TabIndex = 0;
             this.label40.Text = "BraintreeEnvironment:";
             // 
-            // btnPrevious
+            // panel2
             // 
-            this.btnPrevious.BackColor = System.Drawing.Color.White;
-            this.btnPrevious.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPrevious.BackgroundImage")));
-            this.btnPrevious.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnPrevious.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPrevious.Location = new System.Drawing.Point(500, 146);
-            this.btnPrevious.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(72, 55);
-            this.btnPrevious.TabIndex = 48;
-            this.toolTipCommerceContainer.SetToolTip(this.btnPrevious, "Go to Previous Tab");
-            this.btnPrevious.UseVisualStyleBackColor = false;
-            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
-            // 
-            // btnFirst
-            // 
-            this.btnFirst.BackColor = System.Drawing.Color.White;
-            this.btnFirst.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFirst.BackgroundImage")));
-            this.btnFirst.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnFirst.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFirst.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnFirst.Location = new System.Drawing.Point(435, 146);
-            this.btnFirst.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.btnFirst.Name = "btnFirst";
-            this.btnFirst.Size = new System.Drawing.Size(72, 55);
-            this.btnFirst.TabIndex = 48;
-            this.toolTipCommerceContainer.SetToolTip(this.btnFirst, "Go to First Tab");
-            this.btnFirst.UseVisualStyleBackColor = false;
-            this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
-            // 
-            // btnLast
-            // 
-            this.btnLast.BackColor = System.Drawing.Color.White;
-            this.btnLast.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnLast.BackgroundImage")));
-            this.btnLast.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnLast.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLast.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnLast.Location = new System.Drawing.Point(631, 146);
-            this.btnLast.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.btnLast.Name = "btnLast";
-            this.btnLast.Size = new System.Drawing.Size(72, 55);
-            this.btnLast.TabIndex = 48;
-            this.toolTipCommerceContainer.SetToolTip(this.btnLast, "Go to Last Tab");
-            this.btnLast.UseVisualStyleBackColor = false;
-            this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
-            // 
-            // btnNext
-            // 
-            this.btnNext.BackColor = System.Drawing.Color.White;
-            this.btnNext.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnNext.BackgroundImage")));
-            this.btnNext.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnNext.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNext.Location = new System.Drawing.Point(567, 146);
-            this.btnNext.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(72, 55);
-            this.btnNext.TabIndex = 48;
-            this.toolTipCommerceContainer.SetToolTip(this.btnNext, "Go to Next Tab");
-            this.btnNext.UseVisualStyleBackColor = false;
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(16, 130);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(768, 181);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Solr";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel1.Location = new System.Drawing.Point(18, 8);
-            this.panel1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(158, 119);
-            this.panel1.TabIndex = 5;
-            // 
-            // label25
-            // 
-            this.label25.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label25.Font = new System.Drawing.Font("Segoe UI", 18F);
-            this.label25.Location = new System.Drawing.Point(185, 11);
-            this.label25.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(1402, 115);
-            this.label25.TabIndex = 8;
-            this.label25.Text = "Sitecore Commerce Container Installer";
-            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // btnGenerate
-            // 
-            this.btnGenerate.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnGenerate.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnGenerate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.btnGenerate.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnGenerate.Location = new System.Drawing.Point(918, 691);
-            this.btnGenerate.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(265, 48);
-            this.btnGenerate.TabIndex = 46;
-            this.btnGenerate.Text = "Generate .env file";
-            this.toolTipCommerceContainer.SetToolTip(this.btnGenerate, "Generates .env file necessary for Docker Compose");
-            this.btnGenerate.UseVisualStyleBackColor = false;
-            this.btnGenerate.EnabledChanged += new System.EventHandler(this.btnGenerate_EnabledChanged);
-            this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
-            this.btnGenerate.MouseHover += new System.EventHandler(this.btnGenerate_MouseHover);
-            // 
-            // btnInstall
-            // 
-            this.btnInstall.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnInstall.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnInstall.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnInstall.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.btnInstall.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnInstall.Location = new System.Drawing.Point(1193, 691);
-            this.btnInstall.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.btnInstall.Name = "btnInstall";
-            this.btnInstall.Size = new System.Drawing.Size(180, 48);
-            this.btnInstall.TabIndex = 47;
-            this.btnInstall.Text = "Docker Up";
-            this.toolTipCommerceContainer.SetToolTip(this.btnInstall, "Launches Docker-Compose Up through cmd window");
-            this.btnInstall.UseVisualStyleBackColor = false;
-            this.btnInstall.EnabledChanged += new System.EventHandler(this.btnInstall_EnabledChanged);
-            this.btnInstall.Click += new System.EventHandler(this.btnInstall_Click);
-            // 
-            // btnUninstall
-            // 
-            this.btnUninstall.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnUninstall.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnUninstall.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnUninstall.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.btnUninstall.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnUninstall.Location = new System.Drawing.Point(1383, 691);
-            this.btnUninstall.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.btnUninstall.Name = "btnUninstall";
-            this.btnUninstall.Size = new System.Drawing.Size(191, 48);
-            this.btnUninstall.TabIndex = 48;
-            this.btnUninstall.Text = "Docker Down";
-            this.toolTipCommerceContainer.SetToolTip(this.btnUninstall, "Launches docker-compose down through cmd window");
-            this.btnUninstall.UseVisualStyleBackColor = false;
-            this.btnUninstall.EnabledChanged += new System.EventHandler(this.btnUninstall_EnabledChanged);
-            this.btnUninstall.Click += new System.EventHandler(this.btnUninstall_Click);
-            // 
-            // btnPrerequisites
-            // 
-            this.btnPrerequisites.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPrerequisites.BackgroundImage")));
-            this.btnPrerequisites.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnPrerequisites.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPrerequisites.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPrerequisites.Location = new System.Drawing.Point(90, 146);
-            this.btnPrerequisites.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.btnPrerequisites.Name = "btnPrerequisites";
-            this.btnPrerequisites.Size = new System.Drawing.Size(71, 55);
-            this.btnPrerequisites.TabIndex = 48;
-            this.toolTipCommerceContainer.SetToolTip(this.btnPrerequisites, "Show Prerequisites");
-            this.btnPrerequisites.UseVisualStyleBackColor = true;
-            this.btnPrerequisites.Click += new System.EventHandler(this.btnPrerequisites_Click);
-            // 
-            // pnlDetails
-            // 
-            this.pnlDetails.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pnlDetails.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnlDetails.Controls.Add(this.lblStepStatus);
-            this.pnlDetails.Controls.Add(this.tabDetails);
-            this.pnlDetails.Location = new System.Drawing.Point(21, 228);
-            this.pnlDetails.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.pnlDetails.Name = "pnlDetails";
-            this.pnlDetails.Size = new System.Drawing.Size(1211, 413);
-            this.pnlDetails.TabIndex = 51;
-            // 
-            // lblStepStatus
-            // 
-            this.lblStepStatus.AutoSize = true;
-            this.lblStepStatus.Location = new System.Drawing.Point(1037, -98);
-            this.lblStepStatus.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblStepStatus.Name = "lblStepStatus";
-            this.lblStepStatus.Size = new System.Drawing.Size(123, 25);
-            this.lblStepStatus.TabIndex = 47;
-            this.lblStepStatus.Text = "Step Status";
-            // 
-            // btnDbConn
-            // 
-            this.btnDbConn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnDbConn.BackgroundImage")));
-            this.btnDbConn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnDbConn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDbConn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnDbConn.Location = new System.Drawing.Point(155, 146);
-            this.btnDbConn.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.btnDbConn.Name = "btnDbConn";
-            this.btnDbConn.Size = new System.Drawing.Size(71, 55);
-            this.btnDbConn.TabIndex = 48;
-            this.toolTipCommerceContainer.SetToolTip(this.btnDbConn, "DB Connection Check");
-            this.btnDbConn.UseVisualStyleBackColor = true;
-            this.btnDbConn.Click += new System.EventHandler(this.btnDbConn_Click);
-            // 
-            // btnValidateAll
-            // 
-            this.btnValidateAll.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnValidateAll.BackgroundImage")));
-            this.btnValidateAll.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnValidateAll.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnValidateAll.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnValidateAll.Location = new System.Drawing.Point(226, 146);
-            this.btnValidateAll.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.btnValidateAll.Name = "btnValidateAll";
-            this.btnValidateAll.Size = new System.Drawing.Size(71, 55);
-            this.btnValidateAll.TabIndex = 48;
-            this.toolTipCommerceContainer.SetToolTip(this.btnValidateAll, "Validates All Fields and opens up the Generate and Docker buttons below");
-            this.btnValidateAll.UseVisualStyleBackColor = true;
-            this.btnValidateAll.Click += new System.EventHandler(this.btnValidateAll_Click);
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.lblStatus.ForeColor = System.Drawing.Color.DarkGreen;
-            this.lblStatus.Location = new System.Drawing.Point(23, 743);
-            this.lblStatus.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(1564, 38);
-            this.lblStatus.TabIndex = 52;
-            this.lblStatus.Text = "Happy Sitecoring!";
-            // 
-            // lblStepInfo
-            // 
-            this.lblStepInfo.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold);
-            this.lblStepInfo.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lblStepInfo.Location = new System.Drawing.Point(1154, 170);
-            this.lblStepInfo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblStepInfo.Name = "lblStepInfo";
-            this.lblStepInfo.Size = new System.Drawing.Size(408, 40);
-            this.lblStepInfo.TabIndex = 52;
-            this.lblStepInfo.Text = "Step 1 of 6: DB Connection";
-            this.lblStepInfo.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.chkStepsList);
+            this.panel2.Location = new System.Drawing.Point(1243, 231);
+            this.panel2.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(344, 422);
+            this.panel2.TabIndex = 71;
             // 
             // chkStepsList
             // 
@@ -902,41 +809,23 @@
             "Sitecore ",
             "Sitecore DB",
             "Braintree"});
-            this.chkStepsList.Location = new System.Drawing.Point(5, -2);
+            this.chkStepsList.Location = new System.Drawing.Point(5, 4);
             this.chkStepsList.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.chkStepsList.Name = "chkStepsList";
             this.chkStepsList.Size = new System.Drawing.Size(290, 396);
             this.chkStepsList.TabIndex = 53;
-            this.chkStepsList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.chkStepsList_ItemCheck);
-            this.chkStepsList.Click += new System.EventHandler(this.chkStepsList_Click);
-            this.chkStepsList.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
-            // panel2
+            // lblStepInfo
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Controls.Add(this.chkStepsList);
-            this.panel2.Location = new System.Drawing.Point(1243, 228);
-            this.panel2.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(344, 413);
-            this.panel2.TabIndex = 54;
-            // 
-            // btnScriptPreview
-            // 
-            this.btnScriptPreview.BackColor = System.Drawing.Color.White;
-            this.btnScriptPreview.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnScriptPreview.BackgroundImage")));
-            this.btnScriptPreview.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnScriptPreview.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnScriptPreview.Enabled = false;
-            this.btnScriptPreview.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnScriptPreview.Location = new System.Drawing.Point(364, 146);
-            this.btnScriptPreview.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.btnScriptPreview.Name = "btnScriptPreview";
-            this.btnScriptPreview.Size = new System.Drawing.Size(72, 55);
-            this.btnScriptPreview.TabIndex = 55;
-            this.btnScriptPreview.UseVisualStyleBackColor = false;
-            this.btnScriptPreview.Click += new System.EventHandler(this.btnScriptPreview_Click);
+            this.lblStepInfo.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold);
+            this.lblStepInfo.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lblStepInfo.Location = new System.Drawing.Point(1154, 173);
+            this.lblStepInfo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblStepInfo.Name = "lblStepInfo";
+            this.lblStepInfo.Size = new System.Drawing.Size(408, 40);
+            this.lblStepInfo.TabIndex = 70;
+            this.lblStepInfo.Text = "Step 1 of 6: DB Connection";
+            this.lblStepInfo.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // btnAppSettings
             // 
@@ -944,47 +833,84 @@
             this.btnAppSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnAppSettings.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAppSettings.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAppSettings.Location = new System.Drawing.Point(21, 146);
+            this.btnAppSettings.Location = new System.Drawing.Point(22, 158);
             this.btnAppSettings.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnAppSettings.Name = "btnAppSettings";
-            this.btnAppSettings.Size = new System.Drawing.Size(71, 55);
-            this.btnAppSettings.TabIndex = 56;
-            this.toolTipCommerceContainer.SetToolTip(this.btnAppSettings, "Launch Settings Form");
+            this.btnAppSettings.Size = new System.Drawing.Size(70, 55);
+            this.btnAppSettings.TabIndex = 72;
             this.btnAppSettings.UseVisualStyleBackColor = true;
-            this.btnAppSettings.Click += new System.EventHandler(this.btnAppSettings_Click_1);
             // 
-            // button1
+            // btnPrevious
             // 
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Location = new System.Drawing.Point(294, 146);
-            this.button1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(71, 55);
-            this.button1.TabIndex = 57;
-            this.toolTipCommerceContainer.SetToolTip(this.button1, "Launches Clear Container Cache Powershell Script");
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnPrevious.BackColor = System.Drawing.Color.White;
+            this.btnPrevious.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPrevious.BackgroundImage")));
+            this.btnPrevious.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnPrevious.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPrevious.Location = new System.Drawing.Point(506, 158);
+            this.btnPrevious.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.btnPrevious.Name = "btnPrevious";
+            this.btnPrevious.Size = new System.Drawing.Size(72, 55);
+            this.btnPrevious.TabIndex = 73;
+            this.btnPrevious.UseVisualStyleBackColor = false;
             // 
-            // SitecoreCommerceContainerInstaller
+            // btnFirst
+            // 
+            this.btnFirst.BackColor = System.Drawing.Color.White;
+            this.btnFirst.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFirst.BackgroundImage")));
+            this.btnFirst.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnFirst.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFirst.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnFirst.Location = new System.Drawing.Point(441, 158);
+            this.btnFirst.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.btnFirst.Name = "btnFirst";
+            this.btnFirst.Size = new System.Drawing.Size(72, 55);
+            this.btnFirst.TabIndex = 74;
+            this.btnFirst.UseVisualStyleBackColor = false;
+            // 
+            // btnLast
+            // 
+            this.btnLast.BackColor = System.Drawing.Color.White;
+            this.btnLast.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnLast.BackgroundImage")));
+            this.btnLast.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnLast.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLast.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnLast.Location = new System.Drawing.Point(637, 158);
+            this.btnLast.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.btnLast.Name = "btnLast";
+            this.btnLast.Size = new System.Drawing.Size(72, 55);
+            this.btnLast.TabIndex = 75;
+            this.btnLast.UseVisualStyleBackColor = false;
+            // 
+            // btnNext
+            // 
+            this.btnNext.BackColor = System.Drawing.Color.White;
+            this.btnNext.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnNext.BackgroundImage")));
+            this.btnNext.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnNext.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnNext.Location = new System.Drawing.Point(573, 158);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(72, 55);
+            this.btnNext.TabIndex = 76;
+            this.btnNext.UseVisualStyleBackColor = false;
+            // 
+            // SitecoreContainerInstaller
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Menu;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(1609, 790);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.btnAppSettings);
-            this.Controls.Add(this.btnScriptPreview);
-            this.Controls.Add(this.panel2);
+            this.ClientSize = new System.Drawing.Size(1605, 805);
             this.Controls.Add(this.btnPrevious);
-            this.Controls.Add(this.lblStepInfo);
             this.Controls.Add(this.btnFirst);
-            this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnLast);
             this.Controls.Add(this.btnNext);
+            this.Controls.Add(this.btnAppSettings);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.lblStepInfo);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnScriptPreview);
+            this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnValidateAll);
             this.Controls.Add(this.btnDbConn);
             this.Controls.Add(this.btnPrerequisites);
@@ -994,13 +920,11 @@
             this.Controls.Add(this.label25);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlDetails);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.MaximizeBox = false;
-            this.Name = "SitecoreCommerceContainerInstaller";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SCIA - Commerce Container Installer ";
+            this.Name = "SitecoreContainerInstaller";
+            this.Text = "SCIA - Sitecore Container Installer";
+            this.pnlDetails.ResumeLayout(false);
+            this.pnlDetails.PerformLayout();
             this.tabDetails.ResumeLayout(false);
             this.tabPgDBConnection.ResumeLayout(false);
             this.tabPgDBConnection.PerformLayout();
@@ -1014,59 +938,27 @@
             this.tabPgSitecoreDb.PerformLayout();
             this.tabPgBraintree.ResumeLayout(false);
             this.tabPgBraintree.PerformLayout();
-            this.pnlDetails.ResumeLayout(false);
-            this.pnlDetails.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.TabControl tabDetails;
-        private System.Windows.Forms.TabPage tabPgCommerceSiteInfo;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPgSitecoreDb;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox txtSitecoreSqlPass;
-        private System.Windows.Forms.TextBox txtSitecoreSqlUser;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TabPage tabPgSitecore;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox txtSitecoreUserPassword;
-        private System.Windows.Forms.TextBox txtSitecoreUsername;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TabPage tabPgBraintree;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.TextBox txttxtBraintreeMerchantId;
-        private System.Windows.Forms.Label label45;
-        private System.Windows.Forms.TextBox txtBraintreePublicKey;
-        private System.Windows.Forms.TextBox txtBraintreePrivateKey;
-        private System.Windows.Forms.Label label44;
-        private System.Windows.Forms.TextBox txtBraintreeEnvironment;
-        private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Button btnGenerate;
-        private System.Windows.Forms.Button btnInstall;
-        private System.Windows.Forms.Button btnUninstall;
-        private System.Windows.Forms.TabPage tabpgSiteInfo;
-        private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.TextBox txtSiteNameSuffix;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.TextBox txtSiteNamePrefix;
-        private System.Windows.Forms.TextBox txtSiteName;
-        private System.Windows.Forms.Button btnPrerequisites;
-        private System.Windows.Forms.Panel pnlDetails;
-        private System.Windows.Forms.Button btnDbConn;
-        private System.Windows.Forms.Button btnValidateAll;
-        private System.Windows.Forms.Label lblStepStatus;
+
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnScriptPreview;
         private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.Label lblStepInfo;
-        private System.Windows.Forms.Button btnPrevious;
-        private System.Windows.Forms.Button btnFirst;
-        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Button btnValidateAll;
+        private System.Windows.Forms.Button btnDbConn;
+        private System.Windows.Forms.Button btnPrerequisites;
+        private System.Windows.Forms.Button btnUninstall;
+        private System.Windows.Forms.Button btnInstall;
+        private System.Windows.Forms.Button btnGenerate;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlDetails;
+        private System.Windows.Forms.Label lblStepStatus;
+        private System.Windows.Forms.TabControl tabDetails;
         private System.Windows.Forms.TabPage tabPgDBConnection;
         private System.Windows.Forms.TextBox txtSqlPass;
         private System.Windows.Forms.Label label49;
@@ -1074,12 +966,16 @@
         private System.Windows.Forms.Label label48;
         private System.Windows.Forms.TextBox txtSqlDbServer;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckedListBox chkStepsList;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button btnScriptPreview;
-        private System.Windows.Forms.Button btnLast;
+        private System.Windows.Forms.TabPage tabpgSiteInfo;
         private System.Windows.Forms.TextBox txtIDServerSiteName;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox txtSiteNameSuffix;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TextBox txtSiteNamePrefix;
+        private System.Windows.Forms.TextBox txtSiteName;
+        private System.Windows.Forms.TabPage tabPgCommerceSiteInfo;
         private System.Windows.Forms.TextBox txtBizFxName;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label label52;
@@ -1090,8 +986,32 @@
         private System.Windows.Forms.TextBox txtOpsSiteName;
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.TextBox txtAuthSiteName;
+        private System.Windows.Forms.TabPage tabPgSitecore;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox txtSitecoreUserPassword;
+        private System.Windows.Forms.TextBox txtSitecoreUsername;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TabPage tabPgSitecoreDb;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txtSitecoreSqlPass;
+        private System.Windows.Forms.TextBox txtSitecoreSqlUser;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TabPage tabPgBraintree;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.TextBox txttxtBraintreeMerchantId;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.TextBox txtBraintreePublicKey;
+        private System.Windows.Forms.TextBox txtBraintreePrivateKey;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.TextBox txtBraintreeEnvironment;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.CheckedListBox chkStepsList;
+        private System.Windows.Forms.Label lblStepInfo;
         private System.Windows.Forms.Button btnAppSettings;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ToolTip toolTipCommerceContainer;
+        private System.Windows.Forms.Button btnPrevious;
+        private System.Windows.Forms.Button btnFirst;
+        private System.Windows.Forms.Button btnLast;
+        private System.Windows.Forms.Button btnNext;
     }
 }

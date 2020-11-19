@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SitecoreCommerceInstaller));
             this.txtIDServerSiteName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -165,6 +166,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnScriptPreview = new System.Windows.Forms.Button();
+            this.toolTipCommerceInstaller = new System.Windows.Forms.ToolTip(this.components);
             this.tabDetails.SuspendLayout();
             this.tabPgDBConnection.SuspendLayout();
             this.tabpgSiteInfo.SuspendLayout();
@@ -383,6 +385,7 @@
             this.txtSiteNamePrefix.Name = "txtSiteNamePrefix";
             this.txtSiteNamePrefix.Size = new System.Drawing.Size(875, 31);
             this.txtSiteNamePrefix.TabIndex = 1;
+            this.toolTipCommerceInstaller.SetToolTip(this.txtSiteNamePrefix, "Enter just the Sitename Prefix and click the next button in the menubar... ");
             this.txtSiteNamePrefix.TextChanged += new System.EventHandler(this.txtSiteNamePrefix_TextChanged);
             this.txtSiteNamePrefix.Leave += new System.EventHandler(this.txtSiteNamePrefix_Leave);
             // 
@@ -1507,6 +1510,7 @@
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(70, 55);
             this.btnPrevious.TabIndex = 48;
+            this.toolTipCommerceInstaller.SetToolTip(this.btnPrevious, "Go to Previous Tab");
             this.btnPrevious.UseVisualStyleBackColor = false;
             this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
@@ -1522,6 +1526,7 @@
             this.btnFirst.Name = "btnFirst";
             this.btnFirst.Size = new System.Drawing.Size(70, 55);
             this.btnFirst.TabIndex = 48;
+            this.toolTipCommerceInstaller.SetToolTip(this.btnFirst, "Go to First Tab");
             this.btnFirst.UseVisualStyleBackColor = false;
             this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
             // 
@@ -1537,6 +1542,7 @@
             this.btnLast.Name = "btnLast";
             this.btnLast.Size = new System.Drawing.Size(70, 55);
             this.btnLast.TabIndex = 48;
+            this.toolTipCommerceInstaller.SetToolTip(this.btnLast, "Go to Last Tab");
             this.btnLast.UseVisualStyleBackColor = false;
             this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
             // 
@@ -1552,6 +1558,7 @@
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(70, 55);
             this.btnNext.TabIndex = 48;
+            this.toolTipCommerceInstaller.SetToolTip(this.btnNext, "Go to Next Tab, populates the site details if details already present");
             this.btnNext.UseVisualStyleBackColor = false;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
@@ -1605,6 +1612,7 @@
             this.btnGenerate.Size = new System.Drawing.Size(251, 48);
             this.btnGenerate.TabIndex = 46;
             this.btnGenerate.Text = "Generate Scripts";
+            this.toolTipCommerceInstaller.SetToolTip(this.btnGenerate, "Generates and Saves Install and Uninstall Scripts to File System");
             this.btnGenerate.UseVisualStyleBackColor = false;
             this.btnGenerate.EnabledChanged += new System.EventHandler(this.btnGenerate_EnabledChanged);
             this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
@@ -1623,6 +1631,7 @@
             this.btnInstall.Size = new System.Drawing.Size(180, 48);
             this.btnInstall.TabIndex = 47;
             this.btnInstall.Text = "Install";
+            this.toolTipCommerceInstaller.SetToolTip(this.btnInstall, "Launches Install Script in Powershell");
             this.btnInstall.UseVisualStyleBackColor = false;
             this.btnInstall.EnabledChanged += new System.EventHandler(this.btnInstall_EnabledChanged);
             this.btnInstall.Click += new System.EventHandler(this.btnInstall_Click);
@@ -1640,6 +1649,7 @@
             this.btnUninstall.Size = new System.Drawing.Size(171, 48);
             this.btnUninstall.TabIndex = 48;
             this.btnUninstall.Text = "Uninstall";
+            this.toolTipCommerceInstaller.SetToolTip(this.btnUninstall, "Launches Uninstall Script in Powershell");
             this.btnUninstall.UseVisualStyleBackColor = false;
             this.btnUninstall.EnabledChanged += new System.EventHandler(this.btnUninstall_EnabledChanged);
             this.btnUninstall.Click += new System.EventHandler(this.btnUninstall_Click);
@@ -1655,6 +1665,7 @@
             this.btnPrerequisites.Name = "btnPrerequisites";
             this.btnPrerequisites.Size = new System.Drawing.Size(70, 55);
             this.btnPrerequisites.TabIndex = 48;
+            this.toolTipCommerceInstaller.SetToolTip(this.btnPrerequisites, "Show Prerequisites");
             this.btnPrerequisites.UseVisualStyleBackColor = true;
             this.btnPrerequisites.Click += new System.EventHandler(this.btnPrerequisites_Click);
             // 
@@ -1669,6 +1680,7 @@
             this.btnAppSettings.Name = "btnAppSettings";
             this.btnAppSettings.Size = new System.Drawing.Size(70, 55);
             this.btnAppSettings.TabIndex = 50;
+            this.toolTipCommerceInstaller.SetToolTip(this.btnAppSettings, "Launch Settings Form");
             this.btnAppSettings.UseVisualStyleBackColor = true;
             this.btnAppSettings.EnabledChanged += new System.EventHandler(this.btnAppSettings_EnabledChanged);
             this.btnAppSettings.Click += new System.EventHandler(this.btnAppSettings_Click);
@@ -1706,6 +1718,7 @@
             this.btnDbConn.Name = "btnDbConn";
             this.btnDbConn.Size = new System.Drawing.Size(70, 55);
             this.btnDbConn.TabIndex = 48;
+            this.toolTipCommerceInstaller.SetToolTip(this.btnDbConn, "DB Connection Check, the entry button for the form");
             this.btnDbConn.UseVisualStyleBackColor = true;
             this.btnDbConn.Click += new System.EventHandler(this.btnDbConn_Click);
             // 
@@ -1720,6 +1733,7 @@
             this.btnSolr.Name = "btnSolr";
             this.btnSolr.Size = new System.Drawing.Size(70, 55);
             this.btnSolr.TabIndex = 48;
+            this.toolTipCommerceInstaller.SetToolTip(this.btnSolr, "Populate Solr Info based on Solr Url entered");
             this.btnSolr.UseVisualStyleBackColor = true;
             this.btnSolr.Click += new System.EventHandler(this.btnSolr_Click);
             // 
@@ -1734,6 +1748,7 @@
             this.btnPortCheck.Name = "btnPortCheck";
             this.btnPortCheck.Size = new System.Drawing.Size(70, 55);
             this.btnPortCheck.TabIndex = 48;
+            this.toolTipCommerceInstaller.SetToolTip(this.btnPortCheck, "Check Port Availability ");
             this.btnPortCheck.UseVisualStyleBackColor = true;
             this.btnPortCheck.Click += new System.EventHandler(this.btnPortCheck_Click);
             // 
@@ -1748,6 +1763,7 @@
             this.btnValidateAll.Name = "btnValidateAll";
             this.btnValidateAll.Size = new System.Drawing.Size(70, 55);
             this.btnValidateAll.TabIndex = 48;
+            this.toolTipCommerceInstaller.SetToolTip(this.btnValidateAll, "Validates All Fields and opens up the Generate, Install and Uninstall buttons");
             this.btnValidateAll.UseVisualStyleBackColor = true;
             this.btnValidateAll.Click += new System.EventHandler(this.btnValidateAll_Click);
             // 
@@ -1799,6 +1815,7 @@
             this.chkStepsList.Name = "chkStepsList";
             this.chkStepsList.Size = new System.Drawing.Size(290, 396);
             this.chkStepsList.TabIndex = 53;
+            this.toolTipCommerceInstaller.SetToolTip(this.chkStepsList, "Click on the item to directly traverse to the tab");
             this.chkStepsList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.chkStepsList_ItemCheck);
             this.chkStepsList.Click += new System.EventHandler(this.chkStepsList_Click);
             this.chkStepsList.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
@@ -1825,6 +1842,7 @@
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(70, 55);
             this.btnDelete.TabIndex = 48;
+            this.toolTipCommerceInstaller.SetToolTip(this.btnDelete, "Delete all info related to the website");
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -1840,6 +1858,7 @@
             this.btnScriptPreview.Name = "btnScriptPreview";
             this.btnScriptPreview.Size = new System.Drawing.Size(70, 55);
             this.btnScriptPreview.TabIndex = 55;
+            this.toolTipCommerceInstaller.SetToolTip(this.btnScriptPreview, "Preview scripts generated");
             this.btnScriptPreview.UseVisualStyleBackColor = false;
             this.btnScriptPreview.Click += new System.EventHandler(this.btnScriptPreview_Click);
             // 
@@ -2056,5 +2075,6 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnScriptPreview;
         private System.Windows.Forms.Button btnLast;
+        private System.Windows.Forms.ToolTip toolTipCommerceInstaller;
     }
 }

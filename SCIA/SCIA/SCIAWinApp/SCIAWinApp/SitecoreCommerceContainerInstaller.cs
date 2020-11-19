@@ -916,6 +916,12 @@ namespace SCIA
         {
             DisplaySettingsDialog(true);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var destFolder = ZipList.CommerceContainerZip + "\\scripts";
+            CommonFunctions.LaunchPSScript(@".\CleanContainerCache.ps1", destFolder);
+        }
     }
 
 }

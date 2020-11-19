@@ -28,15 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PortAvailabilityChecker));
             this.lblStatus = new System.Windows.Forms.Label();
             this.btnInstall = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtPortNumber = new System.Windows.Forms.NumericUpDown();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label25 = new System.Windows.Forms.Label();
-            this.txtPortNumber = new System.Windows.Forms.NumericUpDown();
-            this.label3 = new System.Windows.Forms.Label();
+            this.toolTipPortChecker = new System.Windows.Forms.ToolTip(this.components);
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPortNumber)).BeginInit();
@@ -90,6 +92,34 @@
             this.panel3.Size = new System.Drawing.Size(864, 140);
             this.panel3.TabIndex = 0;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(20, 41);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(483, 25);
+            this.label3.TabIndex = 87;
+            this.label3.Text = "Provide port number to cross-check availability....";
+            // 
+            // txtPortNumber
+            // 
+            this.txtPortNumber.Location = new System.Drawing.Point(557, 41);
+            this.txtPortNumber.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtPortNumber.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.txtPortNumber.Name = "txtPortNumber";
+            this.txtPortNumber.Size = new System.Drawing.Size(225, 31);
+            this.txtPortNumber.TabIndex = 86;
+            this.toolTipPortChecker.SetToolTip(this.txtPortNumber, "Enter only valid port numbers");
+            this.txtPortNumber.Value = new decimal(new int[] {
+            5001,
+            0,
+            0,
+            0});
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
@@ -112,33 +142,6 @@
             this.label25.TabIndex = 77;
             this.label25.Text = "Port Availability Checker";
             this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txtPortNumber
-            // 
-            this.txtPortNumber.Location = new System.Drawing.Point(557, 41);
-            this.txtPortNumber.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtPortNumber.Maximum = new decimal(new int[] {
-            65535,
-            0,
-            0,
-            0});
-            this.txtPortNumber.Name = "txtPortNumber";
-            this.txtPortNumber.Size = new System.Drawing.Size(225, 31);
-            this.txtPortNumber.TabIndex = 86;
-            this.txtPortNumber.Value = new decimal(new int[] {
-            5001,
-            0,
-            0,
-            0});
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(20, 41);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(483, 25);
-            this.label3.TabIndex = 87;
-            this.label3.Text = "Provide port number to cross-check availability....";
             // 
             // PortAvailabilityChecker
             // 
@@ -172,5 +175,6 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.NumericUpDown txtPortNumber;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ToolTip toolTipPortChecker;
     }
 }
