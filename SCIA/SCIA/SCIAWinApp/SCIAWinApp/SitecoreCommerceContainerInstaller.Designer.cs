@@ -142,6 +142,7 @@
             // 
             // txtSqlPass
             // 
+            this.txtSqlPass.Enabled = false;
             this.txtSqlPass.Location = new System.Drawing.Point(269, 104);
             this.txtSqlPass.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSqlPass.MaxLength = 15;
@@ -164,6 +165,7 @@
             // 
             // txtSqlUser
             // 
+            this.txtSqlUser.Enabled = false;
             this.txtSqlUser.Location = new System.Drawing.Point(269, 62);
             this.txtSqlUser.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSqlUser.MaxLength = 20;
@@ -186,6 +188,7 @@
             // 
             // txtSqlDbServer
             // 
+            this.txtSqlDbServer.Enabled = false;
             this.txtSqlDbServer.Location = new System.Drawing.Point(269, 21);
             this.txtSqlDbServer.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSqlDbServer.MaxLength = 25;
@@ -909,6 +912,7 @@
             this.btnScriptPreview.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnScriptPreview.BackgroundImage")));
             this.btnScriptPreview.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnScriptPreview.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnScriptPreview.Enabled = false;
             this.btnScriptPreview.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnScriptPreview.Location = new System.Drawing.Point(297, 146);
             this.btnScriptPreview.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -963,7 +967,7 @@
             this.MaximizeBox = false;
             this.Name = "SitecoreCommerceContainerInstaller";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Sitecore Complete Install Assistant (SCIA)";
+            this.Text = "SCIA - Commerce Container Installer ";
             this.tabDetails.ResumeLayout(false);
             this.tabPgDBConnection.ResumeLayout(false);
             this.tabPgDBConnection.PerformLayout();

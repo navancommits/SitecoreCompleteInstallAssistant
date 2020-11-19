@@ -46,6 +46,8 @@
             this.txtSqlUser = new System.Windows.Forms.TextBox();
             this.txtDbServer = new System.Windows.Forms.TextBox();
             this.tabPgSiteInfo = new System.Windows.Forms.TabPage();
+            this.label31 = new System.Windows.Forms.Label();
+            this.txtHttpsString = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.txtxConnectString = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -63,6 +65,12 @@
             this.txtSiteRootDir = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.tabPgSitecore = new System.Windows.Forms.TabPage();
+            this.label23 = new System.Windows.Forms.Label();
+            this.txtCoreDbSuffix = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.txtCommSharedDbSuffix = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.txtCommerceGlobalDbSuffix = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.txtSitecoreUserName = new System.Windows.Forms.TextBox();
@@ -79,11 +87,19 @@
             this.txtBizFxSitePrefix = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.tabPgEnvironments = new System.Windows.Forms.TabPage();
+            this.txtHostSuffix = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txtStorefrontHostSuffix = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.txtCommerceDbNameString = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.txtEnvironmentPrefix = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.tabPgWinUser = new System.Windows.Forms.TabPage();
+            this.txtUserPassword = new System.Windows.Forms.TextBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.txtUserSuffix = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.txtUserDomain = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.tabPgBraintree = new System.Windows.Forms.TabPage();
@@ -100,22 +116,6 @@
             this.btnLast = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.txtStorefrontHostSuffix = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtHostSuffix = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.txtUserSuffix = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.txtCommerceGlobalDbSuffix = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.txtCommSharedDbSuffix = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.txtCoreDbSuffix = new System.Windows.Forms.TextBox();
-            this.label31 = new System.Windows.Forms.Label();
-            this.txtHttpsString = new System.Windows.Forms.TextBox();
-            this.txtUserPassword = new System.Windows.Forms.TextBox();
-            this.label32 = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabSiteDetails.SuspendLayout();
@@ -373,6 +373,25 @@
             this.tabPgSiteInfo.TabIndex = 1;
             this.tabPgSiteInfo.Text = "Site Info";
             // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(14, 182);
+            this.label31.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(124, 25);
+            this.label31.TabIndex = 6;
+            this.label31.Text = "HttpsString:";
+            // 
+            // txtHttpsString
+            // 
+            this.txtHttpsString.Location = new System.Drawing.Point(312, 179);
+            this.txtHttpsString.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtHttpsString.MaxLength = 20;
+            this.txtHttpsString.Name = "txtHttpsString";
+            this.txtHttpsString.Size = new System.Drawing.Size(818, 31);
+            this.txtHttpsString.TabIndex = 7;
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -552,6 +571,63 @@
             this.tabPgSitecore.Size = new System.Drawing.Size(1145, 321);
             this.tabPgSitecore.TabIndex = 4;
             this.tabPgSitecore.Text = "Sitecore";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(14, 181);
+            this.label23.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(145, 25);
+            this.label23.TabIndex = 22;
+            this.label23.Text = "CoreDbSuffix:";
+            // 
+            // txtCoreDbSuffix
+            // 
+            this.txtCoreDbSuffix.Location = new System.Drawing.Point(271, 177);
+            this.txtCoreDbSuffix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtCoreDbSuffix.MaxLength = 15;
+            this.txtCoreDbSuffix.Name = "txtCoreDbSuffix";
+            this.txtCoreDbSuffix.Size = new System.Drawing.Size(859, 31);
+            this.txtCoreDbSuffix.TabIndex = 23;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(14, 142);
+            this.label21.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(229, 25);
+            this.label21.TabIndex = 20;
+            this.label21.Text = "CommSharedDbSuffix:";
+            // 
+            // txtCommSharedDbSuffix
+            // 
+            this.txtCommSharedDbSuffix.Location = new System.Drawing.Point(271, 138);
+            this.txtCommSharedDbSuffix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtCommSharedDbSuffix.MaxLength = 20;
+            this.txtCommSharedDbSuffix.Name = "txtCommSharedDbSuffix";
+            this.txtCommSharedDbSuffix.Size = new System.Drawing.Size(859, 31);
+            this.txtCommSharedDbSuffix.TabIndex = 21;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(14, 103);
+            this.label20.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(222, 25);
+            this.label20.TabIndex = 18;
+            this.label20.Text = "CommGlobalDbSuffix:";
+            // 
+            // txtCommerceGlobalDbSuffix
+            // 
+            this.txtCommerceGlobalDbSuffix.Location = new System.Drawing.Point(271, 99);
+            this.txtCommerceGlobalDbSuffix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtCommerceGlobalDbSuffix.MaxLength = 20;
+            this.txtCommerceGlobalDbSuffix.Name = "txtCommerceGlobalDbSuffix";
+            this.txtCommerceGlobalDbSuffix.Size = new System.Drawing.Size(859, 31);
+            this.txtCommerceGlobalDbSuffix.TabIndex = 19;
             // 
             // label10
             // 
@@ -733,6 +809,44 @@
             this.tabPgEnvironments.TabIndex = 8;
             this.tabPgEnvironments.Text = "Environments";
             // 
+            // txtHostSuffix
+            // 
+            this.txtHostSuffix.Location = new System.Drawing.Point(298, 137);
+            this.txtHostSuffix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtHostSuffix.MaxLength = 10;
+            this.txtHostSuffix.Name = "txtHostSuffix";
+            this.txtHostSuffix.Size = new System.Drawing.Size(832, 31);
+            this.txtHostSuffix.TabIndex = 43;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(10, 140);
+            this.label18.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(110, 25);
+            this.label18.TabIndex = 42;
+            this.label18.Text = "HostSuffix";
+            // 
+            // txtStorefrontHostSuffix
+            // 
+            this.txtStorefrontHostSuffix.Location = new System.Drawing.Point(298, 98);
+            this.txtStorefrontHostSuffix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtStorefrontHostSuffix.MaxLength = 50;
+            this.txtStorefrontHostSuffix.Name = "txtStorefrontHostSuffix";
+            this.txtStorefrontHostSuffix.Size = new System.Drawing.Size(832, 31);
+            this.txtStorefrontHostSuffix.TabIndex = 41;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(10, 101);
+            this.label11.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(204, 25);
+            this.label11.TabIndex = 40;
+            this.label11.Text = "StorefrontHostSuffix";
+            // 
             // txtCommerceDbNameString
             // 
             this.txtCommerceDbNameString.Location = new System.Drawing.Point(298, 59);
@@ -783,6 +897,44 @@
             this.tabPgWinUser.Size = new System.Drawing.Size(1145, 321);
             this.tabPgWinUser.TabIndex = 9;
             this.tabPgWinUser.Text = "Win User";
+            // 
+            // txtUserPassword
+            // 
+            this.txtUserPassword.Location = new System.Drawing.Point(269, 99);
+            this.txtUserPassword.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtUserPassword.MaxLength = 50;
+            this.txtUserPassword.Name = "txtUserPassword";
+            this.txtUserPassword.Size = new System.Drawing.Size(862, 31);
+            this.txtUserPassword.TabIndex = 43;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(10, 103);
+            this.label32.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(157, 25);
+            this.label32.TabIndex = 42;
+            this.label32.Text = "UserPassword:";
+            // 
+            // txtUserSuffix
+            // 
+            this.txtUserSuffix.Location = new System.Drawing.Point(269, 60);
+            this.txtUserSuffix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtUserSuffix.MaxLength = 50;
+            this.txtUserSuffix.Name = "txtUserSuffix";
+            this.txtUserSuffix.Size = new System.Drawing.Size(862, 31);
+            this.txtUserSuffix.TabIndex = 41;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(10, 64);
+            this.label19.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(117, 25);
+            this.label19.TabIndex = 40;
+            this.label19.Text = "UserSuffix:";
             // 
             // txtUserDomain
             // 
@@ -964,161 +1116,9 @@
             this.lblStatus.Location = new System.Drawing.Point(21, 718);
             this.lblStatus.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(948, 38);
+            this.lblStatus.Size = new System.Drawing.Size(1541, 38);
             this.lblStatus.TabIndex = 62;
             this.lblStatus.Text = "Happy Sitecoring!";
-            // 
-            // txtStorefrontHostSuffix
-            // 
-            this.txtStorefrontHostSuffix.Location = new System.Drawing.Point(298, 98);
-            this.txtStorefrontHostSuffix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtStorefrontHostSuffix.MaxLength = 50;
-            this.txtStorefrontHostSuffix.Name = "txtStorefrontHostSuffix";
-            this.txtStorefrontHostSuffix.Size = new System.Drawing.Size(832, 31);
-            this.txtStorefrontHostSuffix.TabIndex = 41;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(10, 101);
-            this.label11.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(204, 25);
-            this.label11.TabIndex = 40;
-            this.label11.Text = "StorefrontHostSuffix";
-            // 
-            // txtHostSuffix
-            // 
-            this.txtHostSuffix.Location = new System.Drawing.Point(298, 137);
-            this.txtHostSuffix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtHostSuffix.MaxLength = 10;
-            this.txtHostSuffix.Name = "txtHostSuffix";
-            this.txtHostSuffix.Size = new System.Drawing.Size(832, 31);
-            this.txtHostSuffix.TabIndex = 43;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(10, 140);
-            this.label18.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(110, 25);
-            this.label18.TabIndex = 42;
-            this.label18.Text = "HostSuffix";
-            // 
-            // txtUserSuffix
-            // 
-            this.txtUserSuffix.Location = new System.Drawing.Point(269, 60);
-            this.txtUserSuffix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtUserSuffix.MaxLength = 50;
-            this.txtUserSuffix.Name = "txtUserSuffix";
-            this.txtUserSuffix.Size = new System.Drawing.Size(862, 31);
-            this.txtUserSuffix.TabIndex = 41;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(10, 64);
-            this.label19.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(117, 25);
-            this.label19.TabIndex = 40;
-            this.label19.Text = "UserSuffix:";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(14, 103);
-            this.label20.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(222, 25);
-            this.label20.TabIndex = 18;
-            this.label20.Text = "CommGlobalDbSuffix:";
-            // 
-            // txtCommerceGlobalDbSuffix
-            // 
-            this.txtCommerceGlobalDbSuffix.Location = new System.Drawing.Point(271, 99);
-            this.txtCommerceGlobalDbSuffix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtCommerceGlobalDbSuffix.MaxLength = 20;
-            this.txtCommerceGlobalDbSuffix.Name = "txtCommerceGlobalDbSuffix";
-            this.txtCommerceGlobalDbSuffix.Size = new System.Drawing.Size(859, 31);
-            this.txtCommerceGlobalDbSuffix.TabIndex = 19;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(14, 142);
-            this.label21.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(229, 25);
-            this.label21.TabIndex = 20;
-            this.label21.Text = "CommSharedDbSuffix:";
-            // 
-            // txtCommSharedDbSuffix
-            // 
-            this.txtCommSharedDbSuffix.Location = new System.Drawing.Point(271, 138);
-            this.txtCommSharedDbSuffix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtCommSharedDbSuffix.MaxLength = 20;
-            this.txtCommSharedDbSuffix.Name = "txtCommSharedDbSuffix";
-            this.txtCommSharedDbSuffix.Size = new System.Drawing.Size(859, 31);
-            this.txtCommSharedDbSuffix.TabIndex = 21;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(14, 181);
-            this.label23.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(145, 25);
-            this.label23.TabIndex = 22;
-            this.label23.Text = "CoreDbSuffix:";
-            // 
-            // txtCoreDbSuffix
-            // 
-            this.txtCoreDbSuffix.Location = new System.Drawing.Point(271, 177);
-            this.txtCoreDbSuffix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtCoreDbSuffix.MaxLength = 15;
-            this.txtCoreDbSuffix.Name = "txtCoreDbSuffix";
-            this.txtCoreDbSuffix.Size = new System.Drawing.Size(859, 31);
-            this.txtCoreDbSuffix.TabIndex = 23;
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(14, 182);
-            this.label31.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(124, 25);
-            this.label31.TabIndex = 6;
-            this.label31.Text = "HttpsString:";
-            // 
-            // txtHttpsString
-            // 
-            this.txtHttpsString.Location = new System.Drawing.Point(312, 179);
-            this.txtHttpsString.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtHttpsString.MaxLength = 20;
-            this.txtHttpsString.Name = "txtHttpsString";
-            this.txtHttpsString.Size = new System.Drawing.Size(818, 31);
-            this.txtHttpsString.TabIndex = 7;
-            // 
-            // txtUserPassword
-            // 
-            this.txtUserPassword.Location = new System.Drawing.Point(269, 99);
-            this.txtUserPassword.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtUserPassword.MaxLength = 50;
-            this.txtUserPassword.Name = "txtUserPassword";
-            this.txtUserPassword.Size = new System.Drawing.Size(862, 31);
-            this.txtUserPassword.TabIndex = 43;
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(10, 103);
-            this.label32.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(157, 25);
-            this.label32.TabIndex = 42;
-            this.label32.Text = "UserPassword:";
             // 
             // Settings
             // 
@@ -1137,12 +1137,13 @@
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label5);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Settings";
-            this.Text = "Sitecore Commerce Install Assistant (SCIA) - Settings";
+            this.Text = "SCIA - Settings";
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.tabSiteDetails.ResumeLayout(false);

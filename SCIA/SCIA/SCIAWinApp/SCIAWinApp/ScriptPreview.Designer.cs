@@ -107,6 +107,7 @@
             this.rbInstallScript.TabStop = true;
             this.rbInstallScript.Text = "Install Script";
             this.rbInstallScript.UseVisualStyleBackColor = true;
+            this.rbInstallScript.CheckedChanged += new System.EventHandler(this.rbInstallScript_CheckedChanged_1);
             this.rbInstallScript.Click += new System.EventHandler(this.rbInstallScript_CheckedChanged);
             // 
             // lblStatus
@@ -133,7 +134,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ScriptPreview";
-            this.Text = "Sitecore Commerce Install Assistant (SCIA) - Script Preview";
+            this.Text = "SCIA - Script Preview";
             this.panel1.ResumeLayout(false);
             this.grpContainer.ResumeLayout(false);
             this.grpContainer.PerformLayout();

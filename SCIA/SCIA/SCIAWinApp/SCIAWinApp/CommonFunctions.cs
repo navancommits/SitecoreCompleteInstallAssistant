@@ -15,6 +15,8 @@ using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Transactions;
+using System.Net.NetworkInformation;
 
 namespace SCIA
 {
@@ -78,6 +80,15 @@ namespace SCIA
                 WritetoEventLog("SCIA - Error while checking if Server is Connected - IsServerConnected - " + ex.Message, EventLogEntryType.Error);
                 return null;
             }
+
+        }
+
+        public static void ResetVersionRelatedInfo()
+        {
+            ZipList.CommerceZip = CommonFunctions.GetZipNamefromWdpVersion("commerce", Version.SitecoreVersion);
+            ZipList.CommerceContainerZip = CommonFunctions.GetZipNamefromWdpVersion("commercecon", Version.SitecoreVersion);
+            ZipList.SitecoreContainerZip = CommonFunctions.GetZipNamefromWdpVersion("sitecorecon", Version.SitecoreVersion);
+            ZipList.SitecoreDevSetupZip = CommonFunctions.GetZipNamefromWdpVersion("sitecoredevsetup", Version.SitecoreVersion);
 
         }
 
@@ -151,6 +162,23 @@ namespace SCIA
             return true;
         }
 
+        public static bool CheckandSetupZipVersionsTable()
+        {
+            if (string.IsNullOrWhiteSpace(CommonFunctions.ConnectionString)) return false;
+            using (var connection = new SqlConnection(CommonFunctions.ConnectionString))
+            {
+                connection.Open();
+                if (CommonFunctions.DbTableExists("ZipVersions", connection)) { return true; }
+                using TransactionScope scope = new TransactionScope();
+                if (CommonFunctions.CreateZipVersionsTable(connection) == 0) { return false; };
+
+                if (CommonFunctions.InsertDataintoZipVersionsTable(connection) == 0) { return false; };
+                scope.Complete();
+            }
+
+            return true;
+        }
+
         public static bool CheckDatabaseExists(string databaseName, string dbServer, string sqlUser, string sqlPass)
         {
             string sqlCreateDBQuery;
@@ -207,7 +235,48 @@ namespace SCIA
             return success;
         }
 
+        public static int CreateZipVersionsTable(SqlConnection conn)
+        {
+            if (DbTableExists("dbo.ZipVersions", conn)) return 1;
+            var sql = "CREATE TABLE ZipVersions" +
+            "(" +
+            "Version VARCHAR(20), ZipName  VARCHAR(200), ZipType VARCHAR(20),Url varchar(max), [IdColumn] [smallint] IDENTITY(1,1) NOT NULL,created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP)";
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            int success;
+            try
+            {
 
+                success = cmd.ExecuteNonQuery();
+
+            }
+            catch (SqlException ex)
+            {
+                success = 0;
+                WritetoEventLog("SCIA - Unable to create ZipVersions Table" + ex.Message, EventLogEntryType.Error);
+            }
+
+            return success;
+        }
+
+        public static int InsertDataintoZipVersionsTable(SqlConnection conn)
+        {
+            var sql = "INSERT [dbo].[ZipVersions] ([Version], [ZipName], [ZipType], [url]) VALUES (N'10.0', N'SitecoreContainerDeployment.10.0.0.004346.150', N'sitecorecon',N'https://dev.sitecore.net/~/media/C9EA651A4B204A4ABD588CD1BD0A67D4.ashx'); INSERT [dbo].[ZipVersions] ([Version], [ZipName], [ZipType], [url]) VALUES (N'10.0', N'Sitecore.Commerce.WDP.2020.08-6.0.238', N'commerce',N'https://dev.sitecore.net/~/media/7ED76B7A45D04746A3862726ADB59583.ashx'); INSERT[dbo].[ZipVersions]([Version], [ZipName], [ZipType], [url]) VALUES(N'10.0', N'Sitecore.Commerce.Container.SDK.1.0.214', N'commercecon',N'https://dev.sitecore.net/~/media/FB50C51D304C47E89EB1C21C087B9B73.ashx'); INSERT[dbo].[ZipVersions]([Version], [ZipName], [ZipType], [url]) VALUES(N'10.0', N'Sitecore 10.0.0 rev. 004346 (Setup XP0 Developer Workstation rev. 1.2.0-r64)', N'sitecoredevsetup',N'https://dev.sitecore.net/~/media/A74E47524738460B83332BAE82F123D1.ashx'); INSERT[dbo].[ZipVersions]([Version], [ZipName], [ZipType], [url]) VALUES(N'9.3', N'Sitecore.Commerce.WDP.2020.01-5.0.145', N'commerce',N'https://dev.sitecore.net/~/media/B915EEE9B5C0429AB557C357E2B23EEA.ashx'); INSERT[dbo].[ZipVersions]([Version], [ZipName], [ZipType], [url]) VALUES(N'9.2', N'Sitecore.Commerce.WDP.2019.07-4.0.165', N'commerce',N'https://dev.sitecore.net/~/media/07F9ABE455944146B37E9D71CA781A27.ashx');             INSERT[dbo].[ZipVersions]([Version], [ZipName], [ZipType], [url]) VALUES(N'9.3', N'Sitecore 9.3.0 rev. 003498 (Setup XP0 Developer Workstation rev. 1.1.1-r4)', N'sitecoredevsetup','https://dev.sitecore.net/~/media/A1BC9FD8B20841959EF5275A3C97A8F9.ashx'); ";
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            int success;
+            try
+            {
+
+                success = cmd.ExecuteNonQuery();
+
+            }
+            catch (SqlException ex)
+            {
+                success = 0;
+                WritetoEventLog("SCIA - Unable to insert data into ZipVersions Table" + ex.Message, EventLogEntryType.Error);
+            }
+
+            return success;
+        }
 
 
         public static int CreateSCIATable(SqlConnection conn)
@@ -255,6 +324,7 @@ namespace SCIA
             return reader;
         }
 
+        
 
         public static SettingsData GetSettingsData(string connectionString)
         {
@@ -274,31 +344,240 @@ namespace SCIA
 
         }
 
-        public static bool CheckPrerequisiteList()
+        public static SqlConnection CreateDatabase(string database,string dbServer,string sqlUser, string sqlPass)
         {
-                if (!Directory.Exists("..\\msbuild.microsoft.visualstudio.web.targets.14.0.0.3")) { return false; }
-                if (!Directory.Exists("..\\SIF.Sitecore.Commerce.5.0.49")) { return false; }
-                if (!File.Exists("..\\Adventure Works Images.OnPrem.scwdp.zip")) { return false; }
-                if (!File.Exists("..\\Sitecore Commerce Connect Core OnPrem 15.0.26.scwdp.zip")) { return false; }
-                if (!File.Exists("..\\Sitecore Commerce Engine Connect OnPrem 6.0.77.scwdp.zip")) { return false; }
-                if (!File.Exists("..\\Sitecore Commerce Experience Accelerator 5.0.106.scwdp.zip")) { return false; }
-                if (!File.Exists("..\\Sitecore Commerce Experience Accelerator Habitat Catalog 5.0.106.scwdp.zip")) { return false; }
-                if (!File.Exists("..\\Sitecore Commerce Experience Accelerator Storefront 5.0.106.scwdp.zip")) { return false; }
-                if (!File.Exists("..\\Sitecore Commerce Experience Accelerator Storefront Themes 5.0.106.scwdp.zip")) { return false; }
-                if (!File.Exists("..\\Sitecore Commerce ExperienceAnalytics Core OnPrem 15.0.26.scwdp.zip")) { return false; }
-                if (!File.Exists("..\\Sitecore Commerce ExperienceProfile Core OnPrem 15.0.26.scwdp.zip")) { return false; }
-                if (!File.Exists("..\\Sitecore Commerce Marketing Automation Core OnPrem 15.0.26.scwdp.zip")) { return false; }
-                if (!File.Exists("..\\Sitecore Commerce Marketing Automation for AutomationEngine 15.0.26.zip")) { return false; }
-                if (!File.Exists("..\\Sitecore Experience Accelerator 10.0.0.3138.scwdp.zip")) { return false; }
-                if (!File.Exists("..\\Sitecore.BizFx.OnPrem.5.0.12.scwdp.zip")) { return false; }
-                if (!File.Exists("..\\Sitecore.BizFX.SDK.5.0.12.zip")) { return false; }
-                if (!File.Exists("..\\Sitecore.Commerce.Engine.OnPrem.Solr.6.0.238.scwdp.zip")) { return false; }
-                if (!File.Exists("..\\Sitecore.Commerce.Habitat.Images.OnPrem.scwdp.zip")) { return false; }
-                if (!File.Exists("..\\Sitecore.PowerShell.Extensions-6.1.1.scwdp.zip")) { return false; }
+            string appPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            CommonFunctions.GrantAccess(appPath); //Need to assign the permission for current application to allow create database on server (if you are in domain).
+
+            using SqlConnection sqlConnection = new SqlConnection(CommonFunctions.BuildConnectionString(dbServer, database, sqlUser, sqlPass, true));
+            {
+                sqlConnection.Open();
+                string createDBString = "CREATE DATABASE " + database + "; ";
+                SqlCommand command = new SqlCommand(createDBString, sqlConnection);
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    CommonFunctions.WritetoEventLog("Unable to create SCIA_DB" + ex.Message, EventLogEntryType.Error);
+                    return null;
+
+                }
+
+                return sqlConnection;
+            }
+
+        }
+
+
+        public static bool CheckPrerequisiteList(string destFolder)
+        {
+            
+                if (!CommonFunctions.FileSystemEntryExists(destFolder, "msbuild", "folder")) { return false; }
+                if (!CommonFunctions.FileSystemEntryExists(destFolder, "SIF.Sitecore.Commerce.*", "folder",true)) { return false; }
+                if (!CommonFunctions.FileSystemEntryExists(destFolder, "Adventure Works Images.OnPrem.scwdp.zip", "file")) { return false; }
+                if (!CommonFunctions.FileSystemEntryExists(destFolder, "Sitecore Commerce Connect Core OnPrem *.scwdp.zip", "file")) { return false; }
+                if (!CommonFunctions.FileSystemEntryExists(destFolder, "Sitecore Commerce Engine Connect OnPrem *.scwdp.zip", "file")) { return false; }
+                if (!CommonFunctions.FileSystemEntryExists(destFolder, "Sitecore Commerce Experience Accelerator *.scwdp.zip", "file")) { return false; }
+                if (!CommonFunctions.FileSystemEntryExists(destFolder, "Sitecore Commerce Experience Accelerator Habitat Catalog *.scwdp.zip", "file")) { return false; }
+                if (!CommonFunctions.FileSystemEntryExists(destFolder, "Sitecore Commerce Experience Accelerator Storefront *.scwdp.zip", "file")) { return false; }
+                if (!CommonFunctions.FileSystemEntryExists(destFolder, "Sitecore Commerce Experience Accelerator Storefront Themes *.scwdp.zip", "file")) { return false; }
+                if (!CommonFunctions.FileSystemEntryExists(destFolder, "Sitecore Commerce ExperienceAnalytics Core OnPrem *.scwdp.zip", "file")) { return false; }
+                if (!CommonFunctions.FileSystemEntryExists(destFolder, "Sitecore Commerce ExperienceProfile Core OnPrem *.zip", "file")) { return false; }
+                if (!CommonFunctions.FileSystemEntryExists(destFolder, "Sitecore Commerce Marketing Automation Core OnPrem *.scwdp.zip", "file")) { return false; }
+                if (!CommonFunctions.FileSystemEntryExists(destFolder, "Sitecore Commerce Marketing Automation for AutomationEngine *.zip", "file")) { return false; }
+                if (!CommonFunctions.FileSystemEntryExists(destFolder, "Sitecore Experience Accelerator *.scwdp.zip", "file")) { return false; }
+                if (!CommonFunctions.FileSystemEntryExists(destFolder, "Sitecore.BizFx.OnPrem*", "file")) { return false; }
+                if (!CommonFunctions.FileSystemEntryExists(destFolder, "Sitecore.BizFX.SDK*.zip", "file")) { return false; }
+                if (!CommonFunctions.FileSystemEntryExists(destFolder, "Sitecore.Commerce.Engine.OnPrem.Solr*.scwdp.zip", "file")) { return false; }
+                if (!CommonFunctions.FileSystemEntryExists(destFolder, "Sitecore.Commerce.Habitat.Images.OnPrem.scwdp.zip", "file")) { return false; }
+                if (!CommonFunctions.FileSystemEntryExists(destFolder, "Sitecore.PowerShell.Extensions*.scwdp.zip", "file")) { return false; }
                 if ((!Directory.Exists("C:\\Program Files\\dotnet\\shared\\Microsoft.AspNetCore.App\\3.1.8")) && (!Directory.Exists("C:\\Program Files\\dotnet\\shared\\Microsoft.AspNetCore.App\\3.1.7"))) { return false; }
                 if (!Directory.Exists("C:\\Program Files\\Redis")) { return false; }
 
             return true;
+        }
+
+        public static string ConnectionString { get; set; }
+
+        public static ZipVersions GetZipVersionData(string version, string ziptype)
+        {
+            try
+            {
+                using var dc = new DataContext(ConnectionString);
+                var zipversions = dc.ExecuteQuery<ZipVersions>(@"select * FROM [ZipVersions] where Version='" + version +"' and ZipType='" + ziptype + "'");
+
+                List<ZipVersions> zipvers = zipversions.ToList();
+                if (zipvers.Count == 0) return null;
+
+                return zipvers.FirstOrDefault();
+            }
+
+            catch (SqlException ex)
+            {
+                WritetoEventLog("Get Zip Versions Data - SQL Connectivity issues... check server and credential details...." + ex.Message, EventLogEntryType.Error);
+                return null;
+            }
+
+        }
+
+        public static List<VersionPrerequisites> GetVersionPrerequisites(string version, string ziptype)
+        {
+            try
+            {
+                using var dc = new DataContext(ConnectionString);
+                var zipversionprereqs = dc.ExecuteQuery<VersionPrerequisites>(@"select * FROM [VersionPrerequisites] where Version='" + version + "' and ZipType='" + ziptype + "'");
+
+                return zipversionprereqs.ToList();
+            }
+
+            catch (SqlException ex)
+            {
+                WritetoEventLog("GetVersionPrerequisites - SQL Connectivity issues... check server and credential details...." + ex.Message, EventLogEntryType.Error);
+                return null;
+            }
+
+        }
+
+        public static string GetZipNamefromWdpVersion(string type, string versionkey)
+        {
+            return GetZipVersionData(versionkey, type)?.ZipName;
+        }
+
+        public static string GetUrlfromWdpVersion(string type, string versionkey)
+        {
+            return GetZipVersionData(versionkey, type)?.Url;
+        }
+
+        public static void SetVersionsDictionary()
+        {
+            VersionList.CommerceVersions = new Dictionary<string, string>
+            {
+                { "9.2", "One" },
+                { "9.3", "One" },
+                { "10.0", "Sitecore.Commerce.WDP.2020.08-6.0.238" }
+            };
+
+            VersionList.CommerceContainerVersions = new Dictionary<string, string>
+            {
+                { "9.2", "One" },
+                { "9.3", "One" },
+                { "10.0", "Sitecore.Commerce.Container.SDK.1.0.214" }
+            };
+
+            VersionList.SitecoreDevSetupVersions = new Dictionary<string, string>
+            {
+                { "9.2", "One" },
+                { "9.3", "One" },
+                { "10.0", "Sitecore 10.0.0 rev. 004346 (Setup XP0 Developer Workstation rev. 1.2.0-r64)" }
+            };
+
+            VersionList.SitecoreContainerVersions = new Dictionary<string, string>
+            {
+                { "9.2", "One" },
+                { "9.3", "One" },
+                { "10.0", "Sitecore 10.0.0 rev. 004346 (Setup XP0 Developer Workstation rev. 1.2.0-r64)" }
+            };
+
+            VersionList.CommerceWdpList=new Dictionary<string, string>
+            {
+                { "SIF", "One" },
+                { "9.3", "One" },
+                { "10.0", "Sitecore 10.0.0 rev. 004346 (Setup XP0 Developer Workstation rev. 1.2.0-r64)" }
+            };
+
+        }
+
+        public static bool CheckSubDirectories(string folderPath)
+        {
+            if (Directory.GetDirectories(folderPath).Length > 0)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public static bool VersionCheck(string version, string sitecoreversion)
+        {
+            string[] parts = version.Split('.');
+            var majorversion = parts[0];
+            var minorversion = parts[1];
+            var subversion = parts[2];
+
+            switch (sitecoreversion)
+            {
+                case "10.0":
+                    if (Convert.ToInt32(majorversion) < 8) { return false; }
+                    if (Convert.ToInt32(minorversion) < 4) { return false; }
+                    break;
+                case "9.3":
+                    if (Convert.ToInt32(majorversion) < 8) { return false; }
+                    if (Convert.ToInt32(minorversion) < 1) { return false; }
+                    if (Convert.ToInt32(subversion) < 1) { return false; }
+                    break;
+                case "9.2":
+                    if (Convert.ToInt32(majorversion) < 7) { return false; }
+                    if (Convert.ToInt32(minorversion) < 5) { return false; }
+                    break;
+                case "9.1":
+                    if (Convert.ToInt32(majorversion) < 7) { return false; }
+                    if (Convert.ToInt32(minorversion) < 2) { return false; }
+                    if (Convert.ToInt32(subversion) < 1) { return false; }
+                    break;
+                case "9.0":
+                    if (Convert.ToInt32(majorversion) < 6) { return false; }
+                    if (Convert.ToInt32(minorversion) < 6) { return false; }
+                    if (Convert.ToInt32(subversion) < 1) { return false; }
+                    break;
+                default:
+                    break;
+            }
+            
+
+            return true;
+        }
+
+        public static bool PortInUse(int port)
+        {
+            bool inUse = false;
+
+            IPGlobalProperties ipProperties = IPGlobalProperties.GetIPGlobalProperties();
+            IPEndPoint[] ipEndPoints = ipProperties.GetActiveTcpListeners();
+
+
+            foreach (IPEndPoint endPoint in ipEndPoints)
+            {
+                if (endPoint.Port == port)
+                {
+                    inUse = true;
+                    break;
+                }
+            }
+
+            return inUse;
+        }
+
+
+        public static bool FileSystemEntryExists(string folderPath, string searchPattern = null,string type="file",bool checksubdirs=false)
+        {
+            if (!string.IsNullOrWhiteSpace(searchPattern))
+            {
+                if (Directory.EnumerateFileSystemEntries(folderPath, searchPattern).Any()) return true;            }
+            else
+            {
+                if (type=="folder")
+                {
+                    if (!checksubdirs) { if (Directory.Exists(folderPath)) return true; }
+                    if (Directory.Exists(folderPath) && CheckSubDirectories(folderPath)) return true;
+                }
+                else
+                { if (File.Exists(folderPath)) return true; }
+                
+            }
+
+            return false;
         }
 
         public static void LaunchPSScript(string scriptname,string workingDirectory=".")
@@ -349,20 +628,21 @@ namespace SCIA
 
         public static SiteDetails GetSCIAData(string connectionString, string siteName)
         {
+            SiteDetails siteData = null;
             try
             {
                 using var dc = new DataContext(connectionString);
-                var siteData = dc.ExecuteQuery<SiteDetails>(@"select top(1)* FROM [SCIA] where SiteName='" + siteName + "'");
+                var siteDetails = dc.ExecuteQuery<SiteDetails>(@"select top(1)* FROM [SCIA] where SiteName='" + siteName + "'").ToList();
 
-                return siteData.First();
+                if (!siteDetails.Any()) return null;
+                siteData= siteDetails.FirstOrDefault();
             }
 
             catch (SqlException ex)
             {
                 CommonFunctions.WritetoEventLog("Get SCIA Data - SQL Connectivity issues... check server and credential details...." + ex.Message, EventLogEntryType.Error);
-                return null;
             }
-
+            return siteData;
         }
 
 
@@ -442,6 +722,31 @@ namespace SCIA
         }
 
 
+        public static string GetSolrUrl(string webSitePath)
+        {
+            var configFilePath = webSitePath + "\\App_Config\\ConnectionStrings.Config";
+            var solrUrl = string.Empty;
+            if (File.Exists(configFilePath))
+            {
+                string[] lines = File.ReadAllLines(configFilePath);
+
+                IEnumerable<string> selectLines = lines.Where(line => line.Contains("solr.search"));
+
+                foreach (var item in selectLines)
+                {
+                    int indexofSolr = item.LastIndexOf("solr");
+                    int indexofhttp = item.LastIndexOf("http");
+                    int indexofSolrFinish = indexofSolr + 4;
+                    int lengthOfSolrUrl = indexofSolrFinish - indexofhttp;
+
+                    solrUrl = item.Substring(indexofhttp, lengthOfSolrUrl);
+                }
+            }
+
+            return solrUrl;
+        }
+
+
         public static SolrInfo GetSolrInformation(string url)
         {
             string solrInfoUrl = $"{url}/admin/info/system";
@@ -482,4 +787,6 @@ namespace SCIA
         public bool IsSettingsPresent { get; set; }
     }
 
- }
+    
+
+}

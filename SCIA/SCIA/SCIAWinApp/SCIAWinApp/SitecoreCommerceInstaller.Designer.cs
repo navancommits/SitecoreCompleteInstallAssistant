@@ -196,7 +196,7 @@
             this.txtIDServerSiteName.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtIDServerSiteName.MaxLength = 50;
             this.txtIDServerSiteName.Name = "txtIDServerSiteName";
-            this.txtIDServerSiteName.Size = new System.Drawing.Size(887, 31);
+            this.txtIDServerSiteName.Size = new System.Drawing.Size(870, 31);
             this.txtIDServerSiteName.TabIndex = 3;
             this.txtIDServerSiteName.TextChanged += new System.EventHandler(this.txtIDServerSiteName_TextChanged);
             this.txtIDServerSiteName.Leave += new System.EventHandler(this.txtIDServerSiteName_Leave);
@@ -251,11 +251,12 @@
             // 
             // txtSqlPass
             // 
+            this.txtSqlPass.Enabled = false;
             this.txtSqlPass.Location = new System.Drawing.Point(269, 104);
             this.txtSqlPass.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSqlPass.MaxLength = 15;
             this.txtSqlPass.Name = "txtSqlPass";
-            this.txtSqlPass.Size = new System.Drawing.Size(884, 31);
+            this.txtSqlPass.Size = new System.Drawing.Size(871, 31);
             this.txtSqlPass.TabIndex = 15;
             this.txtSqlPass.UseSystemPasswordChar = true;
             this.txtSqlPass.TextChanged += new System.EventHandler(this.txtSqlPass_TextChanged);
@@ -273,11 +274,12 @@
             // 
             // txtSqlUser
             // 
+            this.txtSqlUser.Enabled = false;
             this.txtSqlUser.Location = new System.Drawing.Point(269, 62);
             this.txtSqlUser.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSqlUser.MaxLength = 20;
             this.txtSqlUser.Name = "txtSqlUser";
-            this.txtSqlUser.Size = new System.Drawing.Size(884, 31);
+            this.txtSqlUser.Size = new System.Drawing.Size(871, 31);
             this.txtSqlUser.TabIndex = 14;
             this.txtSqlUser.Text = "sa";
             this.txtSqlUser.TextChanged += new System.EventHandler(this.txtSqlUser_TextChanged);
@@ -295,11 +297,12 @@
             // 
             // txtSqlDbServer
             // 
+            this.txtSqlDbServer.Enabled = false;
             this.txtSqlDbServer.Location = new System.Drawing.Point(269, 21);
             this.txtSqlDbServer.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSqlDbServer.MaxLength = 25;
             this.txtSqlDbServer.Name = "txtSqlDbServer";
-            this.txtSqlDbServer.Size = new System.Drawing.Size(884, 31);
+            this.txtSqlDbServer.Size = new System.Drawing.Size(871, 31);
             this.txtSqlDbServer.TabIndex = 12;
             this.txtSqlDbServer.Text = "(local)";
             this.txtSqlDbServer.TextChanged += new System.EventHandler(this.txtSqlDbServer_TextChanged);
@@ -357,7 +360,7 @@
             this.txtSiteNameSuffix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSiteNameSuffix.MaxLength = 50;
             this.txtSiteNameSuffix.Name = "txtSiteNameSuffix";
-            this.txtSiteNameSuffix.Size = new System.Drawing.Size(892, 31);
+            this.txtSiteNameSuffix.Size = new System.Drawing.Size(875, 31);
             this.txtSiteNameSuffix.TabIndex = 1;
             this.txtSiteNameSuffix.TextChanged += new System.EventHandler(this.txtSiteNameSuffix_TextChanged);
             this.txtSiteNameSuffix.Leave += new System.EventHandler(this.txtSiteNameSuffix_Leave);
@@ -378,7 +381,7 @@
             this.txtSiteNamePrefix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSiteNamePrefix.MaxLength = 50;
             this.txtSiteNamePrefix.Name = "txtSiteNamePrefix";
-            this.txtSiteNamePrefix.Size = new System.Drawing.Size(892, 31);
+            this.txtSiteNamePrefix.Size = new System.Drawing.Size(875, 31);
             this.txtSiteNamePrefix.TabIndex = 1;
             this.txtSiteNamePrefix.TextChanged += new System.EventHandler(this.txtSiteNamePrefix_TextChanged);
             this.txtSiteNamePrefix.Leave += new System.EventHandler(this.txtSiteNamePrefix_Leave);
@@ -390,7 +393,7 @@
             this.txtSiteName.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSiteName.MaxLength = 100;
             this.txtSiteName.Name = "txtSiteName";
-            this.txtSiteName.Size = new System.Drawing.Size(892, 31);
+            this.txtSiteName.Size = new System.Drawing.Size(875, 31);
             this.txtSiteName.TabIndex = 2;
             this.txtSiteName.Text = "scom10sxa.dev.local";
             this.txtSiteName.TextChanged += new System.EventHandler(this.txtSiteName_TextChanged);
@@ -433,7 +436,7 @@
             this.txtSiteHostHeaderName.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSiteHostHeaderName.MaxLength = 100;
             this.txtSiteHostHeaderName.Name = "txtSiteHostHeaderName";
-            this.txtSiteHostHeaderName.Size = new System.Drawing.Size(887, 31);
+            this.txtSiteHostHeaderName.Size = new System.Drawing.Size(870, 31);
             this.txtSiteHostHeaderName.TabIndex = 7;
             this.txtSiteHostHeaderName.Leave += new System.EventHandler(this.txtSiteHostHeaderName_Leave);
             // 
@@ -443,7 +446,7 @@
             this.txtCommerceEngineConnectClientSecret.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtCommerceEngineConnectClientSecret.MaxLength = 100;
             this.txtCommerceEngineConnectClientSecret.Name = "txtCommerceEngineConnectClientSecret";
-            this.txtCommerceEngineConnectClientSecret.Size = new System.Drawing.Size(887, 31);
+            this.txtCommerceEngineConnectClientSecret.Size = new System.Drawing.Size(870, 31);
             this.txtCommerceEngineConnectClientSecret.TabIndex = 6;
             this.txtCommerceEngineConnectClientSecret.Leave += new System.EventHandler(this.txtCommerceEngineConnectClientSecret_Leave);
             // 
@@ -463,7 +466,7 @@
             this.txtCommerceEngineConnectClientId.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtCommerceEngineConnectClientId.MaxLength = 50;
             this.txtCommerceEngineConnectClientId.Name = "txtCommerceEngineConnectClientId";
-            this.txtCommerceEngineConnectClientId.Size = new System.Drawing.Size(887, 31);
+            this.txtCommerceEngineConnectClientId.Size = new System.Drawing.Size(870, 31);
             this.txtCommerceEngineConnectClientId.TabIndex = 5;
             // 
             // label7
@@ -493,7 +496,7 @@
             this.txtSitecoreIdentityServerUrl.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSitecoreIdentityServerUrl.MaxLength = 200;
             this.txtSitecoreIdentityServerUrl.Name = "txtSitecoreIdentityServerUrl";
-            this.txtSitecoreIdentityServerUrl.Size = new System.Drawing.Size(887, 31);
+            this.txtSitecoreIdentityServerUrl.Size = new System.Drawing.Size(870, 31);
             this.txtSitecoreIdentityServerUrl.TabIndex = 4;
             this.txtSitecoreIdentityServerUrl.TextChanged += new System.EventHandler(this.txtSitecoreIdentityServerUrl_TextChanged);
             this.txtSitecoreIdentityServerUrl.Leave += new System.EventHandler(this.txtSitecoreIdentityServerUrl_Leave);
@@ -530,7 +533,7 @@
             this.txtCommerceInstallRoot.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtCommerceInstallRoot.MaxLength = 200;
             this.txtCommerceInstallRoot.Name = "txtCommerceInstallRoot";
-            this.txtCommerceInstallRoot.Size = new System.Drawing.Size(887, 31);
+            this.txtCommerceInstallRoot.Size = new System.Drawing.Size(872, 31);
             this.txtCommerceInstallRoot.TabIndex = 10;
             this.txtCommerceInstallRoot.Leave += new System.EventHandler(this.txtCommerceInstallRoot_Leave);
             // 
@@ -541,7 +544,7 @@
             this.txtxConnectInstallDir.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtxConnectInstallDir.MaxLength = 200;
             this.txtxConnectInstallDir.Name = "txtxConnectInstallDir";
-            this.txtxConnectInstallDir.Size = new System.Drawing.Size(887, 31);
+            this.txtxConnectInstallDir.Size = new System.Drawing.Size(872, 31);
             this.txtxConnectInstallDir.TabIndex = 9;
             this.txtxConnectInstallDir.Leave += new System.EventHandler(this.txtxConnectInstallDir_Leave);
             // 
@@ -562,7 +565,7 @@
             this.txtSXAInstallDir.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSXAInstallDir.MaxLength = 200;
             this.txtSXAInstallDir.Name = "txtSXAInstallDir";
-            this.txtSXAInstallDir.Size = new System.Drawing.Size(887, 31);
+            this.txtSXAInstallDir.Size = new System.Drawing.Size(872, 31);
             this.txtSXAInstallDir.TabIndex = 8;
             this.txtSXAInstallDir.Leave += new System.EventHandler(this.txtSXAInstallDir_Leave);
             // 
@@ -607,7 +610,7 @@
             this.txtSitecoreUserPassword.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSitecoreUserPassword.MaxLength = 15;
             this.txtSitecoreUserPassword.Name = "txtSitecoreUserPassword";
-            this.txtSitecoreUserPassword.Size = new System.Drawing.Size(890, 31);
+            this.txtSitecoreUserPassword.Size = new System.Drawing.Size(873, 31);
             this.txtSitecoreUserPassword.TabIndex = 18;
             this.txtSitecoreUserPassword.Text = "b";
             this.txtSitecoreUserPassword.UseSystemPasswordChar = true;
@@ -619,7 +622,7 @@
             this.txtSitecoreUsername.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSitecoreUsername.MaxLength = 15;
             this.txtSitecoreUsername.Name = "txtSitecoreUsername";
-            this.txtSitecoreUsername.Size = new System.Drawing.Size(890, 31);
+            this.txtSitecoreUsername.Size = new System.Drawing.Size(873, 31);
             this.txtSitecoreUsername.TabIndex = 17;
             this.txtSitecoreUsername.Leave += new System.EventHandler(this.txtSitecoreUsername_Leave);
             // 
@@ -649,7 +652,7 @@
             this.txtSitecoreDomain.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSitecoreDomain.MaxLength = 20;
             this.txtSitecoreDomain.Name = "txtSitecoreDomain";
-            this.txtSitecoreDomain.Size = new System.Drawing.Size(890, 31);
+            this.txtSitecoreDomain.Size = new System.Drawing.Size(873, 31);
             this.txtSitecoreDomain.TabIndex = 16;
             this.txtSitecoreDomain.Leave += new System.EventHandler(this.txtSitecoreDomain_Leave);
             // 
@@ -688,7 +691,7 @@
             this.txtStorefrontIndexPrefix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtStorefrontIndexPrefix.MaxLength = 100;
             this.txtStorefrontIndexPrefix.Name = "txtStorefrontIndexPrefix";
-            this.txtStorefrontIndexPrefix.Size = new System.Drawing.Size(886, 31);
+            this.txtStorefrontIndexPrefix.Size = new System.Drawing.Size(871, 31);
             this.txtStorefrontIndexPrefix.TabIndex = 23;
             this.txtStorefrontIndexPrefix.Leave += new System.EventHandler(this.txtStorefrontIndexPrefix_Leave);
             // 
@@ -708,7 +711,7 @@
             this.txtSolrService.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSolrService.MaxLength = 50;
             this.txtSolrService.Name = "txtSolrService";
-            this.txtSolrService.Size = new System.Drawing.Size(886, 31);
+            this.txtSolrService.Size = new System.Drawing.Size(871, 31);
             this.txtSolrService.TabIndex = 22;
             this.txtSolrService.Leave += new System.EventHandler(this.txtSolrService_Leave);
             // 
@@ -728,7 +731,7 @@
             this.txtSolrRoot.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSolrRoot.MaxLength = 100;
             this.txtSolrRoot.Name = "txtSolrRoot";
-            this.txtSolrRoot.Size = new System.Drawing.Size(886, 31);
+            this.txtSolrRoot.Size = new System.Drawing.Size(871, 31);
             this.txtSolrRoot.TabIndex = 21;
             this.txtSolrRoot.Leave += new System.EventHandler(this.txtSolrRoot_Leave);
             // 
@@ -738,7 +741,7 @@
             this.txtSolrUrl.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSolrUrl.MaxLength = 100;
             this.txtSolrUrl.Name = "txtSolrUrl";
-            this.txtSolrUrl.Size = new System.Drawing.Size(886, 31);
+            this.txtSolrUrl.Size = new System.Drawing.Size(871, 31);
             this.txtSolrUrl.TabIndex = 20;
             this.txtSolrUrl.Leave += new System.EventHandler(this.txtSolrUrl_Leave);
             // 
@@ -758,7 +761,7 @@
             this.txtSearchIndexPrefix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSearchIndexPrefix.MaxLength = 50;
             this.txtSearchIndexPrefix.Name = "txtSearchIndexPrefix";
-            this.txtSearchIndexPrefix.Size = new System.Drawing.Size(886, 31);
+            this.txtSearchIndexPrefix.Size = new System.Drawing.Size(871, 31);
             this.txtSearchIndexPrefix.TabIndex = 19;
             this.txtSearchIndexPrefix.Leave += new System.EventHandler(this.txtSearchIndexPrefix_Leave);
             // 
@@ -830,7 +833,7 @@
             this.txtRedisHost.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtRedisHost.MaxLength = 50;
             this.txtRedisHost.Name = "txtRedisHost";
-            this.txtRedisHost.Size = new System.Drawing.Size(892, 31);
+            this.txtRedisHost.Size = new System.Drawing.Size(871, 31);
             this.txtRedisHost.TabIndex = 24;
             this.txtRedisHost.Leave += new System.EventHandler(this.txtRedisHost_Leave);
             // 
@@ -870,7 +873,7 @@
             this.txtSitecoreSqlPass.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSitecoreSqlPass.MaxLength = 15;
             this.txtSitecoreSqlPass.Name = "txtSitecoreSqlPass";
-            this.txtSitecoreSqlPass.Size = new System.Drawing.Size(887, 31);
+            this.txtSitecoreSqlPass.Size = new System.Drawing.Size(864, 31);
             this.txtSitecoreSqlPass.TabIndex = 15;
             this.txtSitecoreSqlPass.UseSystemPasswordChar = true;
             this.txtSitecoreSqlPass.Leave += new System.EventHandler(this.txtSqlPass_Leave);
@@ -882,7 +885,7 @@
             this.txtSitecoreSqlUser.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSitecoreSqlUser.MaxLength = 20;
             this.txtSitecoreSqlUser.Name = "txtSitecoreSqlUser";
-            this.txtSitecoreSqlUser.Size = new System.Drawing.Size(887, 31);
+            this.txtSitecoreSqlUser.Size = new System.Drawing.Size(864, 31);
             this.txtSitecoreSqlUser.TabIndex = 14;
             this.txtSitecoreSqlUser.Text = "sa";
             this.txtSitecoreSqlUser.Leave += new System.EventHandler(this.txtSqlUser_Leave);
@@ -904,7 +907,7 @@
             this.txtSitecoreCoreDbName.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSitecoreCoreDbName.MaxLength = 25;
             this.txtSitecoreCoreDbName.Name = "txtSitecoreCoreDbName";
-            this.txtSitecoreCoreDbName.Size = new System.Drawing.Size(887, 31);
+            this.txtSitecoreCoreDbName.Size = new System.Drawing.Size(864, 31);
             this.txtSitecoreCoreDbName.TabIndex = 13;
             this.txtSitecoreCoreDbName.TextChanged += new System.EventHandler(this.txtSitecoreCoreDbName_TextChanged);
             this.txtSitecoreCoreDbName.Leave += new System.EventHandler(this.txtSitecoreCoreDbName_Leave);
@@ -936,7 +939,7 @@
             this.txtSitecoreDbServer.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSitecoreDbServer.MaxLength = 25;
             this.txtSitecoreDbServer.Name = "txtSitecoreDbServer";
-            this.txtSitecoreDbServer.Size = new System.Drawing.Size(887, 31);
+            this.txtSitecoreDbServer.Size = new System.Drawing.Size(864, 31);
             this.txtSitecoreDbServer.TabIndex = 12;
             this.txtSitecoreDbServer.Text = "(local)";
             this.txtSitecoreDbServer.Leave += new System.EventHandler(this.txtSitecoreDbServer_Leave);
@@ -958,7 +961,7 @@
             this.txtSqlDbPrefix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSqlDbPrefix.MaxLength = 15;
             this.txtSqlDbPrefix.Name = "txtSqlDbPrefix";
-            this.txtSqlDbPrefix.Size = new System.Drawing.Size(887, 31);
+            this.txtSqlDbPrefix.Size = new System.Drawing.Size(864, 31);
             this.txtSqlDbPrefix.TabIndex = 11;
             this.txtSqlDbPrefix.Text = "scom10sxa";
             this.txtSqlDbPrefix.Leave += new System.EventHandler(this.txtSqlDbPrefix_Leave);
@@ -999,7 +1002,7 @@
             this.txtCommerceServicesDBServer.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtCommerceServicesDBServer.MaxLength = 100;
             this.txtCommerceServicesDBServer.Name = "txtCommerceServicesDBServer";
-            this.txtCommerceServicesDBServer.Size = new System.Drawing.Size(849, 31);
+            this.txtCommerceServicesDBServer.Size = new System.Drawing.Size(830, 31);
             this.txtCommerceServicesDBServer.TabIndex = 26;
             this.txtCommerceServicesDBServer.Text = "(local)";
             this.txtCommerceServicesDBServer.Leave += new System.EventHandler(this.txtCommerceServicesDBServer_Leave);
@@ -1030,7 +1033,7 @@
             this.txtCommerceGlobalDbName.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtCommerceGlobalDbName.MaxLength = 200;
             this.txtCommerceGlobalDbName.Name = "txtCommerceGlobalDbName";
-            this.txtCommerceGlobalDbName.Size = new System.Drawing.Size(849, 31);
+            this.txtCommerceGlobalDbName.Size = new System.Drawing.Size(830, 31);
             this.txtCommerceGlobalDbName.TabIndex = 28;
             this.txtCommerceGlobalDbName.Leave += new System.EventHandler(this.txtCommerceGlobalDbName_Leave);
             // 
@@ -1050,7 +1053,7 @@
             this.txtCommerceSvcPostFix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtCommerceSvcPostFix.MaxLength = 50;
             this.txtCommerceSvcPostFix.Name = "txtCommerceSvcPostFix";
-            this.txtCommerceSvcPostFix.Size = new System.Drawing.Size(849, 31);
+            this.txtCommerceSvcPostFix.Size = new System.Drawing.Size(830, 31);
             this.txtCommerceSvcPostFix.TabIndex = 29;
             this.txtCommerceSvcPostFix.Leave += new System.EventHandler(this.txtCommerceSvcPostFix_Leave);
             // 
@@ -1070,7 +1073,7 @@
             this.txtCommerceServicesHostPostFix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtCommerceServicesHostPostFix.MaxLength = 100;
             this.txtCommerceServicesHostPostFix.Name = "txtCommerceServicesHostPostFix";
-            this.txtCommerceServicesHostPostFix.Size = new System.Drawing.Size(849, 31);
+            this.txtCommerceServicesHostPostFix.Size = new System.Drawing.Size(830, 31);
             this.txtCommerceServicesHostPostFix.TabIndex = 30;
             this.txtCommerceServicesHostPostFix.Leave += new System.EventHandler(this.txtCommerceServicesHostPostFix_Leave);
             // 
@@ -1081,7 +1084,7 @@
             this.txtCommerceDbName.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtCommerceDbName.MaxLength = 200;
             this.txtCommerceDbName.Name = "txtCommerceDbName";
-            this.txtCommerceDbName.Size = new System.Drawing.Size(849, 31);
+            this.txtCommerceDbName.Size = new System.Drawing.Size(830, 31);
             this.txtCommerceDbName.TabIndex = 27;
             this.txtCommerceDbName.Leave += new System.EventHandler(this.txtCommerceDbName_Leave);
             // 
@@ -1208,7 +1211,7 @@
             this.txtBizFxName.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtBizFxName.MaxLength = 100;
             this.txtBizFxName.Name = "txtBizFxName";
-            this.txtBizFxName.Size = new System.Drawing.Size(849, 31);
+            this.txtBizFxName.Size = new System.Drawing.Size(833, 31);
             this.txtBizFxName.TabIndex = 36;
             this.txtBizFxName.Leave += new System.EventHandler(this.txtBizFxName_Leave);
             // 
@@ -1302,7 +1305,7 @@
             this.txtEnvironmentsPrefix.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtEnvironmentsPrefix.MaxLength = 200;
             this.txtEnvironmentsPrefix.Name = "txtEnvironmentsPrefix";
-            this.txtEnvironmentsPrefix.Size = new System.Drawing.Size(849, 31);
+            this.txtEnvironmentsPrefix.Size = new System.Drawing.Size(828, 31);
             this.txtEnvironmentsPrefix.TabIndex = 37;
             // 
             // label41
@@ -1346,7 +1349,7 @@
             this.txtUserDomain.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtUserDomain.MaxLength = 50;
             this.txtUserDomain.Name = "txtUserDomain";
-            this.txtUserDomain.Size = new System.Drawing.Size(878, 31);
+            this.txtUserDomain.Size = new System.Drawing.Size(860, 31);
             this.txtUserDomain.TabIndex = 39;
             this.txtUserDomain.Leave += new System.EventHandler(this.txtUserDomain_Leave);
             // 
@@ -1367,7 +1370,7 @@
             this.txtUserPassword.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtUserPassword.MaxLength = 20;
             this.txtUserPassword.Name = "txtUserPassword";
-            this.txtUserPassword.Size = new System.Drawing.Size(878, 31);
+            this.txtUserPassword.Size = new System.Drawing.Size(860, 31);
             this.txtUserPassword.TabIndex = 41;
             this.txtUserPassword.Text = "q5Y8tA3FRMZf3xKN!";
             this.txtUserPassword.UseSystemPasswordChar = true;
@@ -1390,7 +1393,7 @@
             this.txtUserName.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtUserName.MaxLength = 14;
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(878, 31);
+            this.txtUserName.Size = new System.Drawing.Size(860, 31);
             this.txtUserName.TabIndex = 40;
             this.txtUserName.Leave += new System.EventHandler(this.txtUserName_Leave);
             // 
@@ -1427,7 +1430,7 @@
             this.txttxtBraintreeMerchantId.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txttxtBraintreeMerchantId.MaxLength = 100;
             this.txttxtBraintreeMerchantId.Name = "txttxtBraintreeMerchantId";
-            this.txttxtBraintreeMerchantId.Size = new System.Drawing.Size(878, 31);
+            this.txttxtBraintreeMerchantId.Size = new System.Drawing.Size(863, 31);
             this.txttxtBraintreeMerchantId.TabIndex = 42;
             this.txttxtBraintreeMerchantId.Leave += new System.EventHandler(this.txttxtBraintreeMerchantId_Leave);
             // 
@@ -1447,7 +1450,7 @@
             this.txtBraintreePublicKey.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtBraintreePublicKey.MaxLength = 100;
             this.txtBraintreePublicKey.Name = "txtBraintreePublicKey";
-            this.txtBraintreePublicKey.Size = new System.Drawing.Size(878, 31);
+            this.txtBraintreePublicKey.Size = new System.Drawing.Size(863, 31);
             this.txtBraintreePublicKey.TabIndex = 43;
             this.txtBraintreePublicKey.Leave += new System.EventHandler(this.txtBraintreePublicKey_Leave);
             // 
@@ -1457,7 +1460,7 @@
             this.txtBraintreePrivateKey.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtBraintreePrivateKey.MaxLength = 100;
             this.txtBraintreePrivateKey.Name = "txtBraintreePrivateKey";
-            this.txtBraintreePrivateKey.Size = new System.Drawing.Size(878, 31);
+            this.txtBraintreePrivateKey.Size = new System.Drawing.Size(863, 31);
             this.txtBraintreePrivateKey.TabIndex = 44;
             this.txtBraintreePrivateKey.UseSystemPasswordChar = true;
             this.txtBraintreePrivateKey.Leave += new System.EventHandler(this.txtBraintreePrivateKey_Leave);
@@ -1478,7 +1481,7 @@
             this.txtBraintreeEnvironment.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtBraintreeEnvironment.MaxLength = 100;
             this.txtBraintreeEnvironment.Name = "txtBraintreeEnvironment";
-            this.txtBraintreeEnvironment.Size = new System.Drawing.Size(878, 31);
+            this.txtBraintreeEnvironment.Size = new System.Drawing.Size(863, 31);
             this.txtBraintreeEnvironment.TabIndex = 45;
             this.txtBraintreeEnvironment.Leave += new System.EventHandler(this.txtBraintreeEnvironment_Leave);
             // 
@@ -1844,7 +1847,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Menu;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1609, 790);
             this.Controls.Add(this.btnScriptPreview);
@@ -1868,13 +1871,13 @@
             this.Controls.Add(this.label25);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlDetails);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.MaximizeBox = false;
             this.Name = "SitecoreCommerceInstaller";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Sitecore Commerce Install Assistant (SCIA)";
+            this.Text = "SCIA - Commerce Installer";
             this.tabDetails.ResumeLayout(false);
             this.tabPgDBConnection.ResumeLayout(false);
             this.tabPgDBConnection.PerformLayout();

@@ -149,7 +149,7 @@ namespace SCIA
 
                 if (!CommonFunctions.CheckDatabaseExists("SCIA_DB", dbServer.Server, dbServer.Username, dbServer.Password))
                 {
-                    connection = CreateDatabase("SCIA_DB");
+                    connection = CommonFunctions.CreateDatabase("SCIA_DB",txtDbServer.Text,txtSqlUser.Text,txtSqlPass.Text);
                     if (connection == null)
                     {
                         SetStatusMessage("Database Connectivity issues....", Color.Red);
@@ -564,32 +564,7 @@ namespace SCIA
             return true;
         }
 
-        public SqlConnection CreateDatabase(string database)
-        {
-            string appPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            CommonFunctions.GrantAccess(appPath); //Need to assign the permission for current application to allow create database on server (if you are in domain).
-            
-            using SqlConnection sqlConnection = new SqlConnection(CommonFunctions.BuildConnectionString(txtDbServer.Text, database, txtSqlUser.Text, txtSqlPass.Text,true));
-            {
-                sqlConnection.Open();
-                string createDBString = "CREATE DATABASE " + database + "; ";
-                SqlCommand command = new SqlCommand(createDBString, sqlConnection);
-                try
-                {
-                    command.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    CommonFunctions.WritetoEventLog("Unable to create Settings DB" + ex.Message, EventLogEntryType.Error);
-                    return null;
-
-                }
-
-                return sqlConnection;
-            }
-            
-        }
-
+        
 
         private void btnFirst_Click(object sender, EventArgs e)
         {

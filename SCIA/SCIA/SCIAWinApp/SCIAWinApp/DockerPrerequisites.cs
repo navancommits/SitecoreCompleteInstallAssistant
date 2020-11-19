@@ -13,8 +13,8 @@ namespace SCIA
         public DockerPrerequisites()
         {
             InitializeComponent();
+            chkSitecoreCommerceContainer.Text = ZipList.CommerceContainerZip + " Folder";
             CheckPrerequisites();
-
             if (AllChecked)
             {
                 lblStatus.ForeColor = Color.DarkGreen;
@@ -50,12 +50,12 @@ namespace SCIA
             file.WriteLine("\t[string]$SitecorePassword");
             file.WriteLine(")");
             file.WriteLine();
-
+            file.WriteLine("if (-not(Test-Path \"" + ZipList.CommerceContainerZip + ".zip\" -PathType Leaf)) {");
             file.WriteLine("$preference = $ProgressPreference");
             file.WriteLine("$ProgressPreference = \"SilentlyContinue\"");
             file.WriteLine("$sitecoreDownloadUrl = \"https://dev.sitecore.net\"");
             file.WriteLine("$packages = @{");
-            file.WriteLine("\"Sitecore.Commerce.Container.SDK.1.0.214.zip\" = \"https://dev.sitecore.net/~/media/FB50C51D304C47E89EB1C21C087B9B73.ashx\"");
+            file.WriteLine("\"" + ZipList.CommerceContainerZip + ".zip\" = '" + CommonFunctions.GetUrlfromWdpVersion("commercecon", Version.SitecoreVersion) + "'");
             file.WriteLine("}");
             file.WriteLine();
             file.WriteLine("# download packages from Sitecore");
@@ -106,6 +106,7 @@ namespace SCIA
             file.WriteLine("\t}");
             file.WriteLine("}");
             file.WriteLine("}");
+            file.WriteLine("}");
         }
         void WriteMainFile(string path)
         {
@@ -132,15 +133,18 @@ namespace SCIA
 
             file.WriteLine("$preference = $ProgressPreference");
             file.WriteLine("$ProgressPreference = \"SilentlyContinue\"");
-            file.WriteLine(".\\DownloadandSetupAllContainerPrereqs.ps1 -InstallSourcePath $InstallSourcePath -SitecoreUsername \"" + Login.username + "\" -SitecorePassword \"" + Login.password + "\"");
-            file.WriteLine("Expand-Archive -Force -LiteralPath Sitecore.Commerce.Container.SDK.1.0.214.zip -DestinationPath .\\Sitecore.Commerce.Container.SDK.1.0.214");
+            file.WriteLine(".\\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllContainerPrereqs.ps1 -InstallSourcePath $InstallSourcePath -SitecoreUsername \"" + Login.username + "\" -SitecorePassword \"" + Login.password + "\"");
+            file.WriteLine("Expand-Archive -Force -LiteralPath " +  ZipList.CommerceContainerZip + ".zip -DestinationPath .\\" + ZipList.CommerceContainerZip);
             file.WriteLine();
             file.WriteLine("if (-not(Test-Path -Path 'C:\\program files\\docker' -PathType Container)) {");
+            file.WriteLine("if (-not(Test-Path -Path 'Docker Desktop Installer.exe' -PathType Leaf)) {");
             file.WriteLine(
                 "\tInvoke-WebRequest -Uri \"https://desktop.docker.com/win/stable/Docker%20Desktop%20Installer.exe\"  -OutFile \"Docker Desktop Installer.exe\" -UseBasicParsing");
+            file.WriteLine("}");
             file.WriteLine(
                 "\tStart-Process -FilePath \"Docker Desktop Installer.exe\"");
             file.WriteLine("}");
+            
             file.WriteLine(
                 "$ProgressPreference = $preference");
             file.WriteLine(
@@ -151,9 +155,7 @@ namespace SCIA
 
         private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //ContainerPrerequisitesInstaller containerPrerequisitesInstaller = new ContainerPrerequisitesInstaller(siteDetails);
-            //containerPrerequisitesInstaller.ShowDialog();
-            if (FolderExists(@".\\Sitecore.Commerce.Container.SDK.1.0.214") && FolderExists(@"C:\\program files\\docker")) return;
+            if (FolderExists(@".\\" + ZipList.CommerceContainerZip) && (CommonFunctions.CheckSubDirectories(ZipList.CommerceContainerZip)) && FolderExists(@"C:\\program files\\docker")) return;
 
             if (!Login.Success)
             {
@@ -161,15 +163,15 @@ namespace SCIA
                 return;
             }
 
-            WriteWorkerFile(".\\DownloadandSetupAllContainerPrereqs.ps1");
-            WriteMainFile(".\\DownloadandExpandContainerZip.ps1");
-            CommonFunctions.LaunchPSScript(".\\DownloadandExpandContainerZip.ps1 -InstallSourcePath \".\" -SitecoreUsername \"" + Login.username + "\" -SitecorePassword \"" + Login.password + "\"");
+            WriteWorkerFile(".\\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllContainerPrereqs.ps1");
+            WriteMainFile(".\\" + SCIASettings.FilePrefixAppString + "DownloadandExpandContainerZip.ps1");
+            CommonFunctions.LaunchPSScript(".\\" + SCIASettings.FilePrefixAppString + "DownloadandExpandContainerZip.ps1 -InstallSourcePath \".\" -SitecoreUsername \"" + Login.username + "\" -SitecorePassword \"" + Login.password + "\"");
         }
 
         private void CheckPrerequisites()
         {
-            if (FolderExists(destFolder + "\\Sitecore.Commerce.Container.SDK.1.0.214")) { chkSitecoreCommerceContainer.Checked = true; chkSitecoreCommerceContainer.BackColor = Color.LightGreen; }
-            if (FileExists(destFolder + "\\Sitecore.Commerce.Container.SDK.1.0.214\\xc0\\license.xml")) { chkLicenseFile.Checked = true; chkLicenseFile.BackColor = Color.LightGreen; }
+            if (CommonFunctions.FileSystemEntryExists(ZipList.CommerceContainerZip, null, "folder", true)) { chkSitecoreCommerceContainer.Checked = true; chkSitecoreCommerceContainer.BackColor = Color.LightGreen; }
+            if (FileExists(destFolder + "\\" + ZipList.CommerceContainerZip + "\\xc0\\license.xml")) { chkLicenseFile.Checked = true; chkLicenseFile.BackColor = Color.LightGreen; }
            if(WindowsVersionOk()) { chkWindowsEdition.Checked = true; chkWindowsEdition.BackColor = Color.LightGreen; };
             if (FolderExists("c:\\program files\\docker")) { chkDocker.Checked = true; chkDocker.BackColor = Color.LightGreen; }
         }
@@ -188,7 +190,7 @@ namespace SCIA
             string version = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows NT\CurrentVersion", "ProductName", null);
             if (version == "Windows 10 Pro" || version == "Windows 10 Enterprise") { return true; }
             lblStatus.ForeColor = Color.Red;
-            lblStatus.Text = "Windows Edition must be Pro or Enterprise Build >=14372 for Docker Windows";
+            lblStatus.Text = "Windows Edition must be Pro or Enterprise Build for Docker Windows";
             AllChecked = false;
             return false;
         }
@@ -203,6 +205,11 @@ namespace SCIA
         }
 
         private void chkLicenseFile_CheckedChanged(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void chkSitecoreCommerceContainer_CheckedChanged(object sender, System.EventArgs e)
         {
 
         }

@@ -10,6 +10,7 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Transactions;
 using System.Windows.Forms;
+using Microsoft.Win32;
 
 namespace SCIA
 {
@@ -43,9 +44,13 @@ namespace SCIA
         {
             InitializeComponent();
             SystemDrive = Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.System));
+            this.Text = this.Text + " for Sitecore v" + Version.SitecoreVersion;
             tabDetails.Region = new Region(tabDetails.DisplayRectangle);
             ToggleEnableControls(false);
-            AssignStepStatus(TabIndexValue);
+            AssignStepStatus(const_DBConn_Tab);
+            txtSqlDbServer.Text = DBDetails.DbServer;
+            txtSqlPass.Text = DBDetails.SqlPass;
+            txtSqlUser.Text = DBDetails.SqlUser;
         }
 
         private bool PopulateSettingsData()
@@ -84,7 +89,7 @@ namespace SCIA
         {
             if (!CheckAllValidations()) return;
 
-            CommonFunctions.LaunchCmdScript("docker-compose up -d", ".\\Sitecore.Commerce.Container.SDK.1.0.214\\xc0");
+            CommonFunctions.LaunchCmdScript("docker-compose up -d", ".\\" +  ZipList.CommerceContainerZip + "\\xc0");
             lblStatus.ForeColor = Color.DarkGreen;
             lblStatus.Text = "Docker-Compose Up successfully launched....";
             ToggleEnableControls(false);
@@ -142,14 +147,22 @@ namespace SCIA
 
         private bool CheckPrerequisites()
         {
-            if (!Directory.Exists(".\\Sitecore.Commerce.Container.SDK.1.0.214")) { return false; }
-            if (!File.Exists(".\\Sitecore.Commerce.Container.SDK.1.0.214\\xc0\\license.xml")) { return false; }
+            if (!Directory.Exists(".\\" + ZipList.CommerceContainerZip)) { return false; }
+            if (!File.Exists(".\\" +  ZipList.CommerceContainerZip + "\\xc0\\license.xml")) { return false; }
+            if (!WindowsVersionOk()) { return false; }; 
             if (!Directory.Exists("c:\\program files\\docker")) { return false; }
 
             return true;
         }
 
-
+        private bool WindowsVersionOk()
+        {
+            string version = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows NT\CurrentVersion", "ProductName", null);
+            if (version == "Windows 10 Pro" || version == "Windows 10 Enterprise") { return true; }
+            lblStatus.ForeColor = Color.Red;
+            lblStatus.Text = "Windows Edition must be Pro or Enterprise Build for Docker Windows";
+            return false;
+        }
         private bool CheckAllValidations(bool uninstall=false,bool generatescript=false)
         {
             ToggleButtonControls(false);
@@ -165,7 +178,7 @@ namespace SCIA
            
            
             ToggleEnableControls(true);
-            if (uninstall) { btnInstall.Enabled = false; } else { btnUninstall.Enabled = false; }
+            //if (uninstall) { btnInstall.Enabled = false; } else { btnUninstall.Enabled = false; }
 
             return true;
         }
@@ -375,10 +388,10 @@ namespace SCIA
         {
             if (!CheckAllValidations()) return;
 
-            CreateVolumeFoldersScript(".\\Sitecore.Commerce.Container.SDK.1.0.214\\scripts\\CreateVolumeFolders.ps1");
-            WriteAutoFillFile(".\\Sitecore.Commerce.Container.SDK.1.0.214\\xc0\\init-setup.ps1");
+            CreateVolumeFoldersScript(".\\" + ZipList.CommerceContainerZip + "\\scripts\\CreateVolumeFolders.ps1");
+            WriteAutoFillFile(".\\" + ZipList.CommerceContainerZip + "\\xc0\\init-setup.ps1");
 
-            CommonFunctions.LaunchPSScript(".\\init-setup.ps1 -InstallSourcePath \".\" -SitecoreUsername \"" + txtSitecoreUsername.Text + "\" -SitecoreAdminPassword \"" + txtSitecoreUserPassword.Text + "\" -SqlSaPassword \"" + txtSqlPass.Text + "\" -BrainTreeEnvironment \"" + txtBraintreeEnvironment.Text + "\" -BrainTreePublicKey \"" + txtBraintreePublicKey.Text + "\" -BrainTreePrivateKey \"" + txtBraintreePrivateKey.Text + "\" -BrainTreeMerchantId \"" + txttxtBraintreeMerchantId.Text + "\" -LicenseXmlPath \"license.xml\"", ".\\Sitecore.Commerce.Container.SDK.1.0.214\\xc0");
+            CommonFunctions.LaunchPSScript(".\\init-setup.ps1 -InstallSourcePath \".\" -SitecoreUsername \"" + txtSitecoreUsername.Text + "\" -SitecoreAdminPassword \"" + txtSitecoreUserPassword.Text + "\" -SqlSaPassword \"" + txtSqlPass.Text + "\" -BrainTreeEnvironment \"" + txtBraintreeEnvironment.Text + "\" -BrainTreePublicKey \"" + txtBraintreePublicKey.Text + "\" -BrainTreePrivateKey \"" + txtBraintreePrivateKey.Text + "\" -BrainTreeMerchantId \"" + txttxtBraintreeMerchantId.Text + "\" -LicenseXmlPath \"license.xml\"", ".\\" + ZipList.CommerceContainerZip + "\\xc0");
 
             lblStatus.Text = ".env file generated successfully....";
             lblStatus.ForeColor = Color.DarkGreen;
@@ -411,7 +424,7 @@ namespace SCIA
         {
             if (!CheckAllValidations()) return;
 
-            CommonFunctions.LaunchCmdScript("docker-compose down -d", ".\\Sitecore.Commerce.Container.SDK.1.0.214\\xc0");
+            CommonFunctions.LaunchCmdScript("docker-compose down -d", ".\\" + ZipList.CommerceContainerZip  + "\\xc0");
             lblStatus.ForeColor = Color.DarkGreen;
             lblStatus.Text = "Docker-Compose Down successfully launched....";
             ToggleEnableControls(false);

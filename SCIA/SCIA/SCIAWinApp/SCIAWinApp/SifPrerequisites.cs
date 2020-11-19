@@ -1,32 +1,59 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SCIA
 {
-    public partial class SiaPrerequisites : Form
+    public partial class SifPrerequisites : Form
     {
-        bool AllChecked = false;
-        public SiaPrerequisites()
+        bool AllChecked = true;
+        List<VersionPrerequisites> prereqs;
+        string destFolder = string.Empty;
+        DBServerDetails dbServer;
+        const string zipType = "sitecoredevsetup";
+        string version = "10.0";
+        ZipVersions zipVersions = null;
+        public SifPrerequisites(DBServerDetails dbServerDetails)
         {
             InitializeComponent();
-            chkSitecoreSetup.Text = ZipList.SitecoreDevSetupZip + " Folder";
+            dbServer = dbServerDetails;
+            CommonFunctions.ConnectionString = CommonFunctions.BuildConnectionString(dbServer.Server, "SCIA_DB", dbServer.Username, dbServer.Password);
+            version = Version.SitecoreVersion;
+            this.Text = this.Text + " for Sitecore v" + version;
+            destFolder = CommonFunctions.GetZipNamefromWdpVersion(zipType, version);
+            prereqs = CommonFunctions.GetVersionPrerequisites(version, zipType);
             CheckPrerequisites();
+            zipVersions = CommonFunctions.GetZipVersionData(Version.SitecoreVersion, "sitecoredevsetup");
             if (AllChecked)
             {
                 lblStatus.ForeColor = Color.DarkGreen;
-                lblStatus.Text = "Required Pre-requisites Available...";
+                lblStatus.Text = "All Prerequisites Available";
+            }
+            else
+            {
+                lblStatus.ForeColor = Color.Red;
+                lblStatus.Text = "One or more missing Prerequisites....";
             }
         }
 
-        private bool FolderExists(string folderPath)
+        private void CheckPrerequisites()
         {
-            if (Directory.Exists(folderPath)) return true;
-            lblStatus.ForeColor = Color.Red;
-            lblStatus.Text = "Missing Pre-requisite: " + folderPath + " folder";
-            AllChecked = false;
-            return false;
+
+            if (!CommonFunctions.FileSystemEntryExists(destFolder, null, "folder", false)) { AllChecked = false; return; }
+            if (!CommonFunctions.FileSystemEntryExists("license.xml",null, "file")) { AllChecked = false; return; }
+            chkSitecoreSetup.Checked = true;
+            chkSitecoreSetup.BackColor = Color.LightGreen;
+            chkLicense.Checked = true;
+            chkLicense.BackColor = Color.LightGreen;
         }
+
 
         private void SetStatusMessage(string statusmsg, Color color)
         {
@@ -34,27 +61,10 @@ namespace SCIA
             lblStatus.Text = statusmsg;
         }
 
-        private void CheckPrerequisites()
-        {
-            if (!File.Exists(ZipList.SitecoreDevSetupZip + "\\setup.exe"))
-            {
-                SetStatusMessage("Missing Setup Exe - " + ZipList.SitecoreDevSetupZip + "\\setup.exe ", Color.Red);
-                return;
-            }
-                
-            chkSitecoreSetup.Checked = true; 
-            chkSitecoreSetup.BackColor = Color.LightGreen;
-            AllChecked = true;
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         void WriteWorkerFile(string path)
         {
             using var file = new StreamWriter(path);
+                    
 
             file.WriteLine("[CmdletBinding(SupportsShouldProcess = $true)]");
             file.WriteLine("[System.Diagnostics.CodeAnalysis.SuppressMessageAttribute(\"PSAvoidUsingPlainTextForPassword\", \"SitecorePassword\")]");
@@ -74,12 +84,12 @@ namespace SCIA
             file.WriteLine("\t[string]$SitecorePassword");
             file.WriteLine(")");
             file.WriteLine();
-
+            file.WriteLine("if (-not(Test-Path \"" + ZipList.SitecoreDevSetupZip + ".zip\" -PathType Leaf)) {");
             file.WriteLine("$preference = $ProgressPreference");
             file.WriteLine("$ProgressPreference = \"SilentlyContinue\"");
             file.WriteLine("$sitecoreDownloadUrl = \"https://dev.sitecore.net\"");
             file.WriteLine("$packages = @{");
-            file.WriteLine("\"" + ZipList.SitecoreDevSetupZip + ".zip\" = \"https://dev.sitecore.net/~/media/A74E47524738460B83332BAE82F123D1.ashx\"");
+            file.WriteLine("\"" + zipVersions.ZipName + ".zip\" = \"" + zipVersions.Url + "\"");            
             file.WriteLine("}");
             file.WriteLine();
             file.WriteLine("# download packages from Sitecore");
@@ -130,8 +140,8 @@ namespace SCIA
             file.WriteLine("\t}");
             file.WriteLine("}");
             file.WriteLine("}");
+            file.WriteLine("}");
         }
-
         void WriteMainFile(string path)
         {
             using var file = new StreamWriter(path);
@@ -157,10 +167,15 @@ namespace SCIA
 
             file.WriteLine("$preference = $ProgressPreference");
             file.WriteLine("$ProgressPreference = \"SilentlyContinue\"");
-            file.WriteLine(".\\" + SCIASettings.FilePrefixAppString +  "DownloadandSetupSiaPrereqs.ps1 -InstallSourcePath $InstallSourcePath -SitecoreUsername \"" + Login.username + "\" -SitecorePassword \"" + Login.password + "\"");
-            file.WriteLine("Expand-Archive -Force -LiteralPath \"" + ZipList.SitecoreDevSetupZip + ".zip\" -DestinationPath \"" + ZipList.SitecoreDevSetupZip + "\"");
-            file.WriteLine(
-                "Start-Process -FilePath \".\\" + ZipList.SitecoreDevSetupZip + "\\setup.exe\"");
+            file.WriteLine("if (-not(Test-Path '" + zipVersions.ZipName + ".zip' -PathType Leaf))");
+            file.WriteLine("{");
+            file.WriteLine(".\\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllPrereqs.ps1 -InstallSourcePath $InstallSourcePath -SitecoreUsername \"" + Login.username + "\" -SitecorePassword \"" + Login.password + "\"");
+            file.WriteLine("}");
+            file.WriteLine("Expand-Archive -Force -LiteralPath '" + zipVersions.ZipName + ".zip' -DestinationPath \".\\" + zipVersions.ZipName + "\"");
+            file.WriteLine("if ((Test-Path '" + zipVersions.ZipName + ".zip' -PathType Leaf))");
+            file.WriteLine("{");
+            file.WriteLine("Copy-Item -Force -Path \"license.xml\" -Destination \".\\" + zipVersions.ZipName + "\\license.xml\"");
+            file.WriteLine("}");
             file.WriteLine();
             file.WriteLine(
                 "$ProgressPreference = $preference");
@@ -174,23 +189,35 @@ namespace SCIA
 
         private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (!Login.Success)
+            if (CommonFunctions.FileSystemEntryExists(destFolder, null,"folder")) return;
+            if (!CommonFunctions.FileSystemEntryExists("license.xml", null, "file")) { 
+                SetStatusMessage("License file missing in the exe location...", Color.Red); 
+                return; 
+            }
+            var sitecoreDevSetupZipName = destFolder + ".zip";
+            if (!CommonFunctions.FileSystemEntryExists(sitecoreDevSetupZipName,null,"file"))
             {
-                SetStatusMessage("Login to Sdn from menubar...", Color.Red);
-                return;
+                if (!Login.Success)
+                {
+                    SetStatusMessage("Login to Sdn from menubar...", Color.Red);
+                    return;
+                }
             }
 
-            if (File.Exists(@".\" + ZipList.SitecoreDevSetupZip + "\\setup.exe"))
-            {
-                System.Diagnostics.Process.Start(ZipList.SitecoreDevSetupZip + "\\setup.exe");
+            WriteWorkerFile(@".\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllPrereqs.ps1");
+            WriteMainFile(@".\" + SCIASettings.FilePrefixAppString + "DownloadandExpandSifZip.ps1");
 
-            }
-            else
+            CommonFunctions.LaunchPSScript(@".\" + SCIASettings.FilePrefixAppString +  "DownloadandExpandSifZip -InstallSourcePath \".\" -SitecoreUsername \"" + Login.username + "\" -SitecorePassword \"" + Login.password + "\"");
+            
+        }
+
+        private void btnPrerequisites_Click(object sender, EventArgs e)
+        {
+            if (CommonFunctions.FileSystemEntryExists(ZipList.SitecoreDevSetupZip, null, "folder"))
             {
-                WriteWorkerFile(".\\" + SCIASettings.FilePrefixAppString + "DownloadandSetupSiaPrereqs.ps1");
-                WriteMainFile(".\\" + SCIASettings.FilePrefixAppString + "DownloadandExpandSiaZip.ps1");
-                CommonFunctions.LaunchPSScript(".\\" + SCIASettings.FilePrefixAppString + "DownloadandExpandSiaZip.ps1 -InstallSourcePath \".\" -SitecoreUsername \"" + Login.username + "\" -SitecorePassword \"" + Login.password + "\"");
+                CommonFunctions.LaunchPSScript(@"Install-SitecoreConfiguration -Path .\Prerequisites.json", ZipList.SitecoreDevSetupZip);
             }
         }
+
     }
 }

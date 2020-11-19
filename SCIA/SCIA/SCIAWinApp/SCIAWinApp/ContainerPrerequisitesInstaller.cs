@@ -47,7 +47,7 @@ namespace SCIA
             file.WriteLine("$ProgressPreference = \"SilentlyContinue\"");
             file.WriteLine("$sitecoreDownloadUrl = \"https://dev.sitecore.net\"");
             file.WriteLine("$packages = @{");
-            file.WriteLine("\"Sitecore.Commerce.Container.SDK.1.0.214.zip\" = \"https://dev.sitecore.net/~/media/FB50C51D304C47E89EB1C21C087B9B73.ashx\"");            
+            file.WriteLine("\"" + ZipList.CommerceContainerZip + ".zip\" = \"https://dev.sitecore.net/~/media/FB50C51D304C47E89EB1C21C087B9B73.ashx\"");            
             file.WriteLine("}");
             file.WriteLine();
             file.WriteLine("# download packages from Sitecore");
@@ -124,8 +124,8 @@ namespace SCIA
 
             file.WriteLine("$preference = $ProgressPreference");
             file.WriteLine("$ProgressPreference = \"SilentlyContinue\"");
-            file.WriteLine(".\\DownloadandSetupAllContainerPrereqs.ps1 -InstallSourcePath $InstallSourcePath -SitecoreUsername \"" + txtUser.Text + "\" -SitecorePassword \"" + txtPass.Text + "\"");
-            file.WriteLine("Expand-Archive -Force -LiteralPath Sitecore.Commerce.Container.SDK.1.0.214.zip -DestinationPath .");            
+            file.WriteLine(".\\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllContainerPrereqs.ps1 -InstallSourcePath $InstallSourcePath -SitecoreUsername \"" + txtUser.Text + "\" -SitecorePassword \"" + txtPass.Text + "\"");
+            file.WriteLine("Expand-Archive -Force -LiteralPath " + ZipList.CommerceContainerZip + ".zip -DestinationPath .");            
             file.WriteLine();
             file.WriteLine(
                 "$ProgressPreference = $preference");
@@ -170,7 +170,7 @@ namespace SCIA
             file.WriteLine();
             file.WriteLine("$ErrorActionPreference = \"Stop\";");
             file.WriteLine();
-            file.WriteLine(".\\DownloadandExpandContainerZip.ps1 -InstallSourcePath $InstallSourcePath -SitecoreUsername \"" + txtUser.Text + "\" -SitecorePassword \"" + txtPass.Text + "\"");
+            file.WriteLine(".\\" + SCIASettings.FilePrefixAppString + "DownloadandExpandContainerZip.ps1 -InstallSourcePath $InstallSourcePath -SitecoreUsername \"" + txtUser.Text + "\" -SitecorePassword \"" + txtPass.Text + "\"");
             file.WriteLine("if (-not (Test-Path $LicenseXmlPath)) {");
             file.WriteLine("\tthrow \"Did not find $LicenseXmlPath\"");
             file.WriteLine("}");
@@ -320,9 +320,9 @@ namespace SCIA
                 return;
             }
 
-            WriteAutoFillFile(".\\AutofillEnvFile.ps1");
+            WriteAutoFillFile(@".\" + SCIASettings.FilePrefixAppString  + "AutofillEnvFile.ps1");
 
-            CommonFunctions.LaunchPSScript(".\\AutofillEnvFile.ps1 -BrainTreeMerchantId \"" + siteDetails.BraintreeMerchantId + "\" -BrainTreePrivateKey \"" + siteDetails.BraintreePrivateKey + "\" -BrainTreePublicKey \"" + siteDetails.BraintreePublicKey + "\" -BrainTreeEnvironment \"" + siteDetails.BraintreeEnvironment + "\" -SqlSaPassword \"" + siteDetails.SqlPass + "\" -LicenseXmlPath . -InstallSourcePath \".\" -SitecoreUsername \"" + txtUser.Text + "\" -SitecoreAdminPassword \"" + txtPass.Text + "\"");
+            CommonFunctions.LaunchPSScript(".\\" + SCIASettings.FilePrefixAppString + "AutofillEnvFile.ps1 -BrainTreeMerchantId \"" + siteDetails.BraintreeMerchantId + "\" -BrainTreePrivateKey \"" + siteDetails.BraintreePrivateKey + "\" -BrainTreePublicKey \"" + siteDetails.BraintreePublicKey + "\" -BrainTreeEnvironment \"" + siteDetails.BraintreeEnvironment + "\" -SqlSaPassword \"" + siteDetails.SqlPass + "\" -LicenseXmlPath . -InstallSourcePath \".\" -SitecoreUsername \"" + txtUser.Text + "\" -SitecoreAdminPassword \"" + txtPass.Text + "\"");
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Runtime.Serialization;
 
 namespace SCIA
@@ -9,8 +10,8 @@ namespace SCIA
     public class Lucene
     {
         [DataMember(Name = "solr-spec-version")]
-        public string SolrSpecVersion { get; set; }        
-       
+        public string SolrSpecVersion { get; set; }
+
     }
 
     [DataContract]
@@ -20,7 +21,17 @@ namespace SCIA
         public string solr_home { get; set; }
         [DataMember]
         public Lucene lucene { get; set; }
-        
+
+    }
+
+    public static class DBDetails
+    {
+        public static string DbServer { get; set; }
+        public static string DbName { get; set; }
+        public static string SqlUser { get; set; }
+        public static string SqlPass { get; set; }
+
+        public static SqlConnection SqlConn { get; set; }
     }
 
     public class SiteDetailsRecords
@@ -54,10 +65,57 @@ namespace SCIA
         public string CommerceGlobalDbSuffix { get; set; }
         public string CommSharedDbSuffix { get; set; }
         public string UserSuffix { get; set; }
-        public string StorefrontHostSuffix  { get; set; }
+        public string StorefrontHostSuffix { get; set; }
         public string HostSuffix { get; set; }
         public string HttpsString { get; set; }
         public string UserPassword { get; set; }
+    }
+
+    public static class VersionList
+    {
+        public static IDictionary<string, string> CommerceVersions { get; set; }
+        public static IDictionary<string, string> CommerceContainerVersions { get; set; }
+        public static IDictionary<string, string> SitecoreDevSetupVersions { get; set; }
+        public static IDictionary<string, string> SitecoreContainerVersions { get; set; }
+        public static IDictionary<string, string> CommerceWdpList { get; set; }
+    }
+
+
+    public class VersionPrerequisites
+    {
+        public string Version { get; set; }
+        public string ZipType { get; set; }
+        public string PrerequisiteKey { get; set; }
+        public string PrerequisiteName { get; set; }
+        public string PrerequisiteUrl { get; set; }
+    }
+
+    public class ZipVersions
+    {
+        public string Version { get; set; }
+        public string ZipType { get; set; }
+        public string ZipName { get; set; }
+        public string Url { get; set; }
+    }
+
+    public static class Version
+    {
+        public static string SitecoreVersion { get; set; }
+        public static List<VersionPrerequisites> VersionPrerequisitesList { get; set; }
+        public static List<ZipVersions> ZipVersionsList { get; set; }
+    }
+
+    public static class SCIASettings
+    {
+        public static string FilePrefixAppString { get; set; }
+    }
+
+    public static class ZipList
+    {
+        public static string CommerceZip { get; set; }
+        public static string CommerceContainerZip { get; set; }
+        public static string SitecoreDevSetupZip { get; set; }
+        public static string SitecoreContainerZip { get; set; }
     }
 
     public static class Login

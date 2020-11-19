@@ -43,11 +43,11 @@
             // lblSure
             // 
             this.lblSure.AutoSize = true;
-            this.lblSure.Location = new System.Drawing.Point(66, 32);
+            this.lblSure.Location = new System.Drawing.Point(110, 25);
             this.lblSure.Name = "lblSure";
-            this.lblSure.Size = new System.Drawing.Size(424, 25);
+            this.lblSure.Size = new System.Drawing.Size(340, 25);
             this.lblSure.TabIndex = 0;
-            this.lblSure.Text = "Are you sure to Delete All Website Details?";
+            this.lblSure.Text = "Are you sure to Delete All Details?";
             // 
             // btnDeleteAll
             // 
@@ -124,7 +124,7 @@
             this.MinimizeBox = false;
             this.Name = "DeleteAll";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Sitecore Commerce Install Assistant (SCIA) - Delete All";
+            this.Text = "SCIA - Confirm Delete";
             this.pnlContainer.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

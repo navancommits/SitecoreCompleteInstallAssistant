@@ -95,6 +95,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClearAll.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClearAll.Designer.cs">
+      <DependentUpon>ClearAll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClearDB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClearDB.Designer.cs">
+      <DependentUpon>ClearDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="CommonFunctions.cs" />
     <Compile Include="ContainerPrerequisitesInstaller.cs">
       <SubType>Form</SubType>
@@ -102,11 +114,23 @@
     <Compile Include="ContainerPrerequisitesInstaller.Designer.cs">
       <DependentUpon>ContainerPrerequisitesInstaller.cs</DependentUpon>
     </Compile>
+    <Compile Include="DBConnect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DBConnect.Designer.cs">
+      <DependentUpon>DBConnect.cs</DependentUpon>
+    </Compile>
     <Compile Include="DeleteAll.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DeleteAll.designer.cs">
       <DependentUpon>DeleteAll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteAllLauncher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteAllLauncher.Designer.cs">
+      <DependentUpon>DeleteAllLauncher.cs</DependentUpon>
     </Compile>
     <Compile Include="DockerPrerequisites.cs">
       <SubType>Form</SubType>
@@ -120,11 +144,29 @@
     <Compile Include="SdnLoginForm.Designer.cs">
       <DependentUpon>SdnLoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SetVersion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SetVersion.Designer.cs">
+      <DependentUpon>SetVersion.cs</DependentUpon>
+    </Compile>
     <Compile Include="SiaPrerequisites.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SiaPrerequisites.Designer.cs">
       <DependentUpon>SiaPrerequisites.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SifPrerequisites.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SifPrerequisites.Designer.cs">
+      <DependentUpon>SifPrerequisites.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SIFSitecoreInstaller.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SIFSitecoreInstaller.Designer.cs">
+      <DependentUpon>SIFSitecoreInstaller.cs</DependentUpon>
     </Compile>
     <Compile Include="SitecoreCommerceContainerInstaller.cs">
       <SubType>Form</SubType>
@@ -169,12 +211,30 @@
     <Compile Include="SitecoreCommerceInstaller.Designer.cs">
       <DependentUpon>SitecoreCommerceInstaller.cs</DependentUpon>
     </Compile>
+    <Compile Include="SolrInstaller.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SolrInstaller.Designer.cs">
+      <DependentUpon>SolrInstaller.cs</DependentUpon>
+    </Compile>
     <Compile Include="SolrObject.cs" />
+    <EmbeddedResource Include="ClearAll.resx">
+      <DependentUpon>ClearAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClearDB.resx">
+      <DependentUpon>ClearDB.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ContainerPrerequisitesInstaller.resx">
       <DependentUpon>ContainerPrerequisitesInstaller.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DBConnect.resx">
+      <DependentUpon>DBConnect.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DeleteAll.resx">
       <DependentUpon>DeleteAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeleteAllLauncher.resx">
+      <DependentUpon>DeleteAllLauncher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DockerPrerequisites.resx">
       <DependentUpon>DockerPrerequisites.cs</DependentUpon>
@@ -182,8 +242,17 @@
     <EmbeddedResource Include="SdnLoginForm.resx">
       <DependentUpon>SdnLoginForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SetVersion.resx">
+      <DependentUpon>SetVersion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SiaPrerequisites.resx">
       <DependentUpon>SiaPrerequisites.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SifPrerequisites.resx">
+      <DependentUpon>SifPrerequisites.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SIFSitecoreInstaller.resx">
+      <DependentUpon>SIFSitecoreInstaller.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SitecoreCommerceContainerInstaller.resx">
       <DependentUpon>SitecoreCommerceContainerInstaller.cs</DependentUpon>
@@ -208,6 +277,9 @@
     <EmbeddedResource Include="SitecoreCommerceInstaller.resx">
       <DependentUpon>SitecoreCommerceInstaller.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SolrInstaller.resx">
+      <DependentUpon>SolrInstaller.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
