@@ -39,6 +39,8 @@
             this.btnInstall = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.lnkJavaDownloadUrl = new System.Windows.Forms.LinkLabel();
+            this.txtJavaDownloadUrl = new System.Windows.Forms.TextBox();
             this.txtSolrPrefix = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtSolrDomain = new System.Windows.Forms.TextBox();
@@ -50,8 +52,6 @@
             this.txtSolrService = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtSolrRoot = new System.Windows.Forms.TextBox();
-            this.txtJavaDownloadUrl = new System.Windows.Forms.TextBox();
-            this.lnkJavaDownloadUrl = new System.Windows.Forms.LinkLabel();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
@@ -177,6 +177,28 @@
             this.panel3.Size = new System.Drawing.Size(1053, 364);
             this.panel3.TabIndex = 0;
             // 
+            // lnkJavaDownloadUrl
+            // 
+            this.lnkJavaDownloadUrl.AutoSize = true;
+            this.lnkJavaDownloadUrl.Location = new System.Drawing.Point(4, 297);
+            this.lnkJavaDownloadUrl.Name = "lnkJavaDownloadUrl";
+            this.lnkJavaDownloadUrl.Size = new System.Drawing.Size(186, 25);
+            this.lnkJavaDownloadUrl.TabIndex = 85;
+            this.lnkJavaDownloadUrl.TabStop = true;
+            this.lnkJavaDownloadUrl.Text = "JavaDownloadUrl:";
+            this.lnkJavaDownloadUrl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkJavaDownloadUrl_LinkClicked);
+            // 
+            // txtJavaDownloadUrl
+            // 
+            this.txtJavaDownloadUrl.Location = new System.Drawing.Point(198, 291);
+            this.txtJavaDownloadUrl.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtJavaDownloadUrl.MaxLength = 100;
+            this.txtJavaDownloadUrl.Name = "txtJavaDownloadUrl";
+            this.txtJavaDownloadUrl.Size = new System.Drawing.Size(827, 31);
+            this.txtJavaDownloadUrl.TabIndex = 84;
+            this.txtJavaDownloadUrl.Text = "https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.9%2" +
+    "B11.1/OpenJDK11U-jdk_x64_windows_hotspot_11.0.9_11.zip";
+            // 
             // txtSolrPrefix
             // 
             this.txtSolrPrefix.Location = new System.Drawing.Point(198, 96);
@@ -278,28 +300,6 @@
             this.txtSolrRoot.Size = new System.Drawing.Size(827, 31);
             this.txtSolrRoot.TabIndex = 72;
             this.txtSolrRoot.Text = "c:\\solr";
-            // 
-            // txtJavaDownloadUrl
-            // 
-            this.txtJavaDownloadUrl.Location = new System.Drawing.Point(198, 291);
-            this.txtJavaDownloadUrl.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtJavaDownloadUrl.MaxLength = 100;
-            this.txtJavaDownloadUrl.Name = "txtJavaDownloadUrl";
-            this.txtJavaDownloadUrl.Size = new System.Drawing.Size(827, 31);
-            this.txtJavaDownloadUrl.TabIndex = 84;
-            this.txtJavaDownloadUrl.Text = "https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.9%2" +
-    "B11.1/OpenJDK11U-jdk_x64_windows_hotspot_11.0.9_11.zip";
-            // 
-            // lnkJavaDownloadUrl
-            // 
-            this.lnkJavaDownloadUrl.AutoSize = true;
-            this.lnkJavaDownloadUrl.Location = new System.Drawing.Point(15, 297);
-            this.lnkJavaDownloadUrl.Name = "lnkJavaDownloadUrl";
-            this.lnkJavaDownloadUrl.Size = new System.Drawing.Size(186, 25);
-            this.lnkJavaDownloadUrl.TabIndex = 85;
-            this.lnkJavaDownloadUrl.TabStop = true;
-            this.lnkJavaDownloadUrl.Text = "JavaDownloadUrl:";
-            this.lnkJavaDownloadUrl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkJavaDownloadUrl_LinkClicked);
             // 
             // SolrInstaller
             // 

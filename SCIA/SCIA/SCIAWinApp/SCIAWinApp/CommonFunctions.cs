@@ -401,7 +401,7 @@ namespace SCIA
 
         public static string ConnectionString { get; set; }
 
-        public static ZipVersions GetZipVersionData(string version, string ziptype)
+       public static ZipVersions GetZipVersionData(string version, string ziptype)
         {
             try
             {

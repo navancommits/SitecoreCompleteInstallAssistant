@@ -71,6 +71,7 @@
             this.toolStripDeleteWebsiteButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripDeleteDBButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripPortAvailabilityButton = new System.Windows.Forms.ToolStripButton();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -220,6 +221,7 @@
             this.toolStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonSIFModuleInstall,
+            this.toolStripPortAvailabilityButton,
             this.toolStripSolrButton,
             this.toolStripSeparator10,
             this.siaToolStripButton,
@@ -407,7 +409,7 @@
             this.toolStripSolrDeleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSolrDeleteButton.Name = "toolStripSolrDeleteButton";
             this.toolStripSolrDeleteButton.Size = new System.Drawing.Size(46, 44);
-            this.toolStripSolrDeleteButton.Text = "(Solr) Service Cleanup";
+            this.toolStripSolrDeleteButton.Text = "Delete Orphan Windows Service";
             this.toolStripSolrDeleteButton.Click += new System.EventHandler(this.toolStripSolrDeleteButton_Click);
             // 
             // toolStripDeleteWebsiteButton
@@ -417,7 +419,7 @@
             this.toolStripDeleteWebsiteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDeleteWebsiteButton.Name = "toolStripDeleteWebsiteButton";
             this.toolStripDeleteWebsiteButton.Size = new System.Drawing.Size(46, 44);
-            this.toolStripDeleteWebsiteButton.Text = "Delete Website";
+            this.toolStripDeleteWebsiteButton.Text = "Delete Orphan Website/App Pools";
             this.toolStripDeleteWebsiteButton.Click += new System.EventHandler(this.toolStripDeleteWebsiteButton_Click);
             // 
             // toolStripSeparator11
@@ -433,9 +435,19 @@
             this.toolStripDeleteDBButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDeleteDBButton.Name = "toolStripDeleteDBButton";
             this.toolStripDeleteDBButton.Size = new System.Drawing.Size(46, 44);
-            this.toolStripDeleteDBButton.Text = "Delete DB";
+            this.toolStripDeleteDBButton.Text = "Delete Orphan DB(s)";
             this.toolStripDeleteDBButton.ToolTipText = "Delete DB";
             this.toolStripDeleteDBButton.Click += new System.EventHandler(this.toolStripDeleteDBButton_Click);
+            // 
+            // toolStripPortAvailabilityButton
+            // 
+            this.toolStripPortAvailabilityButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripPortAvailabilityButton.Image = ((System.Drawing.Image)(resources.GetObject("toolStripPortAvailabilityButton.Image")));
+            this.toolStripPortAvailabilityButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripPortAvailabilityButton.Name = "toolStripPortAvailabilityButton";
+            this.toolStripPortAvailabilityButton.Size = new System.Drawing.Size(46, 44);
+            this.toolStripPortAvailabilityButton.Text = "Port Availability Checker";
+            this.toolStripPortAvailabilityButton.Click += new System.EventHandler(this.toolStripPortAvailabilityButton_Click);
             // 
             // mdiSitecoreComplete
             // 
@@ -508,6 +520,7 @@
         private System.Windows.Forms.ToolStripButton toolStripDeleteWebsiteButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         private System.Windows.Forms.ToolStripButton toolStripDeleteDBButton;
+        private System.Windows.Forms.ToolStripButton toolStripPortAvailabilityButton;
     }
 }
 

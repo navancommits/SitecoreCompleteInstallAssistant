@@ -558,5 +558,24 @@ namespace SCIA
             };
             formInstance.Show();
         }
+
+        private void toolStripPortAvailabilityButton_Click(object sender, EventArgs e)
+        {
+            foreach (Form frm in this.MdiChildren)
+            {
+                if (frm is PortAvailabilityChecker)
+                {
+                    if (frm.WindowState == FormWindowState.Minimized)
+                        frm.WindowState = FormWindowState.Normal;
+                    frm.Focus();
+                    return;
+                }
+            }
+            PortAvailabilityChecker formInstance = new PortAvailabilityChecker
+            {
+                MdiParent = this
+            };
+            formInstance.Show();
+        }
     }
 }

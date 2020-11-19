@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
+using System.Text.RegularExpressions;
 using System.Transactions;
 using System.Windows.Forms;
 
@@ -1487,17 +1488,42 @@ namespace SCIA
             return true;
         }
 
+        private bool PortInRange(string input,string portString,int tabIndex)
+        {
+            var regex = @"^([1-9][0-9]{0,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])$";
+            var match = Regex.Match(input, regex, RegexOptions.IgnoreCase);
+
+            if (!match.Success)
+            {
+                lblStatus.Text = portString + " range must be between 1 and 65535... ";
+                lblStatus.ForeColor = Color.Red;
+                AssignStepStatus(tabIndex);
+                return false;
+            }
+
+            return true;
+        }
+
         private bool PerformPortValidations(bool unInstall=false)
         {
             string portString = string.Empty;
-            
-            if (!ValidatePortNumber(txtRedisPort, "Redis Port", const_Redis_Tab)) return false;
 
-            if (!ValidatePortNumber(txtCommerceOpsSvcPort, "Commerce Ops Svc Port", const_Port_Tab)) return false;
-            if (!ValidatePortNumber(txtCommerceShopsServicesPort, "Commerce Shops Svc Port", const_Port_Tab)) return false;
-            if (!ValidatePortNumber(txtCommerceAuthSvcPort, "Commerce Auth Svc Port", const_Port_Tab)) return false;
-            if (!ValidatePortNumber(txtCommerceMinionsSvcPort, "Commerce Minions Svc Port", const_Port_Tab)) return false;
-            if (!ValidatePortNumber(txtBizFxPort, "BizFx Port Number", const_Port_Tab)) return false;
+            //if (!ValidatePortNumber(txtRedisPort, "Redis Port", const_Redis_Tab)) return false;          
+
+            //if (!ValidatePortNumber(txtCommerceOpsSvcPort, "Commerce Ops Svc Port", const_Port_Tab)) return false;
+            //if (!ValidatePortNumber(txtCommerceShopsServicesPort, "Commerce Shops Svc Port", const_Port_Tab)) return false;
+            //if (!ValidatePortNumber(txtCommerceAuthSvcPort, "Commerce Auth Svc Port", const_Port_Tab)) return false;
+            //if (!ValidatePortNumber(txtCommerceMinionsSvcPort, "Commerce Minions Svc Port", const_Port_Tab)) return false;
+            //if (!ValidatePortNumber(txtBizFxPort, "BizFx Port Number", const_Port_Tab)) return false;
+
+            if (!PortInRange(txtRedisPort.Text, "Redis Port", const_Redis_Tab)) return false;
+
+            if (!PortInRange(txtCommerceOpsSvcPort.Text, "Commerce Shops Svc Port", const_Port_Tab)) return false;
+            if (!PortInRange(txtCommerceShopsServicesPort.Text, "Commerce Shops Svc Port", const_Port_Tab)) return false;
+            if (!PortInRange(txtCommerceAuthSvcPort.Text, "Commerce Auth Svc Port", const_Port_Tab)) return false;
+            if (!PortInRange(txtCommerceMinionsSvcPort.Text, "Commerce Minions Svc Port", const_Port_Tab)) return false;
+            if (!PortInRange(txtBizFxPort.Text, "BizFx Port Number", const_Port_Tab)) return false;
+
             if (!unInstall)
             {
                 if (!IsPortNotinUse(txtCommerceOpsSvcPort, const_Port_Tab)) return false;

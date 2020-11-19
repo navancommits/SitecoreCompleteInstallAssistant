@@ -138,6 +138,12 @@
     <Compile Include="DockerPrerequisites.Designer.cs">
       <DependentUpon>DockerPrerequisites.cs</DependentUpon>
     </Compile>
+    <Compile Include="PortAvailabilityChecker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PortAvailabilityChecker.Designer.cs">
+      <DependentUpon>PortAvailabilityChecker.cs</DependentUpon>
+    </Compile>
     <Compile Include="SdnLoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -238,6 +244,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DockerPrerequisites.resx">
       <DependentUpon>DockerPrerequisites.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PortAvailabilityChecker.resx">
+      <DependentUpon>PortAvailabilityChecker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SdnLoginForm.resx">
       <DependentUpon>SdnLoginForm.cs</DependentUpon>
