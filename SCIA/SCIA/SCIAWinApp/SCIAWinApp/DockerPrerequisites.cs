@@ -144,7 +144,11 @@ namespace SCIA
             file.WriteLine(
                 "\tStart-Process -FilePath \"Docker Desktop Installer.exe\"");
             file.WriteLine("}");
-            
+            file.WriteLine("if ((Test-Path '" + ZipList.CommerceContainerZip + ".zip' -PathType Leaf))");
+            file.WriteLine("{");
+            file.WriteLine("Copy-Item -Force -Path \"license.xml\" -Destination \".\\" + ZipList.CommerceContainerZip + "\\xc0\\license.xml\"");
+            file.WriteLine("}");
+            file.WriteLine();
             file.WriteLine(
                 "$ProgressPreference = $preference");
             file.WriteLine(
@@ -155,16 +159,30 @@ namespace SCIA
 
         private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (FolderExists(@".\\" + ZipList.CommerceContainerZip) && (CommonFunctions.CheckSubDirectories(ZipList.CommerceContainerZip)) && FolderExists(@"C:\\program files\\docker")) return;
-
-            if (!Login.Success)
+            if (!CommonFunctions.FileSystemEntryExists("license.xml", null, "file"))
             {
-                SetStatusMessage("Login to Sdn from menubar...", Color.Red);
+                SetStatusMessage("License file missing in the exe location...", Color.Red);
                 return;
             }
-
-            WriteWorkerFile(".\\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllContainerPrereqs.ps1");
-            WriteMainFile(".\\" + SCIASettings.FilePrefixAppString + "DownloadandExpandContainerZip.ps1");
+            if (!(FolderExists(@".\\" + ZipList.CommerceContainerZip) && (CommonFunctions.CheckSubDirectories(ZipList.CommerceContainerZip))))
+            {
+                if (!CommonFunctions.FileSystemEntryExists(ZipList.CommerceContainerZip + ".zip",null))
+                {
+                    if (!Login.Success)
+                    {
+                        SetStatusMessage("Login to Sdn from menubar...", Color.Red);
+                        return;
+                    }
+                }                
+            }
+            if (!CommonFunctions.FileSystemEntryExists(SCIASettings.FilePrefixAppString + "DownloadandSetupAllContainerPrereqs.ps1",null))
+            {
+                WriteWorkerFile(".\\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllContainerPrereqs.ps1");
+            }
+            if (!CommonFunctions.FileSystemEntryExists(SCIASettings.FilePrefixAppString + "DownloadandExpandContainerZip.ps1", null))
+            {
+                WriteMainFile(".\\" + SCIASettings.FilePrefixAppString + "DownloadandExpandContainerZip.ps1");
+            }
             CommonFunctions.LaunchPSScript(".\\" + SCIASettings.FilePrefixAppString + "DownloadandExpandContainerZip.ps1 -InstallSourcePath \".\" -SitecoreUsername \"" + Login.username + "\" -SitecorePassword \"" + Login.password + "\"");
         }
 

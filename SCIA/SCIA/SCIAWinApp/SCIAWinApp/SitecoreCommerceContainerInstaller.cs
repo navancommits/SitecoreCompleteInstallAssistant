@@ -424,7 +424,7 @@ namespace SCIA
         {
             if (!CheckAllValidations()) return;
 
-            CommonFunctions.LaunchCmdScript("docker-compose down -d", ".\\" + ZipList.CommerceContainerZip  + "\\xc0");
+            CommonFunctions.LaunchCmdScript("docker-compose down", ".\\" + ZipList.CommerceContainerZip  + "\\xc0");
             lblStatus.ForeColor = Color.DarkGreen;
             lblStatus.Text = "Docker-Compose Down successfully launched....";
             ToggleEnableControls(false);

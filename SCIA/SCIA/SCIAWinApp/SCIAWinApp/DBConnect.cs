@@ -43,6 +43,8 @@ namespace SCIA
             DBDetails.SqlPass = txtSqlPass.Text;
             CommonFunctions.ConnectionString=CommonFunctions.BuildConnectionString(txtSqlDbServer.Text,"SCIA_DB" , txtSqlUser.Text, txtSqlPass.Text);
 
+            if (!CommonFunctions.CheckandSetupZipVersionsTable()) { CommonFunctions.WritetoEventLog("Unable to setup Zip Versions Data", System.Diagnostics.EventLogEntryType.Error, "Application"); return; };
+
             Form frm = (Form)this.MdiParent;
             ToolStrip toolStrip = (ToolStrip)frm.Controls["toolStrip"];
             ToolStripButton toolSetVersionMenuButton = (ToolStripButton)toolStrip.Items["toolStripButtonSetVersion"];

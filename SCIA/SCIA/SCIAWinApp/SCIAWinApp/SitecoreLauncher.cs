@@ -96,6 +96,8 @@ namespace SCIA
 
         private void mdiSitecoreComplete_Load(object sender, EventArgs e)
         {
+            ToggleMenuandButtonAccess(false);
+
             if (string.IsNullOrWhiteSpace(CommonFunctions.ConnectionString)) {
                 foreach (Form frm in this.MdiChildren)
                 {
@@ -407,41 +409,41 @@ namespace SCIA
 
         private void mdiSitecoreComplete_Shown(object sender, EventArgs e)
         {
-            ToggleMenuandButtonAccess(false);
+            
 
-            if (!CommonFunctions.CheckandSetupZipVersionsTable()) { CommonFunctions.WritetoEventLog("Unable to setup Zip Versions Data", System.Diagnostics.EventLogEntryType.Error, "Application"); return; };
+        //    if (!CommonFunctions.CheckandSetupZipVersionsTable()) { CommonFunctions.WritetoEventLog("Unable to setup Zip Versions Data", System.Diagnostics.EventLogEntryType.Error, "Application"); return; };
 
-            if (string.IsNullOrWhiteSpace(Version.SitecoreVersion))
-            {
-                foreach (Form frm in this.MdiChildren)
-                {
-                    if (frm is SetVersion)
-                    {
-                        if (frm.WindowState == FormWindowState.Minimized)
-                            frm.WindowState = FormWindowState.Normal;
-                        frm.Focus();
-                        return;
-                    }
-                }
-                SetVersion formInstance = new SetVersion
-                {
-                    MdiParent = this
-                };
-                formInstance.Show();
-            }
+        //    if (string.IsNullOrWhiteSpace(Version.SitecoreVersion))
+        //    {
+        //        foreach (Form frm in this.MdiChildren)
+        //        {
+        //            if (frm is SetVersion)
+        //            {
+        //                if (frm.WindowState == FormWindowState.Minimized)
+        //                    frm.WindowState = FormWindowState.Normal;
+        //                frm.Focus();
+        //                return;
+        //            }
+        //        }
+        //        SetVersion formInstance = new SetVersion
+        //        {
+        //            MdiParent = this
+        //        };
+        //        formInstance.Show();
+        //    }
 
-            Version.SitecoreVersion = Version.SitecoreVersion;//must be stored and picked from a local file since dbconn will be established only after this
-            ZipList.CommerceZip = CommonFunctions.GetZipNamefromWdpVersion("commerce", Version.SitecoreVersion);
-            if (!string.IsNullOrWhiteSpace(ZipList.CommerceZip)) { sitecoreCommerceToolStripButton.Enabled = true; }
-            ZipList.CommerceContainerZip = CommonFunctions.GetZipNamefromWdpVersion("commercecon", Version.SitecoreVersion);
-            if (!string.IsNullOrWhiteSpace(ZipList.CommerceContainerZip)) { sitecoreCommerceContainerToolStripButton.Enabled = true; }
-            ZipList.SitecoreContainerZip = CommonFunctions.GetZipNamefromWdpVersion("sitecorecon", Version.SitecoreVersion);
-            if (!string.IsNullOrWhiteSpace(ZipList.SitecoreContainerZip)) { sitecoreContainerToolStripButton.Enabled = true; }
-            ZipList.SitecoreDevSetupZip = CommonFunctions.GetZipNamefromWdpVersion("sitecoredevsetup", Version.SitecoreVersion);
-            if (!string.IsNullOrWhiteSpace(ZipList.SitecoreDevSetupZip)) { 
-                siaToolStripButton.Enabled = true;
-                siftoolStripButton.Enabled = true;
-            }
+        //    Version.SitecoreVersion = Version.SitecoreVersion;//must be stored and picked from a local file since dbconn will be established only after this
+        //    ZipList.CommerceZip = CommonFunctions.GetZipNamefromWdpVersion("commerce", Version.SitecoreVersion);
+        //    if (!string.IsNullOrWhiteSpace(ZipList.CommerceZip)) { sitecoreCommerceToolStripButton.Enabled = true; }
+        //    ZipList.CommerceContainerZip = CommonFunctions.GetZipNamefromWdpVersion("commercecon", Version.SitecoreVersion);
+        //    if (!string.IsNullOrWhiteSpace(ZipList.CommerceContainerZip)) { sitecoreCommerceContainerToolStripButton.Enabled = true; }
+        //    ZipList.SitecoreContainerZip = CommonFunctions.GetZipNamefromWdpVersion("sitecorecon", Version.SitecoreVersion);
+        //    if (!string.IsNullOrWhiteSpace(ZipList.SitecoreContainerZip)) { sitecoreContainerToolStripButton.Enabled = true; }
+        //    ZipList.SitecoreDevSetupZip = CommonFunctions.GetZipNamefromWdpVersion("sitecoredevsetup", Version.SitecoreVersion);
+        //    if (!string.IsNullOrWhiteSpace(ZipList.SitecoreDevSetupZip)) { 
+        //        siaToolStripButton.Enabled = true;
+        //        siftoolStripButton.Enabled = true;
+        //    }
         }
 
        
