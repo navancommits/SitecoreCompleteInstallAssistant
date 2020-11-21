@@ -80,15 +80,6 @@
             this.txtSitecoreSqlPass = new System.Windows.Forms.TextBox();
             this.txtSitecoreSqlUser = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.tabPgBraintree = new System.Windows.Forms.TabPage();
-            this.label46 = new System.Windows.Forms.Label();
-            this.txttxtBraintreeMerchantId = new System.Windows.Forms.TextBox();
-            this.label45 = new System.Windows.Forms.Label();
-            this.txtBraintreePublicKey = new System.Windows.Forms.TextBox();
-            this.txtBraintreePrivateKey = new System.Windows.Forms.TextBox();
-            this.label44 = new System.Windows.Forms.Label();
-            this.txtBraintreeEnvironment = new System.Windows.Forms.TextBox();
-            this.label40 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.chkStepsList = new System.Windows.Forms.CheckedListBox();
             this.lblStepInfo = new System.Windows.Forms.Label();
@@ -104,7 +95,6 @@
             this.tabPgCommerceSiteInfo.SuspendLayout();
             this.tabPgSitecore.SuspendLayout();
             this.tabPgSitecoreDb.SuspendLayout();
-            this.tabPgBraintree.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -120,6 +110,7 @@
             this.button1.Size = new System.Drawing.Size(71, 55);
             this.button1.TabIndex = 69;
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnScriptPreview
             // 
@@ -284,7 +275,6 @@
             this.tabDetails.Controls.Add(this.tabPgCommerceSiteInfo);
             this.tabDetails.Controls.Add(this.tabPgSitecore);
             this.tabDetails.Controls.Add(this.tabPgSitecoreDb);
-            this.tabDetails.Controls.Add(this.tabPgBraintree);
             this.tabDetails.Location = new System.Drawing.Point(6, -2);
             this.tabDetails.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabDetails.Multiline = true;
@@ -691,100 +681,6 @@
             this.label12.TabIndex = 0;
             this.label12.Text = "SqlUser:";
             // 
-            // tabPgBraintree
-            // 
-            this.tabPgBraintree.Controls.Add(this.label46);
-            this.tabPgBraintree.Controls.Add(this.txttxtBraintreeMerchantId);
-            this.tabPgBraintree.Controls.Add(this.label45);
-            this.tabPgBraintree.Controls.Add(this.txtBraintreePublicKey);
-            this.tabPgBraintree.Controls.Add(this.txtBraintreePrivateKey);
-            this.tabPgBraintree.Controls.Add(this.label44);
-            this.tabPgBraintree.Controls.Add(this.txtBraintreeEnvironment);
-            this.tabPgBraintree.Controls.Add(this.label40);
-            this.tabPgBraintree.Location = new System.Drawing.Point(8, 39);
-            this.tabPgBraintree.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.tabPgBraintree.Name = "tabPgBraintree";
-            this.tabPgBraintree.Size = new System.Drawing.Size(1158, 349);
-            this.tabPgBraintree.TabIndex = 11;
-            this.tabPgBraintree.Text = "Braintree";
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(19, 33);
-            this.label46.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(212, 25);
-            this.label46.TabIndex = 0;
-            this.label46.Text = "BraintreeMerchantId:";
-            // 
-            // txttxtBraintreeMerchantId
-            // 
-            this.txttxtBraintreeMerchantId.Location = new System.Drawing.Point(278, 29);
-            this.txttxtBraintreeMerchantId.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txttxtBraintreeMerchantId.MaxLength = 100;
-            this.txttxtBraintreeMerchantId.Name = "txttxtBraintreeMerchantId";
-            this.txttxtBraintreeMerchantId.Size = new System.Drawing.Size(858, 31);
-            this.txttxtBraintreeMerchantId.TabIndex = 42;
-            // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(19, 73);
-            this.label45.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(201, 25);
-            this.label45.TabIndex = 0;
-            this.label45.Text = "BraintreePublicKey:";
-            // 
-            // txtBraintreePublicKey
-            // 
-            this.txtBraintreePublicKey.Location = new System.Drawing.Point(278, 69);
-            this.txtBraintreePublicKey.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtBraintreePublicKey.MaxLength = 100;
-            this.txtBraintreePublicKey.Name = "txtBraintreePublicKey";
-            this.txtBraintreePublicKey.Size = new System.Drawing.Size(858, 31);
-            this.txtBraintreePublicKey.TabIndex = 43;
-            // 
-            // txtBraintreePrivateKey
-            // 
-            this.txtBraintreePrivateKey.Location = new System.Drawing.Point(278, 110);
-            this.txtBraintreePrivateKey.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtBraintreePrivateKey.MaxLength = 100;
-            this.txtBraintreePrivateKey.Name = "txtBraintreePrivateKey";
-            this.txtBraintreePrivateKey.Size = new System.Drawing.Size(858, 31);
-            this.txtBraintreePrivateKey.TabIndex = 44;
-            this.txtBraintreePrivateKey.UseSystemPasswordChar = true;
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(19, 114);
-            this.label44.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(209, 25);
-            this.label44.TabIndex = 0;
-            this.label44.Text = "BraintreePrivateKey:";
-            // 
-            // txtBraintreeEnvironment
-            // 
-            this.txtBraintreeEnvironment.Location = new System.Drawing.Point(278, 152);
-            this.txtBraintreeEnvironment.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtBraintreeEnvironment.MaxLength = 100;
-            this.txtBraintreeEnvironment.Name = "txtBraintreeEnvironment";
-            this.txtBraintreeEnvironment.Size = new System.Drawing.Size(858, 31);
-            this.txtBraintreeEnvironment.TabIndex = 45;
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(19, 155);
-            this.label40.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(225, 25);
-            this.label40.TabIndex = 0;
-            this.label40.Text = "BraintreeEnvironment:";
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -807,8 +703,7 @@
             "Site Info",
             "Commerce Site Info",
             "Sitecore ",
-            "Sitecore DB",
-            "Braintree"});
+            "Sitecore DB"});
             this.chkStepsList.Location = new System.Drawing.Point(5, 4);
             this.chkStepsList.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.chkStepsList.Name = "chkStepsList";
@@ -819,7 +714,7 @@
             // 
             this.lblStepInfo.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold);
             this.lblStepInfo.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lblStepInfo.Location = new System.Drawing.Point(1154, 173);
+            this.lblStepInfo.Location = new System.Drawing.Point(1179, 173);
             this.lblStepInfo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblStepInfo.Name = "lblStepInfo";
             this.lblStepInfo.Size = new System.Drawing.Size(408, 40);
@@ -936,8 +831,6 @@
             this.tabPgSitecore.PerformLayout();
             this.tabPgSitecoreDb.ResumeLayout(false);
             this.tabPgSitecoreDb.PerformLayout();
-            this.tabPgBraintree.ResumeLayout(false);
-            this.tabPgBraintree.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -996,15 +889,6 @@
         private System.Windows.Forms.TextBox txtSitecoreSqlPass;
         private System.Windows.Forms.TextBox txtSitecoreSqlUser;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TabPage tabPgBraintree;
-        private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.TextBox txttxtBraintreeMerchantId;
-        private System.Windows.Forms.Label label45;
-        private System.Windows.Forms.TextBox txtBraintreePublicKey;
-        private System.Windows.Forms.TextBox txtBraintreePrivateKey;
-        private System.Windows.Forms.Label label44;
-        private System.Windows.Forms.TextBox txtBraintreeEnvironment;
-        private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.CheckedListBox chkStepsList;
         private System.Windows.Forms.Label lblStepInfo;

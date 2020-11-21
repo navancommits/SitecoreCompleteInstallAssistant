@@ -43,7 +43,7 @@ namespace SCIA
             DBDetails.SqlPass = txtSqlPass.Text;
             CommonFunctions.ConnectionString=CommonFunctions.BuildConnectionString(txtSqlDbServer.Text,"SCIA_DB" , txtSqlUser.Text, txtSqlPass.Text);
 
-            if (!CommonFunctions.CheckandSetupZipVersionsTable()) { CommonFunctions.WritetoEventLog("Unable to setup Zip Versions Data", System.Diagnostics.EventLogEntryType.Error, "Application"); return; };
+            //if (!CommonFunctions.CheckandSetupZipVersionsTable()) { CommonFunctions.WritetoEventLog("Unable to setup Zip Versions Data", System.Diagnostics.EventLogEntryType.Error, "Application"); return; };
 
             Form frm = (Form)this.MdiParent;
             ToolStrip toolStrip = (ToolStrip)frm.Controls["toolStrip"];
@@ -53,10 +53,13 @@ namespace SCIA
             ToolStripMenuItem toolStripMenuItemDbConn = (ToolStripMenuItem)menuStrip.Items["toolStripMenuItemDbConn"];
             ToolStripButton toolStripDBConnectButton = (ToolStripButton)toolStrip.Items["toolStripDBConnectButton"];
             ToolStripButton toolStripDBDeleteButton = (ToolStripButton)toolStrip.Items["toolStripDeleteDBButton"];
+            ToolStripButton toolStripSetupDBButton = (ToolStripButton)toolStrip.Items["toolStripSetupDBButton"];
             toolSetVersionMenuButton.Enabled = true;
             toolSetVersionMenuItem.Enabled = true;
             toolStripMenuItemDbConn.Enabled = true;
             toolStripDBDeleteButton.Enabled = true;
+            toolStripSetupDBButton.Enabled = true;
+
             toolStripDBConnectButton.Enabled = false;
             SetStatusMessage("Successfully established DB Connection", Color.Green);
             this.Hide();

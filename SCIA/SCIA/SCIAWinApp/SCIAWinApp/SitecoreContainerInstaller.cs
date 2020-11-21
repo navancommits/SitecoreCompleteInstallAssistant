@@ -87,7 +87,23 @@ namespace SCIA
 
         }
 
+        private bool CheckAllValidations(bool uninstall = false, bool generatescript = false)
+        {
+            return true;
+        }
+
         private void btnGenerate_Click(object sender, EventArgs e)
+        {
+            if (!CheckAllValidations()) return;
+            //WriteAutoFillFile(".\\" + ZipList.SitecoreContainerZip + "\\compose\\ltsc2019\\xp0\\init.ps1");
+
+            CommonFunctions.LaunchPSScript(".\\init.ps1 -InstallSourcePath \".\" -SitecoreUsername \"" + txtSitecoreUsername.Text + "\" -SitecoreAdminPassword \"" + txtSitecoreUserPassword.Text + "\" -SqlSaPassword \"" + txtSqlPass.Text + "\" -LicenseXmlPath \"license.xml\"", ".\\" + ZipList.CommerceContainerZip + "\\compose\\ltsc2019\\xp0");
+
+            lblStatus.Text = ".env file generated successfully....";
+            lblStatus.ForeColor = Color.DarkGreen;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
 
         }

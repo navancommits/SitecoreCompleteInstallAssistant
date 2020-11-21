@@ -115,6 +115,7 @@ namespace SCIA
         public static string CommerceZip { get; set; }
         public static string CommerceContainerZip { get; set; }
         public static string SitecoreDevSetupZip { get; set; }
+        public static string SitecoreSifZip { get; set; }
         public static string SitecoreContainerZip { get; set; }
     }
 

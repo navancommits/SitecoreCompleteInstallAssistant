@@ -20,6 +20,26 @@ namespace SCIA
         {
             InitializeComponent();
             SCIASettings.FilePrefixAppString = "SCIA-";
+            toolStripButtonInstallDacFx.Enabled = false;
+            toolStripButtonInstallDockerVersion.Enabled = false;
+            toolStripButtonDotnetHost.Enabled = false;
+
+            if (CommonFunctions.FileSystemEntryExists("C:\\ProgramData\\chocolatey\\choco.exe",null))
+            {
+                toolStripButtonInstallDacFx.Enabled = true;
+            }
+
+            if (!CommonFunctions.FileSystemEntryExists("C:\\program files\\docker\\docker\\Docker Desktop Installer.exe", null))
+            {
+                toolStripButtonInstallDockerVersion.Enabled = true;
+            }
+
+            if (!Directory.Exists("C:\\Program Files\\dotnet\\shared\\Microsoft.AspNetCore.App\\3.1.8"))
+            {
+                toolStripButtonDotnetHost.Enabled = true;
+            }
+
+            toolStripSetupDBButton.Enabled = false;
         }
 
         private void ShowNewForm(object sender, EventArgs e)
@@ -578,6 +598,87 @@ namespace SCIA
                 MdiParent = this
             };
             formInstance.Show();
+        }
+
+        void WritePSFile(string path)
+        {
+            using var file = new StreamWriter(path);
+
+            file.WriteLine("if (($PSVersionTable.PSVersion.Major -lt 6)) {");
+            file.WriteLine("iex \"& { $(irm https://aka.ms/install-powershell.ps1) } -UseMSI\"");
+            file.WriteLine("}");
+        }
+
+        private void toolStripButtonPS7_Click(object sender, EventArgs e)
+        {
+            WritePSFile(".\\" + SCIASettings.FilePrefixAppString + "PSVersion7.ps1");
+            CommonFunctions.LaunchPSScript(".\\" + SCIASettings.FilePrefixAppString + "PSVersion7.ps1");
+        }
+
+        private void toolStripInstallChocButton_Click(object sender, EventArgs e)
+        {
+            var cmd= "@\"%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command \"iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))\" && SET \"PATH=%PATH%;%ALLUSERSPROFILE%\\chocolatey\\bin\"";
+            CommonFunctions.LaunchCmdScript(cmd);
+        }
+
+        private void toolStripButtonInstallDacFx_Click(object sender, EventArgs e)
+        {
+            var cmd = "C:\\ProgramData\\chocolatey\\choco.exe install dacfx-18 -y";
+            CommonFunctions.LaunchPSScript(cmd);
+        }
+
+        private void toolStripButtonInstallDockerVersion_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(@".\\" + "Docker%20Desktop%20Installer.exe"))
+            {
+                ProcessStartInfo processStartInfo = new ProcessStartInfo
+                {
+                    WorkingDirectory = ".",
+                    FileName = "Docker%20Desktop%20Installer.exe"
+                };
+                Process.Start(processStartInfo);
+                return;
+            }
+
+            WriteMainFile(".\\" + "SCIA-DownloadDockerforDesktop.ps1", "https://desktop.docker.com/win/stable/Docker%20Desktop%20Installer.exe", "Docker%20Desktop%20Installer.exe");
+
+            CommonFunctions.LaunchPSScript(".\\SCIA-DownloadDockerforDesktop.ps1");
+        }
+
+        private void toolStripSetupDBButton_Click(object sender, EventArgs e)
+        {
+            DBSetup dBSetup = new DBSetup();
+            dBSetup.ShowDialog();
+        }
+
+        private void toolStripButtonDotnetHost_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(@".\\" + "dotnet-hosting-3.1.8-win.exe"))
+            {
+                ProcessStartInfo processStartInfo = new ProcessStartInfo
+                {
+                    WorkingDirectory = ".",
+                    FileName = "dotnet-hosting-3.1.8-win.exe"
+                };
+                Process.Start(processStartInfo);
+                return;
+            }
+
+            WriteMainFile(".\\" + "SCIA-DownloadDotnetHost.ps1", "https://download.visualstudio.microsoft.com/download/pr/854cbd11-4b96-4a44-9664-b95991c0c4f7/8ec4944a5bd770faba2f769e647b1e6e/dotnet-hosting-3.1.8-win.exe", "dotnet-hosting-3.1.8-win.exe");
+
+            CommonFunctions.LaunchPSScript(".\\SCIA-DownloadDotnetHost.ps1");
+        }
+
+        private void WriteMainFile(string filename,string url,string name)
+        {
+            using var file = new StreamWriter(filename);
+            file.WriteLine("if (-not(Test-Path -Path '" + name + "' -PathType Leaf)) {");
+            file.WriteLine(
+                "\tInvoke-WebRequest -Uri \"" + url + "\"  -OutFile \"" + name + "\" -UseBasicParsing");
+            file.WriteLine(
+                "\tStart-Process -FilePath \"" + name + "\"");
+            file.WriteLine("}");
+            file.Dispose();
         }
     }
 }

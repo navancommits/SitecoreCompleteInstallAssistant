@@ -120,6 +120,12 @@
     <Compile Include="DBConnect.Designer.cs">
       <DependentUpon>DBConnect.cs</DependentUpon>
     </Compile>
+    <Compile Include="DBSetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DBSetup.Designer.cs">
+      <DependentUpon>DBSetup.cs</DependentUpon>
+    </Compile>
     <Compile Include="DeleteAll.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -241,6 +247,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DBConnect.resx">
       <DependentUpon>DBConnect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBSetup.resx">
+      <DependentUpon>DBSetup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DeleteAll.resx">
       <DependentUpon>DeleteAll.cs</DependentUpon>

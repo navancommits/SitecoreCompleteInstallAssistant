@@ -47,31 +47,35 @@
             this.contentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.toolStripInstallChocButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonInstallDacFx = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonSIFModuleInstall = new System.Windows.Forms.ToolStripButton();
             this.toolStripSolrButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonPS7 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonInstallDockerVersion = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.siaToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.siftoolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.sitecoreContainerToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.sitecoreCommerceToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.sitecoreCommerceContainerToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonSetVersion = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripDBConnectButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonSetVersion = new System.Windows.Forms.ToolStripButton();
             this.sdnLogintoolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripPortAvailabilityButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSolrDeleteButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripDeleteWebsiteButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripDeleteDBButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.toolStripSolrDeleteButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripDeleteWebsiteButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripDeleteDBButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripPortAvailabilityButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSetupDBButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonDotnetHost = new System.Windows.Forms.ToolStripButton();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -89,7 +93,7 @@
             this.helpMenu});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(1264, 48);
+            this.menuStrip.Size = new System.Drawing.Size(1264, 40);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -220,34 +224,58 @@
             // 
             this.toolStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripInstallChocButton,
+            this.toolStripButtonInstallDacFx,
+            this.toolStripButtonPS7,
             this.toolStripButtonSIFModuleInstall,
-            this.toolStripPortAvailabilityButton,
             this.toolStripSolrButton,
-            this.toolStripSeparator10,
+            this.toolStripButtonDotnetHost,
+            this.toolStripButtonInstallDockerVersion,
+            this.toolStripSeparator12,
+            this.toolStripSetupDBButton,
+            this.toolStripSeparator1,
             this.siaToolStripButton,
             this.siftoolStripButton,
-            this.toolStripSeparator4,
             this.sitecoreContainerToolStripButton,
-            this.toolStripSeparator1,
+            this.toolStripSeparator4,
             this.sitecoreCommerceToolStripButton,
-            this.toolStripSeparator5,
             this.sitecoreCommerceContainerToolStripButton,
             this.toolStripSeparator2,
-            this.toolStripButtonSetVersion,
-            this.toolStripSeparator7,
             this.toolStripDBConnectButton,
-            this.toolStripSeparator9,
+            this.toolStripButtonSetVersion,
+            this.sdnLogintoolStripButton,
+            this.toolStripPortAvailabilityButton,
+            this.toolStripSeparator7,
             this.toolStripSolrDeleteButton,
             this.toolStripDeleteWebsiteButton,
             this.toolStripDeleteDBButton,
-            this.toolStripSeparator11,
-            this.sdnLogintoolStripButton});
-            this.toolStrip.Location = new System.Drawing.Point(0, 48);
+            this.toolStripSeparator11});
+            this.toolStrip.Location = new System.Drawing.Point(0, 40);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
-            this.toolStrip.Size = new System.Drawing.Size(1264, 50);
+            this.toolStrip.Size = new System.Drawing.Size(1264, 42);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "ToolStrip";
+            // 
+            // toolStripInstallChocButton
+            // 
+            this.toolStripInstallChocButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripInstallChocButton.Image = ((System.Drawing.Image)(resources.GetObject("toolStripInstallChocButton.Image")));
+            this.toolStripInstallChocButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripInstallChocButton.Name = "toolStripInstallChocButton";
+            this.toolStripInstallChocButton.Size = new System.Drawing.Size(46, 44);
+            this.toolStripInstallChocButton.Text = "Install Chocolatey";
+            this.toolStripInstallChocButton.Click += new System.EventHandler(this.toolStripInstallChocButton_Click);
+            // 
+            // toolStripButtonInstallDacFx
+            // 
+            this.toolStripButtonInstallDacFx.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonInstallDacFx.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonInstallDacFx.Image")));
+            this.toolStripButtonInstallDacFx.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonInstallDacFx.Name = "toolStripButtonInstallDacFx";
+            this.toolStripButtonInstallDacFx.Size = new System.Drawing.Size(46, 44);
+            this.toolStripButtonInstallDacFx.Text = "Install DACFx (Chocolatey is prerequisite)";
+            this.toolStripButtonInstallDacFx.Click += new System.EventHandler(this.toolStripButtonInstallDacFx_Click);
             // 
             // toolStripButtonSIFModuleInstall
             // 
@@ -269,10 +297,30 @@
             this.toolStripSolrButton.Text = "Solr Installer";
             this.toolStripSolrButton.Click += new System.EventHandler(this.toolStripButton1_Click_1);
             // 
-            // toolStripSeparator10
+            // toolStripButtonPS7
             // 
-            this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(6, 50);
+            this.toolStripButtonPS7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonPS7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonPS7.Image")));
+            this.toolStripButtonPS7.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonPS7.Name = "toolStripButtonPS7";
+            this.toolStripButtonPS7.Size = new System.Drawing.Size(46, 44);
+            this.toolStripButtonPS7.Text = "Install Powershell 7";
+            this.toolStripButtonPS7.Click += new System.EventHandler(this.toolStripButtonPS7_Click);
+            // 
+            // toolStripButtonInstallDockerVersion
+            // 
+            this.toolStripButtonInstallDockerVersion.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonInstallDockerVersion.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonInstallDockerVersion.Image")));
+            this.toolStripButtonInstallDockerVersion.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonInstallDockerVersion.Name = "toolStripButtonInstallDockerVersion";
+            this.toolStripButtonInstallDockerVersion.Size = new System.Drawing.Size(46, 44);
+            this.toolStripButtonInstallDockerVersion.Text = "Install Docker for Windows";
+            this.toolStripButtonInstallDockerVersion.Click += new System.EventHandler(this.toolStripButtonInstallDockerVersion_Click);
+            // 
+            // toolStripSeparator12
+            // 
+            this.toolStripSeparator12.Name = "toolStripSeparator12";
+            this.toolStripSeparator12.Size = new System.Drawing.Size(6, 50);
             // 
             // siaToolStripButton
             // 
@@ -294,11 +342,6 @@
             this.siftoolStripButton.Text = "Sitecore Install Framework (SIF)";
             this.siftoolStripButton.Click += new System.EventHandler(this.sifltoolStripButton_Click);
             // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 50);
-            // 
             // sitecoreContainerToolStripButton
             // 
             this.sitecoreContainerToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -309,10 +352,10 @@
             this.sitecoreContainerToolStripButton.Text = "Sitecore Container Installer";
             this.sitecoreContainerToolStripButton.Click += new System.EventHandler(this.OpenFile);
             // 
-            // toolStripSeparator1
+            // toolStripSeparator4
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 50);
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 50);
             // 
             // sitecoreCommerceToolStripButton
             // 
@@ -323,11 +366,6 @@
             this.sitecoreCommerceToolStripButton.Size = new System.Drawing.Size(46, 44);
             this.sitecoreCommerceToolStripButton.Text = "Sitecore Commerce Install Assistant";
             this.sitecoreCommerceToolStripButton.Click += new System.EventHandler(this.sitecoreCommerceToolStripButton_Click);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 50);
             // 
             // sitecoreCommerceContainerToolStripButton
             // 
@@ -344,21 +382,6 @@
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 50);
             // 
-            // toolStripButtonSetVersion
-            // 
-            this.toolStripButtonSetVersion.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonSetVersion.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSetVersion.Image")));
-            this.toolStripButtonSetVersion.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonSetVersion.Name = "toolStripButtonSetVersion";
-            this.toolStripButtonSetVersion.Size = new System.Drawing.Size(46, 44);
-            this.toolStripButtonSetVersion.Text = "Set Version";
-            this.toolStripButtonSetVersion.Click += new System.EventHandler(this.toolStripButtonSetVersion_Click);
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 50);
-            // 
             // toolStripDBConnectButton
             // 
             this.toolStripDBConnectButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -369,10 +392,15 @@
             this.toolStripDBConnectButton.Text = "DB Connection";
             this.toolStripDBConnectButton.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
-            // toolStripSeparator9
+            // toolStripButtonSetVersion
             // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 50);
+            this.toolStripButtonSetVersion.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonSetVersion.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSetVersion.Image")));
+            this.toolStripButtonSetVersion.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSetVersion.Name = "toolStripButtonSetVersion";
+            this.toolStripButtonSetVersion.Size = new System.Drawing.Size(46, 44);
+            this.toolStripButtonSetVersion.Text = "Set Version";
+            this.toolStripButtonSetVersion.Click += new System.EventHandler(this.toolStripButtonSetVersion_Click);
             // 
             // sdnLogintoolStripButton
             // 
@@ -385,22 +413,20 @@
             this.sdnLogintoolStripButton.ToolTipText = "SDN Login";
             this.sdnLogintoolStripButton.Click += new System.EventHandler(this.sdnLogintoolStripButton_Click);
             // 
-            // statusStrip
+            // toolStripPortAvailabilityButton
             // 
-            this.statusStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 829);
-            this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Padding = new System.Windows.Forms.Padding(2, 0, 28, 0);
-            this.statusStrip.Size = new System.Drawing.Size(1264, 42);
-            this.statusStrip.TabIndex = 2;
+            this.toolStripPortAvailabilityButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripPortAvailabilityButton.Image = ((System.Drawing.Image)(resources.GetObject("toolStripPortAvailabilityButton.Image")));
+            this.toolStripPortAvailabilityButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripPortAvailabilityButton.Name = "toolStripPortAvailabilityButton";
+            this.toolStripPortAvailabilityButton.Size = new System.Drawing.Size(46, 44);
+            this.toolStripPortAvailabilityButton.Text = "Port Availability Checker";
+            this.toolStripPortAvailabilityButton.Click += new System.EventHandler(this.toolStripPortAvailabilityButton_Click);
             // 
-            // toolStripStatusLabel
+            // toolStripSeparator7
             // 
-            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(79, 32);
-            this.toolStripStatusLabel.Text = "Status";
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 50);
             // 
             // toolStripSolrDeleteButton
             // 
@@ -422,11 +448,6 @@
             this.toolStripDeleteWebsiteButton.Text = "Delete Orphan Website/App Pools";
             this.toolStripDeleteWebsiteButton.Click += new System.EventHandler(this.toolStripDeleteWebsiteButton_Click);
             // 
-            // toolStripSeparator11
-            // 
-            this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(6, 50);
-            // 
             // toolStripDeleteDBButton
             // 
             this.toolStripDeleteDBButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -439,15 +460,53 @@
             this.toolStripDeleteDBButton.ToolTipText = "Delete DB";
             this.toolStripDeleteDBButton.Click += new System.EventHandler(this.toolStripDeleteDBButton_Click);
             // 
-            // toolStripPortAvailabilityButton
+            // toolStripSeparator11
             // 
-            this.toolStripPortAvailabilityButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripPortAvailabilityButton.Image = ((System.Drawing.Image)(resources.GetObject("toolStripPortAvailabilityButton.Image")));
-            this.toolStripPortAvailabilityButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripPortAvailabilityButton.Name = "toolStripPortAvailabilityButton";
-            this.toolStripPortAvailabilityButton.Size = new System.Drawing.Size(46, 44);
-            this.toolStripPortAvailabilityButton.Text = "Port Availability Checker";
-            this.toolStripPortAvailabilityButton.Click += new System.EventHandler(this.toolStripPortAvailabilityButton_Click);
+            this.toolStripSeparator11.Name = "toolStripSeparator11";
+            this.toolStripSeparator11.Size = new System.Drawing.Size(6, 50);
+            // 
+            // statusStrip
+            // 
+            this.statusStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel});
+            this.statusStrip.Location = new System.Drawing.Point(0, 829);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Padding = new System.Windows.Forms.Padding(2, 0, 28, 0);
+            this.statusStrip.Size = new System.Drawing.Size(1264, 42);
+            this.statusStrip.TabIndex = 2;
+            // 
+            // toolStripStatusLabel
+            // 
+            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(79, 32);
+            this.toolStripStatusLabel.Text = "Status";
+            // 
+            // toolStripSetupDBButton
+            // 
+            this.toolStripSetupDBButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripSetupDBButton.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSetupDBButton.Image")));
+            this.toolStripSetupDBButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSetupDBButton.Name = "toolStripSetupDBButton";
+            this.toolStripSetupDBButton.Size = new System.Drawing.Size(46, 44);
+            this.toolStripSetupDBButton.Text = "Setup Versions and Prerequisites DB Table";
+            this.toolStripSetupDBButton.ToolTipText = "Setup Versions and Prerequisites DB Table";
+            this.toolStripSetupDBButton.Click += new System.EventHandler(this.toolStripSetupDBButton_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 50);
+            // 
+            // toolStripButtonDotnetHost
+            // 
+            this.toolStripButtonDotnetHost.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonDotnetHost.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonDotnetHost.Image")));
+            this.toolStripButtonDotnetHost.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonDotnetHost.Name = "toolStripButtonDotnetHost";
+            this.toolStripButtonDotnetHost.Size = new System.Drawing.Size(46, 44);
+            this.toolStripButtonDotnetHost.Text = "Latest Stable Dotnet Host Bundler";
+            this.toolStripButtonDotnetHost.Click += new System.EventHandler(this.toolStripButtonDotnetHost_Click);
             // 
             // mdiSitecoreComplete
             // 
@@ -482,7 +541,6 @@
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.StatusStrip statusStrip;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
@@ -505,22 +563,27 @@
         private System.Windows.Forms.ToolStripButton sdnLogintoolStripButton;
         private System.Windows.Forms.ToolStripButton siftoolStripButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem sifStripMenuItem;
         private System.Windows.Forms.ToolStripButton toolStripButtonSetVersion;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripButton toolStripDBConnectButton;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSetVersion;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDbConn;
         private System.Windows.Forms.ToolStripButton toolStripButtonSIFModuleInstall;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
         private System.Windows.Forms.ToolStripButton toolStripSolrButton;
         private System.Windows.Forms.ToolStripButton toolStripSolrDeleteButton;
         private System.Windows.Forms.ToolStripButton toolStripDeleteWebsiteButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         private System.Windows.Forms.ToolStripButton toolStripDeleteDBButton;
         private System.Windows.Forms.ToolStripButton toolStripPortAvailabilityButton;
+        private System.Windows.Forms.ToolStripButton toolStripButtonPS7;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
+        private System.Windows.Forms.ToolStripButton toolStripInstallChocButton;
+        private System.Windows.Forms.ToolStripButton toolStripButtonInstallDacFx;
+        private System.Windows.Forms.ToolStripButton toolStripButtonInstallDockerVersion;
+        private System.Windows.Forms.ToolStripButton toolStripSetupDBButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton toolStripButtonDotnetHost;
     }
 }
 
