@@ -39,6 +39,7 @@ namespace SCIA
         void WriteJsonFile(string path)
         {
             using var file = new StreamWriter(path);
+            string serverName = txtSqlDbServer.Text.Replace("\\", "\\\\");
             file.WriteLine("{");
             file.WriteLine("    \"Parameters\": {");
             file.WriteLine("        \"XConnectCertificateName\": {");
@@ -78,17 +79,17 @@ namespace SCIA
             file.WriteLine("        },");
             file.WriteLine("        \"SqlAdminUser\": {");
             file.WriteLine("            \"Type\": \"string\",");
-            file.WriteLine("            \"DefaultValue\": \"sa\",");
+            file.WriteLine("            \"DefaultValue\": \"" + txtSqlUser.Text + "\",");
             file.WriteLine("            \"Description\": \"The Sql admin user account to use when installing databases.\"");
             file.WriteLine("        },");
             file.WriteLine("        \"SqlAdminPassword\": {");
             file.WriteLine("            \"Type\": \"string\",");
-            file.WriteLine("            \"DefaultValue\": \"12345\",");
+            file.WriteLine("            \"DefaultValue\": \"" + txtSqlPass.Text + "\",");
             file.WriteLine("            \"Description\": \"The Sql admin password to use when installing databases.\"");
             file.WriteLine("        },");
             file.WriteLine("        \"SQLServer\": {");
             file.WriteLine("            \"Type\": \"String\",");
-            file.WriteLine("            \"DefaultValue\": \"Localhost\",");
+            file.WriteLine("            \"DefaultValue\": \"" + serverName + "\",");
             file.WriteLine("            \"Description\": \"The Sql Server where databases will be installed.\"");
             file.WriteLine("        },");
             file.WriteLine("        \"SqlCollectionPassword\": {");
@@ -1001,6 +1002,7 @@ namespace SCIA
             switch (Version.SitecoreVersion)
             {
                 case "10.0":
+                case "9.3":
                     WriteJsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\SingleDeveloperwithSXA.json");
                     WriteFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", false);
                     WriteFile(@".\"  + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1", false);
@@ -1181,6 +1183,12 @@ namespace SCIA
                 return false;
             }
 
+            if (!CommonFunctions.FileSystemEntryExists("C:\\Windows\\System32\\inetsrv", null, "folder", true))
+            {
+                SetStatusMessage("Some pre-requisites missing.... Click 'Install Pre-requisites' button in Prerequisites form...", Color.Red);
+                return false;
+            }
+
             if (!ValidateAll(uninstall)) return false;
             if (!SiteInfoTabValidations()) return false;
             
@@ -1197,6 +1205,7 @@ namespace SCIA
             switch (Version.SitecoreVersion)
             {
                 case "10.0":
+                case "9.3":
                     WriteJsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\SingleDeveloperwithSXA.json");
                     WriteFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", false);
                     break;
@@ -1219,6 +1228,7 @@ namespace SCIA
             switch (Version.SitecoreVersion)
             {
                 case "10.0":
+                case "9.3":
                     WriteJsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\SingleDeveloperwithSXA.json");
                     WriteFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1", true);
                     break;

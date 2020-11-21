@@ -76,6 +76,7 @@
             this.toolStripSetupDBButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonDotnetHost = new System.Windows.Forms.ToolStripButton();
+            this.toolStripRefreshButton = new System.Windows.Forms.ToolStripButton();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -93,7 +94,7 @@
             this.helpMenu});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(1264, 40);
+            this.menuStrip.Size = new System.Drawing.Size(1264, 48);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -249,11 +250,12 @@
             this.toolStripSolrDeleteButton,
             this.toolStripDeleteWebsiteButton,
             this.toolStripDeleteDBButton,
-            this.toolStripSeparator11});
-            this.toolStrip.Location = new System.Drawing.Point(0, 40);
+            this.toolStripSeparator11,
+            this.toolStripRefreshButton});
+            this.toolStrip.Location = new System.Drawing.Point(0, 48);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
-            this.toolStrip.Size = new System.Drawing.Size(1264, 42);
+            this.toolStrip.Size = new System.Drawing.Size(1264, 50);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "ToolStrip";
             // 
@@ -508,6 +510,16 @@
             this.toolStripButtonDotnetHost.Text = "Latest Stable Dotnet Host Bundler";
             this.toolStripButtonDotnetHost.Click += new System.EventHandler(this.toolStripButtonDotnetHost_Click);
             // 
+            // toolStripRefreshButton
+            // 
+            this.toolStripRefreshButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripRefreshButton.Image = ((System.Drawing.Image)(resources.GetObject("toolStripRefreshButton.Image")));
+            this.toolStripRefreshButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripRefreshButton.Name = "toolStripRefreshButton";
+            this.toolStripRefreshButton.Size = new System.Drawing.Size(46, 44);
+            this.toolStripRefreshButton.Text = "Refresh Menu....";
+            this.toolStripRefreshButton.Click += new System.EventHandler(this.toolStripRefreshButton_Click);
+            // 
             // mdiSitecoreComplete
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -584,6 +596,7 @@
         private System.Windows.Forms.ToolStripButton toolStripSetupDBButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton toolStripButtonDotnetHost;
+        private System.Windows.Forms.ToolStripButton toolStripRefreshButton;
     }
 }
 

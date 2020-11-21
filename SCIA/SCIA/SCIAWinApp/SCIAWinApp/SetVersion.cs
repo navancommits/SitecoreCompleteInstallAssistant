@@ -51,6 +51,12 @@ namespace SCIA
             }
         }
 
+        private void SetStatusMessage(string statusmsg, Color color)
+        {
+            lblStatus.ForeColor = color;
+            lblStatus.Text = statusmsg;
+        }
+
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             Version.SitecoreVersion = cmbVersionList.Text;
@@ -66,9 +72,9 @@ namespace SCIA
 
             toolCommerceStripButton.Enabled =true;
             toolSitecoreConStripButton.Enabled = true;
+            toolsifStripButton.Enabled = true;
             toolsiaStripButton.Enabled = true;
             toolCommerceConStripButton.Enabled = true;
-            toolsifStripButton.Enabled = true;
             toolStripButtonSetVersion.Enabled = false;
             toolStripSolrButton.Enabled = true;
 
@@ -81,9 +87,17 @@ namespace SCIA
             ZipList.SitecoreDevSetupZip = CommonFunctions.GetZipNamefromWdpVersion("sitecoredevsetup", Version.SitecoreVersion);
             if (ZipList.SitecoreDevSetupZip == null) {
                 toolsiaStripButton.Enabled = false;
-                toolsifStripButton.Enabled = false;
                 toolStripSolrButton.Enabled = false;
             }
+
+            if (!CommonFunctions.FileSystemEntryExists("C:\\Program Files\\WindowsPowerShell\\Modules\\SitecoreInstallFramework", null, "folder", true))
+            {
+                toolsifStripButton.Enabled = false;
+                toolStripSolrButton.Enabled = false;
+                SetStatusMessage("SIF module missing... Click SIF Module Install menu button....", Color.Red);
+                return;
+            }
+
             this.Hide();
         }
     }

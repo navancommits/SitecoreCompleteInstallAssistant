@@ -435,7 +435,7 @@
             this.txtSqlDbServer.Enabled = false;
             this.txtSqlDbServer.Location = new System.Drawing.Point(269, 21);
             this.txtSqlDbServer.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtSqlDbServer.MaxLength = 25;
+            this.txtSqlDbServer.MaxLength = 100;
             this.txtSqlDbServer.Name = "txtSqlDbServer";
             this.txtSqlDbServer.Size = new System.Drawing.Size(871, 31);
             this.txtSqlDbServer.TabIndex = 12;

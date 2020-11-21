@@ -302,7 +302,7 @@
             this.txtSqlDbServer.Enabled = false;
             this.txtSqlDbServer.Location = new System.Drawing.Point(269, 21);
             this.txtSqlDbServer.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtSqlDbServer.MaxLength = 25;
+            this.txtSqlDbServer.MaxLength = 100;
             this.txtSqlDbServer.Name = "txtSqlDbServer";
             this.txtSqlDbServer.Size = new System.Drawing.Size(871, 31);
             this.txtSqlDbServer.TabIndex = 12;
@@ -940,7 +940,7 @@
             this.txtSitecoreDbServer.Enabled = false;
             this.txtSitecoreDbServer.Location = new System.Drawing.Point(269, 61);
             this.txtSitecoreDbServer.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtSitecoreDbServer.MaxLength = 25;
+            this.txtSitecoreDbServer.MaxLength = 100;
             this.txtSitecoreDbServer.Name = "txtSitecoreDbServer";
             this.txtSitecoreDbServer.Size = new System.Drawing.Size(864, 31);
             this.txtSitecoreDbServer.TabIndex = 12;

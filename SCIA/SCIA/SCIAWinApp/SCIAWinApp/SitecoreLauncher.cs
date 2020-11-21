@@ -19,12 +19,19 @@ namespace SCIA
         public mdiSitecoreComplete()
         {
             InitializeComponent();
+            InitializeLogic();
+        }
+
+        private void InitializeLogic()
+        {
             SCIASettings.FilePrefixAppString = "SCIA-";
             toolStripButtonInstallDacFx.Enabled = false;
             toolStripButtonInstallDockerVersion.Enabled = false;
             toolStripButtonDotnetHost.Enabled = false;
+            toolStripSolrDeleteButton.Enabled = true;
+            toolStripDeleteWebsiteButton.Enabled = true;
 
-            if (CommonFunctions.FileSystemEntryExists("C:\\ProgramData\\chocolatey\\choco.exe",null))
+            if (CommonFunctions.FileSystemEntryExists("C:\\ProgramData\\chocolatey\\choco.exe", null))
             {
                 toolStripButtonInstallDacFx.Enabled = true;
             }
@@ -39,7 +46,16 @@ namespace SCIA
                 toolStripButtonDotnetHost.Enabled = true;
             }
 
-            toolStripSetupDBButton.Enabled = false;
+            if (!File.Exists("C:\\Windows\\System32\\inetsrv\\appcmd.exe"))
+            {
+                toolStripDeleteWebsiteButton.Enabled = false;
+            }
+
+            if (!CommonFunctions.FileSystemEntryExists("c:\\solr\\", null, "folder", true))
+            {
+                toolStripSolrDeleteButton.Enabled = false;
+            }
+
         }
 
         private void ShowNewForm(object sender, EventArgs e)
@@ -679,6 +695,11 @@ namespace SCIA
                 "\tStart-Process -FilePath \"" + name + "\"");
             file.WriteLine("}");
             file.Dispose();
+        }
+
+        private void toolStripRefreshButton_Click(object sender, EventArgs e)
+        {
+            InitializeLogic();
         }
     }
 }

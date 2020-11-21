@@ -284,7 +284,7 @@ namespace SCIA
             // Open the connection [SiteNameSuffix], [SitePrefixString],[IdentityServerNameAdditional] 
             var sql = "CREATE TABLE SCIA" +
             "(" +
-            "SiteNameSuffix VARCHAR(50), SiteNamePrefix  VARCHAR(50), SiteName VARCHAR(100), IDServerSiteName  VARCHAR(100), SitecoreIdentityServerUrl  VARCHAR(200), SXAInstallDir  VARCHAR(200), xConnectInstallDir  VARCHAR(200),CommerceInstallRoot   VARCHAR(200), CommerceEngineConnectClientId VARCHAR(50), CommerceEngineConnectClientSecret VARCHAR(100), SiteHostHeaderName VARCHAR(100), SitecoreDomain VARCHAR(50), SitecoreUsername VARCHAR(50),SitecoreUserPassword VARCHAR(20),SearchIndexPrefix  VARCHAR(50),SolrUrl Varchar(200), SolrRoot VARCHAR(200), SolrService Varchar(50),StorefrontIndexPrefix VARCHAR(100),RedisHost  VARCHAR(50),RedisPort  smallint,SqlDbPrefix  VARCHAR(50),SitecoreDbServer Varchar(50),SitecoreCoreDbName  Varchar(50),SqlUser Varchar(50),SqlPass Varchar(50),CommerceServicesDBServer  VARCHAR(100), CommerceDbName Varchar(200),CommerceGlobalDbName Varchar(200),CommerceSvcPostFix  Varchar(50),CommerceServicesHostPostFix  Varchar(100),CommerceOpsSvcPort smallint, CommerceShopsServicesPort  smallint,CommerceAuthSvcPort smallint, CommerceMinionsSvcPort Smallint,BizFxPort SmallInt, BizFxName  Varchar(100),EnvironmentsPrefix  VARCHAR(200),DeploySampleData varchar(1),UserDomain VARCHAR(50),UserName VARCHAR(50), UserPassword varchar(20), BraintreeMerchantId VARCHAR(100),BraintreePublicKey VARCHAR(100),BraintreePrivateKey VARCHAR(100),BraintreeEnvironment VARCHAR(100),created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP)";
+            "SiteNameSuffix VARCHAR(50), SiteNamePrefix  VARCHAR(50), SiteName VARCHAR(100), IDServerSiteName  VARCHAR(100), SitecoreIdentityServerUrl  VARCHAR(200), SXAInstallDir  VARCHAR(200), xConnectInstallDir  VARCHAR(200),CommerceInstallRoot   VARCHAR(200), CommerceEngineConnectClientId VARCHAR(50), CommerceEngineConnectClientSecret VARCHAR(100), SiteHostHeaderName VARCHAR(100), SitecoreDomain VARCHAR(50), SitecoreUsername VARCHAR(50),SitecoreUserPassword VARCHAR(20),SearchIndexPrefix  VARCHAR(50),SolrUrl Varchar(200), SolrRoot VARCHAR(200), SolrService Varchar(50),StorefrontIndexPrefix VARCHAR(100),RedisHost  VARCHAR(50),RedisPort  smallint,SqlDbPrefix  VARCHAR(50),SitecoreDbServer Varchar(100),SitecoreCoreDbName  Varchar(50),SqlUser Varchar(50),SqlPass Varchar(50),CommerceServicesDBServer  VARCHAR(100), CommerceDbName Varchar(200),CommerceGlobalDbName Varchar(200),CommerceSvcPostFix  Varchar(50),CommerceServicesHostPostFix  Varchar(100),CommerceOpsSvcPort smallint, CommerceShopsServicesPort  smallint,CommerceAuthSvcPort smallint, CommerceMinionsSvcPort Smallint,BizFxPort SmallInt, BizFxName  Varchar(100),EnvironmentsPrefix  VARCHAR(200),DeploySampleData varchar(1),UserDomain VARCHAR(50),UserName VARCHAR(50), UserPassword varchar(20), BraintreeMerchantId VARCHAR(100),BraintreePublicKey VARCHAR(100),BraintreePrivateKey VARCHAR(100),BraintreeEnvironment VARCHAR(100),created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP)";
             SqlCommand cmd = new SqlCommand(sql, conn);
             int success;
             try
@@ -549,34 +549,34 @@ namespace SCIA
             switch (sitecoreversion)
             {
                 case "10.0":
-                    if (Convert.ToInt32(majorversion) < 8) { return false; }
-                    if (Convert.ToInt32(minorversion) < 4) { return false; }
+                    if (Convert.ToInt32(majorversion) > 8) { return true; }
+                    if (Convert.ToInt32(minorversion) > 4) { return true; }
                     break;
                 case "9.3":
-                    if (Convert.ToInt32(majorversion) < 8) { return false; }
-                    if (Convert.ToInt32(minorversion) < 1) { return false; }
-                    if (Convert.ToInt32(subversion) < 1) { return false; }
+                    if (Convert.ToInt32(majorversion) > 8) { return true; }
+                    if (Convert.ToInt32(minorversion) > 1) { return true; }
+                    if (Convert.ToInt32(subversion) > 1) { return true; }
                     break;
                 case "9.2":
-                    if (Convert.ToInt32(majorversion) < 7) { return false; }
-                    if (Convert.ToInt32(minorversion) < 5) { return false; }
+                    if (Convert.ToInt32(majorversion) > 7) { return true; }
+                    if (Convert.ToInt32(minorversion) > 5) { return true; }
                     break;
                 case "9.1":
-                    if (Convert.ToInt32(majorversion) < 7) { return false; }
-                    if (Convert.ToInt32(minorversion) < 2) { return false; }
-                    if (Convert.ToInt32(subversion) < 1) { return false; }
+                    if (Convert.ToInt32(majorversion) > 7) { return true; }
+                    if (Convert.ToInt32(minorversion) > 2) { return true; }
+                    if (Convert.ToInt32(subversion) > 1) { return true; }
                     break;
                 case "9.0":
-                    if (Convert.ToInt32(majorversion) < 6) { return false; }
-                    if (Convert.ToInt32(minorversion) < 6) { return false; }
-                    if (Convert.ToInt32(subversion) < 1) { return false; }
+                    if (Convert.ToInt32(majorversion) > 6) { return true; }
+                    if (Convert.ToInt32(minorversion) > 6) { return true; }
+                    if (Convert.ToInt32(subversion) > 5) { return true; }
                     break;
                 default:
                     break;
             }
             
 
-            return true;
+            return false;
         }
 
         public static bool PortInUse(int port)
