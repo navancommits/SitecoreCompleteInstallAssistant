@@ -484,6 +484,7 @@ namespace SCIA
             using var file = new StreamWriter(path);
             file.WriteLine("Register-PSRepository -Name SitecoreGallery https://sitecore.myget.org/F/sc-powershell/api/v2");
             file.WriteLine("Install-Module SitecoreInstallFramework");
+            file.WriteLine("Install-Module PowershellGet -Force");
             file.Dispose();
         }
 

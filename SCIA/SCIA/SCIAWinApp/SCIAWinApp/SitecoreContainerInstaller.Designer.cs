@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SitecoreContainerInstaller));
             this.button1 = new System.Windows.Forms.Button();
             this.btnScriptPreview = new System.Windows.Forms.Button();
@@ -72,6 +73,8 @@
             this.btnFirst = new System.Windows.Forms.Button();
             this.btnLast = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.toolTipSitecoreContainer = new System.Windows.Forms.ToolTip(this.components);
             this.pnlDetails.SuspendLayout();
             this.tabDetails.SuspendLayout();
             this.tabPgDBConnection.SuspendLayout();
@@ -86,11 +89,12 @@
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Location = new System.Drawing.Point(298, 158);
+            this.button1.Location = new System.Drawing.Point(714, 158);
             this.button1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(71, 55);
             this.button1.TabIndex = 69;
+            this.toolTipSitecoreContainer.SetToolTip(this.button1, "Cleanup xp0 Subfolders");
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -102,7 +106,7 @@
             this.btnScriptPreview.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnScriptPreview.Enabled = false;
             this.btnScriptPreview.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnScriptPreview.Location = new System.Drawing.Point(368, 158);
+            this.btnScriptPreview.Location = new System.Drawing.Point(302, 158);
             this.btnScriptPreview.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnScriptPreview.Name = "btnScriptPreview";
             this.btnScriptPreview.Size = new System.Drawing.Size(72, 55);
@@ -131,6 +135,7 @@
             this.btnValidateAll.Name = "btnValidateAll";
             this.btnValidateAll.Size = new System.Drawing.Size(71, 55);
             this.btnValidateAll.TabIndex = 62;
+            this.toolTipSitecoreContainer.SetToolTip(this.btnValidateAll, "Validate All Fields....");
             this.btnValidateAll.UseVisualStyleBackColor = true;
             this.btnValidateAll.Click += new System.EventHandler(this.btnValidateAll_Click);
             // 
@@ -145,6 +150,7 @@
             this.btnDbConn.Name = "btnDbConn";
             this.btnDbConn.Size = new System.Drawing.Size(71, 55);
             this.btnDbConn.TabIndex = 63;
+            this.toolTipSitecoreContainer.SetToolTip(this.btnDbConn, "DB Connectivity Check");
             this.btnDbConn.UseVisualStyleBackColor = true;
             this.btnDbConn.Click += new System.EventHandler(this.btnDbConn_Click);
             // 
@@ -159,6 +165,7 @@
             this.btnPrerequisites.Name = "btnPrerequisites";
             this.btnPrerequisites.Size = new System.Drawing.Size(71, 55);
             this.btnPrerequisites.TabIndex = 64;
+            this.toolTipSitecoreContainer.SetToolTip(this.btnPrerequisites, "Check Prerequisites");
             this.btnPrerequisites.UseVisualStyleBackColor = true;
             this.btnPrerequisites.Click += new System.EventHandler(this.btnPrerequisites_Click);
             // 
@@ -560,11 +567,12 @@
             this.btnPrevious.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnPrevious.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPrevious.Location = new System.Drawing.Point(506, 158);
+            this.btnPrevious.Location = new System.Drawing.Point(440, 158);
             this.btnPrevious.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(72, 55);
             this.btnPrevious.TabIndex = 73;
+            this.toolTipSitecoreContainer.SetToolTip(this.btnPrevious, "Go to Previous Tab");
             this.btnPrevious.UseVisualStyleBackColor = false;
             this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
@@ -575,11 +583,12 @@
             this.btnFirst.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnFirst.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFirst.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnFirst.Location = new System.Drawing.Point(441, 158);
+            this.btnFirst.Location = new System.Drawing.Point(375, 158);
             this.btnFirst.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnFirst.Name = "btnFirst";
             this.btnFirst.Size = new System.Drawing.Size(72, 55);
             this.btnFirst.TabIndex = 74;
+            this.toolTipSitecoreContainer.SetToolTip(this.btnFirst, "Go to First Tab");
             this.btnFirst.UseVisualStyleBackColor = false;
             this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
             // 
@@ -590,11 +599,12 @@
             this.btnLast.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnLast.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLast.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnLast.Location = new System.Drawing.Point(637, 158);
+            this.btnLast.Location = new System.Drawing.Point(571, 158);
             this.btnLast.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnLast.Name = "btnLast";
             this.btnLast.Size = new System.Drawing.Size(72, 55);
             this.btnLast.TabIndex = 75;
+            this.toolTipSitecoreContainer.SetToolTip(this.btnLast, "Go to Last Tab");
             this.btnLast.UseVisualStyleBackColor = false;
             this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
             // 
@@ -605,19 +615,36 @@
             this.btnNext.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnNext.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNext.Location = new System.Drawing.Point(573, 158);
+            this.btnNext.Location = new System.Drawing.Point(507, 158);
             this.btnNext.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(72, 55);
             this.btnNext.TabIndex = 76;
+            this.toolTipSitecoreContainer.SetToolTip(this.btnNext, "Go to Next Tab");
             this.btnNext.UseVisualStyleBackColor = false;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button2.Location = new System.Drawing.Point(642, 158);
+            this.button2.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(71, 55);
+            this.button2.TabIndex = 77;
+            this.toolTipSitecoreContainer.SetToolTip(this.button2, "List Docker Containers");
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // SitecoreContainerInstaller
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1605, 805);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.btnPrevious);
             this.Controls.Add(this.btnFirst);
             this.Controls.Add(this.btnLast);
@@ -701,5 +728,7 @@
         private System.Windows.Forms.Button btnFirst;
         private System.Windows.Forms.Button btnLast;
         private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ToolTip toolTipSitecoreContainer;
     }
 }

@@ -103,6 +103,16 @@ namespace SCIA
 
         }
 
+        void WriteCleanUpFile(string path)
+        {
+            using var file = new StreamWriter(path);
+            file.WriteLine("# Clean data folders");
+            file.WriteLine("Get-ChildItem -Path(Join-Path $PSScriptRoot \"\\mssql-data\") -Exclude \".gitkeep\" -Recurse | Remove-Item -Force -Recurse -Verbose");
+            file.WriteLine("Get-ChildItem -Path(Join-Path $PSScriptRoot \"\\solr-data\") -Exclude \".gitkeep\" -Recurse | Remove-Item -Force -Recurse -Verbose");
+            file.Dispose();
+        }
+
+            
         void WriteAutoFillFile(string path)
         {
             using var file = new StreamWriter(path);
@@ -117,7 +127,7 @@ namespace SCIA
             file.WriteLine();
             file.WriteLine("\t[Parameter(Mandatory = $true)]");
             file.WriteLine("\t[ValidateNotNullOrEmpty()]");
-            file.WriteLine("\t[string]$SqlSaPassword = \"Password12345\",");
+            file.WriteLine("\t[string]$SqlSaPassword = \"Password12345\"");
             file.WriteLine();
             file.WriteLine(")");
             file.WriteLine();
@@ -251,8 +261,8 @@ namespace SCIA
 
         private bool CheckPrerequisites()
         {
-            if (!Directory.Exists(".\\" + ZipList.CommerceContainerZip)) { return false; }
-            if (!File.Exists(".\\" + ZipList.CommerceContainerZip + "\\xc0\\license.xml")) { return false; }
+            if (!Directory.Exists(".\\" + ZipList.SitecoreContainerZip)) { return false; }
+            if (!File.Exists(".\\" + ZipList.SitecoreContainerZip + xp0Path + "license.xml")) { return false; }
             if (!WindowsVersionOk()) { return false; };
             if (!Directory.Exists("c:\\program files\\docker")) { return false; }
 
@@ -374,7 +384,7 @@ namespace SCIA
             if (!CheckAllValidations()) return;
             WriteAutoFillFile(".\\" + ZipList.SitecoreContainerZip + xp0Path + initPS1);
 
-            CommonFunctions.LaunchPSScript(".\\" + initPS1 + "  -SitecoreAdminPassword \"" + txtSitecoreUserPassword.Text + "\" -SqlSaPassword \"" + txtSqlPass.Text + "\" -LicenseXmlPath \"license.xml\"", ".\\" + ZipList.CommerceContainerZip + "\\compose\\ltsc2019\\xp0");
+            CommonFunctions.LaunchPSScript(".\\" + initPS1 + "  -SitecoreAdminPassword \"" + txtSitecoreUserPassword.Text + "\" -SqlSaPassword \"" + txtSqlPass.Text + "\" -LicenseXmlPath \"license.xml\"", ".\\" + ZipList.SitecoreContainerZip + "\\compose\\ltsc2019\\xp0");
 
             lblStatus.Text = ".env file generated successfully....";
             lblStatus.ForeColor = Color.DarkGreen;
@@ -382,8 +392,10 @@ namespace SCIA
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //var destFolder = ZipList.SitecoreContainerZip + xp0Path;
-            //CommonFunctions.LaunchPSScript(@".\CleanContainerCache.ps1", destFolder);
+            var destFolder = ZipList.SitecoreContainerZip + xp0Path;
+            WriteCleanUpFile(destFolder + "SCIA-Cleanup.ps1");
+            CommonFunctions.LaunchPSScript(@".\SCIA-Cleanup.ps1", destFolder);
+
         }
 
         private void btnInstall_Click(object sender, EventArgs e)
@@ -572,6 +584,13 @@ namespace SCIA
         private void btnValidateAll_Click(object sender, EventArgs e)
         {
             if (CheckAllValidations()) SetStatusMessage("Congrats! Passed all Validations!", Color.DarkGreen);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            CommonFunctions.LaunchCmdScript("docker ps", ".\\" + ZipList.SitecoreContainerZip + xp0Path);
+            lblStatus.ForeColor = Color.DarkGreen;
+            lblStatus.Text = "Docker ps launched....";
         }
     }
 }
