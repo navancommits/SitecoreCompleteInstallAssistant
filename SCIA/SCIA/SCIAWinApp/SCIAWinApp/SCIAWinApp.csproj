@@ -192,6 +192,12 @@
     <Compile Include="SitecoreContainerInstaller.Designer.cs">
       <DependentUpon>SitecoreContainerInstaller.cs</DependentUpon>
     </Compile>
+    <Compile Include="SitecoreContainerPrerequisites.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SitecoreContainerPrerequisites.Designer.cs">
+      <DependentUpon>SitecoreContainerPrerequisites.cs</DependentUpon>
+    </Compile>
     <Compile Include="SitecoreLauncher.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -283,6 +289,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SitecoreContainerInstaller.resx">
       <DependentUpon>SitecoreContainerInstaller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SitecoreContainerPrerequisites.resx">
+      <DependentUpon>SitecoreContainerPrerequisites.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SitecoreLauncher.resx">
       <DependentUpon>SitecoreLauncher.cs</DependentUpon>

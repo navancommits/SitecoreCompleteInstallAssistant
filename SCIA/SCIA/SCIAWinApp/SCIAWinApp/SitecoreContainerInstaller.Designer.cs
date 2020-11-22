@@ -59,27 +59,11 @@
             this.label22 = new System.Windows.Forms.Label();
             this.txtSiteNamePrefix = new System.Windows.Forms.TextBox();
             this.txtSiteName = new System.Windows.Forms.TextBox();
-            this.tabPgCommerceSiteInfo = new System.Windows.Forms.TabPage();
-            this.txtBizFxName = new System.Windows.Forms.TextBox();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label52 = new System.Windows.Forms.Label();
-            this.txtMinionsSiteName = new System.Windows.Forms.TextBox();
-            this.label51 = new System.Windows.Forms.Label();
-            this.txtShopsSiteName = new System.Windows.Forms.TextBox();
-            this.label50 = new System.Windows.Forms.Label();
-            this.txtOpsSiteName = new System.Windows.Forms.TextBox();
-            this.label47 = new System.Windows.Forms.Label();
-            this.txtAuthSiteName = new System.Windows.Forms.TextBox();
             this.tabPgSitecore = new System.Windows.Forms.TabPage();
             this.label16 = new System.Windows.Forms.Label();
             this.txtSitecoreUserPassword = new System.Windows.Forms.TextBox();
             this.txtSitecoreUsername = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.tabPgSitecoreDb = new System.Windows.Forms.TabPage();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txtSitecoreSqlPass = new System.Windows.Forms.TextBox();
-            this.txtSitecoreSqlUser = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.chkStepsList = new System.Windows.Forms.CheckedListBox();
             this.lblStepInfo = new System.Windows.Forms.Label();
@@ -92,9 +76,7 @@
             this.tabDetails.SuspendLayout();
             this.tabPgDBConnection.SuspendLayout();
             this.tabpgSiteInfo.SuspendLayout();
-            this.tabPgCommerceSiteInfo.SuspendLayout();
             this.tabPgSitecore.SuspendLayout();
-            this.tabPgSitecoreDb.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -150,6 +132,7 @@
             this.btnValidateAll.Size = new System.Drawing.Size(71, 55);
             this.btnValidateAll.TabIndex = 62;
             this.btnValidateAll.UseVisualStyleBackColor = true;
+            this.btnValidateAll.Click += new System.EventHandler(this.btnValidateAll_Click);
             // 
             // btnDbConn
             // 
@@ -163,6 +146,7 @@
             this.btnDbConn.Size = new System.Drawing.Size(71, 55);
             this.btnDbConn.TabIndex = 63;
             this.btnDbConn.UseVisualStyleBackColor = true;
+            this.btnDbConn.Click += new System.EventHandler(this.btnDbConn_Click);
             // 
             // btnPrerequisites
             // 
@@ -176,6 +160,7 @@
             this.btnPrerequisites.Size = new System.Drawing.Size(71, 55);
             this.btnPrerequisites.TabIndex = 64;
             this.btnPrerequisites.UseVisualStyleBackColor = true;
+            this.btnPrerequisites.Click += new System.EventHandler(this.btnPrerequisites_Click);
             // 
             // btnUninstall
             // 
@@ -191,6 +176,8 @@
             this.btnUninstall.TabIndex = 65;
             this.btnUninstall.Text = "Docker Down";
             this.btnUninstall.UseVisualStyleBackColor = false;
+            this.btnUninstall.EnabledChanged += new System.EventHandler(this.btnUninstall_EnabledChanged);
+            this.btnUninstall.Click += new System.EventHandler(this.btnUninstall_Click);
             // 
             // btnInstall
             // 
@@ -206,6 +193,8 @@
             this.btnInstall.TabIndex = 61;
             this.btnInstall.Text = "Docker Up";
             this.btnInstall.UseVisualStyleBackColor = false;
+            this.btnInstall.EnabledChanged += new System.EventHandler(this.btnInstall_EnabledChanged);
+            this.btnInstall.Click += new System.EventHandler(this.btnInstall_Click);
             // 
             // btnGenerate
             // 
@@ -221,6 +210,7 @@
             this.btnGenerate.TabIndex = 60;
             this.btnGenerate.Text = "Generate .env file";
             this.btnGenerate.UseVisualStyleBackColor = false;
+            this.btnGenerate.EnabledChanged += new System.EventHandler(this.btnGenerate_EnabledChanged);
             this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
             // 
             // label25
@@ -272,9 +262,7 @@
             // 
             this.tabDetails.Controls.Add(this.tabPgDBConnection);
             this.tabDetails.Controls.Add(this.tabpgSiteInfo);
-            this.tabDetails.Controls.Add(this.tabPgCommerceSiteInfo);
             this.tabDetails.Controls.Add(this.tabPgSitecore);
-            this.tabDetails.Controls.Add(this.tabPgSitecoreDb);
             this.tabDetails.Location = new System.Drawing.Point(6, -2);
             this.tabDetails.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabDetails.Multiline = true;
@@ -425,6 +413,7 @@
             this.txtSiteNameSuffix.Name = "txtSiteNameSuffix";
             this.txtSiteNameSuffix.Size = new System.Drawing.Size(878, 31);
             this.txtSiteNameSuffix.TabIndex = 1;
+            this.txtSiteNameSuffix.TextChanged += new System.EventHandler(this.txtSiteNameSuffix_TextChanged);
             // 
             // label22
             // 
@@ -444,6 +433,7 @@
             this.txtSiteNamePrefix.Name = "txtSiteNamePrefix";
             this.txtSiteNamePrefix.Size = new System.Drawing.Size(878, 31);
             this.txtSiteNamePrefix.TabIndex = 1;
+            this.txtSiteNamePrefix.TextChanged += new System.EventHandler(this.txtSiteNamePrefix_TextChanged);
             // 
             // txtSiteName
             // 
@@ -454,123 +444,6 @@
             this.txtSiteName.Size = new System.Drawing.Size(878, 31);
             this.txtSiteName.TabIndex = 2;
             this.txtSiteName.Text = "scom10sxa.dev.local";
-            // 
-            // tabPgCommerceSiteInfo
-            // 
-            this.tabPgCommerceSiteInfo.Controls.Add(this.txtBizFxName);
-            this.tabPgCommerceSiteInfo.Controls.Add(this.label37);
-            this.tabPgCommerceSiteInfo.Controls.Add(this.label52);
-            this.tabPgCommerceSiteInfo.Controls.Add(this.txtMinionsSiteName);
-            this.tabPgCommerceSiteInfo.Controls.Add(this.label51);
-            this.tabPgCommerceSiteInfo.Controls.Add(this.txtShopsSiteName);
-            this.tabPgCommerceSiteInfo.Controls.Add(this.label50);
-            this.tabPgCommerceSiteInfo.Controls.Add(this.txtOpsSiteName);
-            this.tabPgCommerceSiteInfo.Controls.Add(this.label47);
-            this.tabPgCommerceSiteInfo.Controls.Add(this.txtAuthSiteName);
-            this.tabPgCommerceSiteInfo.Location = new System.Drawing.Point(8, 39);
-            this.tabPgCommerceSiteInfo.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.tabPgCommerceSiteInfo.Name = "tabPgCommerceSiteInfo";
-            this.tabPgCommerceSiteInfo.Size = new System.Drawing.Size(1158, 349);
-            this.tabPgCommerceSiteInfo.TabIndex = 2;
-            this.tabPgCommerceSiteInfo.Text = "Commerce Site Info";
-            // 
-            // txtBizFxName
-            // 
-            this.txtBizFxName.Location = new System.Drawing.Point(275, 180);
-            this.txtBizFxName.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtBizFxName.MaxLength = 100;
-            this.txtBizFxName.Name = "txtBizFxName";
-            this.txtBizFxName.Size = new System.Drawing.Size(871, 31);
-            this.txtBizFxName.TabIndex = 48;
-            // 
-            // label37
-            // 
-            this.label37.Location = new System.Drawing.Point(14, 183);
-            this.label37.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(216, 27);
-            this.label37.TabIndex = 47;
-            this.label37.Text = "BizFxSiteName:";
-            // 
-            // label52
-            // 
-            this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(14, 142);
-            this.label52.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(265, 25);
-            this.label52.TabIndex = 46;
-            this.label52.Text = "Comm Minions Site Name:";
-            // 
-            // txtMinionsSiteName
-            // 
-            this.txtMinionsSiteName.Location = new System.Drawing.Point(275, 138);
-            this.txtMinionsSiteName.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtMinionsSiteName.MaxLength = 100;
-            this.txtMinionsSiteName.Name = "txtMinionsSiteName";
-            this.txtMinionsSiteName.Size = new System.Drawing.Size(871, 31);
-            this.txtMinionsSiteName.TabIndex = 45;
-            this.txtMinionsSiteName.Text = "scom10sxa.dev.local";
-            // 
-            // label51
-            // 
-            this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(14, 103);
-            this.label51.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(251, 25);
-            this.label51.TabIndex = 44;
-            this.label51.Text = "Comm Shops Site Name:";
-            // 
-            // txtShopsSiteName
-            // 
-            this.txtShopsSiteName.Location = new System.Drawing.Point(275, 99);
-            this.txtShopsSiteName.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtShopsSiteName.MaxLength = 100;
-            this.txtShopsSiteName.Name = "txtShopsSiteName";
-            this.txtShopsSiteName.Size = new System.Drawing.Size(871, 31);
-            this.txtShopsSiteName.TabIndex = 43;
-            this.txtShopsSiteName.Text = "scom10sxa.dev.local";
-            // 
-            // label50
-            // 
-            this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(14, 64);
-            this.label50.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(229, 25);
-            this.label50.TabIndex = 42;
-            this.label50.Text = "Comm Ops Site Name:";
-            // 
-            // txtOpsSiteName
-            // 
-            this.txtOpsSiteName.Location = new System.Drawing.Point(275, 60);
-            this.txtOpsSiteName.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtOpsSiteName.MaxLength = 100;
-            this.txtOpsSiteName.Name = "txtOpsSiteName";
-            this.txtOpsSiteName.Size = new System.Drawing.Size(871, 31);
-            this.txtOpsSiteName.TabIndex = 41;
-            this.txtOpsSiteName.Text = "scom10sxa.dev.local";
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(14, 25);
-            this.label47.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(234, 25);
-            this.label47.TabIndex = 40;
-            this.label47.Text = "Comm Auth Site Name:";
-            // 
-            // txtAuthSiteName
-            // 
-            this.txtAuthSiteName.Location = new System.Drawing.Point(275, 21);
-            this.txtAuthSiteName.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtAuthSiteName.MaxLength = 100;
-            this.txtAuthSiteName.Name = "txtAuthSiteName";
-            this.txtAuthSiteName.Size = new System.Drawing.Size(871, 31);
-            this.txtAuthSiteName.TabIndex = 39;
-            this.txtAuthSiteName.Text = "scom10sxa.dev.local";
             // 
             // tabPgSitecore
             // 
@@ -626,61 +499,6 @@
             this.label15.TabIndex = 0;
             this.label15.Text = "SitecoreUserName:";
             // 
-            // tabPgSitecoreDb
-            // 
-            this.tabPgSitecoreDb.Controls.Add(this.label13);
-            this.tabPgSitecoreDb.Controls.Add(this.txtSitecoreSqlPass);
-            this.tabPgSitecoreDb.Controls.Add(this.txtSitecoreSqlUser);
-            this.tabPgSitecoreDb.Controls.Add(this.label12);
-            this.tabPgSitecoreDb.Location = new System.Drawing.Point(8, 39);
-            this.tabPgSitecoreDb.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.tabPgSitecoreDb.Name = "tabPgSitecoreDb";
-            this.tabPgSitecoreDb.Size = new System.Drawing.Size(1158, 349);
-            this.tabPgSitecoreDb.TabIndex = 3;
-            this.tabPgSitecoreDb.Text = "Sitecore DB";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(17, 65);
-            this.label13.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(97, 25);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "SqlPass:";
-            // 
-            // txtSitecoreSqlPass
-            // 
-            this.txtSitecoreSqlPass.Enabled = false;
-            this.txtSitecoreSqlPass.Location = new System.Drawing.Point(276, 61);
-            this.txtSitecoreSqlPass.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtSitecoreSqlPass.MaxLength = 15;
-            this.txtSitecoreSqlPass.Name = "txtSitecoreSqlPass";
-            this.txtSitecoreSqlPass.Size = new System.Drawing.Size(870, 31);
-            this.txtSitecoreSqlPass.TabIndex = 15;
-            this.txtSitecoreSqlPass.UseSystemPasswordChar = true;
-            // 
-            // txtSitecoreSqlUser
-            // 
-            this.txtSitecoreSqlUser.Enabled = false;
-            this.txtSitecoreSqlUser.Location = new System.Drawing.Point(276, 20);
-            this.txtSitecoreSqlUser.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtSitecoreSqlUser.MaxLength = 20;
-            this.txtSitecoreSqlUser.Name = "txtSitecoreSqlUser";
-            this.txtSitecoreSqlUser.Size = new System.Drawing.Size(870, 31);
-            this.txtSitecoreSqlUser.TabIndex = 14;
-            this.txtSitecoreSqlUser.Text = "sa";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(17, 24);
-            this.label12.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(94, 25);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "SqlUser:";
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -701,14 +519,14 @@
             this.chkStepsList.Items.AddRange(new object[] {
             "DB Connection",
             "Site Info",
-            "Commerce Site Info",
-            "Sitecore ",
-            "Sitecore DB"});
+            "Sitecore "});
             this.chkStepsList.Location = new System.Drawing.Point(5, 4);
             this.chkStepsList.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.chkStepsList.Name = "chkStepsList";
             this.chkStepsList.Size = new System.Drawing.Size(290, 396);
             this.chkStepsList.TabIndex = 53;
+            this.chkStepsList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.chkStepsList_ItemCheck);
+            this.chkStepsList.Click += new System.EventHandler(this.chkStepsList_Click);
             // 
             // lblStepInfo
             // 
@@ -748,6 +566,7 @@
             this.btnPrevious.Size = new System.Drawing.Size(72, 55);
             this.btnPrevious.TabIndex = 73;
             this.btnPrevious.UseVisualStyleBackColor = false;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
             // btnFirst
             // 
@@ -762,6 +581,7 @@
             this.btnFirst.Size = new System.Drawing.Size(72, 55);
             this.btnFirst.TabIndex = 74;
             this.btnFirst.UseVisualStyleBackColor = false;
+            this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
             // 
             // btnLast
             // 
@@ -776,6 +596,7 @@
             this.btnLast.Size = new System.Drawing.Size(72, 55);
             this.btnLast.TabIndex = 75;
             this.btnLast.UseVisualStyleBackColor = false;
+            this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
             // 
             // btnNext
             // 
@@ -790,6 +611,7 @@
             this.btnNext.Size = new System.Drawing.Size(72, 55);
             this.btnNext.TabIndex = 76;
             this.btnNext.UseVisualStyleBackColor = false;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // SitecoreContainerInstaller
             // 
@@ -816,7 +638,9 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlDetails);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "SitecoreContainerInstaller";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SCIA - Sitecore Container Installer";
             this.pnlDetails.ResumeLayout(false);
             this.pnlDetails.PerformLayout();
@@ -825,12 +649,8 @@
             this.tabPgDBConnection.PerformLayout();
             this.tabpgSiteInfo.ResumeLayout(false);
             this.tabpgSiteInfo.PerformLayout();
-            this.tabPgCommerceSiteInfo.ResumeLayout(false);
-            this.tabPgCommerceSiteInfo.PerformLayout();
             this.tabPgSitecore.ResumeLayout(false);
             this.tabPgSitecore.PerformLayout();
-            this.tabPgSitecoreDb.ResumeLayout(false);
-            this.tabPgSitecoreDb.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -868,27 +688,11 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox txtSiteNamePrefix;
         private System.Windows.Forms.TextBox txtSiteName;
-        private System.Windows.Forms.TabPage tabPgCommerceSiteInfo;
-        private System.Windows.Forms.TextBox txtBizFxName;
-        private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.Label label52;
-        private System.Windows.Forms.TextBox txtMinionsSiteName;
-        private System.Windows.Forms.Label label51;
-        private System.Windows.Forms.TextBox txtShopsSiteName;
-        private System.Windows.Forms.Label label50;
-        private System.Windows.Forms.TextBox txtOpsSiteName;
-        private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.TextBox txtAuthSiteName;
         private System.Windows.Forms.TabPage tabPgSitecore;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txtSitecoreUserPassword;
         private System.Windows.Forms.TextBox txtSitecoreUsername;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TabPage tabPgSitecoreDb;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox txtSitecoreSqlPass;
-        private System.Windows.Forms.TextBox txtSitecoreSqlUser;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.CheckedListBox chkStepsList;
         private System.Windows.Forms.Label lblStepInfo;
