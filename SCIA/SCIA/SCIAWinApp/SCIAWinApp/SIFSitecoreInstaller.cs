@@ -1452,9 +1452,14 @@ namespace SCIA
             file.WriteLine("    AllowedCorsOrigins = $AllowedCorsOrigins");
             file.WriteLine("}");
             file.WriteLine("Push-Location $SCInstallRoot");
-            file.WriteLine("Install-SitecoreConfiguration @singleDeveloperParams *>&1 | Tee-Object XP0-SingleDeveloper.log");
-            file.WriteLine("# Uncomment the below line and comment out the above if you want to remove the XP0 SingleDeveloper Config");
-            file.WriteLine("#Uninstall-SitecoreConfiguration @singleDeveloperParams *>&1 | Tee-Object XP0-SingleDeveloper-Uninstall.log");
+            if (!uninstallscript)
+            {
+                file.WriteLine("Install-SitecoreConfiguration @singleDeveloperParams *>&1 | Tee-Object XP0-SingleDeveloper.log");
+            }
+            else
+            {
+                file.WriteLine("Uninstall-SitecoreConfiguration @singleDeveloperParams *>&1 | Tee-Object XP0-SingleDeveloper-Uninstall.log");
+            }
             file.WriteLine("Pop-Location");
             file.WriteLine("# SIG # Begin signature block");
             file.WriteLine("# MIIXwQYJKoZIhvcNAQcCoIIXsjCCF64CAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB");
@@ -2061,7 +2066,7 @@ namespace SCIA
                     break;
                 case "9.1":
                     WriteSingleDeveloperJsonFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "-SingleDeveloper.json");
-                    WriteSingleDeveloperPSFile(@".\" + ZipList.SitecoreSifZip + @"\" + SCIASettings.FilePrefixAppString + destFolder + "_UnInstall_Script.ps1", false);
+                    WriteSingleDeveloperPSFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1", true);
                     CommonFunctions.LaunchPSScript(@".\'"  + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1'", destFolder);
                     break;
                 default:
