@@ -549,27 +549,27 @@ namespace SCIA
             switch (sitecoreversion)
             {
                 case "10.0":
-                    if (Convert.ToInt32(majorversion) > 8) { return true; }
-                    if (Convert.ToInt32(minorversion) > 4) { return true; }
+                    if (Convert.ToInt32(majorversion) >= 8) { return true; }
+                    if (Convert.ToInt32(minorversion) >= 4) { return true; }
                     break;
                 case "9.3":
-                    if (Convert.ToInt32(majorversion) > 8) { return true; }
-                    if (Convert.ToInt32(minorversion) > 1) { return true; }
-                    if (Convert.ToInt32(subversion) > 1) { return true; }
+                    if (Convert.ToInt32(majorversion) >= 8) { return true; }
+                    if (Convert.ToInt32(minorversion) >= 1) { return true; }
+                    if (Convert.ToInt32(subversion) >= 1) { return true; }
                     break;
                 case "9.2":
-                    if (Convert.ToInt32(majorversion) > 7) { return true; }
-                    if (Convert.ToInt32(minorversion) > 5) { return true; }
+                    if (Convert.ToInt32(majorversion) >= 7) { return true; }
+                    if (Convert.ToInt32(minorversion) >= 5) { return true; }
                     break;
                 case "9.1":
-                    if (Convert.ToInt32(majorversion) > 7) { return true; }
-                    if (Convert.ToInt32(minorversion) > 2) { return true; }
-                    if (Convert.ToInt32(subversion) > 1) { return true; }
+                    if (Convert.ToInt32(majorversion) >= 7) { return true; }
+                    if (Convert.ToInt32(minorversion) >= 2) { return true; }
+                    if (Convert.ToInt32(subversion) >= 1) { return true; }
                     break;
                 case "9.0":
-                    if (Convert.ToInt32(majorversion) > 6) { return true; }
-                    if (Convert.ToInt32(minorversion) > 6) { return true; }
-                    if (Convert.ToInt32(subversion) > 5) { return true; }
+                    if (Convert.ToInt32(majorversion) >= 6) { return true; }
+                    if (Convert.ToInt32(minorversion) >= 6) { return true; }
+                    if (Convert.ToInt32(subversion) >= 5) { return true; }
                     break;
                 default:
                     break;

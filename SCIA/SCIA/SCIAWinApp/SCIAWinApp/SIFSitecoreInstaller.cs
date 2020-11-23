@@ -2015,13 +2015,17 @@ namespace SCIA
                 case "9.3":
                     WriteJsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\SingleDeveloperwithSXA.json");
                     WriteFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", false);
+                    CommonFunctions.LaunchPSScript(@".\'" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1'", destFolder);
                     break;
-                
+                case "9.1":
+                    WriteSingleDeveloperJsonFile(@".\" + ZipList.SitecoreSifZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "-SingleDeveloper.json");
+                    WriteSingleDeveloperPSFile(@".\" + ZipList.SitecoreSifZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", false);
+                    CommonFunctions.LaunchPSScript(@".\'" + ZipList.SitecoreSifZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1'", destFolder);
+                    break;
                 default:
                     break;
             }
 
-            CommonFunctions.LaunchPSScript(@".\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", ZipList.SitecoreDevSetupZip);
             lblStatus.Text = "Installation successfully launched through Powershell....";
             //SaveSCIAData();
             lblStatus.ForeColor = Color.DarkGreen;
@@ -2038,13 +2042,17 @@ namespace SCIA
                 case "9.3":
                     WriteJsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\SingleDeveloperwithSXA.json");
                     WriteFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1", true);
+                    CommonFunctions.LaunchPSScript(@".\'" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1'", destFolder);
                     break;
-
+                case "9.1":
+                    WriteSingleDeveloperJsonFile(@".\" + ZipList.SitecoreSifZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "-SingleDeveloper.json");
+                    WriteSingleDeveloperPSFile(@".\" + ZipList.SitecoreSifZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1", false);
+                    CommonFunctions.LaunchPSScript(@".\'" + ZipList.SitecoreSifZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1'", destFolder);
+                    break;
                 default:
                     break;
             }
 
-            CommonFunctions.LaunchPSScript(@".\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1", ZipList.SitecoreDevSetupZip);
             lblStatus.Text = "Uninstallation successfully launched through Powershell....";
             //SaveSCIAData();
             lblStatus.ForeColor = Color.DarkGreen;
