@@ -18,6 +18,7 @@ namespace SCIA
         const int const_Solr_Tab = 5;
         string destFolder = ".";
         List<VersionPrerequisites> prereqs;
+        bool xp0Install;
         string siteNamePrefixString = "sc";//sc
         string identityServerNameString = "identityserver";//identityserver
         string xConnectServerNameString = "xconnect";//xconnect
@@ -38,6 +39,7 @@ namespace SCIA
                 case "9.1":
                     prereqs = CommonFunctions.GetVersionPrerequisites(Version.SitecoreVersion, "sitecoresif");
                     destFolder = ZipList.SitecoreSifZip;
+                    xp0Install = true;
                     break;
                 default:
                     break;
@@ -2155,7 +2157,11 @@ namespace SCIA
             txtIDServerSiteName.Text = txtSiteNamePrefix.Text + identityServerNameString + txtSiteNameSuffix.Text;
             txtxConnectInstallDir.Text = siteRootDir + txtSiteNamePrefix.Text + xConnectServerNameString + txtSiteNameSuffix.Text;
             txtSitecoreIdentityServerUrl.Text = "https://" + txtIDServerSiteName.Text;
-            txtSXAInstallDir.Text = siteRootDir +  txtSiteName.Text;
+            txtSXAInstallDir.Text = siteRootDir;
+            if (xp0Install)
+            {
+                txtSXAInstallDir.Text = siteRootDir + txtSiteName.Text;
+            }
             txtxConnectInstallDir.Text = siteRootDir + txtSiteNamePrefix.Text + xConnectServerNameString + txtSiteNameSuffix.Text;
             txtSitecoreIdentityAuthority.Text = "https://" + txtIDServerSiteName.Text;
             txtPasswordRecoveryUrl.Text = "https://" + txtSiteName.Text;
