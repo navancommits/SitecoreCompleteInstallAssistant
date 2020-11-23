@@ -2035,7 +2035,7 @@ namespace SCIA
                 case "9.3":
                     WriteJsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\SingleDeveloperwithSXA.json");
                     WriteFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", false);
-                    CommonFunctions.LaunchPSScript(@".\'" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1'", destFolder);
+                    CommonFunctions.LaunchPSScript(@".\'"  + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1'", destFolder);
                     break;
                 case "9.1":
                     WriteSingleDeveloperJsonFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "-SingleDeveloper.json");
@@ -2062,7 +2062,7 @@ namespace SCIA
                 case "9.3":
                     WriteJsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\SingleDeveloperwithSXA.json");
                     WriteFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1", true);
-                    CommonFunctions.LaunchPSScript(@".\'" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1'", destFolder);
+                    CommonFunctions.LaunchPSScript(@".\'"  + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1'", destFolder);
                     break;
                 case "9.1":
                     WriteSingleDeveloperJsonFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "-SingleDeveloper.json");
@@ -2155,7 +2155,7 @@ namespace SCIA
             txtIDServerSiteName.Text = txtSiteNamePrefix.Text + identityServerNameString + txtSiteNameSuffix.Text;
             txtxConnectInstallDir.Text = siteRootDir + txtSiteNamePrefix.Text + xConnectServerNameString + txtSiteNameSuffix.Text;
             txtSitecoreIdentityServerUrl.Text = "https://" + txtIDServerSiteName.Text;
-            txtSXAInstallDir.Text = siteRootDir + @"\" + txtSiteName.Text;
+            txtSXAInstallDir.Text = siteRootDir +  txtSiteName.Text;
             txtxConnectInstallDir.Text = siteRootDir + txtSiteNamePrefix.Text + xConnectServerNameString + txtSiteNameSuffix.Text;
             txtSitecoreIdentityAuthority.Text = "https://" + txtIDServerSiteName.Text;
             txtPasswordRecoveryUrl.Text = "https://" + txtSiteName.Text;
