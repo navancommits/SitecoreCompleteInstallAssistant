@@ -235,11 +235,11 @@ namespace SCIA
             file.WriteLine("Expand-Archive -Force -LiteralPath '" + zipVersions.ZipName + ".zip' -DestinationPath \".\\" + zipVersions.ZipName + "\"");
             file.WriteLine("if ((Test-Path '" + zipVersions.ZipName + "' -PathType Container))");
             file.WriteLine("\t{");
-            file.WriteLine("\tExpand-Archive -Force -LiteralPath '.\\" + destFolder + "\\" + prereqs.Where(p => p.PrerequisiteKey == "XP0").ToList().FirstOrDefault().PrerequisiteName + ".zip' -DestinationPath \".\\" + zipVersions.ZipName + "\\" + prereqs.Where(p => p.PrerequisiteKey == "XP0").ToList().FirstOrDefault().PrerequisiteName + "\"");
+            file.WriteLine("\tExpand-Archive -Force -LiteralPath '.\\" + destFolder + "\\" + prereqs.Where(p => p.PrerequisiteKey == "XP0").ToList().FirstOrDefault().PrerequisiteName + ".zip' -DestinationPath \".\\" + zipVersions.ZipName + "\"");
             file.WriteLine("}");
-            file.WriteLine("if ((Test-Path '" + zipVersions.ZipName + "\\" + prereqs.Where(p => p.PrerequisiteKey == "XP0").ToList().FirstOrDefault().PrerequisiteName + "' -PathType Container))");
+            file.WriteLine("if ((Test-Path '" + zipVersions.ZipName + "' -PathType Container))");
             file.WriteLine("{");
-            file.WriteLine("Copy-Item -Force -Path \"license.xml\" -Destination \".\\" + zipVersions.ZipName + "\\" + prereqs.Where(p => p.PrerequisiteKey == "XP0").ToList().FirstOrDefault().PrerequisiteName + "\\license.xml\"");
+            file.WriteLine("Copy-Item -Force -Path \"license.xml\" -Destination \".\\" + zipVersions.ZipName + "\\"  + "\\license.xml\"");
             file.WriteLine("}");
             file.WriteLine();
             file.WriteLine(
@@ -293,8 +293,6 @@ namespace SCIA
 
         private void btnPrerequisites_Click(object sender, EventArgs e)
         {
-            if (xpoFile) destFolder = destFolder + "\\" + prereqs.Where(p => p.PrerequisiteKey == "XP0").ToList().FirstOrDefault().PrerequisiteName;
-
             if (CommonFunctions.FileSystemEntryExists(destFolder, null, "folder"))
             {
                 CommonFunctions.LaunchPSScript(@"Install-SitecoreConfiguration -Path .\Prerequisites.json", destFolder);

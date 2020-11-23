@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SCIA
@@ -16,6 +17,7 @@ namespace SCIA
         const int const_Sitecore_Tab = 4;
         const int const_Solr_Tab = 5;
         string destFolder = ".";
+        List<VersionPrerequisites> prereqs;
         string siteNamePrefixString = "sc";//sc
         string identityServerNameString = "identityserver";//identityserver
         string xConnectServerNameString = "xconnect";//xconnect
@@ -26,7 +28,20 @@ namespace SCIA
         {
             InitializeComponent();
             this.Text = this.Text + " for Sitecore v" + Version.SitecoreVersion;
-            //destFolder = @".\Sitecore.Commerce.WDP.2020.08-6.0.238\SIF.Sitecore.Commerce.5.0.49\";
+            switch (Version.SitecoreVersion)
+            {
+                case "10.0":
+                case "9.3":
+                    destFolder = CommonFunctions.GetZipNamefromWdpVersion("sitecoredevsetup", Version.SitecoreVersion);
+                    prereqs = CommonFunctions.GetVersionPrerequisites(Version.SitecoreVersion, "sitecoredevsetup");
+                    break;
+                case "9.1":
+                    prereqs = CommonFunctions.GetVersionPrerequisites(Version.SitecoreVersion, "sitecoresif");
+                    destFolder = ZipList.SitecoreSifZip;
+                    break;
+                default:
+                    break;
+            }
             tabDetails.Region = new Region(tabDetails.DisplayRectangle);
             ToggleEnableControls(false);
             AssignStepStatus(const_DBConn_Tab);
@@ -1810,9 +1825,9 @@ namespace SCIA
                     WriteFile(@".\"  + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1", false);
                     break;
                 case "9.1":
-                    WriteSingleDeveloperJsonFile(@".\" + ZipList.SitecoreSifZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "-SingleDeveloper.json");
-                    WriteSingleDeveloperPSFile(@".\" + ZipList.SitecoreSifZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", false);
-                    WriteSingleDeveloperPSFile(@".\" + ZipList.SitecoreSifZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1", false);
+                    WriteSingleDeveloperJsonFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "-SingleDeveloper.json");
+                    WriteSingleDeveloperPSFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", false);
+                    WriteSingleDeveloperPSFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1", false);
                     break;
                 default:
                     break;
@@ -2018,9 +2033,9 @@ namespace SCIA
                     CommonFunctions.LaunchPSScript(@".\'" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1'", destFolder);
                     break;
                 case "9.1":
-                    WriteSingleDeveloperJsonFile(@".\" + ZipList.SitecoreSifZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "-SingleDeveloper.json");
-                    WriteSingleDeveloperPSFile(@".\" + ZipList.SitecoreSifZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", false);
-                    CommonFunctions.LaunchPSScript(@".\'" + ZipList.SitecoreSifZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1'", destFolder);
+                    WriteSingleDeveloperJsonFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "-SingleDeveloper.json");
+                    WriteSingleDeveloperPSFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", false);
+                    CommonFunctions.LaunchPSScript(@".\'" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1'", destFolder);
                     break;
                 default:
                     break;
@@ -2045,9 +2060,9 @@ namespace SCIA
                     CommonFunctions.LaunchPSScript(@".\'" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1'", destFolder);
                     break;
                 case "9.1":
-                    WriteSingleDeveloperJsonFile(@".\" + ZipList.SitecoreSifZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "-SingleDeveloper.json");
-                    WriteSingleDeveloperPSFile(@".\" + ZipList.SitecoreSifZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1", false);
-                    CommonFunctions.LaunchPSScript(@".\'" + ZipList.SitecoreSifZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1'", destFolder);
+                    WriteSingleDeveloperJsonFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "-SingleDeveloper.json");
+                    WriteSingleDeveloperPSFile(@".\" + ZipList.SitecoreSifZip + @"\" + SCIASettings.FilePrefixAppString + destFolder + "_UnInstall_Script.ps1", false);
+                    CommonFunctions.LaunchPSScript(@".\'"  + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1'", destFolder);
                     break;
                 default:
                     break;
@@ -2167,19 +2182,7 @@ namespace SCIA
             SetStatusMessage("Successfully established DB Connection", Color.DarkGreen);
 
             CommonFunctions.ConnectionString = CommonFunctions.BuildConnectionString(txtSqlDbServer.Text, "SCIA_DB", txtSqlUser.Text, txtSqlPass.Text);
-            switch (Version.SitecoreVersion)
-            {
-                case "10.0":
-                case "9.3":
-                    destFolder = CommonFunctions.GetZipNamefromWdpVersion("sitecoredevsetup", Version.SitecoreVersion);
-                    break;
-                case "9.1":
-                    destFolder = CommonFunctions.GetZipNamefromWdpVersion("sitecoresif", Version.SitecoreVersion);
-                    break;
-                default:
-                    break;
-            }
-
+            
             ToggleEnableDbControls(false);
             btnDbConn.Enabled = false;
             AssignStepStatus(const_SiteInfo_Tab);
