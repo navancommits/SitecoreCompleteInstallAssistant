@@ -85,9 +85,10 @@ namespace SCIA
             ZipList.SitecoreContainerZip = CommonFunctions.GetZipNamefromWdpVersion("sitecorecon", Version.SitecoreVersion);
             if (ZipList.SitecoreContainerZip == null) { toolSitecoreConStripButton.Enabled = false;  }
             ZipList.SitecoreDevSetupZip = CommonFunctions.GetZipNamefromWdpVersion("sitecoredevsetup", Version.SitecoreVersion);
+            ZipList.SitecoreSifZip = CommonFunctions.GetZipNamefromWdpVersion("sitecoresif", Version.SitecoreVersion);
+            if (ZipList.SitecoreSifZip == null) { toolsifStripButton.Enabled = false; }
             if (ZipList.SitecoreDevSetupZip == null) {
                 toolsiaStripButton.Enabled = false;
-                toolStripSolrButton.Enabled = false;
             }
 
             if (!CommonFunctions.FileSystemEntryExists("C:\\Program Files\\WindowsPowerShell\\Modules\\SitecoreInstallFramework", null, "folder", true))

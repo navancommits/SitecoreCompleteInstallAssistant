@@ -406,7 +406,6 @@ namespace SCIA
             siftoolStripButton.Enabled = access;
             sifStripMenuItem.Enabled = access;
             siaToolStripMenuItem.Enabled = access;
-            toolStripSolrButton.Enabled = access;
         }
 
         private void mdiSitecoreComplete_Shown(object sender, EventArgs e)

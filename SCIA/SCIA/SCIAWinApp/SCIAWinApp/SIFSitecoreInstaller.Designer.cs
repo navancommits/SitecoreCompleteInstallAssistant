@@ -528,6 +528,7 @@
             this.txtSiteName.Size = new System.Drawing.Size(875, 31);
             this.txtSiteName.TabIndex = 2;
             this.txtSiteName.Text = "scom10sxa.dev.local";
+            this.txtSiteName.TextChanged += new System.EventHandler(this.txtSiteName_TextChanged);
             // 
             // tabPgGeneral
             // 

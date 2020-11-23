@@ -13,9 +13,34 @@ namespace SCIA
 {
     public partial class SolrInstaller : Form
     {
+        string destFolder = string.Empty;
+        DBServerDetails dbServer;
+        List<VersionPrerequisites> prereqs;
+        const string zipType = "sitecoredevsetup";
+        string version = "10.0";
+        bool xpoFile = true;
+        ZipVersions zipVersions = null;
         public SolrInstaller()
         {
             InitializeComponent();
+
+            switch (Version.SitecoreVersion)
+            {
+                case "10.0":
+                case "9.3":
+                    destFolder = CommonFunctions.GetZipNamefromWdpVersion("sitecoredevsetup", Version.SitecoreVersion);
+                    zipVersions = CommonFunctions.GetZipVersionData(Version.SitecoreVersion, "sitecoredevsetup");
+                    prereqs = CommonFunctions.GetVersionPrerequisites(Version.SitecoreVersion, "sitecoredevsetup");
+                    xpoFile = false;
+                    break;
+                case "9.1":
+                    destFolder = CommonFunctions.GetZipNamefromWdpVersion("sitecoresif", Version.SitecoreVersion);
+                    zipVersions = CommonFunctions.GetZipVersionData(Version.SitecoreVersion, "sitecoresif");
+                    prereqs = CommonFunctions.GetVersionPrerequisites(Version.SitecoreVersion, "sitecoresif");
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void SetStatusMessage(string statusmsg, Color color)
@@ -397,14 +422,24 @@ namespace SCIA
         private void btnInstall_Click(object sender, EventArgs e)
         {
             if (!CheckValidations()) return;
-
-            if(CommonFunctions.FileSystemEntryExists(ZipList.SitecoreDevSetupZip + "\\Solr-SingleDeveloper.json",null))
+            string destPath = string.Empty;
+            switch (Version.SitecoreVersion)
             {
-                if (!CommonFunctions.FileSystemEntryExists(ZipList.SitecoreDevSetupZip + "\\" + SCIASettings.FilePrefixAppString + txtSolrPort.Text + " " +  txtSolrVersion.Text + "-Solr-SingleDeveloper.json", null))
-                {
-                    WriteFile(ZipList.SitecoreDevSetupZip + "\\" + SCIASettings.FilePrefixAppString + txtSolrPort.Text + " " + txtSolrVersion.Text + "-Solr-SingleDeveloper.json");
-                    CommonFunctions.LaunchPSScript("Install-SitecoreConfiguration -Path '" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSolrPort.Text + " " +  txtSolrVersion.Text + "-Solr-SingleDeveloper.json'");
-                }
+                case "10.0":
+                case "9.3":
+                    destPath = ZipList.SitecoreDevSetupZip;
+                    break;
+                case "9.1":
+                    destPath = ZipList.SitecoreSifZip + @"\"+ prereqs.Where(p => p.PrerequisiteKey == "XP0").ToList().FirstOrDefault().PrerequisiteName;
+                    break;
+                default:
+                    break;
+            }
+
+            if (!CommonFunctions.FileSystemEntryExists(destPath + "\\" + SCIASettings.FilePrefixAppString + txtSolrPort.Text + " " +  txtSolrVersion.Text + "-Solr-SingleDeveloper.json", null))
+            {
+                WriteFile(destPath + "\\" + SCIASettings.FilePrefixAppString + txtSolrPort.Text + " " + txtSolrVersion.Text + "-Solr-SingleDeveloper.json");
+                CommonFunctions.LaunchPSScript("Install-SitecoreConfiguration -Path '" + destPath + @"\" + SCIASettings.FilePrefixAppString + txtSolrPort.Text + " " +  txtSolrVersion.Text + "-Solr-SingleDeveloper.json'");
             }
         }
 

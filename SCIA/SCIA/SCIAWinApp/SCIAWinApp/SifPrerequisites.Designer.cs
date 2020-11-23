@@ -162,6 +162,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label25);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "SifPrerequisites";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SCIA - SIF Prerequisites";
