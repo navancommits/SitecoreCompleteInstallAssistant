@@ -48,6 +48,7 @@ namespace SCIA
                     break;
             }
 
+            chkSitecoreSetup.Text = destFolder + " Folder";
             CheckPrerequisites();
             if (AllChecked)
             {

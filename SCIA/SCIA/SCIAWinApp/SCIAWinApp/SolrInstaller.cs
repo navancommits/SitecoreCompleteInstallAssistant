@@ -430,7 +430,7 @@ namespace SCIA
                     destPath = ZipList.SitecoreDevSetupZip;
                     break;
                 case "9.1":
-                    destPath = ZipList.SitecoreSifZip + @"\"+ prereqs.Where(p => p.PrerequisiteKey == "XP0").ToList().FirstOrDefault().PrerequisiteName;
+                    destPath = ZipList.SitecoreSifZip;
                     break;
                 default:
                     break;
