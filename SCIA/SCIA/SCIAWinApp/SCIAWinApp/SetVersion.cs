@@ -75,7 +75,6 @@ namespace SCIA
             toolsifStripButton.Enabled = true;
             toolsiaStripButton.Enabled = true;
             toolCommerceConStripButton.Enabled = true;
-            toolStripButtonSetVersion.Enabled = false;
             toolStripSolrButton.Enabled = true;
 
             ZipList.CommerceZip = CommonFunctions.GetZipNamefromWdpVersion("commerce", Version.SitecoreVersion);

@@ -242,6 +242,12 @@
       <DependentUpon>SolrInstaller.cs</DependentUpon>
     </Compile>
     <Compile Include="SolrObject.cs" />
+    <Compile Include="SqlServer2012Prereqs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SqlServer2012Prereqs.Designer.cs">
+      <DependentUpon>SqlServer2012Prereqs.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ClearAll.resx">
       <DependentUpon>ClearAll.cs</DependentUpon>
     </EmbeddedResource>
@@ -316,6 +322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SolrInstaller.resx">
       <DependentUpon>SolrInstaller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SqlServer2012Prereqs.resx">
+      <DependentUpon>SqlServer2012Prereqs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -667,5 +667,12 @@ namespace SCIA
         {
             InitializeLogic();
         }
+
+
+        private void toolStripButton1_Click_2(object sender, EventArgs e)
+        {
+            SqlServer2012Prereqs dBSetup = new SqlServer2012Prereqs();
+            dBSetup.ShowDialog();
+        }
     }
 }

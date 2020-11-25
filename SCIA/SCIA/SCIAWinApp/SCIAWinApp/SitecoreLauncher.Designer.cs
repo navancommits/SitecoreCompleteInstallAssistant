@@ -74,6 +74,7 @@
             this.toolStripDeleteDBButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripRefreshButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
@@ -251,7 +252,8 @@
             this.toolStripDeleteWebsiteButton,
             this.toolStripDeleteDBButton,
             this.toolStripSeparator11,
-            this.toolStripRefreshButton});
+            this.toolStripRefreshButton,
+            this.toolStripButton1});
             this.toolStrip.Location = new System.Drawing.Point(0, 40);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
@@ -338,6 +340,7 @@
             // toolStripSetupDBButton
             // 
             this.toolStripSetupDBButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripSetupDBButton.Enabled = false;
             this.toolStripSetupDBButton.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSetupDBButton.Image")));
             this.toolStripSetupDBButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSetupDBButton.Name = "toolStripSetupDBButton";
@@ -504,6 +507,16 @@
             this.toolStripRefreshButton.Text = "Refresh Menu....";
             this.toolStripRefreshButton.Click += new System.EventHandler(this.toolStripRefreshButton_Click);
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(46, 36);
+            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click_2);
+            // 
             // statusStrip
             // 
             this.statusStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
@@ -598,6 +611,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton toolStripButtonDotnetHost;
         private System.Windows.Forms.ToolStripButton toolStripRefreshButton;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }
 
