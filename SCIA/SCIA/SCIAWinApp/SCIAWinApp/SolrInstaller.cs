@@ -422,25 +422,22 @@ namespace SCIA
         private void btnInstall_Click(object sender, EventArgs e)
         {
             if (!CheckValidations()) return;
-            string destPath = string.Empty;
-            switch (Version.SitecoreVersion)
-            {
-                case "10.0":
-                case "9.3":
-                    destPath = ZipList.SitecoreDevSetupZip;
-                    break;
-                case "9.1":
-                    destPath = ZipList.SitecoreSifZip;
-                    break;
-                default:
-                    break;
-            }
+            string destPath = ".";
+            //switch (Version.SitecoreVersion)
+            //{
+            //    case "10.0":
+            //    case "9.3":
+            //        destPath = ZipList.SitecoreDevSetupZip;
+            //        break;
+            //    case "9.1":
+            //        destPath = ZipList.SitecoreSifZip;
+            //        break;
+            //    default:
+            //        break;
+            //}
 
-            if (!CommonFunctions.FileSystemEntryExists(destPath + "\\" + SCIASettings.FilePrefixAppString + txtSolrPort.Text + " " +  txtSolrVersion.Text + "-Solr-SingleDeveloper.json", null))
-            {
-                WriteFile(destPath + "\\" + SCIASettings.FilePrefixAppString + txtSolrPort.Text + " " + txtSolrVersion.Text + "-Solr-SingleDeveloper.json");
-                CommonFunctions.LaunchPSScript("Install-SitecoreConfiguration -Path '" + destPath + @"\" + SCIASettings.FilePrefixAppString + txtSolrPort.Text + " " +  txtSolrVersion.Text + "-Solr-SingleDeveloper.json'");
-            }
+            WriteFile(destPath + "\\" + SCIASettings.FilePrefixAppString + txtSolrPort.Text + " " + txtSolrVersion.Text + "-Solr-SingleDeveloper.json");
+            CommonFunctions.LaunchPSScript("Install-SitecoreConfiguration -Path '" + destPath + @"\" + SCIASettings.FilePrefixAppString + txtSolrPort.Text + " " +  txtSolrVersion.Text + "-Solr-SingleDeveloper.json'");
         }
 
         private void lnkJavaDownloadUrl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
