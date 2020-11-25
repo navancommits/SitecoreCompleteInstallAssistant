@@ -17,6 +17,7 @@ The #Sitecore Complete Install Assistant (SCIA) built as a.net 2019 Windows Appl
 14. Reinstall by skipping db-related steps in case of Sitecore Commerce installation 
 15. Supports XP0 installation + dev setup installation (in case of 9.3 and 10)
 
-https://navansitecorenotes.blogspot.com/2020/10/a-sneak-peek-at-scia-features-part-1.html
+How-to?
+https://navansitecorenotes.blogspot.com/2020/11/how-to-install-sitecore-910-using-sif.html
 
 
