@@ -64,7 +64,6 @@ namespace SCIA
             ToolStrip toolStrip = (ToolStrip)frm.Controls["toolStrip"];
             ToolStripButton toolCommerceStripButton = (ToolStripButton)toolStrip.Items["sitecoreCommerceToolStripButton"];
             ToolStripButton toolSitecoreConStripButton = (ToolStripButton)toolStrip.Items["sitecoreContainerToolStripButton"];
-            ToolStripButton toolStripButtonSetVersion = (ToolStripButton)toolStrip.Items["toolStripButtonSetVersion"];
             ToolStripButton toolsiaStripButton = (ToolStripButton)toolStrip.Items["siaToolStripButton"];
             ToolStripButton toolsifStripButton = (ToolStripButton)toolStrip.Items["siftoolStripButton"];
             ToolStripButton toolCommerceConStripButton = (ToolStripButton)toolStrip.Items["sitecoreCommerceContainerToolStripButton"];
@@ -94,11 +93,16 @@ namespace SCIA
             {
                 toolsifStripButton.Enabled = false;
                 toolStripSolrButton.Enabled = false;
-                SetStatusMessage("SIF module missing... Click SIF Module Install menu button....", Color.Red);
+                SetStatusMessage("Missing C:\\Program Files\\WindowsPowerShell\\Modules\\SitecoreInstallFramework....", Color.Red);
                 return;
             }
 
             this.Hide();
+        }
+
+        private void lblStatus_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

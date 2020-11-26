@@ -45,10 +45,10 @@
             // 
             this.pnlContainer.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.pnlContainer.Controls.Add(this.panel2);
-            this.pnlContainer.Location = new System.Drawing.Point(34, 47);
+            this.pnlContainer.Location = new System.Drawing.Point(19, 80);
             this.pnlContainer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlContainer.Name = "pnlContainer";
-            this.pnlContainer.Size = new System.Drawing.Size(633, 233);
+            this.pnlContainer.Size = new System.Drawing.Size(830, 233);
             this.pnlContainer.TabIndex = 74;
             // 
             // panel2
@@ -60,7 +60,7 @@
             this.panel2.Location = new System.Drawing.Point(13, 32);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(550, 152);
+            this.panel2.Size = new System.Drawing.Size(758, 152);
             this.panel2.TabIndex = 2;
             // 
             // pictureBox1
@@ -68,7 +68,7 @@
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(18, 25);
+            this.pictureBox1.Location = new System.Drawing.Point(58, 28);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(94, 94);
@@ -78,7 +78,7 @@
             // cmbVersionList
             // 
             this.cmbVersionList.FormattingEnabled = true;
-            this.cmbVersionList.Location = new System.Drawing.Point(319, 50);
+            this.cmbVersionList.Location = new System.Drawing.Point(457, 54);
             this.cmbVersionList.Name = "cmbVersionList";
             this.cmbVersionList.Size = new System.Drawing.Size(197, 33);
             this.cmbVersionList.TabIndex = 19;
@@ -86,7 +86,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(129, 50);
+            this.label1.Location = new System.Drawing.Point(192, 57);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(176, 25);
@@ -100,7 +100,7 @@
             this.btnGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnGenerate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnGenerate.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnGenerate.Location = new System.Drawing.Point(438, 314);
+            this.btnGenerate.Location = new System.Drawing.Point(620, 360);
             this.btnGenerate.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(229, 48);
@@ -111,20 +111,21 @@
             // 
             // lblStatus
             // 
-            this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 7.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus.ForeColor = System.Drawing.Color.DarkGreen;
-            this.lblStatus.Location = new System.Drawing.Point(35, 379);
+            this.lblStatus.Location = new System.Drawing.Point(14, 435);
             this.lblStatus.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(632, 38);
+            this.lblStatus.Size = new System.Drawing.Size(835, 34);
             this.lblStatus.TabIndex = 75;
             this.lblStatus.Text = "Happy Sitecoring!";
+            this.lblStatus.Click += new System.EventHandler(this.lblStatus_Click);
             // 
             // SetVersion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(699, 422);
+            this.ClientSize = new System.Drawing.Size(863, 478);
             this.Controls.Add(this.pnlContainer);
             this.Controls.Add(this.btnGenerate);
             this.Controls.Add(this.lblStatus);

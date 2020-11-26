@@ -41,6 +41,8 @@ namespace SCIA
                 default:
                     break;
             }
+
+            ChangeValues();
         }
 
         private void SetStatusMessage(string statusmsg, Color color)
@@ -446,6 +448,27 @@ namespace SCIA
             //Call the Process.Start method to open the default browser
             //with a URL:
             System.Diagnostics.Process.Start("https://adoptopenjdk.net/archive.html");
+        }
+
+        private void txtSolrPort_TextChanged(object sender, EventArgs e)
+        {
+            ChangeValues();
+        }
+
+        private void ChangeValues()
+        {
+            txtSolrUrl.Text = "https://localhost:" + txtSolrPort.Text + "/solr";
+            txtSolrService.Text = txtSolrPrefix.Text + "solr-" + txtSolrVersion.Text;
+        }
+
+        private void txtSolrPrefix_TextChanged(object sender, EventArgs e)
+        {
+            ChangeValues();
+        }
+
+        private void txtSolrVersion_TextChanged(object sender, EventArgs e)
+        {
+            ChangeValues();
         }
     }
 }

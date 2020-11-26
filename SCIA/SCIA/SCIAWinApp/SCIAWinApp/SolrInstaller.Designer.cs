@@ -68,6 +68,7 @@
             this.txtSolrVersion.TabIndex = 71;
             this.txtSolrVersion.Text = "8.4.0";
             this.toolTipSolrInstaller.SetToolTip(this.txtSolrVersion, "Enter Valid Solr Versions based on https://archive.apache.org/dist/lucene/solr/");
+            this.txtSolrVersion.TextChanged += new System.EventHandler(this.txtSolrVersion_TextChanged);
             // 
             // panel1
             // 
@@ -196,7 +197,7 @@
             // 
             this.txtJavaDownloadUrl.Location = new System.Drawing.Point(209, 291);
             this.txtJavaDownloadUrl.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtJavaDownloadUrl.MaxLength = 100;
+            this.txtJavaDownloadUrl.MaxLength = 1000;
             this.txtJavaDownloadUrl.Name = "txtJavaDownloadUrl";
             this.txtJavaDownloadUrl.Size = new System.Drawing.Size(827, 31);
             this.txtJavaDownloadUrl.TabIndex = 84;
@@ -211,6 +212,7 @@
             this.txtSolrPrefix.Name = "txtSolrPrefix";
             this.txtSolrPrefix.Size = new System.Drawing.Size(827, 31);
             this.txtSolrPrefix.TabIndex = 82;
+            this.txtSolrPrefix.TextChanged += new System.EventHandler(this.txtSolrPrefix_TextChanged);
             // 
             // label8
             // 
@@ -223,6 +225,7 @@
             // 
             // txtSolrDomain
             // 
+            this.txtSolrDomain.Enabled = false;
             this.txtSolrDomain.Location = new System.Drawing.Point(209, 58);
             this.txtSolrDomain.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSolrDomain.MaxLength = 100;
@@ -267,6 +270,7 @@
             this.txtSolrPort.Size = new System.Drawing.Size(827, 31);
             this.txtSolrPort.TabIndex = 76;
             this.txtSolrPort.Text = "8983";
+            this.txtSolrPort.TextChanged += new System.EventHandler(this.txtSolrPort_TextChanged);
             // 
             // label5
             // 
