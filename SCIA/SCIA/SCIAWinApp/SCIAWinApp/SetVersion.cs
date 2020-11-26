@@ -100,9 +100,5 @@ namespace SCIA
             this.Hide();
         }
 
-        private void lblStatus_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

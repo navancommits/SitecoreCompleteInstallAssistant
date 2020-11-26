@@ -119,7 +119,6 @@
             this.lblStatus.Size = new System.Drawing.Size(835, 34);
             this.lblStatus.TabIndex = 75;
             this.lblStatus.Text = "Happy Sitecoring!";
-            this.lblStatus.Click += new System.EventHandler(this.lblStatus_Click);
             // 
             // SetVersion
             // 
