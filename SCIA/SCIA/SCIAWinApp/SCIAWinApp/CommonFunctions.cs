@@ -413,7 +413,7 @@ namespace SCIA
 
         public static bool CheckPrerequisiteList(string destFolder)
         {
-            
+                if (!CommonFunctions.FileSystemEntryExists(destFolder, null, "folder",true)) { return false; }
                 if (!CommonFunctions.FileSystemEntryExists(destFolder, "msbuild", "folder")) { return false; }
                 if (!CommonFunctions.FileSystemEntryExists(destFolder, "SIF.Sitecore.Commerce.*", "folder",true)) { return false; }
                 if (!CommonFunctions.FileSystemEntryExists(destFolder, "Adventure Works Images.OnPrem.scwdp.zip", "file")) { return false; }

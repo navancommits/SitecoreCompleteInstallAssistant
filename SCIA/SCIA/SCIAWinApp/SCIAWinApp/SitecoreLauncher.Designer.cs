@@ -54,6 +54,7 @@
             this.toolStripSolrButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonDotnetHost = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonInstallDockerVersion = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSQL2012Button = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSetupDBButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -74,7 +75,6 @@
             this.toolStripDeleteDBButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripRefreshButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
@@ -95,7 +95,8 @@
             this.helpMenu});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(1264, 40);
+            this.menuStrip.Padding = new System.Windows.Forms.Padding(3, 1, 0, 1);
+            this.menuStrip.Size = new System.Drawing.Size(1433, 38);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -233,6 +234,7 @@
             this.toolStripSolrButton,
             this.toolStripButtonDotnetHost,
             this.toolStripButtonInstallDockerVersion,
+            this.toolStripSQL2012Button,
             this.toolStripSeparator12,
             this.toolStripSetupDBButton,
             this.toolStripSeparator1,
@@ -252,12 +254,10 @@
             this.toolStripDeleteWebsiteButton,
             this.toolStripDeleteDBButton,
             this.toolStripSeparator11,
-            this.toolStripRefreshButton,
-            this.toolStripButton1});
-            this.toolStrip.Location = new System.Drawing.Point(0, 40);
+            this.toolStripRefreshButton});
+            this.toolStrip.Location = new System.Drawing.Point(0, 38);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
-            this.toolStrip.Size = new System.Drawing.Size(1264, 42);
+            this.toolStrip.Size = new System.Drawing.Size(1433, 42);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "ToolStrip";
             // 
@@ -331,6 +331,17 @@
             this.toolStripButtonInstallDockerVersion.Size = new System.Drawing.Size(46, 36);
             this.toolStripButtonInstallDockerVersion.Text = "Install Docker for Windows";
             this.toolStripButtonInstallDockerVersion.Click += new System.EventHandler(this.toolStripButtonInstallDockerVersion_Click);
+            // 
+            // toolStripSQL2012Button
+            // 
+            this.toolStripSQL2012Button.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripSQL2012Button.Enabled = false;
+            this.toolStripSQL2012Button.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSQL2012Button.Image")));
+            this.toolStripSQL2012Button.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSQL2012Button.Name = "toolStripSQL2012Button";
+            this.toolStripSQL2012Button.Size = new System.Drawing.Size(46, 36);
+            this.toolStripSQL2012Button.Text = "SQL Server 2012 Prerequisites";
+            this.toolStripSQL2012Button.Click += new System.EventHandler(this.toolStripButton1_Click_2);
             // 
             // toolStripSeparator12
             // 
@@ -507,25 +518,14 @@
             this.toolStripRefreshButton.Text = "Refresh Menu....";
             this.toolStripRefreshButton.Click += new System.EventHandler(this.toolStripRefreshButton_Click);
             // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(46, 36);
-            this.toolStripButton1.Text = "toolStripButton1";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click_2);
-            // 
             // statusStrip
             // 
             this.statusStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 829);
+            this.statusStrip.Location = new System.Drawing.Point(0, 411);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Padding = new System.Windows.Forms.Padding(2, 0, 28, 0);
-            this.statusStrip.Size = new System.Drawing.Size(1264, 42);
+            this.statusStrip.Size = new System.Drawing.Size(1433, 42);
             this.statusStrip.TabIndex = 2;
             // 
             // toolStripStatusLabel
@@ -536,16 +536,15 @@
             // 
             // mdiSitecoreComplete
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 871);
+            this.ClientSize = new System.Drawing.Size(1433, 453);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.menuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip;
-            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "mdiSitecoreComplete";
             this.Text = "Sitecore Complete Install Assistant (SCIA)";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -611,7 +610,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton toolStripButtonDotnetHost;
         private System.Windows.Forms.ToolStripButton toolStripRefreshButton;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton toolStripSQL2012Button;
     }
 }
 
