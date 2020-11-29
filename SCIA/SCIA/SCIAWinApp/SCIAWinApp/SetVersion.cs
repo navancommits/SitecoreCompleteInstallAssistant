@@ -88,6 +88,10 @@ namespace SCIA
             if (ZipList.SitecoreDevSetupZip == null) {
                 toolsiaStripButton.Enabled = false;
             }
+            else
+            {
+                toolsifStripButton.Enabled = true;
+            }
 
             if (!CommonFunctions.FileSystemEntryExists("C:\\Program Files\\WindowsPowerShell\\Modules\\SitecoreInstallFramework", null, "folder", true))
             {
