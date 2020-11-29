@@ -134,6 +134,29 @@ namespace SCIA
     {
         public List<SiteDetails> SiteDetailRecords { get; set; }
     }
+
+    public class SIFDetails
+    {
+        public string SiteNamePrefix { get; set; }
+        public string SiteNameSuffix { get; set; }
+        public string SiteName { get; set; }
+        public string IDServerSiteName { get; set; }
+        public string SitecoreIdentityServerUrl { get; set; }
+        public string SXAInstallDir { get; set; }
+        public string xConnectInstallDir { get; set; }
+        public string SitecoreUsername { get; set; }
+        public string SitecoreUserPassword { get; set; }
+        public string SearchIndexPrefix { get; set; }
+        public string SolrUrl { get; set; }
+        public string SolrRoot { get; set; }
+        public string SolrService { get; set; }
+        public string SolrVersion { get; set; }
+        public string PasswordRecoveryUrl { get; set; }
+        public string ClientSecret { get; set; }
+        public string xConnectCollectionSvc { get; set; }
+        public string SitecoreIdentityAuthority { get; set; }
+    }
+
     public class SiteDetails
     {
         public string SiteNamePrefix { get; set; }
@@ -159,6 +182,7 @@ namespace SCIA
         public string SolrUrl { get; set; }
         public string SolrRoot { get; set; }
         public string SolrService { get; set; }
+        public string SolrVersion { get; set; }
         public string RedisHost { get; set; }
         public short RedisPort { get; set; }
         public string CommerceServicesDBServer { get; set; }

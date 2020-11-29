@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Transactions;
 using System.Windows.Forms;
 
 namespace SCIA
@@ -33,9 +35,13 @@ namespace SCIA
             {
                 case "10.0":
                 case "9.3":
+                case "9.2":
                     destFolder = CommonFunctions.GetZipNamefromWdpVersion("sitecoredevsetup", Version.SitecoreVersion);
                     prereqs = CommonFunctions.GetVersionPrerequisites(Version.SitecoreVersion, "sitecoredevsetup");
                     break;
+                case "9.0":
+                case "9.0.1":
+                case "9.0.2":
                 case "9.1":
                     prereqs = CommonFunctions.GetVersionPrerequisites(Version.SitecoreVersion, "sitecoresif");
                     destFolder = ZipList.SitecoreSifZip;
@@ -52,7 +58,118 @@ namespace SCIA
             txtSqlUser.Text = DBDetails.SqlUser;
         }
 
-        void WriteSingleDeveloperJsonFile(string path)
+        void Write90PSFile(string path, bool uninstallscript)
+        {
+            using var file = new StreamWriter(path);
+            string serverName = txtSqlDbServer.Text.Replace("\\", "\\\\");
+
+            file.WriteLine("#define parameters");
+            file.WriteLine("$prefix = \"" + txtSiteNamePrefix.Text + "\"");
+            file.WriteLine("$PSScriptRoot = \".\"");
+            file.WriteLine("$XConnectCollectionService = \"" + txtxConnectCollectionSvc.Text + "\"");
+            file.WriteLine("$sitecoreSiteName = \"" + txtSiteName.Text + "\"");
+            file.WriteLine("$SolrUrl = \"" + txtSolrUrl.Text + "\"");
+            file.WriteLine("$SolrRoot = \"" + txtSolrRoot.Text + "\"");
+            file.WriteLine("$SolrService = \"" + txtSolrService.Text + "\"");
+            file.WriteLine("$SqlServer = \"" + txtSqlDbServer.Text + "\"");
+            file.WriteLine("$SqlAdminUser = \"" + txtSqlUser.Text + "\"");
+            file.WriteLine("$SqlAdminPassword=\"" + txtSqlPass.Text + "\"");
+            file.WriteLine("#install client certificate for xconnect");
+            file.WriteLine("$certParams = @{");
+            file.WriteLine(" Path = \"$PSScriptRoot\\xconnect-createcert.json\"");
+            file.WriteLine(" CertificateName = \"$prefix.xconnect_client\"");
+            file.WriteLine("}");
+            if (!uninstallscript)
+            {
+                file.WriteLine("Install-SitecoreConfiguration @certParams -Verbose");
+            }
+            else
+            {
+                file.WriteLine("UnInstall-SitecoreConfiguration @certParams -Verbose");
+            }
+            file.WriteLine("#install solr cores for xdb");
+            file.WriteLine("$solrParams = @{");
+            file.WriteLine(" Path = \"$PSScriptRoot\\xconnect-solr.json\"");
+            file.WriteLine(" SolrUrl = $SolrUrl");
+            file.WriteLine(" SolrRoot = $SolrRoot");
+            file.WriteLine(" SolrService = $SolrService");
+            file.WriteLine(" CorePrefix = $prefix");
+            file.WriteLine("}");
+            if (!uninstallscript)
+            {
+                file.WriteLine("Install-SitecoreConfiguration @solrParams");
+            }
+            else
+            {
+                file.WriteLine("UnInstall-SitecoreConfiguration @solrParams");
+            }
+            file.WriteLine("#deploy xconnect instance");
+            file.WriteLine("$xconnectParams = @{");
+            file.WriteLine(" Path = \"$PSScriptRoot\\xconnect-xp0.json\"");
+            file.WriteLine(" Package = \"$PSScriptRoot\\Sitecore 9.0.0 rev. 171002 (OnPrem)_xp0xconnect.scwdp.zip\"");
+            file.WriteLine(" LicenseFile = \"$PSScriptRoot\\license.xml\"");
+            file.WriteLine(" Sitename = $XConnectCollectionService");
+            file.WriteLine(" XConnectCert = $certParams.CertificateName");
+            file.WriteLine(" SqlDbPrefix = $prefix");
+            file.WriteLine("SqlServer = $SqlServer");
+            file.WriteLine("SqlAdminUser = $SqlAdminUser");
+            file.WriteLine(" SqlAdminPassword = $SqlAdminPassword");
+            file.WriteLine(" SolrCorePrefix = $prefix");
+            file.WriteLine(" SolrURL = $SolrUrl");
+            file.WriteLine("}");
+            if (!uninstallscript)
+            {
+                file.WriteLine("Install-SitecoreConfiguration @xconnectParams");
+            }
+            else
+            {
+                file.WriteLine("UnInstall-SitecoreConfiguration @xconnectParams");
+            }
+            file.WriteLine("#install solr cores for sitecore");
+            file.WriteLine("$solrParams = @{");
+            file.WriteLine(" Path = \"$PSScriptRoot\\sitecore-solr.json\"");
+            file.WriteLine(" SolrUrl = $SolrUrl");
+            file.WriteLine(" SolrRoot = $SolrRoot");
+            file.WriteLine(" SolrService = $SolrService");
+            file.WriteLine(" CorePrefix = $prefix");
+            file.WriteLine("}");
+            if (!uninstallscript)
+            {
+                file.WriteLine("Install-SitecoreConfiguration @solrParams");
+            }
+            else
+            {
+                file.WriteLine("UnInstall-SitecoreConfiguration @solrParams");
+            }
+            file.WriteLine("#install sitecore instance");
+            file.WriteLine("$xconnectHostName = $XConnectCollectionService");
+            file.WriteLine("$sitecoreParams = @{");
+            file.WriteLine(" Path = \"$PSScriptRoot\\sitecore-XP0.json\"");
+            file.WriteLine(" Package = \"$PSScriptRoot\\Sitecore 9.0.0 rev. 171002 (OnPrem)_single.scwdp.zip\"");
+            file.WriteLine(" LicenseFile = \"$PSScriptRoot\\license.xml\"");
+            file.WriteLine(" SqlDbPrefix = $prefix");
+            file.WriteLine("SqlServer = $SqlServer");
+            file.WriteLine("SqlAdminUser = $SqlAdminUser");
+            file.WriteLine(" SqlAdminPassword = $SqlAdminPassword");
+            file.WriteLine(" SolrCorePrefix = $prefix");
+            file.WriteLine("SolrUrl = $SolrUrl");
+            file.WriteLine(" XConnectCert = $certParams.CertificateName");
+            file.WriteLine(" Sitename = $sitecoreSiteName");
+            file.WriteLine(" XConnectCollectionService = \"https://$XConnectCollectionService\"");
+            file.WriteLine("}");
+            if (!uninstallscript)
+            {
+                file.WriteLine("Install-SitecoreConfiguration @sitecoreParams");
+            }
+            else
+            {
+                file.WriteLine("UnInstall-SitecoreConfiguration @sitecoreParams");
+            }
+
+            file.Dispose();
+        }
+
+            void WriteSingleDeveloperJsonFile(string path)
         {
             using var file = new StreamWriter(path);
             string serverName = txtSqlDbServer.Text.Replace("\\", "\\\\");
@@ -2027,6 +2144,110 @@ namespace SCIA
             return true;
         }
 
+        private bool SaveSCIADatatoDBSuccess(SqlConnection sqlConn)
+        {
+            try
+            {
+
+                var query = "delete from  SCIA where SiteName='" + txtSiteName.Text + "' and InstallType='SIF'; INSERT INTO SCIA(SiteNameSuffix ,[SiteNamePrefix],SiteName ,[IDServerSiteName], [SitecoreIdentityServerUrl] ,[SXAInstallDir] ,XConnectInstallDir,SitecoreUsername ,SitecoreUserPassword ,SolrUrl , SolrRoot , SolrService ,SolrVersion,InstallType) VALUES (@SiteNameSuffix, @SitePrefix,@SiteName, @IdentityServerSiteName, @SitecoreIdServerUrl, @SXASiteInstallDir, @XConnectInstallDir,  @SitecoreUsername, @SitecoreUserPassword,  @SolrUrl, @SolrRoot, @SolrService, @SolrVersion, @InstallType)";
+
+                SqlCommand sqlcommand = new SqlCommand(query, sqlConn);
+                sqlcommand.Parameters.AddWithValue("@SiteNameSuffix", txtSiteNameSuffix.Text);
+                sqlcommand.Parameters.AddWithValue("@SitePrefix", txtSiteNamePrefix.Text);
+                sqlcommand.Parameters.AddWithValue("@SiteName", txtSiteName.Text);
+                sqlcommand.Parameters.AddWithValue("@IdentityServerSiteName", txtIDServerSiteName.Text);
+                sqlcommand.Parameters.AddWithValue("@SitecoreIdServerUrl", txtSitecoreIdentityServerUrl.Text);
+                sqlcommand.Parameters.AddWithValue("@SXASiteInstallDir", txtSXAInstallDir.Text);
+                sqlcommand.Parameters.AddWithValue("@XConnectInstallDir", txtxConnectInstallDir.Text);
+                sqlcommand.Parameters.AddWithValue("@SitecoreUsername", txtSitecoreUsername.Text);
+                sqlcommand.Parameters.AddWithValue("@SitecoreUserPassword", txtSitecoreUserPassword.Text);
+                sqlcommand.Parameters.AddWithValue("@SolrUrl", txtSolrUrl.Text);
+                sqlcommand.Parameters.AddWithValue("@SolrRoot", txtSolrRoot.Text);
+                sqlcommand.Parameters.AddWithValue("@SolrService", txtSolrService.Text);
+                sqlcommand.Parameters.AddWithValue("@SolrVersion", txtSolrVersion.Text);
+                sqlcommand.Parameters.AddWithValue("@InstallType", "SIF");
+
+                int numberOfInsertedRows = sqlcommand.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                CommonFunctions.WritetoEventLog("SCIA - Error saving SIF settings data to SCIA_DB DB table " + ex.Message, EventLogEntryType.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool SaveSIFDatatoDBSuccess(SqlConnection sqlConn)
+        {
+            try
+            {
+
+                var query = "delete from  SIF where SiteName='" + txtSiteName.Text + "'; INSERT INTO SIF(SiteNameSuffix ,[SiteNamePrefix],SiteName ,[IDServerSiteName], [SitecoreIdentityServerUrl] ,[SXAInstallDir] ,XConnectInstallDir ,ClientSecret  , SitecoreUsername ,SitecoreUserPassword   ,SolrUrl , SolrRoot , SolrService ,SolrVersion,PasswordRecoveryUrl,xConnectCollectionSvc, SitecoreIdentityAuthority) VALUES (@SiteNameSuffix, @SitePrefix,@SiteName, @IdentityServerSiteName, @SitecoreIdServerUrl, @SXASiteInstallDir, @XConnectInstallDir, @ClientSecret, @SitecoreUsername, @SitecoreUserPassword, @SolrUrl, @SolrRoot, @SolrService, @SolrVersion,@PasswordRecoveryUrl,@xConnectCollectionSvc, @SitecoreIdentityAuthority)";
+
+                SqlCommand sqlcommand = new SqlCommand(query, sqlConn);
+                sqlcommand.Parameters.AddWithValue("@SiteNameSuffix", txtSiteNameSuffix.Text);
+                sqlcommand.Parameters.AddWithValue("@SitePrefix", txtSiteNamePrefix.Text);
+                sqlcommand.Parameters.AddWithValue("@SiteName", txtSiteName.Text);
+                sqlcommand.Parameters.AddWithValue("@IdentityServerSiteName", txtIDServerSiteName.Text);
+                sqlcommand.Parameters.AddWithValue("@SitecoreIdServerUrl", txtSitecoreIdentityServerUrl.Text);
+                sqlcommand.Parameters.AddWithValue("@SXASiteInstallDir", txtSXAInstallDir.Text);
+                sqlcommand.Parameters.AddWithValue("@XConnectInstallDir", txtxConnectInstallDir.Text);
+                sqlcommand.Parameters.AddWithValue("@ClientSecret", txtClientSecret.Text);                
+                sqlcommand.Parameters.AddWithValue("@SitecoreUsername", txtSitecoreUsername.Text);
+                sqlcommand.Parameters.AddWithValue("@SitecoreUserPassword", txtSitecoreUserPassword.Text);
+                sqlcommand.Parameters.AddWithValue("@SolrUrl", txtSolrUrl.Text);
+                sqlcommand.Parameters.AddWithValue("@SolrRoot", txtSolrRoot.Text);
+                sqlcommand.Parameters.AddWithValue("@SolrService", txtSolrService.Text);
+                sqlcommand.Parameters.AddWithValue("@SolrVersion", txtSolrVersion.Text);
+                sqlcommand.Parameters.AddWithValue("@PasswordRecoveryUrl", txtPasswordRecoveryUrl.Text);
+                sqlcommand.Parameters.AddWithValue("@xConnectCollectionSvc", txtxConnectCollectionSvc.Text);
+                sqlcommand.Parameters.AddWithValue("@SitecoreIdentityAuthority", txtSitecoreIdentityAuthority.Text);
+
+                int numberOfInsertedRows = sqlcommand.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                CommonFunctions.WritetoEventLog("SCIA - Error saving SIF data to SCIA DB " + ex.Message, EventLogEntryType.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+
+
+        private void SaveSCIAData()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            btnInstall.Enabled = false;
+            try
+            {
+                using TransactionScope scope = new TransactionScope();
+
+                using (SqlConnection connection = new SqlConnection(CommonFunctions.BuildConnectionString(txtSqlDbServer.Text, "SCIA_DB", txtSqlUser.Text, txtSqlPass.Text)))
+                {
+                    connection.Open();
+
+                    if (!CommonFunctions.DbTableExists("SIF", connection))
+                    {
+                        CommonFunctions.CreateSIFTable(connection);
+                    }
+
+                    SaveSIFDatatoDBSuccess(connection);
+                }
+
+                // if all the coperations complete successfully, this would be called and commit the transaction. 
+                // In case of an exception, it wont be called and transaction is rolled back
+                scope.Complete();
+            }
+            catch (Exception ex)
+            {
+                CommonFunctions.WritetoEventLog("Error saving SIF SCIA Data - " + ex.Message, EventLogEntryType.Error);
+            }
+            Cursor.Current = Cursors.Default;
+        }
+
         private void btnInstall_Click(object sender, EventArgs e)
         {
             if (!CheckAllValidations()) return;
@@ -2039,7 +2260,14 @@ namespace SCIA
                     WriteFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", false);
                     CommonFunctions.LaunchPSScript(@".\'"  + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1'", destFolder);
                     break;
+                case "9.0":
+                    Write90PSFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", false);
+                    CommonFunctions.LaunchPSScript(@".\'" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1'", destFolder);
+                    break;
+                case "9.0.1":
+                case "9.0.2":
                 case "9.1":
+                case "9.1.1":
                     WriteSingleDeveloperJsonFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "-SingleDeveloper.json");
                     WriteSingleDeveloperPSFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", false);
                     CommonFunctions.LaunchPSScript(@".\'" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1'", destFolder);
@@ -2049,7 +2277,7 @@ namespace SCIA
             }
 
             lblStatus.Text = "Installation successfully launched through Powershell....";
-            //SaveSCIAData();
+            SaveSCIAData();
             lblStatus.ForeColor = Color.DarkGreen;
             ToggleEnableControls(false);
         }
@@ -2219,7 +2447,7 @@ namespace SCIA
             return true;
         }
 
-        private void PopulateSCIAData()
+        private void PopulateSIFData()
         {
 
             SqlConnection connection;
@@ -2227,18 +2455,22 @@ namespace SCIA
             {
                 connection.Open();
 
-                SiteDetails siteData = CommonFunctions.GetSCIAData(CommonFunctions.BuildConnectionString(txtSqlDbServer.Text, "SCIA_DB", txtSqlUser.Text, txtSqlPass.Text), txtSiteName.Text);
+                SIFDetails siteData = CommonFunctions.GetSIFData(CommonFunctions.BuildConnectionString(txtSqlDbServer.Text, "SCIA_DB", txtSqlUser.Text, txtSqlPass.Text), txtSiteName.Text);
                 if (siteData == null) return;
                 txtSiteNameSuffix.Text = siteData.SiteNameSuffix.Trim();
                 txtSiteNameSuffix.Text = siteData.SiteNameSuffix.Trim();
                 txtIDServerSiteName.Text = siteData.IDServerSiteName.Trim();
                 txtSitecoreIdentityServerUrl.Text = siteData.SitecoreIdentityServerUrl.Trim();
-                txtClientSecret.Text = siteData.CommerceEngineConnectClientSecret.Trim();
+                txtClientSecret.Text = siteData.ClientSecret.Trim();
                 txtSitecoreUsername.Text = siteData.SitecoreUsername.Trim();
                 txtSolrRoot.Text = siteData.SolrRoot;
                 txtSolrUrl.Text = siteData.SolrUrl;
                 txtSolrService.Text = siteData.SolrService;
-
+                txtSolrVersion.Text = siteData.SolrVersion;
+                txtPasswordRecoveryUrl.Text=siteData.PasswordRecoveryUrl;
+                txtClientSecret.Text=siteData.ClientSecret;
+                txtxConnectCollectionSvc.Text=siteData.xConnectCollectionSvc;
+                txtSitecoreIdentityAuthority.Text=siteData.SitecoreIdentityAuthority;
                 //Uninstall = true;
             }
         }
@@ -2251,7 +2483,10 @@ namespace SCIA
             if (TabIndexValue == const_SiteInfo_Tab)
             {
                 if (!SiteInfoTabValidations()) return;
-                PopulateSCIAData();                
+                if (!CommonFunctions.FileSystemEntryExists(txtSXAInstallDir.Text,null,"folder",true))
+                {
+                    PopulateSIFData();
+                }                            
             }
             if (TabIndexValue >= 0 && TabIndexValue <= tabDetails.TabCount - 2) TabIndexValue += 1;
             AssignStepStatus(TabIndexValue);

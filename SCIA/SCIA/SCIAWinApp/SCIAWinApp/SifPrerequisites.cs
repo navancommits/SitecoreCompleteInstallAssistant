@@ -34,12 +34,16 @@ namespace SCIA
             {
                 case "10.0":
                 case "9.3":
+                case "9.2":
                     destFolder = CommonFunctions.GetZipNamefromWdpVersion("sitecoredevsetup", Version.SitecoreVersion);
                     zipVersions = CommonFunctions.GetZipVersionData(Version.SitecoreVersion, "sitecoredevsetup");
                     prereqs = CommonFunctions.GetVersionPrerequisites(version, "sitecoredevsetup");
                     xpoFile = false;
                     break;
                 case "9.1":
+                case "9.0":
+                case "9.0.1":
+                case "9.0.2":
                     destFolder = CommonFunctions.GetZipNamefromWdpVersion("sitecoresif", Version.SitecoreVersion);
                     zipVersions = CommonFunctions.GetZipVersionData(Version.SitecoreVersion, "sitecoresif");
                     prereqs = CommonFunctions.GetVersionPrerequisites(version, "sitecoresif");
@@ -273,12 +277,16 @@ namespace SCIA
             {
                 case "10.0":
                 case "9.3":
+                case "9.2":
                     WriteWorkerFile(@".\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllPrereqs.ps1");
                     WriteMainFile(@".\" + SCIASettings.FilePrefixAppString + "DownloadandExpandSifZip.ps1");
 
                     CommonFunctions.LaunchPSScript(@".\" + SCIASettings.FilePrefixAppString + "DownloadandExpandSifZip -InstallSourcePath \".\" -SitecoreUsername \"" + Login.username + "\" -SitecorePassword \"" + Login.password + "\"");
                     break;
                 case "9.1":
+                case "9.0":
+                case "9.0.1":
+                case "9.0.2":
                     WriteWorkerFile(@".\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllXP0SIFPrereqs.ps1");
                     WriteXP0MainFile(@".\" + SCIASettings.FilePrefixAppString + "DownloadandExpandXP0SifZip.ps1");
 

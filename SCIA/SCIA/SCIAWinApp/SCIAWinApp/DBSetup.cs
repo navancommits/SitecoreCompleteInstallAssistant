@@ -75,5 +75,12 @@ namespace SCIA
 
             SetStatusMessage("DB Tables Setup Successfully", Color.Green); return;
         }
+
+        private void btnCreate_EnabledChanged(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            btn.ForeColor = btn.Enabled == false ? Color.DarkGray : Color.White;
+            btn.BackColor = btn.Enabled == false ? Color.Gray : Color.Black; 
+        }
     }
 }

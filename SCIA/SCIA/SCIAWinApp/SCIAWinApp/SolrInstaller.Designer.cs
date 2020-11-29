@@ -201,8 +201,8 @@
             this.txtJavaDownloadUrl.Name = "txtJavaDownloadUrl";
             this.txtJavaDownloadUrl.Size = new System.Drawing.Size(827, 31);
             this.txtJavaDownloadUrl.TabIndex = 84;
-            this.txtJavaDownloadUrl.Text = "https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.9%2" +
-    "B11.1/OpenJDK11U-jdk_x64_windows_hotspot_11.0.9_11.zip";
+            this.txtJavaDownloadUrl.Text = "https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u242-b08/" +
+    "OpenJDK8U-jre_x64_windows_hotspot_8u242b08.zip";
             // 
             // txtSolrPrefix
             // 
