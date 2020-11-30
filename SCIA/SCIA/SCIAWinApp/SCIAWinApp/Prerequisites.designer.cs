@@ -65,6 +65,7 @@
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.linkLabel4 = new System.Windows.Forms.LinkLabel();
+            this.btnGenerate = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.pnlContainer.SuspendLayout();
             this.SuspendLayout();
@@ -325,10 +326,10 @@
             this.linkLabelSitecoreCommerce.AutoSize = true;
             this.linkLabelSitecoreCommerce.Location = new System.Drawing.Point(35, 819);
             this.linkLabelSitecoreCommerce.Name = "linkLabelSitecoreCommerce";
-            this.linkLabelSitecoreCommerce.Size = new System.Drawing.Size(559, 25);
+            this.linkLabelSitecoreCommerce.Size = new System.Drawing.Size(529, 25);
             this.linkLabelSitecoreCommerce.TabIndex = 53;
             this.linkLabelSitecoreCommerce.TabStop = true;
-            this.linkLabelSitecoreCommerce.Text = "1. Packages for Sitecore Commerce 10 On Premise WDP";
+            this.linkLabelSitecoreCommerce.Text = "1. Packages for Sitecore Commerce On Premise WDP";
             this.linkLabelSitecoreCommerce.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelSitecoreCommerce_LinkClicked);
             // 
             // linkLabelMsBuild
@@ -400,12 +401,12 @@
             // 
             this.linkLabel6.AutoSize = true;
             this.linkLabel6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel6.Location = new System.Drawing.Point(489, 11);
+            this.linkLabel6.Location = new System.Drawing.Point(691, 10);
             this.linkLabel6.Name = "linkLabel6";
-            this.linkLabel6.Size = new System.Drawing.Size(647, 31);
+            this.linkLabel6.Size = new System.Drawing.Size(347, 31);
             this.linkLabel6.TabIndex = 64;
             this.linkLabel6.TabStop = true;
-            this.linkLabel6.Text = "Automatically Download and Install All Pre-requisites";
+            this.linkLabel6.Text = "Download All Pre-requisites";
             this.linkLabel6.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel6_LinkClicked);
             // 
             // linkLabel5
@@ -470,10 +471,10 @@
             this.linkLabel2.AutoSize = true;
             this.linkLabel2.Location = new System.Drawing.Point(35, 899);
             this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(749, 25);
+            this.linkLabel2.Size = new System.Drawing.Size(639, 25);
             this.linkLabel2.TabIndex = 59;
             this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "5. Sitecore Experience Accelerator (SXA) 10.0 (available on dev.sitecore.net)";
+            this.linkLabel2.Text = "5. Sitecore Experience Accelerator (available on dev.sitecore.net)";
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
             // linkLabel3
@@ -481,11 +482,10 @@
             this.linkLabel3.AutoSize = true;
             this.linkLabel3.Location = new System.Drawing.Point(885, 899);
             this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(841, 25);
+            this.linkLabel3.Size = new System.Drawing.Size(770, 25);
             this.linkLabel3.TabIndex = 60;
             this.linkLabel3.TabStop = true;
-            this.linkLabel3.Text = "6. Sitecore PowerShell Extensions 6.0 for Sitecore 10.0 (available with SXA downl" +
-    "oads";
+            this.linkLabel3.Text = "6. Sitecore PowerShell Extensions  for Sitecore (available with SXA downloads)";
             this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
             // 
             // label1
@@ -508,12 +508,29 @@
             this.linkLabel4.Text = "7. Braintree Account";
             this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
             // 
+            // btnGenerate
+            // 
+            this.btnGenerate.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnGenerate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnGenerate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnGenerate.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnGenerate.Location = new System.Drawing.Point(1452, 748);
+            this.btnGenerate.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.btnGenerate.Name = "btnGenerate";
+            this.btnGenerate.Size = new System.Drawing.Size(274, 48);
+            this.btnGenerate.TabIndex = 78;
+            this.btnGenerate.Text = "Setup Prerequisites";
+            this.btnGenerate.UseVisualStyleBackColor = false;
+            this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
+            // 
             // Prerequisites
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1761, 1048);
+            this.Controls.Add(this.btnGenerate);
             this.Controls.Add(this.linkLabel4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.linkLabel3);
@@ -580,5 +597,6 @@
         private System.Windows.Forms.LinkLabel linkLabel4;
         private System.Windows.Forms.LinkLabel linkLabel5;
         private System.Windows.Forms.LinkLabel linkLabel6;
+        private System.Windows.Forms.Button btnGenerate;
     }
 }

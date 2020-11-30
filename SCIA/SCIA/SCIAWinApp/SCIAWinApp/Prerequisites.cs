@@ -290,10 +290,6 @@ namespace SCIA
 
             file.WriteLine("$preference = $ProgressPreference");
             file.WriteLine("$ProgressPreference = \"SilentlyContinue\"");
-            file.WriteLine("if (-not(Test-Path '" + prereqs.Where(p => p.PrerequisiteKey == commerceZipKey).ToList().FirstOrDefault().PrerequisiteName + ".zip' -PathType Leaf))");
-            file.WriteLine("{");
-            file.WriteLine(".\\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllPrereqs.ps1 -InstallSourcePath $InstallSourcePath -SitecoreUsername \"" + Login.username + "\" -SitecorePassword \"" + Login.password + "\"");
-            file.WriteLine("}");
             file.WriteLine("Expand-Archive -Force -LiteralPath " + prereqs.Where(p => p.PrerequisiteKey == commerceZipKey).ToList().FirstOrDefault().PrerequisiteName + ".zip -DestinationPath .");
             file.WriteLine("Expand-Archive -Force -LiteralPath " + prereqs.Where(p => p.PrerequisiteKey == commerceZipKey).ToList().FirstOrDefault().PrerequisiteName + "\\" + prereqs.Where(p => p.PrerequisiteKey == commerceSifZipKey).ToList().FirstOrDefault().PrerequisiteName + ".zip -DestinationPath .\\" + ZipList.CommerceZip + "\\" + prereqs.Where(p => p.PrerequisiteKey == commerceSifZipKey).ToList().FirstOrDefault().PrerequisiteName);
             file.WriteLine("Invoke-WebRequest -Uri \"" + prereqs.Where(p => p.PrerequisiteKey == msBuildZipKey).ToList().FirstOrDefault().PrerequisiteUrl + "\" -OutFile \".\\" + prereqs.Where(p => p.PrerequisiteKey == commerceZipKey).ToList().FirstOrDefault().PrerequisiteName + "\\" + prereqs.Where(p => p.PrerequisiteKey == msBuildZipKey).ToList().FirstOrDefault().PrerequisiteName + ".zip\"");
@@ -318,7 +314,7 @@ namespace SCIA
 
         private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (FolderExists(@".\\" + prereqs.Where(p => p.PrerequisiteKey == commerceZipKey).ToList().FirstOrDefault().PrerequisiteName)) return;
+            if (CommonFunctions.FileSystemEntryExists(@".\\" + prereqs.Where(p => p.PrerequisiteKey == commerceZipKey).ToList().FirstOrDefault().PrerequisiteName,null,"folder")) return;
             var commerceZipName = prereqs.Where(p => p.PrerequisiteKey == commerceZipKey).ToList().FirstOrDefault().PrerequisiteName + ".zip";
             if (!FileExists(commerceZipName))
             { 
@@ -329,9 +325,14 @@ namespace SCIA
                 }
             }
 
-            WriteWorkerFile(".\\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllPrereqs.ps1");
-            WriteMainFile(".\\" + SCIASettings.FilePrefixAppString + "DownloadandExpandZip.ps1");
-            CommonFunctions.LaunchPSScript(".\\" + SCIASettings.FilePrefixAppString + "DownloadandExpandZip.ps1 -InstallSourcePath \".\" -SitecoreUsername \"" + Login.username + "\" -SitecorePassword \"" + Login.password + "\"");
+            WriteWorkerFile(".\\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllCommercePrereqs.ps1");
+            CommonFunctions.LaunchPSScript(".\\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllCommercePrereqs.ps1 -InstallSourcePath \".\" -SitecoreUsername \"" + Login.username + "\" -SitecorePassword \"" + Login.password + "\"");
+        }
+
+        private void btnGenerate_Click(object sender, EventArgs e)
+        {
+            WriteMainFile(".\\" + SCIASettings.FilePrefixAppString + "SetupAllCommercePrereqs.ps1");
+            CommonFunctions.LaunchPSScript(".\\" + SCIASettings.FilePrefixAppString + "SetupAllCommercePrereqs.ps1 -InstallSourcePath \".\" -SitecoreUsername \"" + Login.username + "\" -SitecorePassword \"" + Login.password + "\"");
         }
     }
 }
