@@ -434,7 +434,7 @@ namespace SCIA
         }
 
 
-        public static bool CheckPrerequisiteList(string destFolder)
+        public static bool CheckPrerequisiteList(string destFolder,string sxaFileName,string pseFileName)
         {
                 if (!CommonFunctions.FileSystemEntryExists(destFolder, null, "folder",true)) { return false; }
                 if (!CommonFunctions.FileSystemEntryExists(destFolder, "msbuild", "folder")) { return false; }
@@ -450,12 +450,12 @@ namespace SCIA
                 if (!CommonFunctions.FileSystemEntryExists(destFolder, "Sitecore Commerce ExperienceProfile Core OnPrem *.zip", "file")) { return false; }
                 if (!CommonFunctions.FileSystemEntryExists(destFolder, "Sitecore Commerce Marketing Automation Core OnPrem *.scwdp.zip", "file")) { return false; }
                 if (!CommonFunctions.FileSystemEntryExists(destFolder, "Sitecore Commerce Marketing Automation for AutomationEngine *.zip", "file")) { return false; }
-                if (!CommonFunctions.FileSystemEntryExists(destFolder, "Sitecore Experience Accelerator *.scwdp.zip", "file")) { return false; }
+                if (!CommonFunctions.FileSystemEntryExists(destFolder, sxaFileName, "file")) { return false; }
                 if (!CommonFunctions.FileSystemEntryExists(destFolder, "Sitecore.BizFx.OnPrem*", "file")) { return false; }
                 if (!CommonFunctions.FileSystemEntryExists(destFolder, "Sitecore.BizFX.SDK*.zip", "file")) { return false; }
                 if (!CommonFunctions.FileSystemEntryExists(destFolder, "Sitecore.Commerce.Engine.OnPrem.Solr*.scwdp.zip", "file")) { return false; }
                 if (!CommonFunctions.FileSystemEntryExists(destFolder, "Sitecore.Commerce.Habitat.Images.OnPrem.scwdp.zip", "file")) { return false; }
-                if (!CommonFunctions.FileSystemEntryExists(destFolder, "Sitecore.PowerShell.Extensions*.scwdp.zip", "file")) { return false; }
+                if (!CommonFunctions.FileSystemEntryExists(destFolder, pseFileName, "file")) { return false; }
                 if ((!Directory.Exists("C:\\Program Files\\dotnet\\shared\\Microsoft.AspNetCore.App\\3.1.8")) && (!Directory.Exists("C:\\Program Files\\dotnet\\shared\\Microsoft.AspNetCore.App\\3.1.7"))) { return false; }
                 if (!Directory.Exists("C:\\Program Files\\Redis")) { return false; }
 

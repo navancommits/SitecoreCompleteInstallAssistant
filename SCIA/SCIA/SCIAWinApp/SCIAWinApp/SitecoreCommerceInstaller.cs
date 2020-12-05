@@ -63,7 +63,7 @@ namespace SCIA
             InitializeComponent();
             SystemDrive = Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.System));
             this.Text = this.Text + " for Sitecore v" + Version.SitecoreVersion;
-            //destFolder = @".\Sitecore.Commerce.WDP.2020.08-6.0.238\SIF.Sitecore.Commerce.5.0.49\";
+            
             tabDetails.Region = new Region(tabDetails.DisplayRectangle);
             ToggleEnableControls(false);
             AssignStepStatus(TabIndexValue);
@@ -1910,8 +1910,10 @@ namespace SCIA
             ToggleButtonControls(false);
             uninstall = CheckCommerceInstallDir();
 
-
-            if (!CommonFunctions.CheckPrerequisiteList(destFolder))
+            var prereqs = CommonFunctions.GetVersionPrerequisites(Version.SitecoreVersion, "commerce");
+            var sxaZipName = prereqs.Where(p => p.PrerequisiteKey == "sxa").ToList().FirstOrDefault().PrerequisiteName;
+            var pseZipName = prereqs.Where(p => p.PrerequisiteKey == "psextension").ToList().FirstOrDefault().PrerequisiteName;
+            if (!CommonFunctions.CheckPrerequisiteList(destFolder,sxaZipName,pseZipName))
             {
                 SetStatusMessage("One or more pre-requisites missing.... Click Pre-requisites button to check...", Color.Red);
                 return false;
