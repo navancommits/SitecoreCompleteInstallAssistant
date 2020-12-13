@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SitecoreContainerInstaller));
             this.button1 = new System.Windows.Forms.Button();
-            this.btnScriptPreview = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.btnValidateAll = new System.Windows.Forms.Button();
             this.btnDbConn = new System.Windows.Forms.Button();
@@ -75,12 +74,33 @@
             this.btnNext = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.toolTipSitecoreContainer = new System.Windows.Forms.ToolTip(this.components);
+            this.tabPgPorts = new System.Windows.Forms.TabPage();
+            this.txtTraefikPort1 = new System.Windows.Forms.NumericUpDown();
+            this.label34 = new System.Windows.Forms.Label();
+            this.txtSolrPort = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtMsSqlPort = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtxConnectPort = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtTraefikPort2 = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btnPortCheck = new System.Windows.Forms.Button();
+            this.txtsaPassword = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnPrune = new System.Windows.Forms.Button();
             this.pnlDetails.SuspendLayout();
             this.tabDetails.SuspendLayout();
             this.tabPgDBConnection.SuspendLayout();
             this.tabpgSiteInfo.SuspendLayout();
             this.tabPgSitecore.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.tabPgPorts.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTraefikPort1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSolrPort)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMsSqlPort)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtxConnectPort)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTraefikPort2)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -89,7 +109,7 @@
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Location = new System.Drawing.Point(714, 158);
+            this.button1.Location = new System.Drawing.Point(443, 158);
             this.button1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(71, 55);
@@ -97,21 +117,6 @@
             this.toolTipSitecoreContainer.SetToolTip(this.button1, "Cleanup xp0 Subfolders");
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btnScriptPreview
-            // 
-            this.btnScriptPreview.BackColor = System.Drawing.Color.White;
-            this.btnScriptPreview.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnScriptPreview.BackgroundImage")));
-            this.btnScriptPreview.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnScriptPreview.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnScriptPreview.Enabled = false;
-            this.btnScriptPreview.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnScriptPreview.Location = new System.Drawing.Point(302, 158);
-            this.btnScriptPreview.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.btnScriptPreview.Name = "btnScriptPreview";
-            this.btnScriptPreview.Size = new System.Drawing.Size(72, 55);
-            this.btnScriptPreview.TabIndex = 68;
-            this.btnScriptPreview.UseVisualStyleBackColor = false;
             // 
             // lblStatus
             // 
@@ -270,6 +275,7 @@
             this.tabDetails.Controls.Add(this.tabPgDBConnection);
             this.tabDetails.Controls.Add(this.tabpgSiteInfo);
             this.tabDetails.Controls.Add(this.tabPgSitecore);
+            this.tabDetails.Controls.Add(this.tabPgPorts);
             this.tabDetails.Location = new System.Drawing.Point(6, -2);
             this.tabDetails.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabDetails.Multiline = true;
@@ -526,7 +532,8 @@
             this.chkStepsList.Items.AddRange(new object[] {
             "DB Connection",
             "Site Info",
-            "Sitecore "});
+            "Sitecore ",
+            "Ports"});
             this.chkStepsList.Location = new System.Drawing.Point(5, 4);
             this.chkStepsList.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.chkStepsList.Name = "chkStepsList";
@@ -567,7 +574,7 @@
             this.btnPrevious.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnPrevious.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPrevious.Location = new System.Drawing.Point(440, 158);
+            this.btnPrevious.Location = new System.Drawing.Point(644, 158);
             this.btnPrevious.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(72, 55);
@@ -583,7 +590,7 @@
             this.btnFirst.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnFirst.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFirst.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnFirst.Location = new System.Drawing.Point(375, 158);
+            this.btnFirst.Location = new System.Drawing.Point(579, 158);
             this.btnFirst.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnFirst.Name = "btnFirst";
             this.btnFirst.Size = new System.Drawing.Size(72, 55);
@@ -599,7 +606,7 @@
             this.btnLast.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnLast.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLast.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnLast.Location = new System.Drawing.Point(571, 158);
+            this.btnLast.Location = new System.Drawing.Point(775, 158);
             this.btnLast.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnLast.Name = "btnLast";
             this.btnLast.Size = new System.Drawing.Size(72, 55);
@@ -615,7 +622,7 @@
             this.btnNext.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnNext.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNext.Location = new System.Drawing.Point(507, 158);
+            this.btnNext.Location = new System.Drawing.Point(711, 158);
             this.btnNext.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(72, 55);
@@ -630,7 +637,7 @@
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Location = new System.Drawing.Point(642, 158);
+            this.button2.Location = new System.Drawing.Point(371, 158);
             this.button2.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(71, 55);
@@ -639,11 +646,224 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // tabPgPorts
+            // 
+            this.tabPgPorts.Controls.Add(this.txtsaPassword);
+            this.tabPgPorts.Controls.Add(this.label7);
+            this.tabPgPorts.Controls.Add(this.txtTraefikPort2);
+            this.tabPgPorts.Controls.Add(this.label6);
+            this.tabPgPorts.Controls.Add(this.txtxConnectPort);
+            this.tabPgPorts.Controls.Add(this.label5);
+            this.tabPgPorts.Controls.Add(this.txtMsSqlPort);
+            this.tabPgPorts.Controls.Add(this.label4);
+            this.tabPgPorts.Controls.Add(this.txtSolrPort);
+            this.tabPgPorts.Controls.Add(this.label3);
+            this.tabPgPorts.Controls.Add(this.txtTraefikPort1);
+            this.tabPgPorts.Controls.Add(this.label34);
+            this.tabPgPorts.Location = new System.Drawing.Point(8, 39);
+            this.tabPgPorts.Name = "tabPgPorts";
+            this.tabPgPorts.Size = new System.Drawing.Size(1158, 349);
+            this.tabPgPorts.TabIndex = 14;
+            this.tabPgPorts.Text = "Ports";
+            this.tabPgPorts.UseVisualStyleBackColor = true;
+            // 
+            // txtTraefikPort1
+            // 
+            this.txtTraefikPort1.Location = new System.Drawing.Point(313, 24);
+            this.txtTraefikPort1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtTraefikPort1.Maximum = new decimal(new int[] {
+            49000,
+            0,
+            0,
+            0});
+            this.txtTraefikPort1.Name = "txtTraefikPort1";
+            this.txtTraefikPort1.Size = new System.Drawing.Size(225, 31);
+            this.txtTraefikPort1.TabIndex = 33;
+            this.txtTraefikPort1.Value = new decimal(new int[] {
+            443,
+            0,
+            0,
+            0});
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(25, 29);
+            this.label34.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(135, 25);
+            this.label34.TabIndex = 32;
+            this.label34.Text = "TraefikPort1:";
+            // 
+            // txtSolrPort
+            // 
+            this.txtSolrPort.Location = new System.Drawing.Point(313, 101);
+            this.txtSolrPort.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtSolrPort.Maximum = new decimal(new int[] {
+            49000,
+            0,
+            0,
+            0});
+            this.txtSolrPort.Name = "txtSolrPort";
+            this.txtSolrPort.Size = new System.Drawing.Size(225, 31);
+            this.txtSolrPort.TabIndex = 35;
+            this.txtSolrPort.Value = new decimal(new int[] {
+            8984,
+            0,
+            0,
+            0});
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(25, 106);
+            this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(95, 25);
+            this.label3.TabIndex = 34;
+            this.label3.Text = "SolrPort:";
+            // 
+            // txtMsSqlPort
+            // 
+            this.txtMsSqlPort.Location = new System.Drawing.Point(313, 140);
+            this.txtMsSqlPort.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtMsSqlPort.Maximum = new decimal(new int[] {
+            49000,
+            0,
+            0,
+            0});
+            this.txtMsSqlPort.Name = "txtMsSqlPort";
+            this.txtMsSqlPort.Size = new System.Drawing.Size(225, 31);
+            this.txtMsSqlPort.TabIndex = 37;
+            this.txtMsSqlPort.Value = new decimal(new int[] {
+            14330,
+            0,
+            0,
+            0});
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(25, 145);
+            this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(120, 25);
+            this.label4.TabIndex = 36;
+            this.label4.Text = "MSSqlPort:";
+            // 
+            // txtxConnectPort
+            // 
+            this.txtxConnectPort.Location = new System.Drawing.Point(313, 179);
+            this.txtxConnectPort.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtxConnectPort.Maximum = new decimal(new int[] {
+            49000,
+            0,
+            0,
+            0});
+            this.txtxConnectPort.Name = "txtxConnectPort";
+            this.txtxConnectPort.Size = new System.Drawing.Size(225, 31);
+            this.txtxConnectPort.TabIndex = 39;
+            this.txtxConnectPort.Value = new decimal(new int[] {
+            8081,
+            0,
+            0,
+            0});
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(25, 184);
+            this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(148, 25);
+            this.label5.TabIndex = 38;
+            this.label5.Text = "xConnectPort:";
+            // 
+            // txtTraefikPort2
+            // 
+            this.txtTraefikPort2.Location = new System.Drawing.Point(313, 63);
+            this.txtTraefikPort2.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtTraefikPort2.Maximum = new decimal(new int[] {
+            49000,
+            0,
+            0,
+            0});
+            this.txtTraefikPort2.Name = "txtTraefikPort2";
+            this.txtTraefikPort2.Size = new System.Drawing.Size(225, 31);
+            this.txtTraefikPort2.TabIndex = 41;
+            this.txtTraefikPort2.Value = new decimal(new int[] {
+            8079,
+            0,
+            0,
+            0});
+            this.txtTraefikPort2.ValueChanged += new System.EventHandler(this.numericUpDown3_ValueChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(25, 68);
+            this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(135, 25);
+            this.label6.TabIndex = 40;
+            this.label6.Text = "TraefikPort2:";
+            // 
+            // btnPortCheck
+            // 
+            this.btnPortCheck.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPortCheck.BackgroundImage")));
+            this.btnPortCheck.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnPortCheck.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPortCheck.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPortCheck.Location = new System.Drawing.Point(300, 158);
+            this.btnPortCheck.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.btnPortCheck.Name = "btnPortCheck";
+            this.btnPortCheck.Size = new System.Drawing.Size(70, 55);
+            this.btnPortCheck.TabIndex = 78;
+            this.btnPortCheck.UseVisualStyleBackColor = true;
+            this.btnPortCheck.Click += new System.EventHandler(this.btnPortCheck_Click);
+            // 
+            // txtsaPassword
+            // 
+            this.txtsaPassword.Location = new System.Drawing.Point(313, 222);
+            this.txtsaPassword.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtsaPassword.MaxLength = 15;
+            this.txtsaPassword.Name = "txtsaPassword";
+            this.txtsaPassword.Size = new System.Drawing.Size(833, 31);
+            this.txtsaPassword.TabIndex = 43;
+            this.txtsaPassword.Text = "P@ssword12345";
+            this.toolTipSitecoreContainer.SetToolTip(this.txtsaPassword, "Used to login to SQL Server using the MSSqlPort provided above");
+            // 
+            // label7
+            // 
+            this.label7.Location = new System.Drawing.Point(25, 222);
+            this.label7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(232, 69);
+            this.label7.TabIndex = 42;
+            this.label7.Text = "SqlPass (different from default sa password):";
+            // 
+            // btnPrune
+            // 
+            this.btnPrune.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPrune.BackgroundImage")));
+            this.btnPrune.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnPrune.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPrune.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPrune.Location = new System.Drawing.Point(515, 158);
+            this.btnPrune.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.btnPrune.Name = "btnPrune";
+            this.btnPrune.Size = new System.Drawing.Size(71, 55);
+            this.btnPrune.TabIndex = 79;
+            this.toolTipSitecoreContainer.SetToolTip(this.btnPrune, "Docker Prune");
+            this.btnPrune.UseVisualStyleBackColor = true;
+            this.btnPrune.Click += new System.EventHandler(this.btnPrune_Click);
+            // 
             // SitecoreContainerInstaller
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1605, 805);
+            this.Controls.Add(this.btnPrune);
+            this.Controls.Add(this.btnPortCheck);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnPrevious);
             this.Controls.Add(this.btnFirst);
@@ -653,7 +873,6 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.lblStepInfo);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.btnScriptPreview);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnValidateAll);
             this.Controls.Add(this.btnDbConn);
@@ -679,6 +898,13 @@
             this.tabPgSitecore.ResumeLayout(false);
             this.tabPgSitecore.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.tabPgPorts.ResumeLayout(false);
+            this.tabPgPorts.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTraefikPort1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSolrPort)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMsSqlPort)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtxConnectPort)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTraefikPort2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -686,7 +912,6 @@
         #endregion
 
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btnScriptPreview;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Button btnValidateAll;
         private System.Windows.Forms.Button btnDbConn;
@@ -730,5 +955,20 @@
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ToolTip toolTipSitecoreContainer;
+        private System.Windows.Forms.TabPage tabPgPorts;
+        private System.Windows.Forms.NumericUpDown txtTraefikPort2;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.NumericUpDown txtxConnectPort;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown txtMsSqlPort;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.NumericUpDown txtSolrPort;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.NumericUpDown txtTraefikPort1;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Button btnPortCheck;
+        private System.Windows.Forms.TextBox txtsaPassword;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnPrune;
     }
 }

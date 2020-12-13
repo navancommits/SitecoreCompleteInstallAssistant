@@ -32,7 +32,7 @@ namespace SCIA
         private void CheckPrerequisites()
         {
             if (CommonFunctions.FileSystemEntryExists(ZipList.SitecoreContainerZip, null, "folder", true)) { chkSitecoreContainer.Checked = true; chkSitecoreContainer.BackColor = Color.LightGreen; }
-            if (CommonFunctions.FileSystemEntryExists("\\" + ZipList.SitecoreContainerZip + xp0Path + "license.xml",null)) { chkLicenseFile.Checked = true; chkLicenseFile.BackColor = Color.LightGreen; }
+            if (CommonFunctions.FileSystemEntryExists(".\\" + ZipList.SitecoreContainerZip + xp0Path + "license.xml",null)) { chkLicenseFile.Checked = true; chkLicenseFile.BackColor = Color.LightGreen; }
             if (WindowsVersionOk()) { chkWindowsEdition.Checked = true; chkWindowsEdition.BackColor = Color.LightGreen; };
             if (CommonFunctions.FileSystemEntryExists("c:\\program files\\docker",null,"folder")) { chkDocker.Checked = true; chkDocker.BackColor = Color.LightGreen; }
         }

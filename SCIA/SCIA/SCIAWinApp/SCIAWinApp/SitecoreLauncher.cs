@@ -674,5 +674,15 @@ namespace SCIA
             SqlServer2012Prereqs dBSetup = new SqlServer2012Prereqs();
             dBSetup.ShowDialog();
         }
+
+        private void helpMenu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void contentsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://navansitecorenotes.blogspot.com/");
+        }
     }
 }

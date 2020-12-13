@@ -95,8 +95,8 @@
             this.helpMenu});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Padding = new System.Windows.Forms.Padding(3, 1, 0, 1);
-            this.menuStrip.Size = new System.Drawing.Size(1433, 38);
+            this.menuStrip.Padding = new System.Windows.Forms.Padding(6, 2, 0, 2);
+            this.menuStrip.Size = new System.Drawing.Size(2866, 42);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -110,7 +110,7 @@
             this.exitToolStripMenuItem});
             this.sitecoreMenu.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder;
             this.sitecoreMenu.Name = "sitecoreMenu";
-            this.sitecoreMenu.Size = new System.Drawing.Size(121, 36);
+            this.sitecoreMenu.Size = new System.Drawing.Size(121, 38);
             this.sitecoreMenu.Text = "&Sitecore";
             // 
             // siaToolStripMenuItem
@@ -160,7 +160,7 @@
             this.commerceContainerToolStripMenuItem,
             this.toolStripSeparator6});
             this.commerceMenu.Name = "commerceMenu";
-            this.commerceMenu.Size = new System.Drawing.Size(244, 36);
+            this.commerceMenu.Size = new System.Drawing.Size(244, 38);
             this.commerceMenu.Text = "Sitecore Com&merce";
             // 
             // sitecoreCommerceToolStripMenuItem
@@ -191,14 +191,14 @@
             // toolStripMenuItemSetVersion
             // 
             this.toolStripMenuItemSetVersion.Name = "toolStripMenuItemSetVersion";
-            this.toolStripMenuItemSetVersion.Size = new System.Drawing.Size(247, 36);
+            this.toolStripMenuItemSetVersion.Size = new System.Drawing.Size(247, 38);
             this.toolStripMenuItemSetVersion.Text = "Set Sitecore Version";
             this.toolStripMenuItemSetVersion.Click += new System.EventHandler(this.toolStripMenuItemSetVersion_Click);
             // 
             // toolStripMenuItemDbConn
             // 
             this.toolStripMenuItemDbConn.Name = "toolStripMenuItemDbConn";
-            this.toolStripMenuItemDbConn.Size = new System.Drawing.Size(196, 36);
+            this.toolStripMenuItemDbConn.Size = new System.Drawing.Size(196, 38);
             this.toolStripMenuItemDbConn.Text = "DB Connection";
             this.toolStripMenuItemDbConn.Click += new System.EventHandler(this.toolStripMenuItemDbConn_Click);
             // 
@@ -208,20 +208,22 @@
             this.contentsToolStripMenuItem,
             this.toolStripSeparator8});
             this.helpMenu.Name = "helpMenu";
-            this.helpMenu.Size = new System.Drawing.Size(85, 36);
+            this.helpMenu.Size = new System.Drawing.Size(85, 38);
             this.helpMenu.Text = "&Help";
+            this.helpMenu.Click += new System.EventHandler(this.helpMenu_Click);
             // 
             // contentsToolStripMenuItem
             // 
             this.contentsToolStripMenuItem.Name = "contentsToolStripMenuItem";
             this.contentsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F1)));
-            this.contentsToolStripMenuItem.Size = new System.Drawing.Size(338, 44);
-            this.contentsToolStripMenuItem.Text = "&Contents";
+            this.contentsToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
+            this.contentsToolStripMenuItem.Text = "&My Blog";
+            this.contentsToolStripMenuItem.Click += new System.EventHandler(this.contentsToolStripMenuItem_Click);
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(335, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(356, 6);
             // 
             // toolStrip
             // 
@@ -255,9 +257,10 @@
             this.toolStripDeleteDBButton,
             this.toolStripSeparator11,
             this.toolStripRefreshButton});
-            this.toolStrip.Location = new System.Drawing.Point(0, 38);
+            this.toolStrip.Location = new System.Drawing.Point(0, 42);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(1433, 42);
+            this.toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.toolStrip.Size = new System.Drawing.Size(2866, 42);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "ToolStrip";
             // 
@@ -523,9 +526,10 @@
             this.statusStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 411);
+            this.statusStrip.Location = new System.Drawing.Point(0, 829);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(1433, 42);
+            this.statusStrip.Padding = new System.Windows.Forms.Padding(2, 0, 28, 0);
+            this.statusStrip.Size = new System.Drawing.Size(2866, 42);
             this.statusStrip.TabIndex = 2;
             // 
             // toolStripStatusLabel
@@ -536,15 +540,16 @@
             // 
             // mdiSitecoreComplete
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1433, 453);
+            this.ClientSize = new System.Drawing.Size(2866, 871);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.menuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip;
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "mdiSitecoreComplete";
             this.Text = "Sitecore Complete Install Assistant (SCIA)";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

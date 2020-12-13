@@ -6,7 +6,10 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.NetworkInformation;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Win32;
@@ -18,6 +21,7 @@ namespace SCIA
         const int const_DBConn_Tab = 0;
         const int const_SiteInfo_Tab = 1;
         const int const_Sitecore_Tab = 2;
+        const int const_Port_Tab = 3;
         string xp0Path = "\\compose\\ltsc2019\\xp0\\";
         string siteNamePrefixString = "sc";//sc
         string identityServerNameString = "identityserver";//identityserver
@@ -112,7 +116,223 @@ namespace SCIA
             file.Dispose();
         }
 
-            
+        //\traefik\config\dynamic\
+        void WriteConfigFile(string path)
+        {
+            using var file = new StreamWriter(path);
+
+            file.WriteLine("tls:");
+            file.WriteLine("certificates:");
+            file.WriteLine("-certFile: C:\\etc\\traefik\\certs\\" + txtSiteName.Text + ".crt");
+            file.WriteLine("keyFile: C:\\etc\\traefik\\certs\\" + txtSiteName.Text + ".key");
+            file.WriteLine("-certFile: C:\\etc\\traefik\\certs\\" + txtIDServerSiteName.Text + ".crt");
+            file.WriteLine("keyFile: C:\\etc\\traefik\\certs\\" + txtIDServerSiteName.Text + ".key");
+            file.Dispose();
+        }
+
+        void WriteComposeFile(string path)
+        {
+            using var file = new StreamWriter(path);
+            file.WriteLine("version: \"2.4\"");
+            file.WriteLine("services:");
+            file.WriteLine("  traefik:");
+            file.WriteLine("    isolation: ${TRAEFIK_ISOLATION}");
+            file.WriteLine("    image: ${TRAEFIK_IMAGE}");
+            file.WriteLine("    command:");
+            file.WriteLine("      - \"--ping\"");
+            file.WriteLine("      - \"--api.insecure=true\"");
+            file.WriteLine("      - \"--providers.docker.endpoint=npipe:////./pipe/docker_engine\"");
+            file.WriteLine("      - \"--providers.docker.exposedByDefault=false\"");
+            file.WriteLine("      - \"--providers.file.directory=C:/etc/traefik/config/dynamic\"");
+            file.WriteLine("      - \"--entryPoints.websecure.address=:443\"");
+            file.WriteLine("    ports:");
+            file.WriteLine("      - \"" + txtTraefikPort1.Text + ":443\"");
+            file.WriteLine("      - \"" + txtTraefikPort2.Text  + ":8080\"");
+            file.WriteLine("    healthcheck:");
+            file.WriteLine("      test: [\"CMD\", \"traefik\", \"healthcheck\", \"--ping\"]");
+            file.WriteLine("    volumes:");
+            file.WriteLine("      - source: \\\\.\\pipe\\docker_engine");
+            file.WriteLine("        target: \\\\.\\pipe\\docker_engine");
+            file.WriteLine("        type: npipe");
+            file.WriteLine("      - ./traefik:C:/etc/traefik");
+            file.WriteLine("    depends_on:");
+            file.WriteLine("      cm:");
+            file.WriteLine("        condition: service_healthy");
+            file.WriteLine("      id:");
+            file.WriteLine("        condition: service_healthy");
+            file.WriteLine("  mssql:");
+            file.WriteLine("    isolation: ${ISOLATION}");
+            file.WriteLine("    image: ${SITECORE_DOCKER_REGISTRY}sitecore-xp0-mssql:${SITECORE_VERSION}");
+            file.WriteLine("    environment:");
+            file.WriteLine("      SA_PASSWORD: ${SQL_SA_PASSWORD}");
+            file.WriteLine("      SITECORE_ADMIN_PASSWORD: ${SITECORE_ADMIN_PASSWORD}");
+            file.WriteLine("      ACCEPT_EULA: \"Y\"");
+            file.WriteLine("      SQL_SERVER: mssql");
+            file.WriteLine("    ports:");
+            file.WriteLine("      - \"" + txtMsSqlPort.Text + ":1433\"");
+            file.WriteLine("    volumes:");
+            file.WriteLine("      - type: bind");
+            file.WriteLine("        source: .\\mssql-data");
+            file.WriteLine("        target: c:\\data");
+            file.WriteLine("  solr:");
+            file.WriteLine("    isolation: ${ISOLATION}");
+            file.WriteLine("    ports:");
+            file.WriteLine("      - \"" + txtSolrPort.Text + ":8983\"");
+            file.WriteLine("    image: ${SITECORE_DOCKER_REGISTRY}sitecore-xp0-solr:${SITECORE_VERSION}");
+            file.WriteLine("    volumes:");
+            file.WriteLine("      - type: bind");
+            file.WriteLine("        source: .\\solr-data");
+            file.WriteLine("        target: c:\\data");
+            file.WriteLine("  id:");
+            file.WriteLine("    isolation: ${ISOLATION}");
+            file.WriteLine("    image: ${SITECORE_DOCKER_REGISTRY}sitecore-id:${SITECORE_VERSION}");
+            file.WriteLine("    environment:");
+            file.WriteLine("      Sitecore_Sitecore__IdentityServer__SitecoreMemberShipOptions__ConnectionString: Data Source=mssql;Initial Catalog=Sitecore.Core;User ID=sa;Password=${SQL_SA_PASSWORD}");
+            file.WriteLine("      Sitecore_Sitecore__IdentityServer__AccountOptions__PasswordRecoveryUrl: https://${CM_HOST}/sitecore/login?rc=1");
+            file.WriteLine("      Sitecore_Sitecore__IdentityServer__Clients__PasswordClient__ClientSecrets__ClientSecret1: ${SITECORE_IDSECRET}");
+            file.WriteLine("      Sitecore_Sitecore__IdentityServer__Clients__DefaultClient__AllowedCorsOrigins__AllowedCorsOriginsGroup1: https://${CM_HOST}");
+            file.WriteLine("      Sitecore_Sitecore__IdentityServer__CertificateRawData: ${SITECORE_ID_CERTIFICATE}");
+            file.WriteLine("      Sitecore_Sitecore__IdentityServer__PublicOrigin: https://${ID_HOST}");
+            file.WriteLine("      Sitecore_Sitecore__IdentityServer__CertificateRawDataPassword: ${SITECORE_ID_CERTIFICATE_PASSWORD}");
+            file.WriteLine("      Sitecore_License: ${SITECORE_LICENSE}");
+            file.WriteLine("    healthcheck:");
+            file.WriteLine("      test: [\"CMD\", \"powershell\", \"-command\", \"C:/Healthchecks/Healthcheck.ps1\"]");
+            file.WriteLine("      timeout: 300s");
+            file.WriteLine("    depends_on:");
+            file.WriteLine("      mssql:");
+            file.WriteLine("        condition: service_healthy");
+            file.WriteLine("    labels:");
+            file.WriteLine("      - \"traefik.enable=true\"");
+            file.WriteLine("      - \"traefik.http.routers.id-secure.entrypoints=websecure\"");
+            file.WriteLine("      - \"traefik.http.routers.id-secure.rule=Host(`${ID_HOST}`)\"");
+            file.WriteLine("      - \"traefik.http.routers.id-secure.tls=true\"");
+            file.WriteLine("  cm:");
+            file.WriteLine("    isolation: ${ISOLATION}");
+            file.WriteLine("    image: ${SITECORE_DOCKER_REGISTRY}sitecore-xp0-cm:${SITECORE_VERSION}");
+            file.WriteLine("    depends_on:");
+            file.WriteLine("      id:");
+            file.WriteLine("        condition: service_started");
+            file.WriteLine("      xconnect:");
+            file.WriteLine("        condition: service_started");
+            file.WriteLine("    environment:");
+            file.WriteLine("      Sitecore_ConnectionStrings_Core: Data Source=mssql;Initial Catalog=Sitecore.Core;User ID=sa;Password=${SQL_SA_PASSWORD}");
+            file.WriteLine("      Sitecore_ConnectionStrings_Security: Data Source=mssql;Initial Catalog=Sitecore.Core;User ID=sa;Password=${SQL_SA_PASSWORD}");
+            file.WriteLine("      Sitecore_ConnectionStrings_Master: Data Source=mssql;Initial Catalog=Sitecore.Master;User ID=sa;Password=${SQL_SA_PASSWORD}");
+            file.WriteLine("      Sitecore_ConnectionStrings_Web: Data Source=mssql;Initial Catalog=Sitecore.Web;User ID=sa;Password=${SQL_SA_PASSWORD}");
+            file.WriteLine("      Sitecore_ConnectionStrings_Messaging: Data Source=mssql;Initial Catalog=Sitecore.Messaging;User ID=sa;Password=${SQL_SA_PASSWORD}");
+            file.WriteLine("      Sitecore_ConnectionStrings_Xdb.Processing.Pools: Data Source=mssql;Initial Catalog=Sitecore.Processing.pools;User ID=sa;Password=${SQL_SA_PASSWORD}");
+            file.WriteLine("      Sitecore_ConnectionStrings_Xdb.Referencedata: Data Source=mssql;Initial Catalog=Sitecore.Referencedata;User ID=sa;Password=${SQL_SA_PASSWORD}");
+            file.WriteLine("      Sitecore_ConnectionStrings_Xdb.Processing.Tasks: Data Source=mssql;Initial Catalog=Sitecore.Processing.tasks;User ID=sa;Password=${SQL_SA_PASSWORD}");
+            file.WriteLine("      Sitecore_ConnectionStrings_ExperienceForms: Data Source=mssql;Initial Catalog=Sitecore.ExperienceForms;User ID=sa;Password=${SQL_SA_PASSWORD}");
+            file.WriteLine("      Sitecore_ConnectionStrings_Exm.Master: Data Source=mssql;Initial Catalog=Sitecore.Exm.master;User ID=sa;Password=${SQL_SA_PASSWORD}");
+            file.WriteLine("      Sitecore_ConnectionStrings_Reporting: Data Source=mssql;Initial Catalog=Sitecore.Reporting;User ID=sa;Password=${SQL_SA_PASSWORD}");
+            file.WriteLine("      Sitecore_ConnectionStrings_Sitecore.Reporting.Client: http://xconnect");
+            file.WriteLine("      Sitecore_ConnectionStrings_Solr.Search: http://solr:8983/solr");
+            file.WriteLine("      Sitecore_ConnectionStrings_SitecoreIdentity.Secret:  ${SITECORE_IDSECRET}");
+            file.WriteLine("      Sitecore_ConnectionStrings_XConnect.Collection: http://xconnect");
+            file.WriteLine("      Sitecore_ConnectionStrings_Xdb.MarketingAutomation.Operations.Client: http://xconnect");
+            file.WriteLine("      Sitecore_ConnectionStrings_Xdb.MarketingAutomation.Reporting.Client: http://xconnect");
+            file.WriteLine("      Sitecore_ConnectionStrings_Xdb.ReferenceData.Client: http://xconnect");
+            file.WriteLine("      Sitecore_License: ${SITECORE_LICENSE}");
+            file.WriteLine("      Sitecore_Identity_Server_Authority: https://${ID_HOST}");
+            file.WriteLine("      Sitecore_Identity_Server_InternalAuthority: http://id");
+            file.WriteLine("      Sitecore_Identity_Server_CallbackAuthority: https://${CM_HOST}");
+            file.WriteLine("      Sitecore_Identity_Server_Require_Https: \"false\"");
+            file.WriteLine("    healthcheck:");
+            file.WriteLine("      test: [\"CMD\", \"powershell\", \"-command\", \"C:/Healthchecks/Healthcheck.ps1\"]");
+            file.WriteLine("      timeout: 300s");
+            file.WriteLine("    labels:");
+            file.WriteLine("      - \"traefik.enable=true\"");
+            file.WriteLine("      - \"traefik.http.middlewares.force-STS-Header.headers.forceSTSHeader=true\"");
+            file.WriteLine("      - \"traefik.http.middlewares.force-STS-Header.headers.stsSeconds=31536000\"");
+            file.WriteLine("      - \"traefik.http.routers.cm-secure.entrypoints=websecure\"");
+            file.WriteLine("      - \"traefik.http.routers.cm-secure.rule=Host(`${CM_HOST}`)\"");
+            file.WriteLine("      - \"traefik.http.routers.cm-secure.tls=true\"");
+            file.WriteLine("      - \"traefik.http.routers.cm-secure.middlewares=force-STS-Header\"");
+            file.WriteLine("  xconnect:");
+            file.WriteLine("    isolation: ${ISOLATION}");
+            file.WriteLine("    image: ${SITECORE_DOCKER_REGISTRY}sitecore-xp0-xconnect:${SITECORE_VERSION}");
+            file.WriteLine("    ports:");
+            file.WriteLine("      - \"" + txtxConnectPort.Text+ ":80\"");
+            file.WriteLine("    depends_on:");
+            file.WriteLine("      mssql:");
+            file.WriteLine("        condition: service_healthy");
+            file.WriteLine("      solr:");
+            file.WriteLine("        condition: service_started");
+            file.WriteLine("    environment:");
+            file.WriteLine("      Sitecore_License: ${SITECORE_LICENSE}");
+            file.WriteLine("      Sitecore_ConnectionStrings_Messaging: Data Source=mssql;Initial Catalog=Sitecore.Messaging;User ID=sa;Password=${SQL_SA_PASSWORD}");
+            file.WriteLine("      Sitecore_ConnectionStrings_Processing.Engine.Storage: Data Source=mssql;Initial Catalog=Sitecore.Processing.Engine.Storage;User ID=sa;Password=${SQL_SA_PASSWORD}");
+            file.WriteLine("      Sitecore_ConnectionStrings_Reporting: Data Source=mssql;Initial Catalog=Sitecore.Reporting;User ID=sa;Password=${SQL_SA_PASSWORD}");
+            file.WriteLine("      Sitecore_ConnectionStrings_Xdb.Marketingautomation: Data Source=mssql;Initial Catalog=Sitecore.Marketingautomation;User ID=sa;Password=${SQL_SA_PASSWORD}");
+            file.WriteLine("      Sitecore_ConnectionStrings_Xdb.Processing.Pools: Data Source=mssql;Initial Catalog=Sitecore.Processing.pools;User ID=sa;Password=${SQL_SA_PASSWORD}");
+            file.WriteLine("      Sitecore_ConnectionStrings_Xdb.Referencedata: Data Source=mssql;Initial Catalog=Sitecore.Referencedata;User ID=sa;Password=${SQL_SA_PASSWORD}");
+            file.WriteLine("      Sitecore_ConnectionStrings_Collection: Data Source=mssql;Initial Catalog=Sitecore.Xdb.Collection.ShardMapManager;User ID=sa;Password=${SQL_SA_PASSWORD}");
+            file.WriteLine("      Sitecore_ConnectionStrings_SolrCore: http://solr:8983/solr/sitecore_xdb");
+            file.WriteLine("      Sitecore_Sitecore:XConnect:CollectionSearch:Services:Solr.SolrReaderSettings:Options:RequireHttps: 'false'");
+            file.WriteLine("      Sitecore_Sitecore:XConnect:CollectionSearch:Services:XConnectSolrHealthCheckServicesConfiguration:Options:RequireHttps: 'false'");
+            file.WriteLine("      Sitecore_Sitecore:XConnect:SearchIndexer:Services:Solr.SolrReaderSettings:Options:RequireHttps: 'false'");
+            file.WriteLine("      Sitecore_Sitecore:XConnect:SearchIndexer:Services:Solr.SolrWriterSettings:Options:RequireHttps: 'false'");
+            file.WriteLine("    healthcheck:");
+            file.WriteLine("      test: [\"CMD\", \"powershell\", \"-command\", \"C:/Healthchecks/Healthcheck.ps1\"]");
+            file.WriteLine("      timeout: 300s");
+            file.WriteLine("  xdbsearchworker:");
+            file.WriteLine("    isolation: ${ISOLATION}");
+            file.WriteLine("    image: ${SITECORE_DOCKER_REGISTRY}sitecore-xp0-xdbsearchworker:${SITECORE_VERSION}");
+            file.WriteLine("    depends_on:");
+            file.WriteLine("      xconnect:");
+            file.WriteLine("        condition: service_healthy");
+            file.WriteLine("    restart: unless-stopped");
+            file.WriteLine("    environment:");
+            file.WriteLine("      Sitecore_ConnectionStrings_Collection: Data Source=mssql;Initial Catalog=Sitecore.Xdb.Collection.ShardMapManager;User ID=sa;Password=${SQL_SA_PASSWORD}");
+            file.WriteLine("      Sitecore_ConnectionStrings_SolrCore: http://solr:8983/solr/sitecore_xdb");
+            file.WriteLine("      Sitecore_License: ${SITECORE_LICENSE}");
+            file.WriteLine("      Sitecore_Sitecore:XConnect:SearchIndexer:Services:Solr.SolrReaderSettings:Options:RequireHttps: 'false'");
+            file.WriteLine("      Sitecore_Sitecore:XConnect:SearchIndexer:Services:Solr.SolrWriterSettings:Options:RequireHttps: 'false'");
+            file.WriteLine("      Sitecore_Sitecore:XConnect:CollectionSearch:Services:XConnectSolrHealthCheckServicesConfiguration:Options:RequireHttps: 'false'");
+            file.WriteLine("    healthcheck:");
+            file.WriteLine("      test: [\"CMD\", \"powershell\", \"-command\", \"C:/Healthchecks/Healthcheck.ps1 -Port 8080\"]");
+            file.WriteLine("      timeout: 300s");
+            file.WriteLine("  xdbautomationworker:");
+            file.WriteLine("    isolation: ${ISOLATION}");
+            file.WriteLine("    image: ${SITECORE_DOCKER_REGISTRY}sitecore-xp0-xdbautomationworker:${SITECORE_VERSION}");
+            file.WriteLine("    depends_on:");
+            file.WriteLine("      xconnect:");
+            file.WriteLine("        condition: service_healthy");
+            file.WriteLine("    restart: unless-stopped");
+            file.WriteLine("    environment:");
+            file.WriteLine("      Sitecore_ConnectionStrings_XConnect.Collection: http://xconnect");
+            file.WriteLine("      Sitecore_ConnectionStrings_Xdb.Marketingautomation: Data Source=mssql;Initial Catalog=Sitecore.Marketingautomation;User ID=sa;Password=${SQL_SA_PASSWORD}");
+            file.WriteLine("      Sitecore_ConnectionStrings_Xdb.Referencedata: Data Source=mssql;Initial Catalog=Sitecore.Referencedata;User ID=sa;Password=${SQL_SA_PASSWORD}");
+            file.WriteLine("      Sitecore_ConnectionStrings_Messaging: Data Source=mssql;Initial Catalog=Sitecore.Messaging;User ID=sa;Password=${SQL_SA_PASSWORD}");
+            file.WriteLine("      Sitecore_License: ${SITECORE_LICENSE}");
+            file.WriteLine("    healthcheck:");
+            file.WriteLine("      test: [\"CMD\", \"powershell\", \"-command\", \"C:/Healthchecks/Healthcheck.ps1 -Port 8080\"]");
+            file.WriteLine("      timeout: 300s");
+            file.WriteLine("  cortexprocessingworker:");
+            file.WriteLine("    isolation: ${ISOLATION}");
+            file.WriteLine("    image: ${SITECORE_DOCKER_REGISTRY}sitecore-xp0-cortexprocessingworker:${SITECORE_VERSION}");
+            file.WriteLine("    depends_on:");
+            file.WriteLine("      xconnect:");
+            file.WriteLine("        condition: service_healthy");
+            file.WriteLine("    restart: unless-stopped");
+            file.WriteLine("    environment:");
+            file.WriteLine("      Sitecore_ConnectionStrings_Processing.Engine.Storage: Data Source=mssql;Initial Catalog=Sitecore.Processing.Engine.Storage;User ID=sa;Password=${SQL_SA_PASSWORD}");
+            file.WriteLine("      Sitecore_ConnectionStrings_Processing.Engine.Tasks: Data Source=mssql;Initial Catalog=Sitecore.Processing.Engine.Tasks;User ID=sa;Password=${SQL_SA_PASSWORD}");
+            file.WriteLine("      Sitecore_ConnectionStrings_Processing.Webapi.Blob: http://xconnect");
+            file.WriteLine("      Sitecore_ConnectionStrings_Processing.Webapi.Table: http://xconnect");
+            file.WriteLine("      Sitecore_ConnectionStrings_XConnect.Collection: http://xconnect");
+            file.WriteLine("      Sitecore_ConnectionStrings_XConnect.Configuration: http://xconnect");
+            file.WriteLine("      Sitecore_ConnectionStrings_XConnect.Search: http://xconnect");
+            file.WriteLine("      Sitecore_ConnectionStrings_Messaging: Data Source=mssql;Initial Catalog=Sitecore.Messaging;User ID=sa;Password=${SQL_SA_PASSWORD}");
+            file.WriteLine("      Sitecore_ConnectionStrings_Reporting: Data Source=mssql;Initial Catalog=Sitecore.Reporting;User ID=sa;Password=${SQL_SA_PASSWORD}");
+            file.WriteLine("      Sitecore_License: ${SITECORE_LICENSE}");
+            file.WriteLine("    healthcheck:");
+            file.WriteLine("      test: [\"CMD\", \"powershell\", \"-command\", \"C:/Healthchecks/Healthcheck.ps1 -Port 8080\"]");
+            file.WriteLine("      timeout: 300s");
+
+        }
+
         void WriteAutoFillFile(string path)
         {
             using var file = new StreamWriter(path);
@@ -170,7 +390,7 @@ namespace SCIA
             file.WriteLine();
             file.WriteLine("# SQL_SA_PASSWORD");
             file.WriteLine();
-            file.WriteLine("Set-DockerComposeEnvFileVariable \"SQL_SA_PASSWORD\" -Value $SqlSaPassword");
+            file.WriteLine("Set-DockerComposeEnvFileVariable \"SQL_SA_PASSWORD\" -Value \"" + txtsaPassword.Text + "\"");
             file.WriteLine();
             file.WriteLine("# TELERIK_ENCRYPTION_KEY = random 64-128 chars");
             file.WriteLine("Set-DockerComposeEnvFileVariable \"TELERIK_ENCRYPTION_KEY\" -Value (Get-SitecoreRandomString 128)");
@@ -187,6 +407,12 @@ namespace SCIA
             file.WriteLine();
             file.WriteLine("# SITECORE_LICENSE");
             file.WriteLine("Set-DockerComposeEnvFileVariable \"SITECORE_LICENSE\" -Value (ConvertTo-CompressedBase64String -Path $LicenseXmlPath)");
+            file.WriteLine();
+            file.WriteLine("# CM_HOST");
+            file.WriteLine("Set-DockerComposeEnvFileVariable \"CM_HOST\" -Value \"" + txtSiteName.Text + "\"");
+            file.WriteLine();
+            file.WriteLine("# ID_HOST");
+            file.WriteLine("Set-DockerComposeEnvFileVariable \"ID_HOST\" -Value \"" + txtIDServerSiteName.Text + "\"");
             file.WriteLine();
             file.WriteLine();
             file.WriteLine("##################################");
@@ -370,7 +596,7 @@ namespace SCIA
 
             if (!ValidateAll(uninstall)) return false;
             if (!SiteInfoTabValidations()) return false;
-
+            if (!PerformPortValidations(uninstall)) return false;
 
             ToggleEnableControls(true);
             //if (uninstall) { btnInstall.Enabled = false; } else { btnUninstall.Enabled = false; }
@@ -383,6 +609,8 @@ namespace SCIA
             string initPS1 = "SCIA-" + txtSiteName.Text + "-init.ps1";
             if (!CheckAllValidations()) return;
             WriteAutoFillFile(".\\" + ZipList.SitecoreContainerZip + xp0Path + initPS1);
+            WriteConfigFile(".\\" + ZipList.SitecoreContainerZip + xp0Path + "\\traefik\\config\\dynamic\\certs_config.yaml");
+            WriteComposeFile(".\\" + ZipList.SitecoreContainerZip + xp0Path + "docker-compose.yml");
 
             CommonFunctions.LaunchPSScript(".\\" + initPS1 + "  -SitecoreAdminPassword \"" + txtSitecoreUserPassword.Text + "\" -SqlSaPassword \"" + txtSqlPass.Text + "\" -LicenseXmlPath \"license.xml\"", ".\\" + ZipList.SitecoreContainerZip + "\\compose\\ltsc2019\\xp0");
 
@@ -592,5 +820,152 @@ namespace SCIA
             lblStatus.ForeColor = Color.DarkGreen;
             lblStatus.Text = "Docker ps launched....";
         }
+
+        private void numericUpDown3_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPortCheck_Click(object sender, EventArgs e)
+        {
+            if (PerformPortValidations())
+            {
+                lblStatus.Text = "Ports are unique and fine...";
+                lblStatus.ForeColor = Color.DarkGreen;
+            }
+        }
+
+        private bool PortInRange(string input, string portString, int tabIndex)
+        {
+            var regex = @"^([1-9][0-9]{0,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])$";
+            var match = Regex.Match(input, regex, RegexOptions.IgnoreCase);
+
+            if (!match.Success)
+            {
+                lblStatus.Text = portString + " range must be between 1 and 65535... ";
+                lblStatus.ForeColor = Color.Red;
+                AssignStepStatus(tabIndex);
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool IsPortDuplicated(List<int> ports)
+        {
+            bool portDuplicated = false;
+            for (int index = 0; index < ports.Count; index++)
+            {
+                for (int loopIndex = 0; loopIndex < ports.Count; loopIndex++)
+                {
+                    if (loopIndex != index)
+                    {
+                        if (ports[loopIndex] == ports[index])
+                        {
+                            portDuplicated = true;
+                            break;
+                        }
+                    }
+
+                }
+            }
+            return portDuplicated;
+        }
+
+        private List<int> AddPortstoArray()
+        {
+            List<int> ports = new List<int>
+            {
+                Convert.ToInt32(txtTraefikPort1.Value),
+                Convert.ToInt32(txtTraefikPort2.Value),
+                Convert.ToInt32(txtSolrPort.Value),
+                Convert.ToInt32(txtMsSqlPort.Value),
+                Convert.ToInt32(txtxConnectPort.Value),
+            };
+            return ports;
+        }
+
+        private bool IsPortNotinUse(NumericUpDown control, int tabIndex)
+        {
+            if (PortInUse(Convert.ToInt32(control.Value)))
+            {
+                lblStatus.Text = control.Value + " port in use... provide a different number...";
+                lblStatus.ForeColor = Color.Red;
+                AssignStepStatus(const_Port_Tab);
+                return false;
+            }
+            return true;
+        }
+
+        public static bool PortInUse(int port)
+        {
+            bool inUse = false;
+
+            IPGlobalProperties ipProperties = IPGlobalProperties.GetIPGlobalProperties();
+            IPEndPoint[] ipEndPoints = ipProperties.GetActiveTcpListeners();
+
+
+            foreach (IPEndPoint endPoint in ipEndPoints)
+            {
+                if (endPoint.Port == port)
+                {
+                    inUse = true;
+                    break;
+                }
+            }
+
+            return inUse;
+        }
+
+        private bool PerformPortValidations(bool unInstall = false)
+        {
+            string portString = string.Empty;
+
+            if (!PortInRange(txtTraefikPort1.Text, "Traefik Port 1", const_Port_Tab)) return false;
+
+            if (!PortInRange(txtTraefikPort2.Text, "Traefik Port 2", const_Port_Tab)) return false;
+            if (!PortInRange(txtMsSqlPort.Text, "MSSQL Port", const_Port_Tab)) return false;
+            if (!PortInRange(txtSolrPort.Text, "Solr Port", const_Port_Tab)) return false;
+            if (!PortInRange(txtxConnectPort.Text, "xConnect Port", const_Port_Tab)) return false;
+
+            if (!unInstall)
+            {
+                if (!IsPortNotinUse(txtTraefikPort2, const_Port_Tab)) return false;
+                if (!IsPortNotinUse(txtMsSqlPort, const_Port_Tab)) return false;
+                if (!IsPortNotinUse(txtSolrPort, const_Port_Tab)) return false;
+                if (!IsPortNotinUse(txtxConnectPort, const_Port_Tab)) return false;
+            }
+            if (IsPortDuplicated(AddPortstoArray())) { SetStatusMessage("Duplicate port numbers detected! provide unique port numbers....", Color.Red); return false; }
+
+            //portString = StatusMessageBuilder(portString);
+            //if (!string.IsNullOrWhiteSpace(portString))
+            //{ lblStatus.Text = "Port(s) in use... provide different numbers for - " + portString; lblStatus.ForeColor = Color.Red; }
+
+            return true;
+        }
+
+        private void btnPrune_Click(object sender, EventArgs e)
+        {
+            CommonFunctions.LaunchCmdScript("docker image prune -a", ".\\" + ZipList.SitecoreContainerZip + xp0Path);
+            lblStatus.ForeColor = Color.DarkGreen;
+            lblStatus.Text = "Docker prune launched....";
+        }
+
+        private void btnScriptPreview_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //private string StatusMessageBuilder(string msg)
+        //{
+        //    string portString = string.Empty;
+        //    if (PortInUse(Convert.ToInt32(txtTraefikPort1.Value))) { portString = BuildPortString(txtCommerceShopsServicesPort.Value.ToString(), portString); }
+        //    if (PortInUse(Convert.ToInt32(txtTraefikPort2.Value))) { portString = BuildPortString(txtCommerceOpsSvcPort.Value.ToString(), portString); }
+        //    if (PortInUse(Convert.ToInt32(txtBizFxPort.Value))) { portString = BuildPortString(txtBizFxPort.Value.ToString(), portString); }
+        //    if (PortInUse(Convert.ToInt32(txtCommerceAuthSvcPort.Value))) { portString = BuildPortString(txtCommerceAuthSvcPort.Value.ToString(), portString); }
+        //    if (PortInUse(Convert.ToInt32(txtCommerceMinionsSvcPort.Value))) { portString = BuildPortString(txtCommerceMinionsSvcPort.Value.ToString(), portString); }
+        //    return portString;
+        //}
+
     }
 }

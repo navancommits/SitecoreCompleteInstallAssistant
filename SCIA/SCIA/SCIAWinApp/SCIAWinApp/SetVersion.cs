@@ -97,7 +97,7 @@ namespace SCIA
             {
                 toolsifStripButton.Enabled = false;
                 toolStripSolrButton.Enabled = false;
-                SetStatusMessage("Missing C:\\Program Files\\WindowsPowerShell\\Modules\\SitecoreInstallFramework....", Color.Red);
+                SetStatusMessage("Missing-C:\\ProgramFiles\\WindowsPowerShell\\Modules\\SitecoreInstallFramework....", Color.Red);
                 return;
             }
 
