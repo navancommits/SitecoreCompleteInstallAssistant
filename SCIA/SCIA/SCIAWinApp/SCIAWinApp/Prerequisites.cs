@@ -230,31 +230,9 @@ namespace SCIA
             file.WriteLine("\t{");
             file.WriteLine("\t\tif ($PSCmdlet.ShouldProcess($fileName))");
             file.WriteLine("\t\t{");
-            file.WriteLine("\t\t\tWrite-Host (\"Downloading '{0}' to '{1}'...\" -f $fileUrl, $filePath)");
-            file.WriteLine();
-            file.WriteLine("\t\t\tif ($fileUrl.StartsWith($sitecoreDownloadUrl))");
-            file.WriteLine("\t\t\t{");
-            file.WriteLine("\t\t\t\t# Login to dev.sitecore.net and save session for re-use");
-            file.WriteLine("\t\t\t\tif ($null -eq $sitecoreDownloadSession)");
-            file.WriteLine("\t\t\t\t{");
-            file.WriteLine("\t\t\t\t\tWrite-Verbose(\"Logging in to '{0}'...\" -f $sitecoreDownloadUrl)");
-            file.WriteLine();
-            file.WriteLine("\t\t\t\t\t$loginResponse = Invoke-WebRequest \"https://dev.sitecore.net/api/authorization\" -Method Post -Body @{");
-            file.WriteLine("\t\t\t\t\t\tusername   = $SitecoreUsername");
-            file.WriteLine("\t\t\t\t\t\tpassword   = $SitecorePassword");
-            file.WriteLine("\t\t\t\t\t\trememberMe = $true");
-            file.WriteLine("\t\t\t\t\t} -SessionVariable \"sitecoreDownloadSession\" -UseBasicParsing");
-            file.WriteLine();
-            file.WriteLine("\t\t\t\tif ($null -eq $loginResponse -or $loginResponse.StatusCode -ne 200 -or $loginResponse.Content -eq \"false\")");
-            file.WriteLine("\t\t\t\t{");
-            file.WriteLine("\t\t\t\t\tthrow (\"Unable to login to '{0}' with the supplied credentials.\" -f $sitecoreDownloadUrl)");
-            file.WriteLine("\t\t\t\t}");
-            file.WriteLine();
-            file.WriteLine("\t\t\t\tWrite-Verbose (\"Logged in to '{0}'.\" -f $sitecoreDownloadUrl)");
-            file.WriteLine("\t\t\t}");
-            file.WriteLine();
-            file.WriteLine("\t\t\t# Download package using saved session");
-            file.WriteLine("\t\t\tInvoke-WebRequest -Uri $fileUrl -OutFile $filePath -WebSession $sitecoreDownloadSession -UseBasicParsing");
+            file.WriteLine("\t\t\tWrite-Host (\"Downloading '{0}' to '{1}'...\" -f $fileUrl, $filePath)");            
+            file.WriteLine();            
+            file.WriteLine("\t\t\tInvoke-WebRequest -Uri $fileUrl -OutFile $filePath -UseBasicParsing");
             file.WriteLine("\t\t}");
             file.WriteLine("\t\telse");
             file.WriteLine("\t\t{");
@@ -262,7 +240,6 @@ namespace SCIA
             file.WriteLine("\t\t\tInvoke-WebRequest -Uri $fileUrl -OutFile $filePath -UseBasicParsing");
             file.WriteLine("\t\t}");
             file.WriteLine("\t}");
-            file.WriteLine("}");
             file.WriteLine("}");
         }
         void WriteMainFile(string path)
@@ -316,23 +293,15 @@ namespace SCIA
         {
             if (CommonFunctions.FileSystemEntryExists(@".\\" + prereqs.Where(p => p.PrerequisiteKey == commerceZipKey).ToList().FirstOrDefault().PrerequisiteName,null,"folder")) return;
             var commerceZipName = prereqs.Where(p => p.PrerequisiteKey == commerceZipKey).ToList().FirstOrDefault().PrerequisiteName + ".zip";
-            if (!FileExists(commerceZipName))
-            { 
-                if (!Login.Success)
-                {
-                    SetStatusMessage("Login to Sdn from menubar...", Color.Red);
-                    return;
-                }
-            }
-
+            
             WriteWorkerFile(".\\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllCommercePrereqs.ps1");
-            CommonFunctions.LaunchPSScript(".\\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllCommercePrereqs.ps1 -InstallSourcePath \".\" -SitecoreUsername \"" + Login.username + "\" -SitecorePassword \"" + Login.password + "\"");
+            CommonFunctions.LaunchPSScript(".\\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllCommercePrereqs.ps1 -InstallSourcePath \".\"");
         }
 
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             WriteMainFile(".\\" + SCIASettings.FilePrefixAppString + "SetupAllCommercePrereqs.ps1");
-            CommonFunctions.LaunchPSScript(".\\" + SCIASettings.FilePrefixAppString + "SetupAllCommercePrereqs.ps1 -InstallSourcePath \".\" -SitecoreUsername \"" + Login.username + "\" -SitecorePassword \"" + Login.password + "\"");
+            CommonFunctions.LaunchPSScript(".\\" + SCIASettings.FilePrefixAppString + "SetupAllCommercePrereqs.ps1 -InstallSourcePath \".\"");
         }
     }
 }

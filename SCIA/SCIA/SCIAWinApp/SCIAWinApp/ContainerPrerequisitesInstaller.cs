@@ -65,30 +65,8 @@ namespace SCIA
             file.WriteLine("\t\tif ($PSCmdlet.ShouldProcess($fileName))");
             file.WriteLine("\t\t{");
             file.WriteLine("\t\t\tWrite-Host (\"Downloading '{0}' to '{1}'...\" -f $fileUrl, $filePath)");
-            file.WriteLine();
-            file.WriteLine("\t\t\tif ($fileUrl.StartsWith($sitecoreDownloadUrl))");
-            file.WriteLine("\t\t\t{");
-            file.WriteLine("\t\t\t\t# Login to dev.sitecore.net and save session for re-use");
-            file.WriteLine("\t\t\t\tif ($null -eq $sitecoreDownloadSession)");
-            file.WriteLine("\t\t\t\t{");
-            file.WriteLine("\t\t\t\t\tWrite-Verbose(\"Logging in to '{0}'...\" -f $sitecoreDownloadUrl)");
-            file.WriteLine();
-            file.WriteLine("\t\t\t\t\t$loginResponse = Invoke-WebRequest \"https://dev.sitecore.net/api/authorization\" -Method Post -Body @{");
-            file.WriteLine("\t\t\t\t\t\tusername   = $SitecoreUsername");
-            file.WriteLine("\t\t\t\t\t\tpassword   = $SitecorePassword");
-            file.WriteLine("\t\t\t\t\t\trememberMe = $true");
-            file.WriteLine("\t\t\t\t\t} -SessionVariable \"sitecoreDownloadSession\" -UseBasicParsing");
-            file.WriteLine();
-            file.WriteLine("\t\t\t\tif ($null -eq $loginResponse -or $loginResponse.StatusCode -ne 200 -or $loginResponse.Content -eq \"false\")");
-            file.WriteLine("\t\t\t\t{");
-            file.WriteLine("\t\t\t\t\tthrow (\"Unable to login to '{0}' with the supplied credentials.\" -f $sitecoreDownloadUrl)");
-            file.WriteLine("\t\t\t\t}");
-            file.WriteLine();
-            file.WriteLine("\t\t\t\tWrite-Verbose (\"Logged in to '{0}'.\" -f $sitecoreDownloadUrl)");
-            file.WriteLine("\t\t\t}");
-            file.WriteLine();
-            file.WriteLine("\t\t\t# Download package using saved session");
-            file.WriteLine("\t\t\tInvoke-WebRequest -Uri $fileUrl -OutFile $filePath -WebSession $sitecoreDownloadSession -UseBasicParsing");
+            file.WriteLine("\t\t\t# Download package");
+            file.WriteLine("\t\t\tInvoke-WebRequest -Uri $fileUrl -OutFile $filePath -UseBasicParsing");
             file.WriteLine("\t\t}");
             file.WriteLine("\t\telse");
             file.WriteLine("\t\t{");
@@ -96,7 +74,6 @@ namespace SCIA
             file.WriteLine("\t\t\tInvoke-WebRequest -Uri $fileUrl -OutFile $filePath -UseBasicParsing");
             file.WriteLine("\t\t}");
             file.WriteLine("\t}");
-            file.WriteLine("}");
             file.WriteLine("}");
         }
         void WriteMainFile(string path)
@@ -124,7 +101,7 @@ namespace SCIA
 
             file.WriteLine("$preference = $ProgressPreference");
             file.WriteLine("$ProgressPreference = \"SilentlyContinue\"");
-            file.WriteLine(".\\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllContainerPrereqs.ps1 -InstallSourcePath $InstallSourcePath -SitecoreUsername \"" + txtUser.Text + "\" -SitecorePassword \"" + txtPass.Text + "\"");
+            file.WriteLine(".\\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllContainerPrereqs.ps1 -InstallSourcePath $InstallSourcePath");
             file.WriteLine("Expand-Archive -Force -LiteralPath " + ZipList.CommerceContainerZip + ".zip -DestinationPath .");            
             file.WriteLine();
             file.WriteLine(
@@ -322,7 +299,7 @@ namespace SCIA
 
             WriteAutoFillFile(@".\" + SCIASettings.FilePrefixAppString  + "AutofillEnvFile.ps1");
 
-            CommonFunctions.LaunchPSScript(".\\" + SCIASettings.FilePrefixAppString + "AutofillEnvFile.ps1 -BrainTreeMerchantId \"" + siteDetails.BraintreeMerchantId + "\" -BrainTreePrivateKey \"" + siteDetails.BraintreePrivateKey + "\" -BrainTreePublicKey \"" + siteDetails.BraintreePublicKey + "\" -BrainTreeEnvironment \"" + siteDetails.BraintreeEnvironment + "\" -SqlSaPassword \"" + siteDetails.SqlPass + "\" -LicenseXmlPath . -InstallSourcePath \".\" -SitecoreUsername \"" + txtUser.Text + "\" -SitecoreAdminPassword \"" + txtPass.Text + "\"");
+            CommonFunctions.LaunchPSScript(".\\" + SCIASettings.FilePrefixAppString + "AutofillEnvFile.ps1 -BrainTreeMerchantId \"" + siteDetails.BraintreeMerchantId + "\" -BrainTreePrivateKey \"" + siteDetails.BraintreePrivateKey + "\" -BrainTreePublicKey \"" + siteDetails.BraintreePublicKey + "\" -BrainTreeEnvironment \"" + siteDetails.BraintreeEnvironment + "\" -SqlSaPassword \"" + siteDetails.SqlPass + "\" -LicenseXmlPath . -InstallSourcePath \".\"");
         }
     }
 }

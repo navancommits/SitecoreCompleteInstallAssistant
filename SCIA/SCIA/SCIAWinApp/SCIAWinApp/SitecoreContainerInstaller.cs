@@ -956,6 +956,18 @@ namespace SCIA
 
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            CommonFunctions.LaunchCmdScript("docker-compose kill", ".\\" + ZipList.SitecoreContainerZip + xp0Path);
+            lblStatus.ForeColor = Color.DarkGreen;
+            lblStatus.Text = "Docker kill launched....";
+        }
+
+        private void SitecoreContainerInstaller_Load(object sender, EventArgs e)
+        {
+
+        }
+
         //private string StatusMessageBuilder(string msg)
         //{
         //    string portString = string.Empty;

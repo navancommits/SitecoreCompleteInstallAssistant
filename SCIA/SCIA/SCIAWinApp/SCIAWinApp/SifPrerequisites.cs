@@ -130,30 +130,7 @@ namespace SCIA
             file.WriteLine("\t\tif ($PSCmdlet.ShouldProcess($fileName))");
             file.WriteLine("\t\t{");
             file.WriteLine("\t\t\tWrite-Host (\"Downloading '{0}' to '{1}'...\" -f $fileUrl, $filePath)");
-            file.WriteLine();
-            file.WriteLine("\t\t\tif ($fileUrl.StartsWith($sitecoreDownloadUrl))");
-            file.WriteLine("\t\t\t{");
-            file.WriteLine("\t\t\t\t# Login to dev.sitecore.net and save session for re-use");
-            file.WriteLine("\t\t\t\tif ($null -eq $sitecoreDownloadSession)");
-            file.WriteLine("\t\t\t\t{");
-            file.WriteLine("\t\t\t\t\tWrite-Verbose(\"Logging in to '{0}'...\" -f $sitecoreDownloadUrl)");
-            file.WriteLine();
-            file.WriteLine("\t\t\t\t\t$loginResponse = Invoke-WebRequest \"https://dev.sitecore.net/api/authorization\" -Method Post -Body @{");
-            file.WriteLine("\t\t\t\t\t\tusername   = $SitecoreUsername");
-            file.WriteLine("\t\t\t\t\t\tpassword   = $SitecorePassword");
-            file.WriteLine("\t\t\t\t\t\trememberMe = $true");
-            file.WriteLine("\t\t\t\t\t} -SessionVariable \"sitecoreDownloadSession\" -UseBasicParsing");
-            file.WriteLine();
-            file.WriteLine("\t\t\t\tif ($null -eq $loginResponse -or $loginResponse.StatusCode -ne 200 -or $loginResponse.Content -eq \"false\")");
-            file.WriteLine("\t\t\t\t{");
-            file.WriteLine("\t\t\t\t\tthrow (\"Unable to login to '{0}' with the supplied credentials.\" -f $sitecoreDownloadUrl)");
-            file.WriteLine("\t\t\t\t}");
-            file.WriteLine();
-            file.WriteLine("\t\t\t\tWrite-Verbose (\"Logged in to '{0}'.\" -f $sitecoreDownloadUrl)");
-            file.WriteLine("\t\t\t}");
-            file.WriteLine();
-            file.WriteLine("\t\t\t# Download package using saved session");
-            file.WriteLine("\t\t\tInvoke-WebRequest -Uri $fileUrl -OutFile $filePath -WebSession $sitecoreDownloadSession -UseBasicParsing");
+            file.WriteLine("\t\t\tInvoke-WebRequest -Uri $fileUrl -OutFile $filePath  -UseBasicParsing");
             file.WriteLine("\t\t}");
             file.WriteLine("\t\telse");
             file.WriteLine("\t\t{");
@@ -161,7 +138,6 @@ namespace SCIA
             file.WriteLine("\t\t\tInvoke-WebRequest -Uri $fileUrl -OutFile $filePath -UseBasicParsing");
             file.WriteLine("\t\t}");
             file.WriteLine("\t}");
-            file.WriteLine("}");
             file.WriteLine("}");
             file.WriteLine("}");
         }
@@ -192,7 +168,7 @@ namespace SCIA
             file.WriteLine("$ProgressPreference = \"SilentlyContinue\"");
             file.WriteLine("if (-not(Test-Path '" + zipVersions.ZipName + ".zip' -PathType Leaf))");
             file.WriteLine("{");
-            file.WriteLine(".\\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllPrereqs.ps1 -InstallSourcePath $InstallSourcePath -SitecoreUsername \"" + Login.username + "\" -SitecorePassword \"" + Login.password + "\"");
+            file.WriteLine(".\\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllPrereqs.ps1 -InstallSourcePath $InstallSourcePath");
             file.WriteLine("}");
             file.WriteLine("Expand-Archive -Force -LiteralPath '" + zipVersions.ZipName + ".zip' -DestinationPath \".\\" + zipVersions.ZipName + "\"");
             file.WriteLine("if ((Test-Path '" + zipVersions.ZipName + ".zip' -PathType Leaf))");
@@ -235,7 +211,7 @@ namespace SCIA
             file.WriteLine("$ProgressPreference = \"SilentlyContinue\"");
             file.WriteLine("if (-not(Test-Path '" + zipVersions.ZipName + ".zip' -PathType Leaf))");
             file.WriteLine("{");
-            file.WriteLine(".\\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllXP0SIFPrereqs.ps1 -InstallSourcePath $InstallSourcePath -SitecoreUsername \"" + Login.username + "\" -SitecorePassword \"" + Login.password + "\"");
+            file.WriteLine(".\\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllXP0SIFPrereqs.ps1 -InstallSourcePath $InstallSourcePath");
             file.WriteLine("}");
             file.WriteLine("Expand-Archive -Force -LiteralPath '" + zipVersions.ZipName + ".zip' -DestinationPath \".\\" + zipVersions.ZipName + "\"");
             file.WriteLine("if ((Test-Path '" + zipVersions.ZipName + "' -PathType Container))");
@@ -264,15 +240,7 @@ namespace SCIA
                 SetStatusMessage("License file missing in the exe location...", Color.Red); 
                 return; 
             }
-            var sitecoreDevSetupZipName = destFolder + ".zip";
-            if (!CommonFunctions.FileSystemEntryExists(sitecoreDevSetupZipName,null,"file"))
-            {
-                if (!Login.Success)
-                {
-                    SetStatusMessage("Login to Sdn from menubar...", Color.Red);
-                    return;
-                }
-            }
+           
             switch (Version.SitecoreVersion)
             {
                 case "10.0":
@@ -281,7 +249,7 @@ namespace SCIA
                     WriteWorkerFile(@".\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllPrereqs.ps1");
                     WriteMainFile(@".\" + SCIASettings.FilePrefixAppString + "DownloadandExpandSifZip.ps1");
 
-                    CommonFunctions.LaunchPSScript(@".\" + SCIASettings.FilePrefixAppString + "DownloadandExpandSifZip -InstallSourcePath \".\" -SitecoreUsername \"" + Login.username + "\" -SitecorePassword \"" + Login.password + "\"");
+                    CommonFunctions.LaunchPSScript(@".\" + SCIASettings.FilePrefixAppString + "DownloadandExpandSifZip -InstallSourcePath \".\"");
                     break;
                 case "9.1":
                 case "9.0":
@@ -290,7 +258,7 @@ namespace SCIA
                     WriteWorkerFile(@".\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllXP0SIFPrereqs.ps1");
                     WriteXP0MainFile(@".\" + SCIASettings.FilePrefixAppString + "DownloadandExpandXP0SifZip.ps1");
 
-                    CommonFunctions.LaunchPSScript(@".\" + SCIASettings.FilePrefixAppString + "DownloadandExpandXP0SifZip -InstallSourcePath \".\" -SitecoreUsername \"" + Login.username + "\" -SitecorePassword \"" + Login.password + "\"");
+                    CommonFunctions.LaunchPSScript(@".\" + SCIASettings.FilePrefixAppString + "DownloadandExpandXP0SifZip -InstallSourcePath \".\"");
                     break;
                 default:
                     break;

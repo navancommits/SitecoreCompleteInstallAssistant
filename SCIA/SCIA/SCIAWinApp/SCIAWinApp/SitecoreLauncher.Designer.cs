@@ -67,7 +67,6 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripDBConnectButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonSetVersion = new System.Windows.Forms.ToolStripButton();
-            this.sdnLogintoolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripPortAvailabilityButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSolrDeleteButton = new System.Windows.Forms.ToolStripButton();
@@ -95,8 +94,7 @@
             this.helpMenu});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Padding = new System.Windows.Forms.Padding(6, 2, 0, 2);
-            this.menuStrip.Size = new System.Drawing.Size(2866, 42);
+            this.menuStrip.Size = new System.Drawing.Size(2866, 40);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -110,7 +108,7 @@
             this.exitToolStripMenuItem});
             this.sitecoreMenu.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder;
             this.sitecoreMenu.Name = "sitecoreMenu";
-            this.sitecoreMenu.Size = new System.Drawing.Size(121, 38);
+            this.sitecoreMenu.Size = new System.Drawing.Size(121, 36);
             this.sitecoreMenu.Text = "&Sitecore";
             // 
             // siaToolStripMenuItem
@@ -160,7 +158,7 @@
             this.commerceContainerToolStripMenuItem,
             this.toolStripSeparator6});
             this.commerceMenu.Name = "commerceMenu";
-            this.commerceMenu.Size = new System.Drawing.Size(244, 38);
+            this.commerceMenu.Size = new System.Drawing.Size(244, 36);
             this.commerceMenu.Text = "Sitecore Com&merce";
             // 
             // sitecoreCommerceToolStripMenuItem
@@ -191,14 +189,14 @@
             // toolStripMenuItemSetVersion
             // 
             this.toolStripMenuItemSetVersion.Name = "toolStripMenuItemSetVersion";
-            this.toolStripMenuItemSetVersion.Size = new System.Drawing.Size(247, 38);
+            this.toolStripMenuItemSetVersion.Size = new System.Drawing.Size(247, 36);
             this.toolStripMenuItemSetVersion.Text = "Set Sitecore Version";
             this.toolStripMenuItemSetVersion.Click += new System.EventHandler(this.toolStripMenuItemSetVersion_Click);
             // 
             // toolStripMenuItemDbConn
             // 
             this.toolStripMenuItemDbConn.Name = "toolStripMenuItemDbConn";
-            this.toolStripMenuItemDbConn.Size = new System.Drawing.Size(196, 38);
+            this.toolStripMenuItemDbConn.Size = new System.Drawing.Size(196, 36);
             this.toolStripMenuItemDbConn.Text = "DB Connection";
             this.toolStripMenuItemDbConn.Click += new System.EventHandler(this.toolStripMenuItemDbConn_Click);
             // 
@@ -208,7 +206,7 @@
             this.contentsToolStripMenuItem,
             this.toolStripSeparator8});
             this.helpMenu.Name = "helpMenu";
-            this.helpMenu.Size = new System.Drawing.Size(85, 38);
+            this.helpMenu.Size = new System.Drawing.Size(85, 36);
             this.helpMenu.Text = "&Help";
             this.helpMenu.Click += new System.EventHandler(this.helpMenu_Click);
             // 
@@ -216,14 +214,14 @@
             // 
             this.contentsToolStripMenuItem.Name = "contentsToolStripMenuItem";
             this.contentsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F1)));
-            this.contentsToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
+            this.contentsToolStripMenuItem.Size = new System.Drawing.Size(331, 44);
             this.contentsToolStripMenuItem.Text = "&My Blog";
             this.contentsToolStripMenuItem.Click += new System.EventHandler(this.contentsToolStripMenuItem_Click);
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(356, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(328, 6);
             // 
             // toolStrip
             // 
@@ -249,7 +247,6 @@
             this.toolStripSeparator2,
             this.toolStripDBConnectButton,
             this.toolStripButtonSetVersion,
-            this.sdnLogintoolStripButton,
             this.toolStripPortAvailabilityButton,
             this.toolStripSeparator7,
             this.toolStripSolrDeleteButton,
@@ -257,7 +254,7 @@
             this.toolStripDeleteDBButton,
             this.toolStripSeparator11,
             this.toolStripRefreshButton});
-            this.toolStrip.Location = new System.Drawing.Point(0, 42);
+            this.toolStrip.Location = new System.Drawing.Point(0, 40);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
             this.toolStrip.Size = new System.Drawing.Size(2866, 42);
@@ -448,17 +445,6 @@
             this.toolStripButtonSetVersion.Text = "Set Version";
             this.toolStripButtonSetVersion.Click += new System.EventHandler(this.toolStripButtonSetVersion_Click);
             // 
-            // sdnLogintoolStripButton
-            // 
-            this.sdnLogintoolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.sdnLogintoolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("sdnLogintoolStripButton.Image")));
-            this.sdnLogintoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.sdnLogintoolStripButton.Name = "sdnLogintoolStripButton";
-            this.sdnLogintoolStripButton.Size = new System.Drawing.Size(46, 36);
-            this.sdnLogintoolStripButton.Text = "SDN Login";
-            this.sdnLogintoolStripButton.ToolTipText = "SDN Login";
-            this.sdnLogintoolStripButton.Click += new System.EventHandler(this.sdnLogintoolStripButton_Click);
-            // 
             // toolStripPortAvailabilityButton
             // 
             this.toolStripPortAvailabilityButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -549,7 +535,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip;
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "mdiSitecoreComplete";
             this.Text = "Sitecore Complete Install Assistant (SCIA)";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -590,7 +576,6 @@
         private System.Windows.Forms.ToolStripButton sitecoreCommerceContainerToolStripButton;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripButton sdnLogintoolStripButton;
         private System.Windows.Forms.ToolStripButton siftoolStripButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem sifStripMenuItem;

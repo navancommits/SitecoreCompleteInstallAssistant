@@ -259,11 +259,9 @@ namespace SCIA
                 Login.username = string.Empty;
                 Login.password = string.Empty;
                 Login.rememberMe = false;
-                sdnLogintoolStripButton.ToolTipText = "SDN Login";
                 return;
             }
 
-            sdnLogintoolStripButton.ToolTipText = "SDN Logout";
             foreach (Form frm in this.MdiChildren)
             {
                 if (frm is SdnLoginForm)
