@@ -19,5 +19,7 @@ The #Sitecore Complete Install Assistant (SCIA) built as a.net 2019 Windows Appl
 
 How-to?
 https://navansitecorenotes.blogspot.com/2020/11/how-to-install-sitecore-910-using-sif.html
+https://navansitecorenotes.blogspot.com/2020/12/how-to-auto-generate-sif-ps-scripts-for.html
+https://navansitecorenotes.blogspot.com/2020/12/step-by-step-installation-of-sitecore.html
 
 
