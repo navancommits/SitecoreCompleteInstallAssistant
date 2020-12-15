@@ -36,6 +36,7 @@ namespace SCIA
                     Write93PreviewFile(SCIASettings.FilePrefixAppString + sitedetails.SiteName + "_Install_Script_Preview.ps1", sitedetails.HabitatExists, false);
                     break;
                 case "10.0":
+                case "10.0.1":
                     WritePreviewFile(SCIASettings.FilePrefixAppString + sitedetails.SiteName + "_Install_Script_Preview.ps1", sitedetails.HabitatExists, false);
                     break;
                 default:
@@ -1333,6 +1334,7 @@ namespace SCIA
                     Write93PreviewFile(SCIASettings.FilePrefixAppString + sitedetails.SiteName + "_UnInstall_Script_Preview.ps1", sitedetails.HabitatExists, true);
                     break;
                 case "10.0":
+                case "10.0.1":
                     WritePreviewFile(SCIASettings.FilePrefixAppString + sitedetails.SiteName + "_UnInstall_Script_Preview.ps1", sitedetails.HabitatExists, true);
                     break;
                 default:

@@ -33,6 +33,7 @@ namespace SCIA
             switch (Version.SitecoreVersion)
             {
                 case "10.0":
+                case "10.0.1":
                 case "9.3":
                 case "9.2":
                     destFolder = CommonFunctions.GetZipNamefromWdpVersion("sitecoredevsetup", Version.SitecoreVersion);
@@ -243,6 +244,7 @@ namespace SCIA
            
             switch (Version.SitecoreVersion)
             {
+                case "10.0.1":
                 case "10.0":
                 case "9.3":
                 case "9.2":
