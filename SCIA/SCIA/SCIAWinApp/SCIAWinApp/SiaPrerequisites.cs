@@ -7,6 +7,7 @@ namespace SCIA
     public partial class SiaPrerequisites : Form
     {
         bool AllChecked = false;
+        ZipVersions zipVersions = null;
         public SiaPrerequisites()
         {
             InitializeComponent();
@@ -16,6 +17,17 @@ namespace SCIA
             {
                 lblStatus.ForeColor = Color.DarkGreen;
                 lblStatus.Text = "Required Pre-requisites Available...";
+            }
+
+            switch (Version.SitecoreVersion)
+            {
+                case "10.0":
+                case "10.0.1":
+                case "9.3":
+                    zipVersions = CommonFunctions.GetZipVersionData(Version.SitecoreVersion, "sitecoredevsetup");
+                    break;                
+                default:
+                    break;
             }
         }
 
@@ -79,7 +91,7 @@ namespace SCIA
             file.WriteLine("$ProgressPreference = \"SilentlyContinue\"");
             file.WriteLine("$sitecoreDownloadUrl = \"https://dev.sitecore.net\"");
             file.WriteLine("$packages = @{");
-            file.WriteLine("\"" + ZipList.SitecoreDevSetupZip + ".zip\" = \"https://dev.sitecore.net/~/media/A74E47524738460B83332BAE82F123D1.ashx\"");
+            file.WriteLine("\"" + zipVersions.ZipName + ".zip\" = \"" + zipVersions.Url  + "\"");
             file.WriteLine("}");
             file.WriteLine();
             file.WriteLine("# download packages from Sitecore");
