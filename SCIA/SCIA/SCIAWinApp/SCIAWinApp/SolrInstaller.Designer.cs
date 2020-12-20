@@ -236,6 +236,7 @@
             // 
             // txtSolrUrl
             // 
+            this.txtSolrUrl.Enabled = false;
             this.txtSolrUrl.Location = new System.Drawing.Point(209, 252);
             this.txtSolrUrl.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSolrUrl.MaxLength = 100;

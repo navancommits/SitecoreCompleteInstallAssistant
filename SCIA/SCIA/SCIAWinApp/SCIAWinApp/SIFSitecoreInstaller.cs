@@ -2126,7 +2126,7 @@ namespace SCIA
             file.WriteLine("            \"Source\": \".\\\\Sitecore-XP0.json\"");
             file.WriteLine("        },");
             file.WriteLine("		\"SXASingleDeveloper\": {");
-            file.WriteLine("            \"Source\": \".\\\\SXA-SingleDeveloper.json\"");
+            file.WriteLine("            \"Source\": \".\\\\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "SXA-SingleDeveloper" + ".json\"");
             file.WriteLine("        }");
             file.WriteLine("    },");
             file.WriteLine("    \"Register\": {");
@@ -2433,7 +2433,7 @@ namespace SCIA
             file.WriteLine("$SPEPackage =  (Get-ChildItem \"$SCInstallRoot\\Sitecore.PowerShell.Extensions*.scwdp.zip\").FullName");
             file.WriteLine("# Install XP0 via combined partials file.");
             file.WriteLine("$singleDeveloperParams = @{");
-            file.WriteLine("    Path = \"$SCInstallRoot\\SingleDeveloperwithSXA.json\"");
+            file.WriteLine("    Path = \"$SCInstallRoot\\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "SingleDeveloperwithSXA.json\"");
             file.WriteLine("    SqlServer = $SqlServer");
             file.WriteLine("    SqlAdminUser = $SqlAdminUser");
             file.WriteLine("    SqlAdminPassword = $SqlAdminPassword");
@@ -2824,6 +2824,175 @@ namespace SCIA
             file.Dispose();
         }
 
+        private void WriteSiteSingleDeveloperJsonFile(string path)
+        {
+            using var file = new StreamWriter(path);
+            string serverName = txtSqlDbServer.Text.Replace("\\", "\\\\");
+            file.WriteLine("{");
+            file.WriteLine("    \"Parameters\": {");
+            file.WriteLine("        \"SiteName\": {");
+            file.WriteLine("            \"Type\": \"string\",");
+            file.WriteLine("            \"DefaultValue\": \"Sitecore\",");
+            file.WriteLine("            \"Description\": \"The name of the site to be deployed to.\"");
+            file.WriteLine("        },");
+            file.WriteLine("        \"Prefix\": {");
+            file.WriteLine("            \"Type\": \"String\",");
+            file.WriteLine("            \"Description\": \"The prefix for the Solr, SQL and Sitecore instances.\",");
+            file.WriteLine("            \"DefaultValue\": \"\"");
+            file.WriteLine("        },");
+            file.WriteLine("        \"SitecoreAdminPassword\": {");
+            file.WriteLine("            \"Type\": \"string\",");
+            file.WriteLine("            \"DefaultValue\": \"SIF-Default\",");
+            file.WriteLine("            \"Description\": \"The admin password for the Sitecore instance.\"");
+            file.WriteLine("        },");
+            file.WriteLine("        \"SqlAdminUser\": {");
+            file.WriteLine("            \"Type\": \"string\",");
+            file.WriteLine("            \"DefaultValue\": \"sa\",");
+            file.WriteLine("            \"Description\": \"The Sql admin user account to use when installing databases.\"");
+            file.WriteLine("        },");
+            file.WriteLine("        \"SqlAdminPassword\": {");
+            file.WriteLine("            \"Type\": \"string\",");
+            file.WriteLine("            \"DefaultValue\": \"12345\",");
+            file.WriteLine("            \"Description\": \"The Sql admin password to use when installing databases.\"");
+            file.WriteLine("        },");
+            file.WriteLine("        \"SQLServer\": {");
+            file.WriteLine("            \"Type\": \"String\",");
+            file.WriteLine("            \"DefaultValue\": \"" + serverName + "\",");
+            file.WriteLine("            \"Description\": \"The Sql Server where databases will be installed.\"");
+            file.WriteLine("        },");
+            file.WriteLine("        \"SolrUrl\": {");
+            file.WriteLine("            \"Type\": \"String\",");
+            file.WriteLine("            \"DefaultValue\": \"https://localhost:8983/solr\",");
+            file.WriteLine("            \"Description\": \"The Solr instance to use.\"");
+            file.WriteLine("        },");
+            file.WriteLine("        \"SolrRoot\": {");
+            file.WriteLine("            \"Type\": \"String\",");
+            file.WriteLine("            \"DefaultValue\": \"C:\\\\solr-7.5.0\",");
+            file.WriteLine("            \"Description\": \"The file path to the Solr instance.\"");
+            file.WriteLine("        },");
+            file.WriteLine("        \"SolrService\": {");
+            file.WriteLine("            \"Type\": \"String\",");
+            file.WriteLine("            \"DefaultValue\": \"Solr-7.5.0\",");
+            file.WriteLine("            \"Description\": \"The name of the Solr service.\"");
+            file.WriteLine("        },");
+            file.WriteLine("        \"SXAPackage\": {");
+            file.WriteLine("            \"Type\": \"String\",");
+            file.WriteLine("            \"DefaultValue\": \"\",");
+            file.WriteLine("            \"Description\": \"The path to the Sitecore Experience Accelerator package to deploy.\"");
+            file.WriteLine("        },");
+            file.WriteLine("        \"SPEPackage\": {");
+            file.WriteLine("            \"Type\": \"String\",");
+            file.WriteLine("            \"DefaultValue\": \"\",");
+            file.WriteLine("            \"Description\": \"The path to the Sitecore Powershell Extensions package to deploy.\"");
+            file.WriteLine("        },");
+            file.WriteLine("        \"SXA:SiteName\": {");
+            file.WriteLine("            \"Type\": \"String\",");
+            file.WriteLine("            \"Reference\": \"SiteName\",");
+            file.WriteLine("            \"Description\": \"Override to pass SiteName value to SXA config.\"");
+            file.WriteLine("        },");
+            file.WriteLine("        \"SPE:SiteName\": {");
+            file.WriteLine("            \"Type\": \"String\",");
+            file.WriteLine("            \"Reference\": \"SiteName\",");
+            file.WriteLine("            \"Description\": \"Override to pass SiteName value to SPE config.\"");
+            file.WriteLine("        },");
+            file.WriteLine("        \"SXA:Package\": {");
+            file.WriteLine("            \"Type\": \"String\",");
+            file.WriteLine("            \"Reference\": \"SXAPackage\",");
+            file.WriteLine("            \"Description\": \"Override to pass SXAPackage value to SXA config.\"");
+            file.WriteLine("        },");
+            file.WriteLine("        \"SPE:Package\": {");
+            file.WriteLine("            \"Type\": \"String\",");
+            file.WriteLine("            \"Reference\": \"SPEPackage\",");
+            file.WriteLine("            \"Description\": \"Override to pass SPEPackage value to SPE config.\"");
+            file.WriteLine("        },");
+            file.WriteLine("        \"SPE:SQLServer\": {");
+            file.WriteLine("            \"Type\": \"String\",");
+            file.WriteLine("            \"Reference\": \"SQLServer\",");
+            file.WriteLine("            \"Description\": \"Override to pass SQLServer value to SPE config.\"");
+            file.WriteLine("        },");
+            file.WriteLine("        \"SXA:SQLServer\": {");
+            file.WriteLine("            \"Type\": \"String\",");
+            file.WriteLine("            \"Reference\": \"SQLServer\",");
+            file.WriteLine("            \"Description\": \"Override to pass SQLServer value to SXA config.\"");
+            file.WriteLine("        },");
+            file.WriteLine("        \"SXA:SqlAdminPassword\": {");
+            file.WriteLine("            \"Type\": \"String\",");
+            file.WriteLine("            \"Reference\": \"SqlAdminPassword\",");
+            file.WriteLine("            \"Description\": \"Override to pass SqlAdminPassword value to SXA config.\"");
+            file.WriteLine("        },");
+            file.WriteLine("        \"SPE:SqlAdminPassword\": {");
+            file.WriteLine("            \"Type\": \"String\",");
+            file.WriteLine("            \"Reference\": \"SqlAdminPassword\",");
+            file.WriteLine("            \"Description\": \"Override to pass SqlAdminPassword value to SPE config.\"");
+            file.WriteLine("        },");
+            file.WriteLine("        \"SXA:SqlAdminUser\": {");
+            file.WriteLine("            \"Type\": \"String\",");
+            file.WriteLine("            \"Reference\": \"SqlAdminUser\",");
+            file.WriteLine("            \"Description\": \"Override to pass SqlAdminUser value to SXA config.\"");
+            file.WriteLine("        },");
+            file.WriteLine("        \"SPE:SqlAdminUser\": {");
+            file.WriteLine("            \"Type\": \"String\",");
+            file.WriteLine("            \"Reference\": \"SqlAdminUser\",");
+            file.WriteLine("            \"Description\": \"Override to pass SqlAdminUser value to SPE config.\"");
+            file.WriteLine("        },");
+            file.WriteLine("        \"SXA:SqlDbPrefix\": {");
+            file.WriteLine("            \"Type\": \"String\",");
+            file.WriteLine("            \"Reference\": \"Prefix\",");
+            file.WriteLine("            \"Description\": \"Override to pass Prefix value to SXA config.\"");
+            file.WriteLine("        },");
+            file.WriteLine("        \"SPE:SqlDbPrefix\": {");
+            file.WriteLine("            \"Type\": \"String\",");
+            file.WriteLine("            \"Reference\": \"Prefix\",");
+            file.WriteLine("            \"Description\": \"Override to pass Prefix value to SPE config.\"");
+            file.WriteLine("        },");
+            file.WriteLine("        \"SXA:SolrCorePrefix\": {");
+            file.WriteLine("            \"Type\": \"String\",");
+            file.WriteLine("            \"Reference\": \"Prefix\",");
+            file.WriteLine("            \"Description\": \"Override to pass Prefix value to SXA config.\"");
+            file.WriteLine("        },");
+            file.WriteLine("        \"SXA:SitecoreAdminPassword\": {");
+            file.WriteLine("            \"Type\": \"String\",");
+            file.WriteLine("            \"Reference\": \"SitecoreAdminPassword\",");
+            file.WriteLine("            \"Description\": \"Override to pass SitecoreAdminPassword value to SXA config.\"");
+            file.WriteLine("        },");
+            file.WriteLine("        \"Solr:CorePrefix\": {");
+            file.WriteLine("            \"Type\": \"String\",");
+            file.WriteLine("            \"Reference\": \"Prefix\",");
+            file.WriteLine("            \"Description\": \"Override to pass Prefix value to Solr config.\"");
+            file.WriteLine("        },");
+            file.WriteLine("        \"Solr:SolrUrl\": {");
+            file.WriteLine("            \"Type\": \"String\",");
+            file.WriteLine("            \"Reference\": \"SolrUrl\",");
+            file.WriteLine("            \"Description\": \"Override to pass SolrUrl to Solr config.\"");
+            file.WriteLine("        },");
+            file.WriteLine("        \"Solr:SolrService\": {");
+            file.WriteLine("            \"Type\": \"String\",");
+            file.WriteLine("            \"Reference\": \"SolrService\",");
+            file.WriteLine("            \"Description\": \"Override to pass SolrService to Solr config.\"");
+            file.WriteLine("        },");
+            file.WriteLine("        \"Solr:SolrRoot\": {");
+            file.WriteLine("            \"Type\": \"String\",");
+            file.WriteLine("            \"Reference\": \"SolrRoot\",");
+            file.WriteLine("            \"Description\": \"Override to pass SolrRoot to Solr config.\"");
+            file.WriteLine("        }");
+            file.WriteLine("    },");
+            file.WriteLine("    \"Includes\": {");
+            file.WriteLine("        \"SPE\":{");
+            file.WriteLine("            \"Source\": \".\\\\spe.json\"");
+            file.WriteLine("        },");
+            file.WriteLine("        \"Solr\": {");
+            file.WriteLine("            \"Source\": \".\\\\sxa-solr.json\"");
+            file.WriteLine("        },");
+            file.WriteLine("        \"SXA\": {");
+            file.WriteLine("            \"Source\": \".\\\\sxa-XP0.json\"");
+            file.WriteLine("        }");
+            file.WriteLine("    }");
+            file.WriteLine("}");
+
+            file.WriteLine();
+            file.Dispose();
+        }
+
 
         private void btnGenerate_Click(object sender, EventArgs e)
         {
@@ -2834,14 +3003,15 @@ namespace SCIA
                 case "10.0.1":
                 case "10.0":
                 case "9.3":
-                    WriteJsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\SingleDeveloperwithSXA.json");
+                    WriteSiteSingleDeveloperJsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "SXA-SingleDeveloper.json");
+                    WriteJsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "SingleDeveloperwithSXA.json");
                     WriteFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", false);
-                    WriteFile(@".\"  + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1", false);
+                    WriteFile(@".\"  + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1", true);
                     break;
                 case "9.2":
                     Write92JsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + txtSiteNamePrefix.Text + "-SingleDeveloper.json");
                     Write92File(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", false);
-                    Write92File(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1", false);
+                    Write92File(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1", true);
                     break;
                 case "9.1":
                     WriteSingleDeveloperJsonFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "-SingleDeveloper.json");
@@ -3152,7 +3322,8 @@ namespace SCIA
                 case "10.0.1":
                 case "10.0":
                 case "9.3":
-                    WriteJsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\SingleDeveloperwithSXA.json");
+                    WriteSiteSingleDeveloperJsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "SXA-SingleDeveloper.json");
+                    WriteJsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "SingleDeveloperwithSXA.json");
                     WriteFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", false);
                     CommonFunctions.LaunchPSScript(@".\'"  + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1'", destFolder);
                     break;
@@ -3193,7 +3364,8 @@ namespace SCIA
                 case "10.0.1":
                 case "10.0":
                 case "9.3":
-                    WriteJsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\SingleDeveloperwithSXA.json");
+                    WriteSiteSingleDeveloperJsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "SXA-SingleDeveloper.json");
+                    WriteJsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "SingleDeveloperwithSXA.json");
                     WriteFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1", true);
                     CommonFunctions.LaunchPSScript(@".\'"  + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1'", destFolder);
                     break;
