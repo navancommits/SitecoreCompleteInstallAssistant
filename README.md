@@ -1,7 +1,7 @@
 # Sitecore Complete Install Assistant (SCIA)
 The #Sitecore Complete Install Assistant (SCIA) built as a.net 2019 Windows Application, it can -
 
-1. Generate install and uninstall scripts for Sitecore SIF, Commerce 9.x and 10 installations
+1. Generate install and uninstall scripts for Sitecore SIF, Commerce 9.x and 10 installations - 10.0.1 supported
 2. Launch powershell to perform the install /uninstall
 3. Track commerce installations in a machine in order to enable uninstall in a later stage
 4. If trying a second or multiple Commerce instances in a machine, takes care of making things unique for successful install
