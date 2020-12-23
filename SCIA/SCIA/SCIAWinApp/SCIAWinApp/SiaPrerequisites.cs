@@ -89,7 +89,7 @@ namespace SCIA
 
             file.WriteLine("$preference = $ProgressPreference");
             file.WriteLine("$ProgressPreference = \"SilentlyContinue\"");
-            file.WriteLine("$sitecoreDownloadUrl = \"https://dev.sitecore.net\"");
+            file.WriteLine("$sitecoreDownloadUrl = \"https://sitecoredev.azureedge.net\"");
             file.WriteLine("$packages = @{");
             file.WriteLine("\"" + zipVersions.ZipName + ".zip\" = \"" + zipVersions.Url  + "\"");
             file.WriteLine("}");

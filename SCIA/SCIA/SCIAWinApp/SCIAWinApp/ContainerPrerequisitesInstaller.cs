@@ -45,9 +45,9 @@ namespace SCIA
 
             file.WriteLine("$preference = $ProgressPreference");
             file.WriteLine("$ProgressPreference = \"SilentlyContinue\"");
-            file.WriteLine("$sitecoreDownloadUrl = \"https://dev.sitecore.net\"");
+            file.WriteLine("$sitecoreDownloadUrl = \"https://sitecoredev.azureedge.net\"");
             file.WriteLine("$packages = @{");
-            file.WriteLine("\"" + ZipList.CommerceContainerZip + ".zip\" = \"https://dev.sitecore.net/~/media/FB50C51D304C47E89EB1C21C087B9B73.ashx\"");            
+            file.WriteLine("\"" + ZipList.CommerceContainerZip + ".zip\" = \"https://sitecoredev.azureedge.net/~/media/FB50C51D304C47E89EB1C21C087B9B73.ashx\"");            
             file.WriteLine("}");
             file.WriteLine();
             file.WriteLine("# download packages from Sitecore");

@@ -110,7 +110,7 @@ namespace SCIA
             linkLabelSitecoreCommerce.LinkVisited = true;
             //Call the Process.Start method to open the default browser
             //with a URL:
-            System.Diagnostics.Process.Start("https://dev.sitecore.net/Downloads/Sitecore_Commerce/100/Sitecore_Experience_Commerce_100.aspx");
+            System.Diagnostics.Process.Start("https://sitecoredev.azureedge.net/Downloads/Sitecore_Commerce/100/Sitecore_Experience_Commerce_100.aspx");
         }
 
         private void linkLabelMsBuild_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -143,7 +143,7 @@ namespace SCIA
             linkLabel2.LinkVisited = true;
             //Call the Process.Start method to open the default browser
             //with a URL:
-            System.Diagnostics.Process.Start("https://dev.sitecore.net/Downloads/Sitecore_Experience_Accelerator/10x/Sitecore_Experience_Accelerator_1000.aspx");
+            System.Diagnostics.Process.Start("https://sitecoredev.azureedge.net/Downloads/Sitecore_Experience_Accelerator/10x/Sitecore_Experience_Accelerator_1000.aspx");
         }
 
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -151,7 +151,7 @@ namespace SCIA
             linkLabel3.LinkVisited = true;
             //Call the Process.Start method to open the default browser
             //with a URL:
-            System.Diagnostics.Process.Start("https://dev.sitecore.net/Downloads/Sitecore_Experience_Accelerator/10x/Sitecore_Experience_Accelerator_1000.aspx");
+            System.Diagnostics.Process.Start("https://sitecoredev.azureedge.net/Downloads/Sitecore_Experience_Accelerator/10x/Sitecore_Experience_Accelerator_1000.aspx");
         }
 
         private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -209,7 +209,7 @@ namespace SCIA
 
             file.WriteLine("$preference = $ProgressPreference");
             file.WriteLine("$ProgressPreference = \"SilentlyContinue\"");
-            file.WriteLine("$sitecoreDownloadUrl = \"https://dev.sitecore.net\"");
+            file.WriteLine("$sitecoreDownloadUrl = \"https://sitecoredev.azureedge.net\"");
             file.WriteLine("$packages = @{");
             file.WriteLine("\"" + prereqs.Where(p => p.PrerequisiteKey == commerceZipKey).ToList().FirstOrDefault().PrerequisiteName + ".zip\" = \""+ prereqs.Where(p => p.PrerequisiteKey == commerceZipKey).ToList().FirstOrDefault().PrerequisiteUrl + "\"");
             file.WriteLine("\"" + prereqs.Where(p => p.PrerequisiteKey == sxaZipKey).ToList().FirstOrDefault().PrerequisiteName + "\" = \"" + prereqs.Where(p => p.PrerequisiteKey == sxaZipKey).ToList().FirstOrDefault().PrerequisiteUrl + "\"");
