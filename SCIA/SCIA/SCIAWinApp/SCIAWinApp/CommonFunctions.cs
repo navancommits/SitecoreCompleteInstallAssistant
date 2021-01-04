@@ -17,6 +17,8 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Transactions;
 using System.Net.NetworkInformation;
+using System.Xml.Serialization;
+using System.Text;
 
 namespace SCIA
 {
@@ -573,27 +575,29 @@ namespace SCIA
             {
                 case "10.0":
                 case "10.0.1":
-                    if (Convert.ToInt32(majorversion) >= 8) { return true; }
+                    if (Convert.ToInt32(majorversion) < 8) { return false; } 
                     if (Convert.ToInt32(minorversion) >= 4) { return true; }
                     break;
                 case "9.3":
-                    if (Convert.ToInt32(majorversion) >= 8) { return true; }
+                    if (Convert.ToInt32(majorversion) < 8) { return false; } 
                     if (Convert.ToInt32(minorversion) >= 1) { return true; }
                     if (Convert.ToInt32(subversion) >= 1) { return true; }
                     break;
                 case "9.2":
-                    if (Convert.ToInt32(majorversion) >= 7) { return true; }
+                    if (Convert.ToInt32(majorversion) < 7) { return false; } 
                     if (Convert.ToInt32(minorversion) >= 5) { return true; }
                     break;
                 case "9.1":
-                    if (Convert.ToInt32(majorversion) >= 7) { return true; }
+                    if (Convert.ToInt32(majorversion) < 7) { return false; } 
                     if (Convert.ToInt32(minorversion) >= 2) { return true; }
                     if (Convert.ToInt32(subversion) >= 1) { return true; }
                     break;
                 case "9.0":
-                    if (Convert.ToInt32(majorversion) >= 6) { return true; }
+                case "9.0.1":
+                case "9.0.2":
+                    if (Convert.ToInt32(majorversion) < 6) { return false; }
                     if (Convert.ToInt32(minorversion) >= 6) { return true; }
-                    if (Convert.ToInt32(subversion) >= 5) { return true; }
+                    if (Convert.ToInt32(subversion) >= 2) { return true; }
                     break;
                 default:
                     break;
@@ -828,6 +832,32 @@ namespace SCIA
 
             return solrUrl;
         }
+
+        public static SolrXmlObject GetSolrXMLInformation(string url)
+        {
+            SolrXmlObject solrXmlObject = new SolrXmlObject();
+            try
+            {
+                string solrInfoUrl = $"{url}/admin/info/system";
+                XmlSerializer serializer = new XmlSerializer(typeof(Response));
+                WebClient client = new WebClient();
+                string data = Encoding.Default.GetString(client.DownloadData(solrInfoUrl));
+                Stream stream = new MemoryStream(Encoding.UTF8.GetBytes(data));
+                Response reply = (Response)serializer.Deserialize(stream);                
+                solrXmlObject.SolrRoot = reply.Str[1].Text;
+                solrXmlObject.SolrService = reply.Str[1].Text.Split('\\')[2];
+                solrXmlObject.SolrVersion = reply.Lst[1].Str[0].Text;
+            }
+            catch(Exception ex)
+            {
+                WritetoEventLog("Could not establish connection with Solr - " + url + ex.Message, EventLogEntryType.Error);
+                return null;
+            }
+
+            return solrXmlObject;
+        }
+
+        
 
 
         public static SolrInfo GetSolrInformation(string url)

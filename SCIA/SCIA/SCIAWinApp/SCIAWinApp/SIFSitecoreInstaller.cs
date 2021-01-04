@@ -64,7 +64,7 @@ namespace SCIA
             using var file = new StreamWriter(path);
             string serverName = txtSqlDbServer.Text.Replace("\\", "\\\\");
             file.WriteLine("Install-Module -Name SitecoreInstallFramework -Repository SitecoreGallery -RequiredVersion 1.2.1");
-            file.WriteLine("Remove-Module -Name SitecoreInstallFramework");
+            //file.WriteLine("Remove-Module -Name SitecoreInstallFramework");
             file.WriteLine("Import-Module -Name SitecoreInstallFramework -RequiredVersion 1.2.1");
             file.WriteLine("Import-Module SitecoreFundamentals");
 
@@ -81,8 +81,10 @@ namespace SCIA
             file.WriteLine("$SqlAdminPassword=\"" + txtSqlPass.Text + "\"");
             file.WriteLine("#install client certificate for xconnect");
             file.WriteLine("$certParams = @{");
-            file.WriteLine(" Path = \"$PSScriptRoot\\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_xconnect-createcert.json" + "\"");
+            //file.WriteLine(" Path = \"$PSScriptRoot\\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_xconnect-createcert.json" + "\"");
+            file.WriteLine(" Path = \"$PSScriptRoot\\xconnect-createcert.json\"");
             file.WriteLine(" CertificateName = \"$prefix.xconnect_client\"");
+            file.WriteLine(" RootCertFileName = $prefix");
             file.WriteLine("}");
             if (!uninstallscript)
             {
@@ -111,7 +113,8 @@ namespace SCIA
             file.WriteLine("#deploy xconnect instance");
             file.WriteLine("$xconnectParams = @{");
             file.WriteLine(" Path = \"$PSScriptRoot\\xconnect-xp0.json\"");
-            file.WriteLine(" Package = \"$PSScriptRoot\\Sitecore 9.0.0 rev. 171002 (OnPrem)_xp0xconnect.scwdp.zip\"");
+            file.WriteLine(" Package = \"$PSScriptRoot\\Sitecore * (OnPrem)_xp0xconnect.scwdp.zip\"");
+           
             file.WriteLine(" LicenseFile = \"$PSScriptRoot\\license.xml\"");
             file.WriteLine(" Sitename = \"" + txtxConnectSiteName.Text + "\"");
             file.WriteLine(" XConnectCert = $certParams.CertificateName");
@@ -131,26 +134,28 @@ namespace SCIA
                 file.WriteLine("UnInstall-SitecoreConfiguration @xconnectParams");
             }
             file.WriteLine("#install solr cores for sitecore");
-            file.WriteLine("$solrParams = @{");
-            file.WriteLine(" Path = \"$PSScriptRoot\\sitecore-solr.json\"");
-            file.WriteLine(" SolrUrl = $SolrUrl");
-            file.WriteLine(" SolrRoot = $SolrRoot");
-            file.WriteLine(" SolrService = $SolrService");
-            file.WriteLine(" CorePrefix = $prefix");
-            file.WriteLine("}");
+            file.WriteLine("#$solrParams = @{");
+            file.WriteLine("# Path = \"$PSScriptRoot\\sitecore-solr.json\"");
+            file.WriteLine("# SolrUrl = $SolrUrl");
+            file.WriteLine("# SolrRoot = $SolrRoot");
+            file.WriteLine("# SolrService = $SolrService");
+            file.WriteLine("# CorePrefix = $prefix");
+            file.WriteLine("#}");
             if (!uninstallscript)
             {
-                file.WriteLine("Install-SitecoreConfiguration @solrParams");
+                file.WriteLine("#Install-SitecoreConfiguration @solrParams");
             }
             else
             {
-                file.WriteLine("UnInstall-SitecoreConfiguration @solrParams");
+                file.WriteLine("#UnInstall-SitecoreConfiguration @solrParams");
             }
             file.WriteLine("#install sitecore instance");
             file.WriteLine("$xconnectHostName = $XConnectCollectionService");
             file.WriteLine("$sitecoreParams = @{");
             file.WriteLine(" Path = \"$PSScriptRoot\\sitecore-XP0.json\"");
-            file.WriteLine(" Package = \"$PSScriptRoot\\Sitecore 9.0.0 rev. 171002 (OnPrem)_single.scwdp.zip\"");
+            
+            file.WriteLine(" Package = \"$PSScriptRoot\\Sitecore * (OnPrem)_single.scwdp.zip\"");
+            
             file.WriteLine(" LicenseFile = \"$PSScriptRoot\\license.xml\"");
             file.WriteLine(" SqlDbPrefix = $prefix");
             file.WriteLine("SqlServer = $SqlServer");
@@ -160,7 +165,7 @@ namespace SCIA
             file.WriteLine("SolrUrl = $SolrUrl");
             file.WriteLine(" XConnectCert = $certParams.CertificateName");
             file.WriteLine(" Sitename = $sitecoreSiteName");
-            file.WriteLine(" XConnectCollectionService = \"https://$XConnectCollectionService\"");
+            file.WriteLine(" XConnectCollectionService = \"$XConnectCollectionService\"");
             file.WriteLine("}");
             if (!uninstallscript)
             {
@@ -3018,6 +3023,12 @@ namespace SCIA
                     WriteSingleDeveloperPSFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", false);
                     WriteSingleDeveloperPSFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1", false);
                     break;
+                case "9.0":
+                case "9.0.1":
+                case "9.0.2":
+                    WriteCreateCertJsonFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_xconnect-createcert.json");
+                    Write90PSFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", false);
+                    DeleteScript(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Delete_Script.ps1"); break;
                 default:
                     break;
             }
@@ -3333,12 +3344,12 @@ namespace SCIA
                     CommonFunctions.LaunchPSScript(@".\'" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1'", destFolder);
                     break;
                 case "9.0":
+                case "9.0.1":
+                case "9.0.2":
                     WriteCreateCertJsonFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_xconnect-createcert.json");
                     Write90PSFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", false);
                     CommonFunctions.LaunchPSScript(@".\'" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1'", destFolder);
-                    break;
-                case "9.0.1":
-                case "9.0.2":
+                    break;               
                 case "9.1":
                 case "9.1.1":
                     WriteSingleDeveloperJsonFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "-SingleDeveloper.json");
@@ -3354,6 +3365,262 @@ namespace SCIA
             lblStatus.ForeColor = Color.DarkGreen;
             ToggleEnableControls(false);
         }
+
+        private void DeleteScript(string path)
+        {
+            var appcmdExe = "C:\\windows\\system32\\inetsrv\\appcmd.exe";
+            var stoppedStatus = "Stopped";
+            var sitePath = "IIS:\\Sites\\Default Web Site\\$SiteName";
+            var xConnectSitePath = "IIS:\\Sites\\Default Web Site\\$SitecorexConnectSiteName";
+
+            var siteAppPool = "IIS:\\AppPools\\$SiteName";
+            var xConnectAppPool = "IIS:\\AppPools\\$SitecorexConnectSiteName";
+
+            var alterDbStmtstring = "alter DATABASE [";
+            var setStmtString = "set single_user with rollback immediate";
+            var dropStmtstring = "DROP DATABASE IF EXISTS [";
+            var coreDBSuffix = "_Core";
+            var masterDBSuffix = "_Master";
+            var webDBSuffix = "_Web";
+            var exmMasterDBSuffix = "_EXM.Master";
+            var refDataDBSuffix = "_ReferenceData";
+            var reportingDBSuffix = "_Reporting";
+            var expFormsDBSuffix = "_ExperienceForms";
+            var marketingAutomationDBSuffix = "_MarketingAutomation";
+            var processingPoolsDBSuffix = "_Processing.Pools";
+            var processingTasksDBSuffix = "_Processing.Tasks";
+            var collectionShard0DBSuffix = "_Xdb.Collection.Shard0";
+            var collectionShard1DBSuffix = "_Xdb.Collection.Shard1";
+            var collectionShardMapManagerDBSuffix = "_Xdb.Collection.ShardMapManager";
+            var messagingDBSuffix = "_Messaging";
+
+            var webRootPath = "c:\\inetpub\\wwwroot\\";
+            var usersFolderPath = "c:\\users\\";
+            var certificatesFolderPath = "c:\\certificates\\";
+
+            using var file = new StreamWriter(path);
+            file.WriteLine("Param(");
+            file.WriteLine("\t[string]$Prefix = \"" + txtSiteNamePrefix.Text + "\",");
+            file.WriteLine("\t[string]$UserFolder = \"" + txtSiteNamePrefix.Text + "sc_User" + "\",");
+            file.WriteLine("\t[string]$CommDbPrefix = \"" + txtSiteNamePrefix.Text + "_SitecoreCommerce" + "\",");
+            file.WriteLine("\t[string]$SiteName = \"" + txtSiteName.Text + "\",");
+            file.WriteLine("\t[string]$SolrService = \"" + txtSolrService.Text + "\",");
+            file.WriteLine("\t[string]$PathToSolr = \"" + txtSolrRoot.Text + "\",");
+            file.WriteLine("\t[string]$SqlServer = \"" + txtSqlDbServer.Text + "\",");
+            file.WriteLine("\t[string]$SqlAccount = \"" + txtSqlUser.Text + "\",");
+            file.WriteLine("\t[string]$SqlPassword = \"" + txtSqlPass.Text + "\",");
+            file.WriteLine("\t[string]$SitecorexConnectSiteName = \"" + txtSiteNamePrefix.Text + "xconnect" + txtSiteNameSuffix.Text + "\",");
+            file.WriteLine("\t[string]$SitecoreMarketingAutomationService=\"$SitecorexConnectSiteName-MarketingAutomationService\", ");
+            file.WriteLine("\t[string]$SitecoreProcessingEngineService=\"$SitecorexConnectSiteName-ProcessingEngineService\", ");
+            file.WriteLine("\t[string]$SitecoreIndexWorkerService=\"$SitecorexConnectSiteName-IndexWorker\"");
+            file.WriteLine(")");
+            file.WriteLine();
+
+            file.WriteLine("Function Remove-Service{");
+            file.WriteLine("\t[CmdletBinding()]");
+            file.WriteLine("\tparam(");
+            file.WriteLine("\t\t[string]$serviceName");
+            file.WriteLine("\t)");
+            file.WriteLine("\tif(Get-Service $serviceName -ErrorAction SilentlyContinue){");
+            file.WriteLine("\t\tsc.exe delete $serviceName -Force");
+            file.WriteLine("\t}");
+            file.WriteLine("}");
+            file.WriteLine();
+
+            file.WriteLine("Function Stop-Service{");
+            file.WriteLine("\t[CmdletBinding()]");
+            file.WriteLine("\tparam(");
+            file.WriteLine("\t\t[string]$serviceName");
+            file.WriteLine("\t)");
+            file.WriteLine("\tif(Get-Service $serviceName -ErrorAction SilentlyContinue){");
+            file.WriteLine("\t\tsc.exe stop $serviceName -Force");
+            file.WriteLine("\t}");
+            file.WriteLine("}");
+            file.WriteLine();
+
+            file.WriteLine("Function Remove-Website{");
+            file.WriteLine("\t[CmdletBinding()]");
+            file.WriteLine("\tparam(");
+            file.WriteLine("\t\t[string]$siteName");
+            file.WriteLine("\t)");
+            file.WriteLine("\t$appCmd=\"" + appcmdExe + "\"");
+            file.WriteLine("\t& $appCmd delete site $siteName");
+            file.WriteLine("}");
+            file.WriteLine();
+
+            file.WriteLine("Function Stop-WebAppPool{");
+            file.WriteLine("\t[CmdletBinding()]");
+            file.WriteLine("\tparam(");
+            file.WriteLine("\t\t[string]$appPoolName");
+            file.WriteLine("\t)");
+            file.WriteLine("\t\t$ApplicationPoolStatus = Get-WebAppPoolState $appPoolName");
+            file.WriteLine("\t\t$ApplicationPoolStatusValue = $ApplicationPoolStatus.Value");
+            file.WriteLine("\t\t#Write-Host \"$appPoolName-> $ApplicationPoolStatusValue\"");
+
+            file.WriteLine("\t\tif ($ApplicationPoolStatus.Value -ne \"" + stoppedStatus + "\")");
+            file.WriteLine("\t\t{");
+            file.WriteLine("\t\t\tStop-WebAppPool -Name $appPoolName");
+            file.WriteLine("\t\t}");
+            file.WriteLine("}");
+            file.WriteLine();
+
+            file.WriteLine("Function Remove-AppPool{");
+            file.WriteLine("\t[CmdletBinding()]");
+            file.WriteLine("\tparam(");
+            file.WriteLine("\t\t[string]$appPoolName");
+            file.WriteLine("\t)");
+            file.WriteLine("\t$appCmd=\"" + appcmdExe + "\"");
+            file.WriteLine("\t& $appCmd delete apppool $appPoolName");
+            file.WriteLine("}");
+
+            file.WriteLine("if (Test-Path \"" + sitePath + "\") { Stop-Website -Name $SiteName }");
+            file.WriteLine("if (Test-Path \"" + xConnectSitePath + "\") { Stop-Website -Name $SitecorexConnectSiteName }");
+            file.WriteLine();
+
+            file.WriteLine("if (Test-Path \"" + siteAppPool + "\") { Stop-WebAppPool -appPoolName $SiteName }");
+            file.WriteLine("if (Test-Path \"" + xConnectAppPool + "\") { Stop-WebAppPool -appPoolName $SitecorexConnectSiteName }");
+            file.WriteLine();
+
+            file.WriteLine("Write-Host \"Stopping solr service\"");
+            file.WriteLine("Stop-Service $SolrService");
+            file.WriteLine("Write-Host \"Solr service stopped successfully\"");
+            file.WriteLine();
+
+            file.WriteLine("Write-Host \"Stopping Marketing Automation service\"");
+            file.WriteLine("Stop-Service $SitecoreMarketingAutomationService ");
+            file.WriteLine("Write-Host \"Marketing Automation service stopped successfully\"");
+            file.WriteLine();
+
+            file.WriteLine("Write-Host \"Stopping Processing Engine service\"");
+            file.WriteLine("Stop-Service $SitecoreProcessingEngineService ");
+            file.WriteLine("Write-Host \"Processing Engine service stopped successfully\"");
+            file.WriteLine();
+
+            file.WriteLine("Write-Host \"Stopping Index Worker service\"");
+            file.WriteLine("Stop-Service $SitecoreIndexWorkerService ");
+            file.WriteLine("Write-Host \"Index Worker service stopped successfully\"");
+            file.WriteLine();
+
+            file.WriteLine("Write-Host \"Deleting App Pools\"");
+            file.WriteLine("Remove-AppPool -appPoolName $SiteName");
+            file.WriteLine("Remove-AppPool -appPoolName $SitecorexConnectSiteName");
+            file.WriteLine("Write-Host \"App Pools deleted successfully\"");
+            file.WriteLine();
+
+            file.WriteLine("Write-Host \"Deleting Websites from IIS\"");
+            file.WriteLine("Remove-Website -siteName $SiteName");
+            file.WriteLine("Remove-Website -siteName $SitecorexConnectSiteName");
+            file.WriteLine("Write-Host \"IIS Websites deleted successfully\"");
+            file.WriteLine();
+
+            file.WriteLine("#Drop databases from SQL");
+            file.WriteLine("Write-Host \"Dropping databases from SQL server\"");
+            file.WriteLine("push-location");
+            file.WriteLine("import-module sqlps");
+            //alter database YourDb set single_user with rollback immediate
+            file.WriteLine("Write-Host \"Dropping databases from SQL server\"");
+
+            file.WriteLine("$sitecoreDbPrefix = \"" + alterDbStmtstring + "\"+ $Prefix +\"" + coreDBSuffix + "] " + setStmtString + "\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + coreDBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+
+            file.WriteLine("$sitecoreDbPrefix = \"" + alterDbStmtstring + "\"+ $Prefix +\"" + masterDBSuffix + "] " + setStmtString + "\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + masterDBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+
+            file.WriteLine("$sitecoreDbPrefix = \"" + alterDbStmtstring + "\"+ $Prefix +\"" + webDBSuffix + "] " + setStmtString + "\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + webDBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+
+            file.WriteLine("$sitecoreDbPrefix = \"" + alterDbStmtstring + "\"+ $Prefix +\"" + exmMasterDBSuffix + "] " + setStmtString + "\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + exmMasterDBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+
+            file.WriteLine("$sitecoreDbPrefix = \"" + alterDbStmtstring + "\"+ $Prefix +\"" + refDataDBSuffix + "] " + setStmtString + "\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + refDataDBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+
+            file.WriteLine("$sitecoreDbPrefix = \"" + alterDbStmtstring + "\"+ $Prefix +\"" + reportingDBSuffix + "] " + setStmtString + "\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + reportingDBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+
+            file.WriteLine("$sitecoreDbPrefix = \"" + alterDbStmtstring + "\"+ $Prefix +\"" + expFormsDBSuffix + "] " + setStmtString + "\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + expFormsDBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+
+            file.WriteLine("$sitecoreDbPrefix = \"" + alterDbStmtstring + "\"+ $Prefix +\"" + marketingAutomationDBSuffix + "] " + setStmtString + "\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + marketingAutomationDBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+
+            file.WriteLine("$sitecoreDbPrefix = \"" + alterDbStmtstring + "\"+ $Prefix +\"" + processingPoolsDBSuffix + "] " + setStmtString + "\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + processingPoolsDBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+
+            file.WriteLine("$sitecoreDbPrefix = \"" + alterDbStmtstring + "\"+ $Prefix +\"" + processingTasksDBSuffix + "] " + setStmtString + "\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + processingTasksDBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + alterDbStmtstring + "\"+ $Prefix +\"" + collectionShard0DBSuffix + "] " + setStmtString + "\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + collectionShard0DBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + alterDbStmtstring + "\"+ $Prefix +\"" + collectionShard1DBSuffix + "] " + setStmtString + "\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + collectionShard1DBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+
+            file.WriteLine("$sitecoreDbPrefix = \"" + alterDbStmtstring + "\"+ $Prefix +\"" + collectionShardMapManagerDBSuffix + "] " + setStmtString + "\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + collectionShardMapManagerDBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+
+            file.WriteLine("$sitecoreDbPrefix = \"" + alterDbStmtstring + "\"+ $Prefix +\"" + messagingDBSuffix + "] " + setStmtString + "\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+            file.WriteLine("$sitecoreDbPrefix = \"" + dropStmtstring + "\"+ $Prefix +\"" + messagingDBSuffix + "]\"");
+            file.WriteLine("invoke-sqlcmd -ServerInstance $SqlServer -U $SqlAccount -P $SqlPassword -Query $sitecoreDbPrefix");
+
+            file.WriteLine("Write-Host \"Databases dropped successfully\"");
+            file.WriteLine();
+
+            file.WriteLine("Write-Host \"Removing Services\"");
+            file.WriteLine("Remove-Service $SolrService");
+            file.WriteLine("Remove-Service $SitecoreMarketingAutomationService");
+            file.WriteLine("Remove-Service $SitecoreProcessingEngineService");
+            file.WriteLine("Remove-Service $SitecoreIndexWorkerService");
+            file.WriteLine("Write-Host \"Solr, Marketing Automation, Processing Engine, Index Worker services removed\"");
+            file.WriteLine();
+
+            file.WriteLine("# Delete solr cores");
+            file.WriteLine("Write-Host \"Deleting Solr directory\"");
+            file.WriteLine("$pathToCores = $PathToSolr");
+            file.WriteLine("rm $PathToSolr -recurse -force -ea ig");
+            file.WriteLine("Write-Host \"Solr folder deleted successfully\"");
+
+            file.WriteLine("Write-Host \"Deleting Websites from wwwroot\"");
+            file.WriteLine("rm " + webRootPath + "$SiteName -force -recurse -ea ig");
+            file.WriteLine("rm " + webRootPath + "$SitecorexConnectSiteName -force -recurse -ea ig");
+            file.WriteLine("Write-Host \"Websites removed from wwwroot\"");
+
+            file.WriteLine("Write-Host \"Deleting Windows Users from c:\\users\"");
+            file.WriteLine("rm " + usersFolderPath + "$SitecorexConnectSiteName -force -recurse -ea ig");
+            file.WriteLine("rm " + usersFolderPath + "$SiteName -force -recurse -ea ig");
+            file.WriteLine("rm " + usersFolderPath + "$UserFolder -force -recurse -ea ig");
+            file.WriteLine("Write-Host \"Website Folders removed from c:\\Users folder\"");
+
+            file.WriteLine("rm " + certificatesFolderPath + "$Prefix"   + ".crt -force -recurse -ea ig");
+            file.WriteLine("rm " + certificatesFolderPath + "$SitecorexConnectSiteName" + ".pfx -force -recurse -ea ig");
+            file.WriteLine("pop-location");
+        }
+
 
         private void btnUninstall_Click(object sender, EventArgs e)
         {
@@ -3373,11 +3640,12 @@ namespace SCIA
                     Write92JsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + txtSiteNamePrefix.Text + "-SingleDeveloper.json");
                     Write92File(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1", true);
                     CommonFunctions.LaunchPSScript(@".\'" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1'", destFolder);
-                    break;
+                    break;                
                 case "9.0":
-                    WriteCreateCertJsonFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_xconnect-createcert.json");
-                    Write90PSFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1", true);
-                    CommonFunctions.LaunchPSScript(@".\'" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1'", destFolder);
+                case "9.0.1":
+                case "9.0.2":
+                    DeleteScript(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Delete_Script.ps1"); 
+                    CommonFunctions.LaunchPSScript(@".\"  + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Delete_Script.ps1", destFolder);
                     break;
                 case "9.1":
                     WriteSingleDeveloperJsonFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "-SingleDeveloper.json");
@@ -3640,9 +3908,17 @@ namespace SCIA
                 Cursor.Current = Cursors.Default;
                 return; }
 
-            SolrInfo info = CommonFunctions.GetSolrInformation(txtSolrUrl.Text);
+            SolrInfo info = null;
+            SolrXmlObject resp = null;
+            info = CommonFunctions.GetSolrInformation(txtSolrUrl.Text);
+            if (info == null)
+            {
+                //then it could be a xml response compatible with 6.x.x solr
+                resp = CommonFunctions.GetSolrXMLInformation(txtSolrUrl.Text);
+            }
+            //var solrspecversion = resp.Lsts[1].Strs[0].SolrSpecversion;
 
-            if (string.IsNullOrWhiteSpace(txtSolrUrl.Text) || info == null)
+            if (string.IsNullOrWhiteSpace(txtSolrUrl.Text) || (info == null && resp==null))
             {
                 TabIndexValue = const_Solr_Tab;
                 ToggleButtonControls(false);
@@ -3658,18 +3934,39 @@ namespace SCIA
                 return;
             }
 
-            if (info == null)
+            if (info!=null)
             {
-                SetStatusMessage("Missing Solr Url Info... check if Solr is hosted and running...", Color.Red);
-                Cursor.Current = Cursors.Default;
-                return;
+                txtSolrRoot.Text = info.solr_home.Replace("\\server\\solr", string.Empty);
+                FillSolrDetails();
+                txtSolrVersion.Text = info.lucene.SolrSpecVersion;
             }
 
-            
-            txtSolrRoot.Text = info.solr_home.Replace("\\server\\solr", string.Empty);
-            FillSolrDetails();
-            txtSolrVersion.Text = info.lucene.SolrSpecVersion;            
+            if (resp != null)
+            {
+                txtSolrRoot.Text = resp.SolrRoot.Replace("\\server\\solr", string.Empty);
+                txtSolrService.Text = resp.SolrService;
+                txtSolrVersion.Text = resp.SolrVersion;
+            }
 
+            if (Version.SitecoreVersion.Substring(0, 3) != "9.0")
+            {
+                if (info == null && resp==null)
+                {
+                    SetStatusMessage("Missing Solr Url Info... check if Solr is hosted and running...", Color.Red);
+                    Cursor.Current = Cursors.Default;
+                    return;
+                }
+            }
+            else
+            {
+                if (string.IsNullOrWhiteSpace(txtSolrUrl.Text) || string.IsNullOrWhiteSpace(txtSolrVersion.Text) || string.IsNullOrWhiteSpace(txtSolrRoot.Text) || string.IsNullOrWhiteSpace(txtSolrService.Text))
+                {
+                    SetStatusMessage("Please input Solr Details manually for Solr version 6.x.x....", Color.Red);
+                    Cursor.Current = Cursors.Default;
+                    ToggleButtonControls(false);
+                    return;
+                }
+            }
             ToggleEnableControls(true);
             if (!CommonFunctions.VersionCheck(txtSolrVersion.Text, Version.SitecoreVersion))
             {

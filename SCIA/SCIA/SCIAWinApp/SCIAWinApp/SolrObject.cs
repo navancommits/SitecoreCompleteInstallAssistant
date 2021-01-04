@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 namespace SCIA
 {
-
     [DataContract]
     public class Lucene
     {

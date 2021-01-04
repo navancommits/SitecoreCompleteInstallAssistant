@@ -242,6 +242,7 @@
       <DependentUpon>SolrInstaller.cs</DependentUpon>
     </Compile>
     <Compile Include="SolrObject.cs" />
+    <Compile Include="SolrXmlObject.cs" />
     <Compile Include="SqlServer2012Prereqs.cs">
       <SubType>Form</SubType>
     </Compile>
