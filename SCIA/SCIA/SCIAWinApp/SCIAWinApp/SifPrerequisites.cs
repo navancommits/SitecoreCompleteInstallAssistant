@@ -728,7 +728,7 @@ namespace SCIA
                 default:
                     break;
             }
-
+            SetStatusMessage("Restart machine for prerequisites install to take effect...", Color.Red);
         }
 
     }
