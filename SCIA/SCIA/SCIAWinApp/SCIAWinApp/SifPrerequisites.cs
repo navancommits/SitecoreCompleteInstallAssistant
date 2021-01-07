@@ -525,9 +525,9 @@ namespace SCIA
             using var file = new StreamWriter(path);
                     
 
-            file.WriteLine("[CmdletBinding(SupportsShouldProcess = $true)]");
-            file.WriteLine("[System.Diagnostics.CodeAnalysis.SuppressMessageAttribute(\"PSAvoidUsingPlainTextForPassword\", \"SitecorePassword\")]");
-            file.WriteLine("[System.Diagnostics.CodeAnalysis.SuppressMessageAttribute(\"PSAvoidUsingPlainTextForPassword\", \"RegistryPassword\")]");
+            //file.WriteLine("[CmdletBinding(SupportsShouldProcess = $true)]");
+            //file.WriteLine("[System.Diagnostics.CodeAnalysis.SuppressMessageAttribute(\"PSAvoidUsingPlainTextForPassword\", \"SitecorePassword\")]");
+            //file.WriteLine("[System.Diagnostics.CodeAnalysis.SuppressMessageAttribute(\"PSAvoidUsingPlainTextForPassword\", \"RegistryPassword\")]");
             file.WriteLine();
             file.WriteLine("param(");
             file.WriteLine("\t[Parameter(Mandatory = $false)]");
@@ -581,9 +581,9 @@ namespace SCIA
         {
             using var file = new StreamWriter(path);
 
-            file.WriteLine("[CmdletBinding(SupportsShouldProcess = $true)]");
-            file.WriteLine("[System.Diagnostics.CodeAnalysis.SuppressMessageAttribute(\"PSAvoidUsingPlainTextForPassword\", \"SitecorePassword\")]");
-            file.WriteLine("[System.Diagnostics.CodeAnalysis.SuppressMessageAttribute(\"PSAvoidUsingPlainTextForPassword\", \"RegistryPassword\")]");
+            //file.WriteLine("[CmdletBinding(SupportsShouldProcess = $true)]");
+            //file.WriteLine("[System.Diagnostics.CodeAnalysis.SuppressMessageAttribute(\"PSAvoidUsingPlainTextForPassword\", \"SitecorePassword\")]");
+            //file.WriteLine("[System.Diagnostics.CodeAnalysis.SuppressMessageAttribute(\"PSAvoidUsingPlainTextForPassword\", \"RegistryPassword\")]");
             file.WriteLine();
             file.WriteLine("param(");
             file.WriteLine("[Parameter(Mandatory = $false)]");
