@@ -294,7 +294,7 @@
             this.txtSqlPass.MaxLength = 15;
             this.txtSqlPass.Name = "txtSqlPass";
             this.txtSqlPass.Size = new System.Drawing.Size(858, 31);
-            this.txtSqlPass.TabIndex = 15;
+            this.txtSqlPass.TabIndex = 50;
             this.txtSqlPass.UseSystemPasswordChar = true;
             this.txtSqlPass.Leave += new System.EventHandler(this.txtSqlPass_Leave);
             // 

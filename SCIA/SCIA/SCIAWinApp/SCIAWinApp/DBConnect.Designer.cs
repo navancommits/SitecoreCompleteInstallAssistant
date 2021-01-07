@@ -74,7 +74,7 @@
             // 
             this.txtSqlPass.Location = new System.Drawing.Point(315, 129);
             this.txtSqlPass.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtSqlPass.MaxLength = 15;
+            this.txtSqlPass.MaxLength = 50;
             this.txtSqlPass.Name = "txtSqlPass";
             this.txtSqlPass.Size = new System.Drawing.Size(884, 31);
             this.txtSqlPass.TabIndex = 21;

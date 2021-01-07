@@ -151,7 +151,7 @@
             this.txtSqlPass.MaxLength = 15;
             this.txtSqlPass.Name = "txtSqlPass";
             this.txtSqlPass.Size = new System.Drawing.Size(866, 31);
-            this.txtSqlPass.TabIndex = 15;
+            this.txtSqlPass.TabIndex = 50;
             this.toolTipCommerceContainer.SetToolTip(this.txtSqlPass, "Enter just the password and click on DB Connection Check button to go to next tab" +
         "");
             this.txtSqlPass.UseSystemPasswordChar = true;
