@@ -84,6 +84,7 @@
             // 
             this.chkLicenseFile.AutoSize = true;
             this.chkLicenseFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chkLicenseFile.Enabled = false;
             this.chkLicenseFile.Location = new System.Drawing.Point(733, 149);
             this.chkLicenseFile.Margin = new System.Windows.Forms.Padding(4);
             this.chkLicenseFile.Name = "chkLicenseFile";
@@ -97,6 +98,7 @@
             // 
             this.chkWindowsEdition.AutoSize = true;
             this.chkWindowsEdition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chkWindowsEdition.Enabled = false;
             this.chkWindowsEdition.Location = new System.Drawing.Point(32, 149);
             this.chkWindowsEdition.Margin = new System.Windows.Forms.Padding(4);
             this.chkWindowsEdition.Name = "chkWindowsEdition";
@@ -121,6 +123,7 @@
             // 
             this.chkDocker.AutoSize = true;
             this.chkDocker.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chkDocker.Enabled = false;
             this.chkDocker.Location = new System.Drawing.Point(32, 99);
             this.chkDocker.Margin = new System.Windows.Forms.Padding(4);
             this.chkDocker.Name = "chkDocker";
@@ -133,6 +136,7 @@
             // 
             this.chkSitecoreCommerceContainer.AutoSize = true;
             this.chkSitecoreCommerceContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chkSitecoreCommerceContainer.Enabled = false;
             this.chkSitecoreCommerceContainer.Location = new System.Drawing.Point(733, 99);
             this.chkSitecoreCommerceContainer.Margin = new System.Windows.Forms.Padding(4);
             this.chkSitecoreCommerceContainer.Name = "chkSitecoreCommerceContainer";

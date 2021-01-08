@@ -77,6 +77,7 @@
             // 
             this.chkSitecoreSetup.AutoSize = true;
             this.chkSitecoreSetup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chkSitecoreSetup.Enabled = false;
             this.chkSitecoreSetup.Location = new System.Drawing.Point(96, 92);
             this.chkSitecoreSetup.Margin = new System.Windows.Forms.Padding(4);
             this.chkSitecoreSetup.Name = "chkSitecoreSetup";

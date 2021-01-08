@@ -74,6 +74,7 @@
             // 
             this.chkMsBuild.AutoSize = true;
             this.chkMsBuild.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chkMsBuild.Enabled = false;
             this.chkMsBuild.Location = new System.Drawing.Point(15, 63);
             this.chkMsBuild.Margin = new System.Windows.Forms.Padding(4);
             this.chkMsBuild.Name = "chkMsBuild";
@@ -86,6 +87,7 @@
             // 
             this.chkSIF.AutoSize = true;
             this.chkSIF.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chkSIF.Enabled = false;
             this.chkSIF.Location = new System.Drawing.Point(15, 100);
             this.chkSIF.Margin = new System.Windows.Forms.Padding(4);
             this.chkSIF.Name = "chkSIF";
@@ -98,6 +100,7 @@
             // 
             this.chkAdvworksImages.AutoSize = true;
             this.chkAdvworksImages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chkAdvworksImages.Enabled = false;
             this.chkAdvworksImages.Location = new System.Drawing.Point(15, 137);
             this.chkAdvworksImages.Margin = new System.Windows.Forms.Padding(4);
             this.chkAdvworksImages.Name = "chkAdvworksImages";
@@ -110,6 +113,7 @@
             // 
             this.chkCommerceConnectCore.AutoSize = true;
             this.chkCommerceConnectCore.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chkCommerceConnectCore.Enabled = false;
             this.chkCommerceConnectCore.Location = new System.Drawing.Point(15, 212);
             this.chkCommerceConnectCore.Margin = new System.Windows.Forms.Padding(4);
             this.chkCommerceConnectCore.Name = "chkCommerceConnectCore";
@@ -122,6 +126,7 @@
             // 
             this.chkCommerceEngConnect.AutoSize = true;
             this.chkCommerceEngConnect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chkCommerceEngConnect.Enabled = false;
             this.chkCommerceEngConnect.Location = new System.Drawing.Point(15, 249);
             this.chkCommerceEngConnect.Margin = new System.Windows.Forms.Padding(4);
             this.chkCommerceEngConnect.Name = "chkCommerceEngConnect";
@@ -134,6 +139,7 @@
             // 
             this.chkCommerceExperienceAccelerator.AutoSize = true;
             this.chkCommerceExperienceAccelerator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chkCommerceExperienceAccelerator.Enabled = false;
             this.chkCommerceExperienceAccelerator.Location = new System.Drawing.Point(15, 287);
             this.chkCommerceExperienceAccelerator.Margin = new System.Windows.Forms.Padding(4);
             this.chkCommerceExperienceAccelerator.Name = "chkCommerceExperienceAccelerator";
@@ -146,6 +152,7 @@
             // 
             this.chkExperienceAcceleratorHabitat.AutoSize = true;
             this.chkExperienceAcceleratorHabitat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chkExperienceAcceleratorHabitat.Enabled = false;
             this.chkExperienceAcceleratorHabitat.Location = new System.Drawing.Point(15, 323);
             this.chkExperienceAcceleratorHabitat.Margin = new System.Windows.Forms.Padding(4);
             this.chkExperienceAcceleratorHabitat.Name = "chkExperienceAcceleratorHabitat";
@@ -158,6 +165,7 @@
             // 
             this.chkCommerceExperienceAcceleratorStorefront.AutoSize = true;
             this.chkCommerceExperienceAcceleratorStorefront.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chkCommerceExperienceAcceleratorStorefront.Enabled = false;
             this.chkCommerceExperienceAcceleratorStorefront.Location = new System.Drawing.Point(865, 325);
             this.chkCommerceExperienceAcceleratorStorefront.Margin = new System.Windows.Forms.Padding(4);
             this.chkCommerceExperienceAcceleratorStorefront.Name = "chkCommerceExperienceAcceleratorStorefront";
@@ -170,6 +178,7 @@
             // 
             this.chkExperienceAcceleratorStorefront.AutoSize = true;
             this.chkExperienceAcceleratorStorefront.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chkExperienceAcceleratorStorefront.Enabled = false;
             this.chkExperienceAcceleratorStorefront.Location = new System.Drawing.Point(15, 360);
             this.chkExperienceAcceleratorStorefront.Margin = new System.Windows.Forms.Padding(4);
             this.chkExperienceAcceleratorStorefront.Name = "chkExperienceAcceleratorStorefront";
@@ -182,6 +191,7 @@
             // 
             this.chkCommerceXACore.AutoSize = true;
             this.chkCommerceXACore.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chkCommerceXACore.Enabled = false;
             this.chkCommerceXACore.Location = new System.Drawing.Point(865, 362);
             this.chkCommerceXACore.Margin = new System.Windows.Forms.Padding(4);
             this.chkCommerceXACore.Name = "chkCommerceXACore";
@@ -194,6 +204,7 @@
             // 
             this.chkExperienceProfile.AutoSize = true;
             this.chkExperienceProfile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chkExperienceProfile.Enabled = false;
             this.chkExperienceProfile.Location = new System.Drawing.Point(15, 398);
             this.chkExperienceProfile.Margin = new System.Windows.Forms.Padding(4);
             this.chkExperienceProfile.Name = "chkExperienceProfile";
@@ -217,6 +228,7 @@
             // 
             this.chkCommerceMarketingAutomationCore.AutoSize = true;
             this.chkCommerceMarketingAutomationCore.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chkCommerceMarketingAutomationCore.Enabled = false;
             this.chkCommerceMarketingAutomationCore.Location = new System.Drawing.Point(865, 62);
             this.chkCommerceMarketingAutomationCore.Margin = new System.Windows.Forms.Padding(4);
             this.chkCommerceMarketingAutomationCore.Name = "chkCommerceMarketingAutomationCore";
@@ -229,6 +241,7 @@
             // 
             this.chkMarketingAutomationAutomationEngine.AutoSize = true;
             this.chkMarketingAutomationAutomationEngine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chkMarketingAutomationAutomationEngine.Enabled = false;
             this.chkMarketingAutomationAutomationEngine.Location = new System.Drawing.Point(865, 99);
             this.chkMarketingAutomationAutomationEngine.Margin = new System.Windows.Forms.Padding(4);
             this.chkMarketingAutomationAutomationEngine.Name = "chkMarketingAutomationAutomationEngine";
@@ -241,6 +254,7 @@
             // 
             this.chkSitecoreExperienceAccelerator.AutoSize = true;
             this.chkSitecoreExperienceAccelerator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chkSitecoreExperienceAccelerator.Enabled = false;
             this.chkSitecoreExperienceAccelerator.Location = new System.Drawing.Point(865, 137);
             this.chkSitecoreExperienceAccelerator.Margin = new System.Windows.Forms.Padding(4);
             this.chkSitecoreExperienceAccelerator.Name = "chkSitecoreExperienceAccelerator";
@@ -253,6 +267,7 @@
             // 
             this.chkBizFxOnPrem.AutoSize = true;
             this.chkBizFxOnPrem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chkBizFxOnPrem.Enabled = false;
             this.chkBizFxOnPrem.Location = new System.Drawing.Point(865, 175);
             this.chkBizFxOnPrem.Margin = new System.Windows.Forms.Padding(4);
             this.chkBizFxOnPrem.Name = "chkBizFxOnPrem";
@@ -265,6 +280,7 @@
             // 
             this.chkBizFxSdk.AutoSize = true;
             this.chkBizFxSdk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chkBizFxSdk.Enabled = false;
             this.chkBizFxSdk.Location = new System.Drawing.Point(865, 212);
             this.chkBizFxSdk.Margin = new System.Windows.Forms.Padding(4);
             this.chkBizFxSdk.Name = "chkBizFxSdk";
@@ -277,6 +293,7 @@
             // 
             this.chkCommerceEngineSolr.AutoSize = true;
             this.chkCommerceEngineSolr.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chkCommerceEngineSolr.Enabled = false;
             this.chkCommerceEngineSolr.Location = new System.Drawing.Point(865, 249);
             this.chkCommerceEngineSolr.Margin = new System.Windows.Forms.Padding(4);
             this.chkCommerceEngineSolr.Name = "chkCommerceEngineSolr";
@@ -289,6 +306,7 @@
             // 
             this.chkHabitatImages.AutoSize = true;
             this.chkHabitatImages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chkHabitatImages.Enabled = false;
             this.chkHabitatImages.Location = new System.Drawing.Point(15, 175);
             this.chkHabitatImages.Margin = new System.Windows.Forms.Padding(4);
             this.chkHabitatImages.Name = "chkHabitatImages";
@@ -301,6 +319,7 @@
             // 
             this.chkPowershellExtensions.AutoSize = true;
             this.chkPowershellExtensions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chkPowershellExtensions.Enabled = false;
             this.chkPowershellExtensions.Location = new System.Drawing.Point(865, 287);
             this.chkPowershellExtensions.Margin = new System.Windows.Forms.Padding(4);
             this.chkPowershellExtensions.Name = "chkPowershellExtensions";
@@ -424,6 +443,7 @@
             // 
             this.chkCoreRuntime.AutoSize = true;
             this.chkCoreRuntime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chkCoreRuntime.Enabled = false;
             this.chkCoreRuntime.Location = new System.Drawing.Point(15, 435);
             this.chkCoreRuntime.Margin = new System.Windows.Forms.Padding(4);
             this.chkCoreRuntime.Name = "chkCoreRuntime";
@@ -436,6 +456,7 @@
             // 
             this.chkRedis.AutoSize = true;
             this.chkRedis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chkRedis.Enabled = false;
             this.chkRedis.Location = new System.Drawing.Point(865, 399);
             this.chkRedis.Margin = new System.Windows.Forms.Padding(4);
             this.chkRedis.Name = "chkRedis";

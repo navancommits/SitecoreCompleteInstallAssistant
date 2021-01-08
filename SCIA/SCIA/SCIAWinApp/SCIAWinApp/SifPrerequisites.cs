@@ -523,12 +523,11 @@ namespace SCIA
         void WriteWorkerFile(string path)
         {
             using var file = new StreamWriter(path);
-                    
 
             //file.WriteLine("[CmdletBinding(SupportsShouldProcess = $true)]");
             //file.WriteLine("[System.Diagnostics.CodeAnalysis.SuppressMessageAttribute(\"PSAvoidUsingPlainTextForPassword\", \"SitecorePassword\")]");
             //file.WriteLine("[System.Diagnostics.CodeAnalysis.SuppressMessageAttribute(\"PSAvoidUsingPlainTextForPassword\", \"RegistryPassword\")]");
-            file.WriteLine();
+            //file.WriteLine();
             file.WriteLine("param(");
             file.WriteLine("\t[Parameter(Mandatory = $false)]");
             file.WriteLine("\t[ValidateNotNullOrEmpty()]");
@@ -584,7 +583,7 @@ namespace SCIA
             //file.WriteLine("[CmdletBinding(SupportsShouldProcess = $true)]");
             //file.WriteLine("[System.Diagnostics.CodeAnalysis.SuppressMessageAttribute(\"PSAvoidUsingPlainTextForPassword\", \"SitecorePassword\")]");
             //file.WriteLine("[System.Diagnostics.CodeAnalysis.SuppressMessageAttribute(\"PSAvoidUsingPlainTextForPassword\", \"RegistryPassword\")]");
-            file.WriteLine();
+            //file.WriteLine();
             file.WriteLine("param(");
             file.WriteLine("[Parameter(Mandatory = $false)]");
             file.WriteLine("[ValidateNotNullOrEmpty()]");
@@ -624,10 +623,10 @@ namespace SCIA
         {
             using var file = new StreamWriter(path);
 
-            file.WriteLine("[CmdletBinding(SupportsShouldProcess = $true)]");
-            file.WriteLine("[System.Diagnostics.CodeAnalysis.SuppressMessageAttribute(\"PSAvoidUsingPlainTextForPassword\", \"SitecorePassword\")]");
-            file.WriteLine("[System.Diagnostics.CodeAnalysis.SuppressMessageAttribute(\"PSAvoidUsingPlainTextForPassword\", \"RegistryPassword\")]");
-            file.WriteLine();
+            //file.WriteLine("[CmdletBinding(SupportsShouldProcess = $true)]");
+            //file.WriteLine("[System.Diagnostics.CodeAnalysis.SuppressMessageAttribute(\"PSAvoidUsingPlainTextForPassword\", \"SitecorePassword\")]");
+            //file.WriteLine("[System.Diagnostics.CodeAnalysis.SuppressMessageAttribute(\"PSAvoidUsingPlainTextForPassword\", \"RegistryPassword\")]");
+            //file.WriteLine();
             file.WriteLine("param(");
             file.WriteLine("[Parameter(Mandatory = $false)]");
             file.WriteLine("[ValidateNotNullOrEmpty()]");
