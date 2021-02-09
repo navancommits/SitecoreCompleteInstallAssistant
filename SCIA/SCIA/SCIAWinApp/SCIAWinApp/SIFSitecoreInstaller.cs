@@ -33,6 +33,7 @@ namespace SCIA
             this.Text = this.Text + " for Sitecore v" + Version.SitecoreVersion;
             switch (Version.SitecoreVersion)
             {
+                case "10.1.0":
                 case "10.0.1":
                 case "10.0":
                 case "9.3":
@@ -114,7 +115,7 @@ namespace SCIA
             file.WriteLine("$xconnectParams = @{");
             file.WriteLine(" Path = \"$PSScriptRoot\\xconnect-xp0.json\"");
             file.WriteLine(" Package = \"$PSScriptRoot\\Sitecore * (OnPrem)_xp0xconnect.scwdp.zip\"");
-           
+
             file.WriteLine(" LicenseFile = \"$PSScriptRoot\\license.xml\"");
             file.WriteLine(" Sitename = \"" + txtxConnectSiteName.Text + "\"");
             file.WriteLine(" XConnectCert = $certParams.CertificateName");
@@ -153,9 +154,9 @@ namespace SCIA
             file.WriteLine("$xconnectHostName = $XConnectCollectionService");
             file.WriteLine("$sitecoreParams = @{");
             file.WriteLine(" Path = \"$PSScriptRoot\\sitecore-XP0.json\"");
-            
+
             file.WriteLine(" Package = \"$PSScriptRoot\\Sitecore * (OnPrem)_single.scwdp.zip\"");
-            
+
             file.WriteLine(" LicenseFile = \"$PSScriptRoot\\license.xml\"");
             file.WriteLine(" SqlDbPrefix = $prefix");
             file.WriteLine("SqlServer = $SqlServer");
@@ -1065,7 +1066,7 @@ namespace SCIA
             file.WriteLine("            \"Type\": \"string\",");
             file.WriteLine("            \"DefaultValue\": \"\",");
             file.WriteLine("            \"Description\": \"The path to certificate of certification authority that issued certificates for Machine Learning Server Blob and Table storage endpoints.\"");
-            file.WriteLine("        },");           
+            file.WriteLine("        },");
             file.WriteLine("        \"XConnectXP0:Package\": {");
             file.WriteLine("            \"Type\": \"String\",");
             file.WriteLine("            \"Reference\": \"XConnectPackage\",");
@@ -1090,7 +1091,7 @@ namespace SCIA
             file.WriteLine("            \"Type\": \"String\",");
             file.WriteLine("            \"Reference\": \"SitecoreSiteName\",");
             file.WriteLine("            \"Description\": \"Override to pass SitecoreSiteName value to SitecoreXP0 config.\"");
-            file.WriteLine("        },");            
+            file.WriteLine("        },");
             file.WriteLine("        \"IdentityServer:PasswordRecoveryUrl\": {");
             file.WriteLine("            \"Type\": \"String\",");
             file.WriteLine("            \"Reference\": \"PasswordRecoveryUrl\",");
@@ -2474,7 +2475,7 @@ namespace SCIA
             {
                 file.WriteLine(" Uninstall-SitecoreConfiguration @singleDeveloperParams *>&1 | Tee-Object XP0-SingleDeveloper-Uninstall.log");
             }
-            
+
             file.WriteLine("Pop-Location");
             file.WriteLine("# SIG # Begin signature block");
             file.WriteLine("# MIIXwQYJKoZIhvcNAQcCoIIXsjCCF64CAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB");
@@ -2682,7 +2683,7 @@ namespace SCIA
             file.WriteLine("    SitecoreIdentityAuthority = $SitecoreIdentityAuthority");
             file.WriteLine("    XConnectCollectionService = $XConnectCollectionService");
             file.WriteLine("    ClientSecret = $ClientSecret");
-            file.WriteLine("    AllowedCorsOrigins = $AllowedCorsOrigins");            
+            file.WriteLine("    AllowedCorsOrigins = $AllowedCorsOrigins");
             file.WriteLine("}");
             file.WriteLine("Push-Location $SCInstallRoot");
             if (!uninstallscript)
@@ -3006,6 +3007,7 @@ namespace SCIA
             switch (Version.SitecoreVersion)
             {
                 case "10.0.1":
+                case "10.1.0":
                 case "10.0":
                 case "9.3":
                     WriteSiteSingleDeveloperJsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "SXA-SingleDeveloper.json");
@@ -3123,7 +3125,7 @@ namespace SCIA
                     btnSolr.Enabled = true;
                     btnValidateAll.Enabled = true;
                     lblStepInfo.Text = "Step 6 of 6: Solr Details";
-                    break;                
+                    break;
             }
 
         }
@@ -3213,7 +3215,7 @@ namespace SCIA
 
             if (!ValidateAll(uninstall)) return false;
             if (!SiteInfoTabValidations()) return false;
-            
+
             ToggleEnableControls(true);
             if (uninstall) { btnInstall.Enabled = false; } else { btnUninstall.Enabled = false; }
 
@@ -3269,7 +3271,7 @@ namespace SCIA
                 sqlcommand.Parameters.AddWithValue("@SitecoreIdServerUrl", txtSitecoreIdentityServerUrl.Text);
                 sqlcommand.Parameters.AddWithValue("@SXASiteInstallDir", txtSXAInstallDir.Text);
                 sqlcommand.Parameters.AddWithValue("@XConnectInstallDir", txtxConnectInstallDir.Text);
-                sqlcommand.Parameters.AddWithValue("@ClientSecret", txtClientSecret.Text);                
+                sqlcommand.Parameters.AddWithValue("@ClientSecret", txtClientSecret.Text);
                 sqlcommand.Parameters.AddWithValue("@SitecoreUsername", txtSitecoreUsername.Text);
                 sqlcommand.Parameters.AddWithValue("@SitecoreUserPassword", txtSitecoreUserPassword.Text);
                 sqlcommand.Parameters.AddWithValue("@SolrUrl", txtSolrUrl.Text);
@@ -3313,7 +3315,7 @@ namespace SCIA
                     SaveSIFDatatoDBSuccess(connection);
                 }
 
-                // if all the coperations complete successfully, this would be called and commit the transaction. 
+                // if all the coperations complete successfully, this would be called and commit the transaction.
                 // In case of an exception, it wont be called and transaction is rolled back
                 scope.Complete();
             }
@@ -3331,6 +3333,7 @@ namespace SCIA
             switch (Version.SitecoreVersion)
             {
                 case "10.0.1":
+                case "10.1.0":
                 case "10.0":
                 case "9.3":
                     WriteSiteSingleDeveloperJsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "SXA-SingleDeveloper.json");
@@ -3349,7 +3352,7 @@ namespace SCIA
                     WriteCreateCertJsonFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_xconnect-createcert.json");
                     Write90PSFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", false);
                     CommonFunctions.LaunchPSScript(@".\'" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1'", destFolder);
-                    break;               
+                    break;
                 case "9.1":
                 case "9.1.1":
                     WriteSingleDeveloperJsonFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "-SingleDeveloper.json");
@@ -3629,6 +3632,7 @@ namespace SCIA
             switch (Version.SitecoreVersion)
             {
                 case "10.0.1":
+                case "10.1.0":
                 case "10.0":
                 case "9.3":
                     WriteSiteSingleDeveloperJsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "SXA-SingleDeveloper.json");
@@ -3640,11 +3644,11 @@ namespace SCIA
                     Write92JsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + txtSiteNamePrefix.Text + "-SingleDeveloper.json");
                     Write92File(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1", true);
                     CommonFunctions.LaunchPSScript(@".\'" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1'", destFolder);
-                    break;                
+                    break;
                 case "9.0":
                 case "9.0.1":
                 case "9.0.2":
-                    DeleteScript(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Delete_Script.ps1"); 
+                    DeleteScript(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Delete_Script.ps1");
                     CommonFunctions.LaunchPSScript(@".\"  + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Delete_Script.ps1", destFolder);
                     break;
                 case "9.1":
@@ -3774,7 +3778,7 @@ namespace SCIA
             SetStatusMessage("Successfully established DB Connection", Color.DarkGreen);
 
             CommonFunctions.ConnectionString = CommonFunctions.BuildConnectionString(txtSqlDbServer.Text, "SCIA_DB", txtSqlUser.Text, txtSqlPass.Text);
-            
+
             ToggleEnableDbControls(false);
             btnDbConn.Enabled = false;
             AssignStepStatus(const_SiteInfo_Tab);
@@ -3839,7 +3843,7 @@ namespace SCIA
                 if (!CommonFunctions.FileSystemEntryExists(txtSXAInstallDir.Text,null,"folder",true))
                 {
                     PopulateSIFData();
-                }                            
+                }
             }
             if (TabIndexValue >= 0 && TabIndexValue <= tabDetails.TabCount - 2) TabIndexValue += 1;
             AssignStepStatus(TabIndexValue);
@@ -3902,7 +3906,7 @@ namespace SCIA
             ClearSolrControls();
             SetStatusMessage("Processing....", Color.Orange);
 
-            if(string.IsNullOrWhiteSpace(txtSolrUrl.Text)) { 
+            if(string.IsNullOrWhiteSpace(txtSolrUrl.Text)) {
                 SetStatusMessage("Solr Url is needed...", Color.Red);
                 AssignStepStatus(const_Solr_Tab);
                 Cursor.Current = Cursors.Default;
@@ -3975,7 +3979,7 @@ namespace SCIA
                 ToggleButtonControls(false);
                 return;
             }
-                
+
             SetStatusMessage("All seems fine with Solr....", Color.DarkGreen);
 
             btnSolr.Enabled = true;

@@ -32,6 +32,7 @@ namespace SCIA
 
             switch (Version.SitecoreVersion)
             {
+                case "10.1.0":
                 case "10.0":
                 case "10.0.1":
                 case "9.3":
@@ -678,6 +679,7 @@ namespace SCIA
            
             switch (Version.SitecoreVersion)
             {
+                case "10.1.0":
                 case "10.0.1":
                 case "10.0":
                 case "9.3":
@@ -708,6 +710,7 @@ namespace SCIA
         {
             switch (Version.SitecoreVersion)
             {
+                case "10.1.0":
                 case "10.0.1":
                 case "10.0":
                 case "9.3":
