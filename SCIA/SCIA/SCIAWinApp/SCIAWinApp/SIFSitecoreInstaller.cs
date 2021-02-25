@@ -44,7 +44,7 @@ namespace SCIA
                 case "9.0":
                 case "9.0.1":
                 case "9.0.2":
-                case "9.1":
+                case "9.1.1":
                     prereqs = CommonFunctions.GetVersionPrerequisites(Version.SitecoreVersion, "sitecoresif");
                     destFolder = ZipList.SitecoreSifZip;
                     xp0Install = true;
@@ -3021,6 +3021,7 @@ namespace SCIA
                     Write92File(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1", true);
                     break;
                 case "9.1":
+                case "9.1.1":
                     WriteSingleDeveloperJsonFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "-SingleDeveloper.json");
                     WriteSingleDeveloperPSFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", false);
                     WriteSingleDeveloperPSFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1", false);
@@ -3652,6 +3653,7 @@ namespace SCIA
                     CommonFunctions.LaunchPSScript(@".\"  + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Delete_Script.ps1", destFolder);
                     break;
                 case "9.1":
+                case "9.1.1":
                     WriteSingleDeveloperJsonFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "-SingleDeveloper.json");
                     WriteSingleDeveloperPSFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1", true);
                     CommonFunctions.LaunchPSScript(@".\'"  + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1'", destFolder);

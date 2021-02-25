@@ -28,7 +28,7 @@ namespace SCIA
             CommonFunctions.ConnectionString = CommonFunctions.BuildConnectionString(dbServer.Server, "SCIA_DB", dbServer.Username, dbServer.Password);
             version = Version.SitecoreVersion;
             this.Text = this.Text + " for Sitecore v" + version;
-            
+
 
             switch (Version.SitecoreVersion)
             {
@@ -42,7 +42,7 @@ namespace SCIA
                     prereqs = CommonFunctions.GetVersionPrerequisites(version, "sitecoredevsetup");
                     xpoFile = false;
                     break;
-                case "9.1":
+                case "9.1.1":
                 case "9.0":
                 case "9.0.1":
                 case "9.0.2":
@@ -548,7 +548,7 @@ namespace SCIA
             file.WriteLine("$ProgressPreference = \"SilentlyContinue\"");
             file.WriteLine("$sitecoreDownloadUrl = \"https://sitecoredev.azureedge.net\"");
             file.WriteLine("$packages = @{");
-            file.WriteLine("\"" + zipVersions.ZipName + ".zip\" = \"" + zipVersions.Url + "\"");            
+            file.WriteLine("\"" + zipVersions.ZipName + ".zip\" = \"" + zipVersions.Url + "\"");
             file.WriteLine("}");
             file.WriteLine();
             file.WriteLine("# download packages from Sitecore");
@@ -672,11 +672,11 @@ namespace SCIA
         private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (CommonFunctions.FileSystemEntryExists(destFolder, null,"folder")) return;
-            if (!CommonFunctions.FileSystemEntryExists("license.xml", null, "file")) { 
-                SetStatusMessage("License file missing in the exe location...", Color.Red); 
-                return; 
+            if (!CommonFunctions.FileSystemEntryExists("license.xml", null, "file")) {
+                SetStatusMessage("License file missing in the exe location...", Color.Red);
+                return;
             }
-           
+
             switch (Version.SitecoreVersion)
             {
                 case "10.1.0":
@@ -690,20 +690,21 @@ namespace SCIA
                     CommonFunctions.LaunchPSScript(@".\" + SCIASettings.FilePrefixAppString + "DownloadandExpandSifZip -InstallSourcePath \".\"");
                     break;
                 case "9.1":
+                case "9.1.1":
                 case "9.0":
                 case "9.0.1":
-                case "9.0.2":                    
+                case "9.0.2":
                     WriteWorkerFile(@".\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllXP0SIFPrereqs.ps1");
                     WriteXP0MainFile(@".\" + SCIASettings.FilePrefixAppString + "DownloadandExpandXP0SifZip.ps1");
 
-                    CommonFunctions.LaunchPSScript(@".\" + SCIASettings.FilePrefixAppString + "DownloadandExpandXP0SifZip -InstallSourcePath \".\"");                    
+                    CommonFunctions.LaunchPSScript(@".\" + SCIASettings.FilePrefixAppString + "DownloadandExpandXP0SifZip -InstallSourcePath \".\"");
                     break;
                 default:
                     break;
             }
-            
 
-            
+
+
         }
 
         private void btnPrerequisites_Click(object sender, EventArgs e)
@@ -715,7 +716,7 @@ namespace SCIA
                 case "10.0":
                 case "9.3":
                 case "9.2":
-                case "9.1":
+                case "9.1.1":
                     if (CommonFunctions.FileSystemEntryExists(destFolder, null, "folder"))
                     {
                         CommonFunctions.LaunchPSScript(@"Install-SitecoreConfiguration -Path .\Prerequisites.json", destFolder);

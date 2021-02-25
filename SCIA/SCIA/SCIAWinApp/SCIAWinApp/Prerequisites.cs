@@ -19,6 +19,9 @@ namespace SCIA
         DBServerDetails dbServer;
         const string zipType = "commerce";
         const string commerceZipKey= "commercezip";
+        const string commerceEngineZipKey = "commerceengine";
+        const string commerceEngineSdkZipKey = "commerceenginesdk";
+        const string BizFxZipKey = "bizfx";
         const string msBuildZipKey = "msbuild";
         const string psExtensionZipKey = "psextension";
         const string dotnethostKey = "dotnethost";
@@ -54,7 +57,7 @@ namespace SCIA
 
         private void CheckPrerequisites()
         {
-            
+
             if (!CommonFunctions.FileSystemEntryExists(destFolder, null, "folder",true)) { AllChecked = false;  return; }
             if (CommonFunctions.FileSystemEntryExists(destFolder + "\\" + msBuildZipKey, null,"folder",true)) { chkMsBuild.Checked = true; chkMsBuild.BackColor = Color.LightGreen;  }
             if (CommonFunctions.FileSystemEntryExists(destFolder,"SIF.Sitecore.Commerce.*","folder",true)) { chkSIF.Checked = true; chkSIF.BackColor = Color.LightGreen; }
@@ -160,7 +163,7 @@ namespace SCIA
             //Call the Process.Start method to open the default browser
             //with a URL:
             Process.Start("https://www.braintreepayments.com/sandbox");
-        
+
         }
 
         private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -230,8 +233,8 @@ namespace SCIA
             file.WriteLine("\t{");
             file.WriteLine("\t\tif ($PSCmdlet.ShouldProcess($fileName))");
             file.WriteLine("\t\t{");
-            file.WriteLine("\t\t\tWrite-Host (\"Downloading '{0}' to '{1}'...\" -f $fileUrl, $filePath)");            
-            file.WriteLine();            
+            file.WriteLine("\t\t\tWrite-Host (\"Downloading '{0}' to '{1}'...\" -f $fileUrl, $filePath)");
+            file.WriteLine();
             file.WriteLine("\t\t\tInvoke-WebRequest -Uri $fileUrl -OutFile $filePath -UseBasicParsing");
             file.WriteLine("\t\t}");
             file.WriteLine("\t\telse");
@@ -267,7 +270,14 @@ namespace SCIA
 
             file.WriteLine("$preference = $ProgressPreference");
             file.WriteLine("$ProgressPreference = \"SilentlyContinue\"");
-            file.WriteLine("Expand-Archive -Force -LiteralPath " + prereqs.Where(p => p.PrerequisiteKey == commerceZipKey).ToList().FirstOrDefault().PrerequisiteName + ".zip -DestinationPath .");
+            if (Version.SitecoreVersion == "10.0")
+            {
+                file.WriteLine("Expand-Archive -Force -LiteralPath " + prereqs.Where(p => p.PrerequisiteKey == commerceZipKey).ToList().FirstOrDefault().PrerequisiteName + ".zip -DestinationPath .");
+            }
+            else
+            {
+                file.WriteLine("Expand-Archive -Force -LiteralPath " + prereqs.Where(p => p.PrerequisiteKey == commerceZipKey).ToList().FirstOrDefault().PrerequisiteName + ".zip -DestinationPath .\\" + ZipList.CommerceZip);
+            }            
             file.WriteLine("Expand-Archive -Force -LiteralPath " + prereqs.Where(p => p.PrerequisiteKey == commerceZipKey).ToList().FirstOrDefault().PrerequisiteName + "\\" + prereqs.Where(p => p.PrerequisiteKey == commerceSifZipKey).ToList().FirstOrDefault().PrerequisiteName + ".zip -DestinationPath .\\" + ZipList.CommerceZip + "\\" + prereqs.Where(p => p.PrerequisiteKey == commerceSifZipKey).ToList().FirstOrDefault().PrerequisiteName);
             file.WriteLine("Invoke-WebRequest -Uri \"" + prereqs.Where(p => p.PrerequisiteKey == msBuildZipKey).ToList().FirstOrDefault().PrerequisiteUrl + "\" -OutFile \".\\" + prereqs.Where(p => p.PrerequisiteKey == commerceZipKey).ToList().FirstOrDefault().PrerequisiteName + "\\" + prereqs.Where(p => p.PrerequisiteKey == msBuildZipKey).ToList().FirstOrDefault().PrerequisiteName + ".zip\"");
             file.WriteLine("Copy-Item -Force -Path \"" + prereqs.Where(p => p.PrerequisiteKey == sxaZipKey).ToList().FirstOrDefault().PrerequisiteName + "\" -Destination \".\\" + prereqs.Where(p => p.PrerequisiteKey == commerceZipKey).ToList().FirstOrDefault().PrerequisiteName + "\\" + prereqs.Where(p => p.PrerequisiteKey == sxaZipKey).ToList().FirstOrDefault().PrerequisiteName + "\"");
@@ -275,11 +285,22 @@ namespace SCIA
                 "Copy-Item -Force -Path \"" + prereqs.Where(p => p.PrerequisiteKey == psExtensionZipKey).ToList().FirstOrDefault().PrerequisiteName + "\" -Destination \".\\" + prereqs.Where(p => p.PrerequisiteKey == commerceZipKey).ToList().FirstOrDefault().PrerequisiteName + "\\" + prereqs.Where(p => p.PrerequisiteKey == psExtensionZipKey).ToList().FirstOrDefault().PrerequisiteName + "\"");
             file.WriteLine(
                 "Expand-Archive -Force -LiteralPath " + prereqs.Where(p => p.PrerequisiteKey == commerceZipKey).ToList().FirstOrDefault().PrerequisiteName + "\\" + prereqs.Where(p => p.PrerequisiteKey == msBuildZipKey).ToList().FirstOrDefault().PrerequisiteName + ".zip -DestinationPath '.\\" + prereqs.Where(p => p.PrerequisiteKey == commerceZipKey).ToList().FirstOrDefault().PrerequisiteName + "\\" + msBuildZipKey  + "'");
+            if (Version.SitecoreVersion == "9.1.1")
+            {
+                file.WriteLine("Expand-Archive -Force -LiteralPath " + prereqs.Where(p => p.PrerequisiteKey == commerceZipKey).ToList().FirstOrDefault().PrerequisiteName + "\\" + prereqs.Where(p => p.PrerequisiteKey == commerceEngineZipKey).ToList().FirstOrDefault().PrerequisiteName + ".zip -DestinationPath .\\" + ZipList.CommerceZip + "\\" + prereqs.Where(p => p.PrerequisiteKey == commerceEngineZipKey).ToList().FirstOrDefault().PrerequisiteName);
+
+                file.WriteLine("Expand-Archive -Force -LiteralPath " + prereqs.Where(p => p.PrerequisiteKey == commerceZipKey).ToList().FirstOrDefault().PrerequisiteName + "\\" + prereqs.Where(p => p.PrerequisiteKey == commerceEngineSdkZipKey).ToList().FirstOrDefault().PrerequisiteName + ".zip -DestinationPath .\\" + ZipList.CommerceZip + "\\" + prereqs.Where(p => p.PrerequisiteKey == commerceEngineSdkZipKey).ToList().FirstOrDefault().PrerequisiteName);
+
+                file.WriteLine("Expand-Archive -Force -LiteralPath " + prereqs.Where(p => p.PrerequisiteKey == commerceZipKey).ToList().FirstOrDefault().PrerequisiteName + "\\" + prereqs.Where(p => p.PrerequisiteKey == BizFxZipKey).ToList().FirstOrDefault().PrerequisiteName + ".zip -DestinationPath .\\" + ZipList.CommerceZip + "\\" + prereqs.Where(p => p.PrerequisiteKey == BizFxZipKey).ToList().FirstOrDefault().PrerequisiteName);
+            }
             file.WriteLine(
                 "Invoke-WebRequest -Uri \"" + prereqs.Where(p => p.PrerequisiteKey == dotnethostKey).ToList().FirstOrDefault().PrerequisiteUrl + "\"  -OutFile " + prereqs.Where(p => p.PrerequisiteKey == dotnethostKey).ToList().FirstOrDefault().PrerequisiteName + " -UseBasicParsing");
             file.WriteLine(
                 "Start-Process -FilePath " + prereqs.Where(p => p.PrerequisiteKey == dotnethostKey).ToList().FirstOrDefault().PrerequisiteName);
-            file.WriteLine("msiexec /i \"" + prereqs.Where(p => p.PrerequisiteKey == redisMsiKey).ToList().FirstOrDefault().PrerequisiteUrl + "\"");
+            if (Version.SitecoreVersion != "9.1.1")
+            {
+                file.WriteLine("msiexec /i \"" + prereqs.Where(p => p.PrerequisiteKey == redisMsiKey).ToList().FirstOrDefault().PrerequisiteUrl + "\"");
+            }
             file.WriteLine();
             file.WriteLine(
                 "$ProgressPreference = $preference");
@@ -293,7 +314,7 @@ namespace SCIA
         {
             if (CommonFunctions.FileSystemEntryExists(@".\\" + prereqs.Where(p => p.PrerequisiteKey == commerceZipKey).ToList().FirstOrDefault().PrerequisiteName,null,"folder")) return;
             var commerceZipName = prereqs.Where(p => p.PrerequisiteKey == commerceZipKey).ToList().FirstOrDefault().PrerequisiteName + ".zip";
-            
+
             WriteWorkerFile(".\\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllCommercePrereqs.ps1");
             CommonFunctions.LaunchPSScript(".\\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllCommercePrereqs.ps1 -InstallSourcePath \".\"");
         }
