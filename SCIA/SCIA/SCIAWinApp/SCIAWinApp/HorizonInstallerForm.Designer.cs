@@ -774,6 +774,7 @@
             // 
             // txtSitecoreUserPassword
             // 
+            this.txtSitecoreUserPassword.Enabled = false;
             this.txtSitecoreUserPassword.Location = new System.Drawing.Point(256, 62);
             this.txtSitecoreUserPassword.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSitecoreUserPassword.MaxLength = 15;
@@ -785,6 +786,7 @@
             // 
             // txtSitecoreUsername
             // 
+            this.txtSitecoreUsername.Enabled = false;
             this.txtSitecoreUsername.Location = new System.Drawing.Point(256, 21);
             this.txtSitecoreUsername.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtSitecoreUsername.MaxLength = 15;
