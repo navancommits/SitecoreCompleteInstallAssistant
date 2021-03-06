@@ -683,5 +683,24 @@ namespace SCIA
         {
             System.Diagnostics.Process.Start("http://navansitecorenotes.blogspot.com/");
         }
+
+        private void horizontoolStripButton_Click(object sender, EventArgs e)
+        {
+            foreach (Form frm in this.MdiChildren)
+            {
+                if (frm is HorizonInstallerForm)
+                {
+                    if (frm.WindowState == FormWindowState.Minimized)
+                        frm.WindowState = FormWindowState.Normal;
+                    frm.Focus();
+                    return;
+                }
+            }
+            HorizonInstallerForm formInstance = new HorizonInstallerForm
+            {
+                MdiParent = this
+            };
+            formInstance.Show();
+        }
     }
 }

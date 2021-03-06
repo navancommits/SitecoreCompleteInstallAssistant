@@ -168,11 +168,23 @@
     <Compile Include="SiaPrerequisites.Designer.cs">
       <DependentUpon>SiaPrerequisites.cs</DependentUpon>
     </Compile>
+    <Compile Include="HorizonPrerequisites.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HorizonPrerequisites.Designer.cs">
+      <DependentUpon>HorizonPrerequisites.cs</DependentUpon>
+    </Compile>
     <Compile Include="SifPrerequisites.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SifPrerequisites.Designer.cs">
       <DependentUpon>SifPrerequisites.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HorizonInstallerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HorizonInstallerForm.Designer.cs">
+      <DependentUpon>HorizonInstallerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SIFSitecoreInstaller.cs">
       <SubType>Form</SubType>
@@ -285,8 +297,14 @@
     <EmbeddedResource Include="SiaPrerequisites.resx">
       <DependentUpon>SiaPrerequisites.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HorizonPrerequisites.resx">
+      <DependentUpon>HorizonPrerequisites.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SifPrerequisites.resx">
       <DependentUpon>SifPrerequisites.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HorizonInstallerForm.resx">
+      <DependentUpon>HorizonInstallerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SIFSitecoreInstaller.resx">
       <DependentUpon>SIFSitecoreInstaller.cs</DependentUpon>

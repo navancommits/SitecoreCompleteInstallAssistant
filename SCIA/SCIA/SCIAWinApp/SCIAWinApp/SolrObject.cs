@@ -117,6 +117,7 @@ namespace SCIA
         public static string SitecoreDevSetupZip { get; set; }
         public static string SitecoreSifZip { get; set; }
         public static string SitecoreContainerZip { get; set; }
+        public static string HorizonZip { get; set; }
     }
 
     public static class Login

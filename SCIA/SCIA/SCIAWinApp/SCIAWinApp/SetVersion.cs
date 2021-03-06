@@ -63,6 +63,7 @@ namespace SCIA
             Form frm = (Form)this.MdiParent;
             ToolStrip toolStrip = (ToolStrip)frm.Controls["toolStrip"];
             ToolStripButton toolCommerceStripButton = (ToolStripButton)toolStrip.Items["sitecoreCommerceToolStripButton"];
+            ToolStripButton toolHorizonStripButton = (ToolStripButton)toolStrip.Items["horizontoolStripButton"];
             ToolStripButton toolSitecoreConStripButton = (ToolStripButton)toolStrip.Items["sitecoreContainerToolStripButton"];
             ToolStripButton toolsiaStripButton = (ToolStripButton)toolStrip.Items["siaToolStripButton"];
             ToolStripButton toolsifStripButton = (ToolStripButton)toolStrip.Items["siftoolStripButton"];
@@ -75,6 +76,7 @@ namespace SCIA
             toolsiaStripButton.Enabled = true;
             toolCommerceConStripButton.Enabled = true;
             toolStripSolrButton.Enabled = true;
+            toolHorizonStripButton.Enabled = true;
 
             ZipList.CommerceZip = CommonFunctions.GetZipNamefromWdpVersion("commerce", Version.SitecoreVersion);
             if (ZipList.CommerceZip == null) { toolCommerceStripButton.Enabled = false; }
@@ -84,6 +86,9 @@ namespace SCIA
             if (ZipList.SitecoreContainerZip == null) { toolSitecoreConStripButton.Enabled = false;  }
             ZipList.SitecoreDevSetupZip = CommonFunctions.GetZipNamefromWdpVersion("sitecoredevsetup", Version.SitecoreVersion);
             ZipList.SitecoreSifZip = CommonFunctions.GetZipNamefromWdpVersion("sitecoresif", Version.SitecoreVersion);
+            ZipList.HorizonZip = CommonFunctions.GetZipNamefromWdpVersion("horizondevsetup", Version.SitecoreVersion);
+            if (ZipList.HorizonZip == null) { toolHorizonStripButton.Enabled = false; }
+
             if (ZipList.SitecoreSifZip == null) { toolsifStripButton.Enabled = false; }
             if (ZipList.SitecoreDevSetupZip == null) {
                 toolsiaStripButton.Enabled = false;
