@@ -39,6 +39,11 @@ namespace SCIA
         public List<SiteDetails> SiteDetailsList { get; set; }
     }
 
+    public static class SiteName
+    {
+        public static string Prefix { get; set; }
+    }
+
     public class SettingsData
     {
         public string SiteNameSuffix { get; set; }

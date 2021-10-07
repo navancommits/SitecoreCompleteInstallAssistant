@@ -98,11 +98,11 @@ namespace SCIA
                 toolsifStripButton.Enabled = true;
             }
 
-            if (!CommonFunctions.FileSystemEntryExists("C:\\Program Files\\WindowsPowerShell\\Modules\\SitecoreInstallFramework", null, "folder", true))
+            if (!CommonFunctions.FileSystemEntryExists("C:\\Program Files\\WindowsPowerShell\\Modules\\SitecoreInstallFramework", null, "folder", true) && !CommonFunctions.FileSystemEntryExists("C:\\Program Files (x86)\\WindowsPowerShell\\Modules\\SitecoreInstallFramework", null, "folder", true))
             {
                 toolsifStripButton.Enabled = false;
                 toolStripSolrButton.Enabled = false;
-                SetStatusMessage("Click 'SIF Module Install' Button; Missing-C:\\ProgramFiles\\WindowsPowerShell\\Modules\\SitecoreInstallFramework....", Color.Red);
+                SetStatusMessage("Click 'SIF Module Install' Button, Missing- ProgramFiles\\WindowsPowerShell\\Modules\\SitecoreInstallFramework....", Color.Red);
                 return;
             }
 

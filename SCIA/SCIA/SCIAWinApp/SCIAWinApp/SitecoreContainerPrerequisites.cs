@@ -19,7 +19,7 @@ namespace SCIA
         public SitecoreContainerPrerequisites()
         {
             InitializeComponent();
-            chkSitecoreContainer.Text = ZipList.SitecoreContainerZip + " Folder";
+            chkSitecoreContainer.Text =  ZipList.SitecoreContainerZip + " Folder";
             CheckPrerequisites();
             if (AllChecked)
             {
@@ -31,8 +31,8 @@ namespace SCIA
         
         private void CheckPrerequisites()
         {
-            if (CommonFunctions.FileSystemEntryExists(ZipList.SitecoreContainerZip, null, "folder", true)) { chkSitecoreContainer.Checked = true; chkSitecoreContainer.BackColor = Color.LightGreen; }
-            if (CommonFunctions.FileSystemEntryExists(".\\" + ZipList.SitecoreContainerZip + xp0Path + "license.xml",null)) { chkLicenseFile.Checked = true; chkLicenseFile.BackColor = Color.LightGreen; }
+            if (CommonFunctions.FileSystemEntryExists(SiteName.Prefix, null, "folder", true)) { chkSitecoreContainer.Checked = true; chkSitecoreContainer.BackColor = Color.LightGreen; }
+            if (CommonFunctions.FileSystemEntryExists("\\"  + ZipList.SitecoreContainerZip + xp0Path + "license.xml",null)) { chkLicenseFile.Checked = true; chkLicenseFile.BackColor = Color.LightGreen; }
             if (WindowsVersionOk()) { chkWindowsEdition.Checked = true; chkWindowsEdition.BackColor = Color.LightGreen; };
             if (CommonFunctions.FileSystemEntryExists("c:\\program files\\docker",null,"folder")) { chkDocker.Checked = true; chkDocker.BackColor = Color.LightGreen; }
         }
@@ -53,21 +53,23 @@ namespace SCIA
         }
         private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            if (!Directory.Exists(SiteName.Prefix))  Directory.CreateDirectory(SiteName.Prefix); 
+
             if (!CommonFunctions.FileSystemEntryExists("license.xml", null, "file"))
             {
                 SetStatusMessage("License file missing in the exe location...", Color.Red);
                 return;
             }
            
-            if (!CommonFunctions.FileSystemEntryExists(SCIASettings.FilePrefixAppString + "DownloadandSetupAllSitecoreContainerPrereqs.ps1", null))
+            if (!CommonFunctions.FileSystemEntryExists(SCIASettings.FilePrefixAppString + "DownloadandSetupAllSitecoreContainerPrereqs" + SiteName.Prefix + Version.SitecoreVersion + ".ps1", null))
             {
-                WriteWorkerFile(".\\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllSitecoreContainerPrereqs.ps1");
+                WriteWorkerFile(".\\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllSitecoreContainerPrereqs" + SiteName.Prefix + Version.SitecoreVersion + ".ps1");
             }
-            if (!CommonFunctions.FileSystemEntryExists(SCIASettings.FilePrefixAppString + "DownloadandExpandSitecoreContainerZip.ps1", null))
+            if (!CommonFunctions.FileSystemEntryExists(SCIASettings.FilePrefixAppString + "DownloadandExpandSitecoreContainerZip" + SiteName.Prefix + Version.SitecoreVersion + ".ps1", null))
             {
-                WriteMainFile(".\\" + SCIASettings.FilePrefixAppString + "DownloadandExpandSitecoreContainerZip.ps1");
+                WriteMainFile(".\\" + SCIASettings.FilePrefixAppString + "DownloadandExpandSitecoreContainerZip" + SiteName.Prefix + Version.SitecoreVersion + ".ps1");
             }
-            CommonFunctions.LaunchPSScript(".\\" + SCIASettings.FilePrefixAppString + "DownloadandExpandSitecoreContainerZip.ps1");
+            CommonFunctions.LaunchPSScript(".\\" + SCIASettings.FilePrefixAppString + "DownloadandExpandSitecoreContainerZip" + SiteName.Prefix + Version.SitecoreVersion + ".ps1");
         }
 
         void WriteWorkerFile(string path)
@@ -81,7 +83,7 @@ namespace SCIA
             file.WriteLine("param(");
             file.WriteLine("\t[Parameter(Mandatory = $false)]");
             file.WriteLine("\t[ValidateNotNullOrEmpty()]");
-            file.WriteLine("\t[string]$InstallSourcePath = (Join-Path $PSScriptRoot \".\"),");
+            file.WriteLine("\t[string]$InstallSourcePath = (Join-Path $PSScriptRoot '.\\" + SiteName.Prefix + "'),");
             file.WriteLine();
             file.WriteLine("\t[Parameter(Mandatory = $false)]");
             file.WriteLine("\t[ValidateNotNullOrEmpty()]");
@@ -148,8 +150,8 @@ namespace SCIA
 
             file.WriteLine("$preference = $ProgressPreference");
             file.WriteLine("$ProgressPreference = \"SilentlyContinue\"");
-            file.WriteLine(".\\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllSitecoreContainerPrereqs.ps1");
-            file.WriteLine("Expand-Archive -Force -LiteralPath " + ZipList.SitecoreContainerZip + ".zip -DestinationPath .\\" + ZipList.SitecoreContainerZip);
+            file.WriteLine(".\\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllSitecoreContainerPrereqs" + SiteName.Prefix + Version.SitecoreVersion + ".ps1");
+            file.WriteLine("Expand-Archive -Force -LiteralPath " + ZipList.SitecoreContainerZip + ".zip -DestinationPath .\\" + SiteName.Prefix + "\\" + ZipList.SitecoreContainerZip);
             file.WriteLine();
             file.WriteLine("if (-not(Test-Path -Path 'C:\\program files\\docker' -PathType Container)) {");
             file.WriteLine("if (-not(Test-Path -Path 'Docker Desktop Installer.exe' -PathType Leaf)) {");
@@ -161,7 +163,7 @@ namespace SCIA
             file.WriteLine("}");
             file.WriteLine("if ((Test-Path '" + ZipList.SitecoreContainerZip + ".zip' -PathType Leaf))");
             file.WriteLine("{");
-            file.WriteLine("Copy-Item -Force -Path \"license.xml\" -Destination \".\\" + ZipList.SitecoreContainerZip + xp0Path + "license.xml\"");
+            file.WriteLine("Copy-Item -Force -Path \"license.xml\" -Destination \".\\" + SiteName.Prefix  + "\\" + ZipList.SitecoreContainerZip + xp0Path + "license.xml\"");
             file.WriteLine("}");
             file.WriteLine();
             file.WriteLine(

@@ -481,7 +481,7 @@ namespace SCIA
             using var file = new StreamWriter(path);
             file.WriteLine("[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12");
             file.WriteLine("Register-PSRepository -Name SitecoreGallery https://sitecore.myget.org/F/sc-powershell/api/v2");
-            file.WriteLine("Install-Module SitecoreInstallFramework");
+            file.WriteLine("Install-Module SitecoreInstallFramework -Repository SitecoreGallery -RequiredVersion 2.3.0");
             file.WriteLine("Install-Module PowershellGet -Force");
             file.Dispose();
         }
