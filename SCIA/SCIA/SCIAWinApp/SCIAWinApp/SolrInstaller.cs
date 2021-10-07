@@ -299,9 +299,22 @@ namespace SCIA
             file.WriteLine("                \"Value\": [");
             file.WriteLine("                    \"[concat('set SOLR_MODE=',variable('Solr.StartupType'))]\",");
             file.WriteLine("                    \"[concat('set SOLR_JAVA_HOME=\\\"',variable('Java.Install.Path'),'\\\"')]\",");
-            file.WriteLine("                    \"set SOLR_SSL_KEY_STORE=etc/solr-ssl.keystore.jks\",");
+            var compared = String.Compare("8.7.0", txtSolrVersion.Text);
+            if (compared >=0)
+                if (txtSolrVersion.Text.Trim().StartsWith("8.10"))
+                    file.WriteLine("                    \"set SOLR_SSL_KEY_STORE=etc/solr-ssl.keystore.p12\",");
+                else
+                    file.WriteLine("                    \"set SOLR_SSL_KEY_STORE=etc/solr-ssl.keystore.jks\",");
+            else
+                file.WriteLine("                    \"set SOLR_SSL_KEY_STORE=etc/solr-ssl.keystore.p12\",");
             file.WriteLine("                    \"set SOLR_SSL_KEY_STORE_PASSWORD=secret\",");
-            file.WriteLine("                    \"set SOLR_SSL_TRUST_STORE=etc/solr-ssl.keystore.jks\",");
+            if (compared >= 0)
+                if (txtSolrVersion.Text.Trim().StartsWith("8.10"))
+                    file.WriteLine("                    \"set SOLR_SSL_TRUST_STORE=etc/solr-ssl.keystore.p12\",");
+                else
+                    file.WriteLine("                    \"set SOLR_SSL_TRUST_STORE=etc/solr-ssl.keystore.jks\",");
+            else
+                file.WriteLine("                    \"set SOLR_SSL_TRUST_STORE=etc/solr-ssl.keystore.p12\",");
             file.WriteLine("                    \"set SOLR_SSL_TRUST_STORE_PASSWORD=secret\",");
             file.WriteLine("                    \"[concat('set SOLR_HOST=\\\"',parameter('SolrDomain'),'\\\"')]\",");
             file.WriteLine("                    \"[concat('set SOLR_Port=',parameter('SolrPort'))]\"");
