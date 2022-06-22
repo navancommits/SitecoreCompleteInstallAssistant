@@ -39,6 +39,7 @@ namespace SCIA
                 case "10.0.1":
                 case "10.1.0":
                 case "10.1.1":
+                case "10.2.0":
                     WritePreviewFile(SCIASettings.FilePrefixAppString + sitedetails.SiteName + "_Install_Script_Preview.ps1", sitedetails.HabitatExists, false);
                     break;
                 default:
