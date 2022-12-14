@@ -33,6 +33,7 @@ namespace SCIA
             this.Text = this.Text + " for Sitecore v" + Version.SitecoreVersion;
             switch (Version.SitecoreVersion)
             {
+                case "10.3.0":
                 case "10.2.0":
                 case "10.1.1":
                 case "10.1.0":

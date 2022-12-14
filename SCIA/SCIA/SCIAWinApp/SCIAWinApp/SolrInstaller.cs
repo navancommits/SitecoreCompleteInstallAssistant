@@ -299,22 +299,37 @@ namespace SCIA
             file.WriteLine("                \"Value\": [");
             file.WriteLine("                    \"[concat('set SOLR_MODE=',variable('Solr.StartupType'))]\",");
             file.WriteLine("                    \"[concat('set SOLR_JAVA_HOME=\\\"',variable('Java.Install.Path'),'\\\"')]\",");
-            var compared = String.Compare("8.4.0", txtSolrVersion.Text);
-            if (compared >=0)
-                if (txtSolrVersion.Text.Trim().StartsWith("8.10"))
+            System.Version baseVersion = new System.Version("8.4.0");
+            System.Version comparedVersion = new System.Version(txtSolrVersion.Text.Trim());
+
+            var compared = comparedVersion.CompareTo(baseVersion);
+
+            switch (comparedVersion.CompareTo(baseVersion))
+            {
+                case 0:
                     file.WriteLine("                    \"set SOLR_SSL_KEY_STORE=etc/solr-ssl.keystore.p12\",");
-                else
+                    break;
+                case 1:
+                    file.WriteLine("                    \"set SOLR_SSL_KEY_STORE=etc/solr-ssl.keystore.p12\",");
+                    break;
+                case -1:
                     file.WriteLine("                    \"set SOLR_SSL_KEY_STORE=etc/solr-ssl.keystore.jks\",");
-            else
-                file.WriteLine("                    \"set SOLR_SSL_KEY_STORE=etc/solr-ssl.keystore.p12\",");
+                    break;
+            }
             file.WriteLine("                    \"set SOLR_SSL_KEY_STORE_PASSWORD=secret\",");
-            if (compared >= 0)
-                if (txtSolrVersion.Text.Trim().StartsWith("8.10"))
+
+            switch (comparedVersion.CompareTo(baseVersion))
+            {
+                case 0:
                     file.WriteLine("                    \"set SOLR_SSL_TRUST_STORE=etc/solr-ssl.keystore.p12\",");
-                else
+                    break;
+                case 1:
+                    file.WriteLine("                    \"set SOLR_SSL_TRUST_STORE=etc/solr-ssl.keystore.p12\",");
+                    break;
+                case -1:
                     file.WriteLine("                    \"set SOLR_SSL_TRUST_STORE=etc/solr-ssl.keystore.jks\",");
-            else
-                file.WriteLine("                    \"set SOLR_SSL_TRUST_STORE=etc/solr-ssl.keystore.p12\",");
+                    break;
+            }
             file.WriteLine("                    \"set SOLR_SSL_TRUST_STORE_PASSWORD=secret\",");
             file.WriteLine("                    \"[concat('set SOLR_HOST=\\\"',parameter('SolrDomain'),'\\\"')]\",");
             file.WriteLine("                    \"[concat('set SOLR_Port=',parameter('SolrPort'))]\"");
