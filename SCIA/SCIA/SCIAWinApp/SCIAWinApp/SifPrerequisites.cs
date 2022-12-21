@@ -108,7 +108,7 @@ namespace SCIA
             file.WriteLine("        \"WebPlatformDownload\": {");
             file.WriteLine("            \"Type\": \"String\",");
             file.WriteLine("            \"Description\": \"Download location of Microsoft Web Platform Installer 5.0\",");
-            file.WriteLine("            \"DefaultValue\": \"https://download.microsoft.com/download/C/F/F/CFF3A0B8-99D4-41A2-AE1A-496C08BEB904/WebPlatformInstaller_amd64_en-US.msi\"");
+            file.WriteLine("            \"DefaultValue\": \"https://download.microsoft.com/download/8/4/9/849DBCF2-DFD9-49F5-9A19-9AEE5B29341A/WebPlatformInstaller_x64_en-US.msi\"");
             file.WriteLine("        },");
             file.WriteLine("        \"SQLClrTypesx86Download\": {");
             file.WriteLine("            \"Type\": \"String\",");
@@ -133,12 +133,12 @@ namespace SCIA
             file.WriteLine("        \"VisualC++2015x86Download\": {");
             file.WriteLine("            \"Type\": \"String\",");
             file.WriteLine("            \"Description\": \"Download location of Visual C++ 2015 x86\",");
-            file.WriteLine("            \"DefaultValue\": \"https://download.microsoft.com/download/6/D/F/6DF3FF94-F7F9-4F0B-838C-A328D1A7D0EE/vc_redist.x86.exe\"");
+            file.WriteLine("            \"DefaultValue\": \"https://aka.ms/vs/17/release/vc_redist.x86.exe\"");
             file.WriteLine("        },");
             file.WriteLine("        \"VisualC++2015x64Download\": {");
             file.WriteLine("            \"Type\": \"String\",");
             file.WriteLine("            \"Description\": \"Download location of Visual C++ 2015 x64\",");
-            file.WriteLine("            \"DefaultValue\": \"https://download.microsoft.com/download/6/D/F/6DF3FF94-F7F9-4F0B-838C-A328D1A7D0EE/vc_redist.x64.exe\"");
+            file.WriteLine("            \"DefaultValue\": \"https://aka.ms/vs/17/release/vc_redist.x64.exe\"");
             file.WriteLine("        },");
             file.WriteLine("        \"SQLODBCDriversx64\": {");
             file.WriteLine("            \"Type\": \"String\",");
@@ -152,8 +152,8 @@ namespace SCIA
             file.WriteLine("        },");
             file.WriteLine("        \"DotNetHostingDownload\": {");
             file.WriteLine("            \"Type\": \"String\",");
-            file.WriteLine("            \"Description\": \"Download location of .net core 2.1.x Hosting Bundle\",");
-            file.WriteLine("            \"DefaultValue\": \"https://download.visualstudio.microsoft.com/download/pr/3e3c37fb-4d77-4558-a78c-17434e1cc804/60116643f610fb43f858af4e0dc1b223/dotnet-hosting-2.1.23-win.exe\"");
+            file.WriteLine("            \"Description\": \"Download location of .net 6.0.x Hosting Bundle\",");
+            file.WriteLine("            \"DefaultValue\": \"https://download.visualstudio.microsoft.com/download/pr/7de08ae2-75e6-49b8-b04a-31526204fa7b/c1cee44a509495e4bb0bba49f52c719a/dotnet-hosting-6.0.7-win.exe\"");
             file.WriteLine("        },");
             file.WriteLine("        \"DotNet4RegistryLocation\": {");
             file.WriteLine("            \"Type\": \"String\",");
@@ -235,7 +235,7 @@ namespace SCIA
             file.WriteLine("        \"SQL.ODBC.Version.Compare\": \"[InvokeExpression(Command:variable('SQL.ODBC.Version.Command'))]\",");
             file.WriteLine("        \"SQL.ODBC.Version.Command\": \"[concat('[system.version]\\\"',variable('SQL.ODBC.Null.Version'),'\\\" -ge [system.version]\\\"',variable('SQL.ODBC.Minimum.Version'),'\\\"')]\",");
             file.WriteLine("        \"SQL.ODBC.Null.Version\": \"[if(variable('SQL.ODBC.Version'),variable('SQL.ODBC.Version'),'0.0')]\",");
-            file.WriteLine("        \"Net.Hosting.Package\": \"[GetPackage(Name:'Microsoft` .NET` Core` 2.1.12` -` Windows` Server` Hosting',ErrorAction:'SilentlyContinue')]\",");
+            file.WriteLine("        \"Net.Hosting.Package\": \"[GetPackage(Name:'Microsoft` .NET` 6.0.7` -` Windows` Server` Hosting',ErrorAction:'SilentlyContinue')]\",");
             file.WriteLine("        \"VisualC++.x86.Compare\": \"[or(variable('VisualC++.x86.Version.Compare'),variable('VisualC++.x86.Debug.Version.Compare'))]\",");
             file.WriteLine("        \"VisualC++.x64.Compare\": \"[or(variable('VisualC++.x64.Version.Compare'),variable('VisualC++.x64.Debug.Version.Compare'))]\",");
             file.WriteLine("        \"Check.DotNetFramework.Version\" : \"[ValidateRange(Min:0,Max:528039,Param:variable('Get.DotNet.Version'))]\",");
@@ -246,9 +246,9 @@ namespace SCIA
             file.WriteLine("        \"SQL.Dac.Framework.x64.Minimum.Version\": \"14.0.4079.2\",");
             file.WriteLine("        \"SQL.ODBC.Minimum.Version\": \"13.1.4414.46\",");
             file.WriteLine("        \"SQLServer.Module.Minimum.Version\": \"21.1.18080\",");
-            file.WriteLine("        \"VisualC++.x86.Minimum.Version\": \"14.0.24212.0\",");
+            file.WriteLine("        \"VisualC++.x86.Minimum.Version\": \"14.32.31332.0\",");
             file.WriteLine("        \"VisualC++.x86.Debug.Minimum.Version\": \"14.0.0\",");
-            file.WriteLine("        \"VisualC++.x64.Minimum.Version\": \"14.0.24212.0\",");
+            file.WriteLine("        \"VisualC++.x64.Minimum.Version\": \"14.32.31332.0\",");
             file.WriteLine("        \"VisualC++.x64.Debug.Minimum.Version\": \"14.0.0\",");
             file.WriteLine("        \"WebPlatform.Minimum.Version\": \"5.0.50430.0\",");
             file.WriteLine("        \"WebDeploy.Minimum.Version\": \"10.0.1973\",");
@@ -340,6 +340,7 @@ namespace SCIA
             file.WriteLine("                    \"IIS-WebServer\",");
             file.WriteLine("                    \"IIS-WebServerManagementTools\",");
             file.WriteLine("                    \"IIS-ASPNET45\",");
+            file.WriteLine("                    \"IIS-ApplicationInit\",");
             file.WriteLine("                    \"NetFx4Extended-ASPNET45\",");
             file.WriteLine("                    \"WAS-ProcessModel\",");
             file.WriteLine("                    \"WAS-WindowsActivationService\"");
@@ -682,6 +683,7 @@ namespace SCIA
 
             switch (Version.SitecoreVersion)
             {
+                case "10.3.0":
                 case "10.2.0":
                 case "10.1.1":
                 case "10.1.0":
@@ -714,8 +716,11 @@ namespace SCIA
 
         private void btnPrerequisites_Click(object sender, EventArgs e)
         {
+            WritePrerequisitesFile(@".\" + destFolder + "\\Prerequisites.json");//need to generate this for new machines since 9.0.2 doesn't provide a prerequisites.json in the zip
+
             switch (Version.SitecoreVersion)
             {
+                case "10.3.0":
                 case "10.2.0":
                 case "10.1.1":
                 case "10.1.0":
@@ -732,7 +737,6 @@ namespace SCIA
                 case "9.0":
                 case "9.0.1":
                 case "9.0.2":
-                    WritePrerequisitesFile(@".\" + destFolder + "\\Prerequisites.json");//need to generate this for new machines since 9.0.2 doesn't provide a prerequisites.json in the zip
                     CommonFunctions.LaunchPSScript(@"Install-SitecoreConfiguration -Path .\Prerequisites.json", destFolder);
                     break;
                 default:
