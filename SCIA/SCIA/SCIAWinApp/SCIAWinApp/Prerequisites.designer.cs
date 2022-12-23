@@ -336,7 +336,7 @@
             this.lblStatus.Location = new System.Drawing.Point(22, 998);
             this.lblStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(220, 32);
+            this.lblStatus.Size = new System.Drawing.Size(219, 32);
             this.lblStatus.TabIndex = 52;
             this.lblStatus.Text = "Happy Sitecoring!";
             // 
@@ -447,9 +447,9 @@
             this.chkCoreRuntime.Location = new System.Drawing.Point(15, 435);
             this.chkCoreRuntime.Margin = new System.Windows.Forms.Padding(4);
             this.chkCoreRuntime.Name = "chkCoreRuntime";
-            this.chkCoreRuntime.Size = new System.Drawing.Size(404, 29);
+            this.chkCoreRuntime.Size = new System.Drawing.Size(277, 29);
             this.chkCoreRuntime.TabIndex = 2;
-            this.chkCoreRuntime.Text = "ASP.NET Core Runtime 3.1.7 or 3.1.8";
+            this.chkCoreRuntime.Text = "ASP.NET Core Runtime ";
             this.chkCoreRuntime.UseVisualStyleBackColor = false;
             // 
             // chkRedis

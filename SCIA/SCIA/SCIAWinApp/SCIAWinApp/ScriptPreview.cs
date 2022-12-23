@@ -113,12 +113,17 @@ namespace SCIA
                 "\t[string]$CommerceMAForAutomationEngineZIPFullPath = \"$XCInstallRoot\\Sitecore Commerce Marketing Automation for AutomationEngine*.zip\",");
             file.WriteLine(
                 "\t# Path to the Sitecore Experience Accelerator zip file.");
-            file.WriteLine(
-                "\t[string]$SXAModuleZIPFullPath = \"$XCInstallRoot\\Sitecore Experience Accelerator*.zip\",");
-            file.WriteLine(
-                "\t# Path to the Sitecore.PowerShell.Extensions zip file.");
-            file.WriteLine(
-                "\t[string]$PowerShellExtensionsModuleZIPFullPath = \"$XCInstallRoot\\Sitecore.PowerShell.Extensions*.zip\",");
+
+            if (Version.SitecoreVersion!="10.3.0")
+            {
+                file.WriteLine(
+                    "\t[string]$SXAModuleZIPFullPath = \"$XCInstallRoot\\Sitecore Experience Accelerator*.zip\",");
+                file.WriteLine(
+                    "\t# Path to the Sitecore.PowerShell.Extensions zip file.");
+                file.WriteLine(
+                    "\t[string]$PowerShellExtensionsModuleZIPFullPath = \"$XCInstallRoot\\Sitecore.PowerShell.Extensions*.zip\",");
+            }
+
             file.WriteLine(
                 "\t# Path to the Sitecore BizFx Server SCWDP file.");
             file.WriteLine(
@@ -203,7 +208,12 @@ namespace SCIA
             file.WriteLine("\t# The name of the global database for the Commerce Services.");
             file.WriteLine("\t[string]$CommerceServicesGlobalDbName =  \"" + sitedetails.CommerceGlobalDbName + "\",");
             file.WriteLine("\t# The port for the Commerce Ops Service.");
-            file.WriteLine("\t[string]$CommerceOpsServicesPort = \"" + sitedetails.CommerceOpsSvcPort + "\",");
+            if (Version.SitecoreVersion != "10.3.0")
+            {
+
+                file.WriteLine("\t[string]$CommerceOpsServicesPort = \"" + sitedetails.CommerceOpsSvcPort + "\",");
+            }
+
             file.WriteLine("\t# The port for the Commerce Shops Service");
             file.WriteLine("\t[string]$CommerceShopsServicesPort = \"" + sitedetails.CommerceShopsServicesPort + "\",");
             file.WriteLine("\t# The port for the Commerce Authoring Service.");
@@ -328,8 +338,13 @@ namespace SCIA
             file.WriteLine("\tCommercexProfilesWdpFullPath             = Resolve-ItemPath -Path $CommercexProfilesWdpFullPath");
             file.WriteLine("\tCommerceMAWdpFullPath                    = Resolve-ItemPath -Path $CommerceMAWdpFullPath");
             file.WriteLine("\tCommerceMAForAutomationEngineZIPFullPath = Resolve-ItemPath -Path $CommerceMAForAutomationEngineZIPFullPath");
-            file.WriteLine("\tSXAModuleZIPFullPath                     = Resolve-ItemPath -Path $SXAModuleZIPFullPath");
-            file.WriteLine("\tPowerShellExtensionsModuleZIPFullPath    = Resolve-ItemPath -Path $PowerShellExtensionsModuleZIPFullPath");
+
+            if (Version.SitecoreVersion!="10.3.0")
+            {
+                file.WriteLine("\tSXAModuleZIPFullPath                     = Resolve-ItemPath -Path $SXAModuleZIPFullPath");
+                file.WriteLine("\tPowerShellExtensionsModuleZIPFullPath    = Resolve-ItemPath -Path $PowerShellExtensionsModuleZIPFullPath");
+            }
+
             file.WriteLine("\tBizFxPackage                             = Resolve-ItemPath -Path $BizFxPackage");
             file.WriteLine("\tCommerceEngineWdpFullPath                = Resolve-ItemPath -Path $CommerceEngineWdpFullPath");
             file.WriteLine("\tHabitatImagesWdpFullPath                 = Resolve-ItemPath -Path $HabitatImagesWdpFullPath");
@@ -357,7 +372,13 @@ namespace SCIA
             file.WriteLine("\tEnvironments                             = $Environments");
             file.WriteLine("\tEnvironmentsGuids                        = $EnvironmentsGuids");
             file.WriteLine("\tMinionEnvironments                       = $MinionEnvironments");
-            file.WriteLine("\tCommerceOpsServicesPort                  = $CommerceOpsServicesPort");
+
+            if (Version.SitecoreVersion != "10.3.0")
+            {
+
+                file.WriteLine("\tCommerceOpsServicesPort                  = $CommerceOpsServicesPort");
+            }
+
             file.WriteLine("\tCommerceShopsServicesPort                = $CommerceShopsServicesPort");
             file.WriteLine("\tCommerceAuthoringServicesPort            = $CommerceAuthoringServicesPort");
             file.WriteLine("\tCommerceMinionsServicesPort              = $CommerceMinionsServicesPort");
@@ -692,8 +713,14 @@ namespace SCIA
             file.WriteLine("\t[string]$CommerceServicesDbName = \"" + sitedetails.CommerceDbName + "\",");
             file.WriteLine("\t# The name of the global database for the Commerce Services.");
             file.WriteLine("\t[string]$CommerceServicesGlobalDbName =  \"" + sitedetails.CommerceGlobalDbName + "\",");
-            file.WriteLine("\t# The port for the Commerce Ops Service.");
-            file.WriteLine("\t[string]$CommerceOpsServicesPort = \"" + sitedetails.CommerceOpsSvcPort + "\",");
+
+            if (Version.SitecoreVersion != "10.3.0")
+            {
+
+                file.WriteLine("\t# The port for the Commerce Ops Service.");
+                file.WriteLine("\t[string]$CommerceOpsServicesPort = \"" + sitedetails.CommerceOpsSvcPort + "\",");
+            }
+
             file.WriteLine("\t# The port for the Commerce Shops Service");
             file.WriteLine("\t[string]$CommerceShopsServicesPort = \"" + sitedetails.CommerceShopsServicesPort + "\",");
             file.WriteLine("\t# The port for the Commerce Authoring Service.");
@@ -819,8 +846,13 @@ namespace SCIA
             file.WriteLine("\tCommercexProfilesWdpFullPath             = Resolve-ItemPath -Path $CommercexProfilesWdpFullPath");
             file.WriteLine("\tCommerceMAWdpFullPath                    = Resolve-ItemPath -Path $CommerceMAWdpFullPath");
             file.WriteLine("\tCommerceMAForAutomationEngineZIPFullPath = Resolve-ItemPath -Path $CommerceMAForAutomationEngineZIPFullPath");
-            file.WriteLine("\tSXAModuleZIPFullPath                     = Resolve-ItemPath -Path $SXAModuleZIPFullPath");
-            file.WriteLine("\tPowerShellExtensionsModuleZIPFullPath    = Resolve-ItemPath -Path $PowerShellExtensionsModuleZIPFullPath");
+
+            if (Version.SitecoreVersion != "10.3.0")
+            {
+                file.WriteLine("\tSXAModuleZIPFullPath                     = Resolve-ItemPath -Path $SXAModuleZIPFullPath");
+                file.WriteLine("\tPowerShellExtensionsModuleZIPFullPath    = Resolve-ItemPath -Path $PowerShellExtensionsModuleZIPFullPath");
+            }
+
             file.WriteLine("\tBizFxPackage                             = Resolve-ItemPath -Path $BizFxPackage");
             file.WriteLine("\tCommerceEngineWdpFullPath                = Resolve-ItemPath -Path $CommerceEngineWdpFullPath");
             file.WriteLine("\tHabitatImagesWdpFullPath                 = Resolve-ItemPath -Path $HabitatImagesWdpFullPath");
@@ -848,7 +880,10 @@ namespace SCIA
             file.WriteLine("\tEnvironments                             = $Environments");
             file.WriteLine("\tEnvironmentsGuids                        = $EnvironmentsGuids");
             file.WriteLine("\tMinionEnvironments                       = $MinionEnvironments");
-            file.WriteLine("\tCommerceOpsServicesPort                  = $CommerceOpsServicesPort");
+
+            if (Version.SitecoreVersion != "10.3.0")
+                file.WriteLine("\tCommerceOpsServicesPort                  = $CommerceOpsServicesPort");
+
             file.WriteLine("\tCommerceShopsServicesPort                = $CommerceShopsServicesPort");
             file.WriteLine("\tCommerceAuthoringServicesPort            = $CommerceAuthoringServicesPort");
             file.WriteLine("\tCommerceMinionsServicesPort              = $CommerceMinionsServicesPort");

@@ -338,7 +338,10 @@ namespace SCIA
             file.WriteLine("    AzureSearchServiceName                   = \"\"");
             file.WriteLine("    AzureSearchAdminKey                      = \"\"");
             file.WriteLine("    AzureSearchQueryKey                      = \"\"");
-            file.WriteLine("    CommerceOpsServicesPort                  = \"" + txtCommerceOpsSvcPort.Text + "\"");
+
+            if (Version.SitecoreVersion != "10.3.0")
+                file.WriteLine("    CommerceOpsServicesPort                  = \"" + txtCommerceOpsSvcPort.Text + "\"");
+
             file.WriteLine("    CommerceShopsServicesPort                = \"" + txtCommerceShopsServicesPort.Text + "\"");
             file.WriteLine("    CommerceAuthoringServicesPort            = \"" + txtCommerceAuthSvcPort.Text + "\"");
             file.WriteLine("    CommerceMinionsServicesPort              = \"" + txtCommerceMinionsSvcPort.Text + "\"");
@@ -356,8 +359,14 @@ namespace SCIA
             file.WriteLine("    CommerceMAWdpFullPath                    = Resolve-Path -Path \"$XCInstallRoot\\Sitecore Commerce Marketing Automation Core*.scwdp.zip\"");
             file.WriteLine("    CEConnectWdpFullPath                     = Resolve-Path -Path \"$XCInstallRoot\\Sitecore Commerce Engine Connect*.scwdp.zip\"");
             file.WriteLine("    CommerceMAForAutomationEngineZIPFullPath = Resolve-Path -Path \"$XCInstallRoot\\Sitecore Commerce Marketing Automation for AutomationEngine*.zip\"");
-            file.WriteLine("    PowerShellExtensionsModuleZIPFullPath    = Resolve-Path -Path \"$XCInstallRoot\\Sitecore PowerShell Extensions*.zip\"");
-            file.WriteLine("    SXAModuleZIPFullPath                     = Resolve-Path -Path \"$XCInstallRoot\\Sitecore Experience Accelerator*.zip\"");
+
+            if (Version.SitecoreVersion != "10.3.0")
+            {
+
+                file.WriteLine("    PowerShellExtensionsModuleZIPFullPath    = Resolve-Path -Path \"$XCInstallRoot\\Sitecore PowerShell Extensions*.zip\"");
+                file.WriteLine("    SXAModuleZIPFullPath                     = Resolve-Path -Path \"$XCInstallRoot\\Sitecore Experience Accelerator*.zip\"");
+            }
+            
             file.WriteLine("    SXACommerceWdpFullPath                   = Resolve-Path -Path \"$XCInstallRoot\\Sitecore Commerce Experience Accelerator*.scwdp.zip\" | Select-Object -first 1");
             file.WriteLine("    SXAStorefrontWdpFullPath                 = Resolve-Path -Path \"$XCInstallRoot\\Sitecore Commerce Experience Accelerator Storefront*.scwdp.zip\" | Select-Object -first 1");
             file.WriteLine("    SXAStorefrontThemeWdpFullPath            = Resolve-Path -Path \"$XCInstallRoot\\Sitecore Commerce Experience Accelerator Storefront Themes*.scwdp.zip\"");
@@ -572,7 +581,10 @@ namespace SCIA
             file.WriteLine("    AzureSearchAdminKey                      = \"\"");
             file.WriteLine("    AzureSearchQueryKey                      = \"\"");
             file.WriteLine("    CommerceEngineDacPac                     = Resolve-Path -Path \"..\\Sitecore.Commerce.Engine.SDK.*\\Sitecore.Commerce.Engine.DB.dacpac\"");
-            file.WriteLine("    CommerceOpsServicesPort                  = \"" + txtCommerceOpsSvcPort.Text + "\"");
+
+            if (Version.SitecoreVersion != "10.3.0")
+                file.WriteLine("    CommerceOpsServicesPort                  = \"" + txtCommerceOpsSvcPort.Text + "\"");
+
             file.WriteLine("    CommerceShopsServicesPort                = \"" + txtCommerceShopsServicesPort.Text + "\"");
             file.WriteLine("    CommerceAuthoringServicesPort            = \"" + txtCommerceAuthSvcPort.Text + "\"");
             file.WriteLine("    CommerceMinionsServicesPort              = \"" + txtCommerceMinionsSvcPort.Text + "\"");
@@ -818,12 +830,18 @@ namespace SCIA
                 "\t# Path to the Sitecore Commerce Marketing Automation for AutomationEngine zip file.");
             file.WriteLine(
                 "\t[string]$CommerceMAForAutomationEngineZIPFullPath = \"$XCInstallRoot\\Sitecore Commerce Marketing Automation for AutomationEngine*.zip\",");
-            file.WriteLine(
+
+            if (Version.SitecoreVersion != "10.3.0")
+            {
+
+                file.WriteLine(
                 "\t# Path to the Sitecore Experience Accelerator zip file.");
-            file.WriteLine(
-                "\t[string]$SXAModuleZIPFullPath = \"$XCInstallRoot\\Sitecore Experience Accelerator*.zip\",");
-            file.WriteLine(
-                "\t# Path to the Sitecore.PowerShell.Extensions zip file.");
+                file.WriteLine(
+                    "\t[string]$SXAModuleZIPFullPath = \"$XCInstallRoot\\Sitecore Experience Accelerator*.zip\",");
+                file.WriteLine(
+                    "\t# Path to the Sitecore.PowerShell.Extensions zip file.");
+            }
+
             file.WriteLine(
                 "\t[string]$PowerShellExtensionsModuleZIPFullPath = \"$XCInstallRoot\\Sitecore.PowerShell.Extensions*.zip\",");
             file.WriteLine(
@@ -909,8 +927,14 @@ namespace SCIA
             file.WriteLine("\t[string]$CommerceServicesDbName = \"" + txtCommerceDbName.Text + "\",");
             file.WriteLine("\t# The name of the global database for the Commerce Services.");
             file.WriteLine("\t[string]$CommerceServicesGlobalDbName =  \"" + txtCommerceGlobalDbName.Text + "\",");
-            file.WriteLine("\t# The port for the Commerce Ops Service.");
-            file.WriteLine("\t[string]$CommerceOpsServicesPort = \"" + txtCommerceOpsSvcPort.Value.ToString() + "\",");
+
+            if (Version.SitecoreVersion != "10.3.0")
+            {
+
+                file.WriteLine("\t# The port for the Commerce Ops Service.");
+                file.WriteLine("\t[string]$CommerceOpsServicesPort = \"" + txtCommerceOpsSvcPort.Value.ToString() + "\",");
+            }
+
             file.WriteLine("\t# The port for the Commerce Shops Service");
             file.WriteLine("\t[string]$CommerceShopsServicesPort = \"" + txtCommerceShopsServicesPort.Value.ToString() + "\",");
             file.WriteLine("\t# The port for the Commerce Authoring Service.");
@@ -1035,8 +1059,14 @@ namespace SCIA
             file.WriteLine("\tCommercexProfilesWdpFullPath             = Resolve-ItemPath -Path $CommercexProfilesWdpFullPath");
             file.WriteLine("\tCommerceMAWdpFullPath                    = Resolve-ItemPath -Path $CommerceMAWdpFullPath");
             file.WriteLine("\tCommerceMAForAutomationEngineZIPFullPath = Resolve-ItemPath -Path $CommerceMAForAutomationEngineZIPFullPath");
-            file.WriteLine("\tSXAModuleZIPFullPath                     = Resolve-ItemPath -Path $SXAModuleZIPFullPath");
-            file.WriteLine("\tPowerShellExtensionsModuleZIPFullPath    = Resolve-ItemPath -Path $PowerShellExtensionsModuleZIPFullPath");
+
+            if (Version.SitecoreVersion != "10.3.0")
+            {
+
+                file.WriteLine("\tSXAModuleZIPFullPath                     = Resolve-ItemPath -Path $SXAModuleZIPFullPath");
+                file.WriteLine("\tPowerShellExtensionsModuleZIPFullPath    = Resolve-ItemPath -Path $PowerShellExtensionsModuleZIPFullPath");
+            }
+
             file.WriteLine("\tBizFxPackage                             = Resolve-ItemPath -Path $BizFxPackage");
             file.WriteLine("\tCommerceEngineWdpFullPath                = Resolve-ItemPath -Path $CommerceEngineWdpFullPath");
             file.WriteLine("\tHabitatImagesWdpFullPath                 = Resolve-ItemPath -Path $HabitatImagesWdpFullPath");
@@ -1064,7 +1094,10 @@ namespace SCIA
             file.WriteLine("\tEnvironments                             = $Environments");
             file.WriteLine("\tEnvironmentsGuids                        = $EnvironmentsGuids");
             file.WriteLine("\tMinionEnvironments                       = $MinionEnvironments");
-            file.WriteLine("\tCommerceOpsServicesPort                  = $CommerceOpsServicesPort");
+
+            if (Version.SitecoreVersion != "10.3.0")
+                file.WriteLine("\tCommerceOpsServicesPort                  = $CommerceOpsServicesPort");
+
             file.WriteLine("\tCommerceShopsServicesPort                = $CommerceShopsServicesPort");
             file.WriteLine("\tCommerceAuthoringServicesPort            = $CommerceAuthoringServicesPort");
             file.WriteLine("\tCommerceMinionsServicesPort              = $CommerceMinionsServicesPort");
@@ -1303,14 +1336,20 @@ namespace SCIA
                 "\t# Path to the Sitecore Commerce Marketing Automation for AutomationEngine zip file.");
             file.WriteLine(
                 "\t[string]$CommerceMAForAutomationEngineZIPFullPath = \"$XCInstallRoot\\Sitecore Commerce Marketing Automation for AutomationEngine*.zip\",");
-            file.WriteLine(
+
+            if (Version.SitecoreVersion != "10.3.0")
+            {
+
+                file.WriteLine(
                 "\t# Path to the Sitecore Experience Accelerator zip file.");
-            file.WriteLine(
-                "\t[string]$SXAModuleZIPFullPath = \"$XCInstallRoot\\Sitecore Experience Accelerator*.zip\",");
-            file.WriteLine(
-                "\t# Path to the Sitecore.PowerShell.Extensions zip file.");
-            file.WriteLine(
-                "\t[string]$PowerShellExtensionsModuleZIPFullPath = \"$XCInstallRoot\\Sitecore.PowerShell.Extensions*.zip\",");
+                file.WriteLine(
+                    "\t[string]$SXAModuleZIPFullPath = \"$XCInstallRoot\\Sitecore Experience Accelerator*.zip\",");
+                file.WriteLine(
+                    "\t# Path to the Sitecore.PowerShell.Extensions zip file.");
+                file.WriteLine(
+                    "\t[string]$PowerShellExtensionsModuleZIPFullPath = \"$XCInstallRoot\\Sitecore.PowerShell.Extensions*.zip\",");
+            }
+
             file.WriteLine(
                 "\t# Path to the Sitecore BizFx Server SCWDP file.");
             file.WriteLine(
@@ -1398,8 +1437,14 @@ namespace SCIA
             file.WriteLine("\t[string]$CommerceServicesGlobalDbName =  \"" + txtCommerceGlobalDbName.Text + "\",");
             file.WriteLine("\t# The name of the archive database for the Commerce Services.");
             file.WriteLine("\t[string]$CommerceServicesArchiveDbName = \"" + txtSiteNamePrefix.Text  + "_SitecoreCommerce_ArchiveSharedEnvironments" + "\",");
-            file.WriteLine("\t# The port for the Commerce Ops Service.");
-            file.WriteLine("\t[string]$CommerceOpsServicesPort = \"" + txtCommerceOpsSvcPort.Value.ToString() + "\",");
+
+            if (Version.SitecoreVersion != "10.3.0")
+            {
+
+                file.WriteLine("\t# The port for the Commerce Ops Service.");
+                file.WriteLine("\t[string]$CommerceOpsServicesPort = \"" + txtCommerceOpsSvcPort.Value.ToString() + "\",");
+            }
+
             file.WriteLine("\t# The port for the Commerce Shops Service");
             file.WriteLine("\t[string]$CommerceShopsServicesPort = \"" + txtCommerceShopsServicesPort.Value.ToString() + "\",");
             file.WriteLine("\t# The port for the Commerce Authoring Service.");
@@ -1525,8 +1570,13 @@ namespace SCIA
             file.WriteLine("\tCommercexProfilesWdpFullPath             = Resolve-ItemPath -Path $CommercexProfilesWdpFullPath");
             file.WriteLine("\tCommerceMAWdpFullPath                    = Resolve-ItemPath -Path $CommerceMAWdpFullPath");
             file.WriteLine("\tCommerceMAForAutomationEngineZIPFullPath = Resolve-ItemPath -Path $CommerceMAForAutomationEngineZIPFullPath");
-            file.WriteLine("\tSXAModuleZIPFullPath                     = Resolve-ItemPath -Path $SXAModuleZIPFullPath");
-            file.WriteLine("\tPowerShellExtensionsModuleZIPFullPath    = Resolve-ItemPath -Path $PowerShellExtensionsModuleZIPFullPath");
+
+            if (Version.SitecoreVersion != "10.3.0")
+            {
+                file.WriteLine("\tSXAModuleZIPFullPath                     = Resolve-ItemPath -Path $SXAModuleZIPFullPath");
+                file.WriteLine("\tPowerShellExtensionsModuleZIPFullPath    = Resolve-ItemPath -Path $PowerShellExtensionsModuleZIPFullPath");
+            }
+
             file.WriteLine("\tBizFxPackage                             = Resolve-ItemPath -Path $BizFxPackage");
             file.WriteLine("\tCommerceEngineWdpFullPath                = Resolve-ItemPath -Path $CommerceEngineWdpFullPath");
             file.WriteLine("\tHabitatImagesWdpFullPath                 = Resolve-ItemPath -Path $HabitatImagesWdpFullPath");
@@ -1556,7 +1606,10 @@ namespace SCIA
             file.WriteLine("\tEnvironments                             = $Environments");
             file.WriteLine("\tEnvironmentsGuids                        = $EnvironmentsGuids");
             file.WriteLine("\tMinionEnvironments                       = $MinionEnvironments");
-            file.WriteLine("\tCommerceOpsServicesPort                  = $CommerceOpsServicesPort");
+
+            if (Version.SitecoreVersion != "10.3.0")
+                file.WriteLine("\tCommerceOpsServicesPort                  = $CommerceOpsServicesPort");
+
             file.WriteLine("\tCommerceShopsServicesPort                = $CommerceShopsServicesPort");
             file.WriteLine("\tCommerceAuthoringServicesPort            = $CommerceAuthoringServicesPort");
             file.WriteLine("\tCommerceMinionsServicesPort              = $CommerceMinionsServicesPort");
@@ -1739,7 +1792,7 @@ namespace SCIA
             file.Dispose();
         }
 
-        void WriteFile(string path, bool habitatflag, bool uninstallscript)
+        void Write103File(string path, bool habitatflag, bool uninstallscript)
         {
             using var file = new StreamWriter(path);
 
@@ -1799,14 +1852,6 @@ namespace SCIA
             file.WriteLine(
                 "\t[string]$CommerceMAForAutomationEngineZIPFullPath = \"$XCInstallRoot\\Sitecore Commerce Marketing Automation for AutomationEngine*.zip\",");
             file.WriteLine(
-                "\t# Path to the Sitecore Experience Accelerator zip file.");
-            file.WriteLine(
-                "\t[string]$SXAModuleZIPFullPath = \"$XCInstallRoot\\Sitecore Experience Accelerator*.zip\",");
-            file.WriteLine(
-                "\t# Path to the Sitecore.PowerShell.Extensions zip file.");
-            file.WriteLine(
-                "\t[string]$PowerShellExtensionsModuleZIPFullPath = \"$XCInstallRoot\\Sitecore.PowerShell.Extensions*.zip\",");
-            file.WriteLine(
                 "\t# Path to the Sitecore BizFx Server SCWDP file.");
             file.WriteLine(
                 "\t[string]$BizFxPackage = \"$XCInstallRoot\\Sitecore.BizFx.OnPrem*scwdp.zip\",");
@@ -1823,7 +1868,8 @@ namespace SCIA
                 "\t# The prefix that will be used on SOLR, Website and Database instances. The default value matches the Sitecore XP default.");
             file.WriteLine(
                 "\t[string]$SiteNamePrefix = \"" + txtSiteNamePrefix.Text + "\",");
-
+            file.WriteLine(
+                "\t[string]$MAEnginePrefix = $SiteNamePrefix,");
             file.WriteLine("\t# The name of the Sitecore site instance.");
             file.WriteLine("\t[string]$SiteName = \"" + txtSiteName.Text + "\",");
             file.WriteLine("\t# Identity Server site name.");
@@ -1865,7 +1911,7 @@ namespace SCIA
             file.WriteLine("\t[string]$SitecoreUserPassword = \"" + txtSitecoreUserPassword.Text + "\",");
             file.WriteLine();
             file.WriteLine("\t# The prefix for the Search index. Using the SiteName value for the prefix is recommended.");
-            file.WriteLine("\t[string]$SearchIndexPrefix = \"" + txtSearchIndexPrefix.Text + "\",");
+            file.WriteLine("\t[string]$SearchIndexPrefix = $SiteNamePrefix,");
             file.WriteLine("\t# The URL of the Solr Server.");
             file.WriteLine("\t[string]$SolrUrl =  \"" + txtSolrUrl.Text + "\",");
             file.WriteLine("\t# The folder that Solr has been installed to.");
@@ -1890,8 +1936,8 @@ namespace SCIA
             file.WriteLine("\t[string]$CommerceServicesDbName = \"" + txtCommerceDbName.Text + "\",");
             file.WriteLine("\t# The name of the global database for the Commerce Services.");
             file.WriteLine("\t[string]$CommerceServicesGlobalDbName =  \"" + txtCommerceGlobalDbName.Text + "\",");
-            file.WriteLine("\t# The port for the Commerce Ops Service.");
-            file.WriteLine("\t[string]$CommerceOpsServicesPort = \"" + txtCommerceOpsSvcPort.Value.ToString() + "\",");
+            file.WriteLine("\t# The name of the archive database for the Commerce Services.");
+            file.WriteLine("\t[string]$CommerceServicesArchiveDbName = \"" + txtSiteNamePrefix.Text + "_SitecoreCommerce_ArchiveSharedEnvironments" + "\",");
             file.WriteLine("\t# The port for the Commerce Shops Service");
             file.WriteLine("\t[string]$CommerceShopsServicesPort = \"" + txtCommerceShopsServicesPort.Value.ToString() + "\",");
             file.WriteLine("\t# The port for the Commerce Authoring Service.");
@@ -2017,8 +2063,525 @@ namespace SCIA
             file.WriteLine("\tCommercexProfilesWdpFullPath             = Resolve-ItemPath -Path $CommercexProfilesWdpFullPath");
             file.WriteLine("\tCommerceMAWdpFullPath                    = Resolve-ItemPath -Path $CommerceMAWdpFullPath");
             file.WriteLine("\tCommerceMAForAutomationEngineZIPFullPath = Resolve-ItemPath -Path $CommerceMAForAutomationEngineZIPFullPath");
-            file.WriteLine("\tSXAModuleZIPFullPath                     = Resolve-ItemPath -Path $SXAModuleZIPFullPath");
-            file.WriteLine("\tPowerShellExtensionsModuleZIPFullPath    = Resolve-ItemPath -Path $PowerShellExtensionsModuleZIPFullPath");
+
+            if (Version.SitecoreVersion != "10.3.0")
+            {
+
+                file.WriteLine("\tSXAModuleZIPFullPath                     = Resolve-ItemPath -Path $SXAModuleZIPFullPath");
+                file.WriteLine("\tPowerShellExtensionsModuleZIPFullPath    = Resolve-ItemPath -Path $PowerShellExtensionsModuleZIPFullPath");
+            }
+
+            file.WriteLine("\tBizFxPackage                             = Resolve-ItemPath -Path $BizFxPackage");
+            file.WriteLine("\tCommerceEngineWdpFullPath                = Resolve-ItemPath -Path $CommerceEngineWdpFullPath");
+            file.WriteLine("\tHabitatImagesWdpFullPath                 = Resolve-ItemPath -Path $HabitatImagesWdpFullPath");
+            file.WriteLine("\tSiteName                                 = $SiteName");
+            file.WriteLine("\tMAEnginePrefix                           = $MAEnginePrefix");
+            file.WriteLine("\tSiteHostHeaderName                       = $SiteHostHeaderName");
+            file.WriteLine("\tInstallDir                               = Resolve-ItemPath -Path $InstallDir");
+            file.WriteLine("\tXConnectInstallDir                       = Resolve-ItemPath -Path $XConnectInstallDir");
+            file.WriteLine("\tCommerceInstallRoot                      = Resolve-ItemPath -Path $CommerceInstallRoot");
+            file.WriteLine("\tCommerceServicesDbServer                 = $CommerceServicesDbServer");
+            file.WriteLine("\tCommerceServicesDbName                   = $CommerceServicesDbName");
+            file.WriteLine("\tCommerceServicesGlobalDbName             = $CommerceServicesGlobalDbName");
+            file.WriteLine("\tCommerceServicesArchiveDbName            = $CommerceServicesArchiveDbName");
+            file.WriteLine("\tSitecoreDbServer                         = $SitecoreDbServer");
+            file.WriteLine("\tSitecoreCoreDbName                       = $SitecoreCoreDbName");
+            file.WriteLine("\tSqlDbPrefix                              = $SqlDbPrefix");
+            file.WriteLine("\tSqlAdminUser                             = $SqlUser");
+            file.WriteLine("\tSqlAdminPassword                         = $SqlPass");
+            file.WriteLine("\tSolrUrl                                  = $SolrUrl");
+            file.WriteLine("\tSolrRoot                                 = Resolve-ItemPath -Path $SolrRoot");
+            file.WriteLine("\tSolrService                              = $SolrService");
+            file.WriteLine("\tSearchIndexPrefix                        = $SearchIndexPrefix");
+            file.WriteLine("\tStorefrontIndexPrefix                    = $StorefrontIndexPrefix");
+            file.WriteLine("\tCommerceServicesPostfix                  = $CommerceServicesPostfix");
+            file.WriteLine("\tCommerceServicesHostPostfix              = $CommerceServicesHostPostfix");
+            file.WriteLine("\tEnvironmentsPrefix                       = $EnvironmentsPrefix");
+            file.WriteLine("\tEnvironments                             = $Environments");
+            file.WriteLine("\tEnvironmentsGuids                        = $EnvironmentsGuids");
+            file.WriteLine("\tMinionEnvironments                       = $MinionEnvironments");
+
+            if (Version.SitecoreVersion != "10.3.0")
+                file.WriteLine("\tCommerceOpsServicesPort                  = $CommerceOpsServicesPort");
+
+            file.WriteLine("\tCommerceShopsServicesPort                = $CommerceShopsServicesPort");
+            file.WriteLine("\tCommerceAuthoringServicesPort            = $CommerceAuthoringServicesPort");
+            file.WriteLine("\tCommerceMinionsServicesPort              = $CommerceMinionsServicesPort");
+            file.WriteLine("\tRedisInstanceName                        = $RedisInstanceName");
+            file.WriteLine("\tRedisCliPath                             = $RedisCliPath");
+            file.WriteLine("\tRedisHost                                = $RedisHost");
+            file.WriteLine("\tRedisPort                                = $RedisPort");
+            file.WriteLine("\tUserDomain                               = $UserDomain");
+            file.WriteLine("\tUserName                                 = $UserName");
+            file.WriteLine("\tUserPassword                             = $UserPassword");
+            file.WriteLine("\tBraintreeMerchantId                      = $BraintreeMerchantId");
+            file.WriteLine("\tBraintreePublicKey                       = $BraintreePublicKey");
+            file.WriteLine("\tBraintreePrivateKey                      = $BraintreePrivateKey");
+            file.WriteLine("\tBraintreeEnvironment                     = $BraintreeEnvironment");
+            file.WriteLine("\tSitecoreDomain                           = $SitecoreDomain");
+            file.WriteLine("\tSitecoreUsername                         = $SitecoreUsername");
+            file.WriteLine("\tSitecoreUserPassword                     = $SitecoreUserPassword");
+            file.WriteLine("\tBizFxSiteName                            = $BizFxSiteName");
+            file.WriteLine("\tBizFxPort                                = $BizFxPort");
+            file.WriteLine("\tSitecoreIdentityServerApplicationName    = $IdentityServerSiteName");
+            file.WriteLine("\tSitecoreIdentityServerUrl                = $SitecoreIdentityServerUrl");
+            file.WriteLine("\tSkipInstallDefaultStorefront             = $SkipInstallDefaultStorefront");
+            file.WriteLine("\tSkipDeployStorefrontPackages             = $SkipDeployStorefrontPackages");
+            file.WriteLine("\tCommerceEngineConnectClientId            = $CommerceEngineConnectClientId");
+            file.WriteLine("\tCommerceEngineConnectClientSecret        = $CommerceEngineConnectClientSecret");
+            file.WriteLine("\tDeploySampleData                         = $DeploySampleData");
+            file.WriteLine("}");
+            file.WriteLine();
+            file.WriteLine("if ($Skip.Count -eq 0) {");
+            if (uninstallscript)
+            {
+                file.WriteLine("\tUnInstall-SitecoreConfiguration @deployCommerceParams -Verbose *>&1 | Tee-Object \"$XCSIFInstallRoot\\XC-Install.log\"");
+            }
+            else
+            {
+                file.WriteLine("\tInstall-SitecoreConfiguration @deployCommerceParams -Verbose *>&1 | Tee-Object \"$XCSIFInstallRoot\\XC-Install.log\"");
+            }
+            file.WriteLine("}");
+            file.WriteLine("else {");
+            if (!uninstallscript)
+            {
+                file.WriteLine("\tInstall-SitecoreConfiguration @deployCommerceParams -Skip $Skip -Verbose *>&1 | Tee-Object \"$XCSIFInstallRoot\\XC-Install.log\"");
+            }
+            else
+            {
+                file.WriteLine("\tUnInstall-SitecoreConfiguration @deployCommerceParams -Skip $Skip -Verbose *>&1 | Tee-Object \"$XCSIFInstallRoot\\XC-Install.log\"");
+            }
+            file.WriteLine("}");
+            file.WriteLine();
+            file.WriteLine("# SIG # Begin signature block");
+            file.WriteLine("# MIIXwQYJKoZIhvcNAQcCoIIXsjCCF64CAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB");
+            file.WriteLine("# gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR");
+            file.WriteLine("# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUhy349aqDO4jjrB5wZPv+ZL41");
+            file.WriteLine("# 6RygghL8MIID7jCCA1egAwIBAgIQfpPr+3zGTlnqS5p31Ab8OzANBgkqhkiG9w0B");
+            file.WriteLine("# AQUFADCBizELMAkGA1UEBhMCWkExFTATBgNVBAgTDFdlc3Rlcm4gQ2FwZTEUMBIG");
+            file.WriteLine("# A1UEBxMLRHVyYmFudmlsbGUxDzANBgNVBAoTBlRoYXd0ZTEdMBsGA1UECxMUVGhh");
+            file.WriteLine("# d3RlIENlcnRpZmljYXRpb24xHzAdBgNVBAMTFlRoYXd0ZSBUaW1lc3RhbXBpbmcg");
+            file.WriteLine("# Q0EwHhcNMTIxMjIxMDAwMDAwWhcNMjAxMjMwMjM1OTU5WjBeMQswCQYDVQQGEwJV");
+            file.WriteLine("# UzEdMBsGA1UEChMUU3ltYW50ZWMgQ29ycG9yYXRpb24xMDAuBgNVBAMTJ1N5bWFu");
+            file.WriteLine("# dGVjIFRpbWUgU3RhbXBpbmcgU2VydmljZXMgQ0EgLSBHMjCCASIwDQYJKoZIhvcN");
+            file.WriteLine("# AQEBBQADggEPADCCAQoCggEBALGss0lUS5ccEgrYJXmRIlcqb9y4JsRDc2vCvy5Q");
+            file.WriteLine("# WvsUwnaOQwElQ7Sh4kX06Ld7w3TMIte0lAAC903tv7S3RCRrzV9FO9FEzkMScxeC");
+            file.WriteLine("# i2m0K8uZHqxyGyZNcR+xMd37UWECU6aq9UksBXhFpS+JzueZ5/6M4lc/PcaS3Er4");
+            file.WriteLine("# ezPkeQr78HWIQZz/xQNRmarXbJ+TaYdlKYOFwmAUxMjJOxTawIHwHw103pIiq8r3");
+            file.WriteLine("# +3R8J+b3Sht/p8OeLa6K6qbmqicWfWH3mHERvOJQoUvlXfrlDqcsn6plINPYlujI");
+            file.WriteLine("# fKVOSET/GeJEB5IL12iEgF1qeGRFzWBGflTBE3zFefHJwXECAwEAAaOB+jCB9zAd");
+            file.WriteLine("# BgNVHQ4EFgQUX5r1blzMzHSa1N197z/b7EyALt0wMgYIKwYBBQUHAQEEJjAkMCIG");
+            file.WriteLine("# CCsGAQUFBzABhhZodHRwOi8vb2NzcC50aGF3dGUuY29tMBIGA1UdEwEB/wQIMAYB");
+            file.WriteLine("# Af8CAQAwPwYDVR0fBDgwNjA0oDKgMIYuaHR0cDovL2NybC50aGF3dGUuY29tL1Ro");
+            file.WriteLine("# YXd0ZVRpbWVzdGFtcGluZ0NBLmNybDATBgNVHSUEDDAKBggrBgEFBQcDCDAOBgNV");
+            file.WriteLine("# HQ8BAf8EBAMCAQYwKAYDVR0RBCEwH6QdMBsxGTAXBgNVBAMTEFRpbWVTdGFtcC0y");
+            file.WriteLine("# MDQ4LTEwDQYJKoZIhvcNAQEFBQADgYEAAwmbj3nvf1kwqu9otfrjCR27T4IGXTdf");
+            file.WriteLine("# plKfFo3qHJIJRG71betYfDDo+WmNI3MLEm9Hqa45EfgqsZuwGsOO61mWAK3ODE2y");
+            file.WriteLine("# 0DGmCFwqevzieh1XTKhlGOl5QGIllm7HxzdqgyEIjkHq3dlXPx13SYcqFgZepjhq");
+            file.WriteLine("# IhKjURmDfrYwggSjMIIDi6ADAgECAhAOz/Q4yP6/NW4E2GqYGxpQMA0GCSqGSIb3");
+            file.WriteLine("# DQEBBQUAMF4xCzAJBgNVBAYTAlVTMR0wGwYDVQQKExRTeW1hbnRlYyBDb3Jwb3Jh");
+            file.WriteLine("# dGlvbjEwMC4GA1UEAxMnU3ltYW50ZWMgVGltZSBTdGFtcGluZyBTZXJ2aWNlcyBD");
+            file.WriteLine("# QSAtIEcyMB4XDTEyMTAxODAwMDAwMFoXDTIwMTIyOTIzNTk1OVowYjELMAkGA1UE");
+            file.WriteLine("# BhMCVVMxHTAbBgNVBAoTFFN5bWFudGVjIENvcnBvcmF0aW9uMTQwMgYDVQQDEytT");
+            file.WriteLine("# eW1hbnRlYyBUaW1lIFN0YW1waW5nIFNlcnZpY2VzIFNpZ25lciAtIEc0MIIBIjAN");
+            file.WriteLine("# BgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAomMLOUS4uyOnREm7Dv+h8GEKU5Ow");
+            file.WriteLine("# mNutLA9KxW7/hjxTVQ8VzgQ/K/2plpbZvmF5C1vJTIZ25eBDSyKV7sIrQ8Gf2Gi0");
+            file.WriteLine("# jkBP7oU4uRHFI/JkWPAVMm9OV6GuiKQC1yoezUvh3WPVF4kyW7BemVqonShQDhfu");
+            file.WriteLine("# ltthO0VRHc8SVguSR/yrrvZmPUescHLnkudfzRC5xINklBm9JYDh6NIipdC6Anqh");
+            file.WriteLine("# d5NbZcPuF3S8QYYq3AhMjJKMkS2ed0QfaNaodHfbDlsyi1aLM73ZY8hJnTrFxeoz");
+            file.WriteLine("# C9Lxoxv0i77Zs1eLO94Ep3oisiSuLsdwxb5OgyYI+wu9qU+ZCOEQKHKqzQIDAQAB");
+            file.WriteLine("# o4IBVzCCAVMwDAYDVR0TAQH/BAIwADAWBgNVHSUBAf8EDDAKBggrBgEFBQcDCDAO");
+            file.WriteLine("# BgNVHQ8BAf8EBAMCB4AwcwYIKwYBBQUHAQEEZzBlMCoGCCsGAQUFBzABhh5odHRw");
+            file.WriteLine("# Oi8vdHMtb2NzcC53cy5zeW1hbnRlYy5jb20wNwYIKwYBBQUHMAKGK2h0dHA6Ly90");
+            file.WriteLine("# cy1haWEud3Muc3ltYW50ZWMuY29tL3Rzcy1jYS1nMi5jZXIwPAYDVR0fBDUwMzAx");
+            file.WriteLine("# oC+gLYYraHR0cDovL3RzLWNybC53cy5zeW1hbnRlYy5jb20vdHNzLWNhLWcyLmNy");
+            file.WriteLine("# bDAoBgNVHREEITAfpB0wGzEZMBcGA1UEAxMQVGltZVN0YW1wLTIwNDgtMjAdBgNV");
+            file.WriteLine("# HQ4EFgQURsZpow5KFB7VTNpSYxc/Xja8DeYwHwYDVR0jBBgwFoAUX5r1blzMzHSa");
+            file.WriteLine("# 1N197z/b7EyALt0wDQYJKoZIhvcNAQEFBQADggEBAHg7tJEqAEzwj2IwN3ijhCcH");
+            file.WriteLine("# bxiy3iXcoNSUA6qGTiWfmkADHN3O43nLIWgG2rYytG2/9CwmYzPkSWRtDebDZw73");
+            file.WriteLine("# BaQ1bHyJFsbpst+y6d0gxnEPzZV03LZc3r03H0N45ni1zSgEIKOq8UvEiCmRDoDR");
+            file.WriteLine("# EfzdXHZuT14ORUZBbg2w6jiasTraCXEQ/Bx5tIB7rGn0/Zy2DBYr8X9bCT2bW+IW");
+            file.WriteLine("# yhOBbQAuOA2oKY8s4bL0WqkBrxWcLC9JG9siu8P+eJRRw4axgohd8D20UaF5Mysu");
+            file.WriteLine("# e7ncIAkTcetqGVvP6KUwVyyJST+5z3/Jvz4iaGNTmr1pdKzFHTx/kuDDvBzYBHUw");
+            file.WriteLine("# ggUrMIIEE6ADAgECAhAHplztCw0v0TJNgwJhke9VMA0GCSqGSIb3DQEBCwUAMHIx");
+            file.WriteLine("# CzAJBgNVBAYTAlVTMRUwEwYDVQQKEwxEaWdpQ2VydCBJbmMxGTAXBgNVBAsTEHd3");
+            file.WriteLine("# dy5kaWdpY2VydC5jb20xMTAvBgNVBAMTKERpZ2lDZXJ0IFNIQTIgQXNzdXJlZCBJ");
+            file.WriteLine("# RCBDb2RlIFNpZ25pbmcgQ0EwHhcNMTcwODIzMDAwMDAwWhcNMjAwOTMwMTIwMDAw");
+            file.WriteLine("# WjBoMQswCQYDVQQGEwJVUzELMAkGA1UECBMCY2ExEjAQBgNVBAcTCVNhdXNhbGl0");
+            file.WriteLine("# bzEbMBkGA1UEChMSU2l0ZWNvcmUgVVNBLCBJbmMuMRswGQYDVQQDExJTaXRlY29y");
+            file.WriteLine("# ZSBVU0EsIEluYy4wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC7PZ/g");
+            file.WriteLine("# huhrQ/p/0Cg7BRrYjw7ZMx8HNBamEm0El+sedPWYeAAFrjDSpECxYjvK8/NOS9dk");
+            file.WriteLine("# tC35XL2TREMOJk746mZqia+g+NQDPEaDjNPG/iT0gWsOeCa9dUcIUtnBQ0hBKsuR");
+            file.WriteLine("# bau3n7w1uIgr3zf29vc9NhCoz1m2uBNIuLBlkKguXwgPt4rzj66+18JV3xyLQJoS");
+            file.WriteLine("# 3ZAA8k6FnZltNB+4HB0LKpPmF8PmAm5fhwGz6JFTKe+HCBRtuwOEERSd1EN7TGKi");
+            file.WriteLine("# xczSX8FJMz84dcOfALxjTj6RUF5TNSQLD2pACgYWl8MM0lEtD/1eif7TKMHqaA+s");
+            file.WriteLine("# m/yJrlKEtOr836BvAgMBAAGjggHFMIIBwTAfBgNVHSMEGDAWgBRaxLl7Kgqjpepx");
+            file.WriteLine("# A8Bg+S32ZXUOWDAdBgNVHQ4EFgQULh60SWOBOnU9TSFq0c2sWmMdu7EwDgYDVR0P");
+            file.WriteLine("# AQH/BAQDAgeAMBMGA1UdJQQMMAoGCCsGAQUFBwMDMHcGA1UdHwRwMG4wNaAzoDGG");
+            file.WriteLine("# L2h0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9zaGEyLWFzc3VyZWQtY3MtZzEuY3Js");
+            file.WriteLine("# MDWgM6Axhi9odHRwOi8vY3JsNC5kaWdpY2VydC5jb20vc2hhMi1hc3N1cmVkLWNz");
+            file.WriteLine("# LWcxLmNybDBMBgNVHSAERTBDMDcGCWCGSAGG/WwDATAqMCgGCCsGAQUFBwIBFhxo");
+            file.WriteLine("# dHRwczovL3d3dy5kaWdpY2VydC5jb20vQ1BTMAgGBmeBDAEEATCBhAYIKwYBBQUH");
+            file.WriteLine("# AQEEeDB2MCQGCCsGAQUFBzABhhhodHRwOi8vb2NzcC5kaWdpY2VydC5jb20wTgYI");
+            file.WriteLine("# KwYBBQUHMAKGQmh0dHA6Ly9jYWNlcnRzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydFNI");
+            file.WriteLine("# QTJBc3N1cmVkSURDb2RlU2lnbmluZ0NBLmNydDAMBgNVHRMBAf8EAjAAMA0GCSqG");
+            file.WriteLine("# SIb3DQEBCwUAA4IBAQBozpJhBdsaz19E9faa/wtrnssUreKxZVkYQ+NViWeyImc5");
+            file.WriteLine("# qEZcDPy3Qgf731kVPnYuwi5S0U+qyg5p1CNn/WsvnJsdw8aO0lseadu8PECuHj1Z");
+            file.WriteLine("# 5w4mi5rGNq+QVYSBB2vBh5Ps5rXuifBFF8YnUyBc2KuWBOCq6MTRN1H2sU5LtOUc");
+            file.WriteLine("# Qkacv8hyom8DHERbd3mIBkV8fmtAmvwFYOCsXdBHOSwQUvfs53GySrnIYiWT0y56");
+            file.WriteLine("# mVYPwDj7h/PdWO5hIuZm6n5ohInLig1weiVDJ254r+2pfyyRT+02JVVxyHFMCLwC");
+            file.WriteLine("# ASs4vgbiZzMDltmoTDHz9gULxu/CfBGM0waMDu3cMIIFMDCCBBigAwIBAgIQBAkY");
+            file.WriteLine("# G1/Vu2Z1U0O1b5VQCDANBgkqhkiG9w0BAQsFADBlMQswCQYDVQQGEwJVUzEVMBMG");
+            file.WriteLine("# A1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3d3cuZGlnaWNlcnQuY29tMSQw");
+            file.WriteLine("# IgYDVQQDExtEaWdpQ2VydCBBc3N1cmVkIElEIFJvb3QgQ0EwHhcNMTMxMDIyMTIw");
+            file.WriteLine("# MDAwWhcNMjgxMDIyMTIwMDAwWjByMQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGln");
+            file.WriteLine("# aUNlcnQgSW5jMRkwFwYDVQQLExB3d3cuZGlnaWNlcnQuY29tMTEwLwYDVQQDEyhE");
+            file.WriteLine("# aWdpQ2VydCBTSEEyIEFzc3VyZWQgSUQgQ29kZSBTaWduaW5nIENBMIIBIjANBgkq");
+            file.WriteLine("# hkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA+NOzHH8OEa9ndwfTCzFJGc/Q+0WZsTrb");
+            file.WriteLine("# RPV/5aid2zLXcep2nQUut4/6kkPApfmJ1DcZ17aq8JyGpdglrA55KDp+6dFn08b7");
+            file.WriteLine("# KSfH03sjlOSRI5aQd4L5oYQjZhJUM1B0sSgmuyRpwsJS8hRniolF1C2ho+mILCCV");
+            file.WriteLine("# rhxKhwjfDPXiTWAYvqrEsq5wMWYzcT6scKKrzn/pfMuSoeU7MRzP6vIK5Fe7SrXp");
+            file.WriteLine("# dOYr/mzLfnQ5Ng2Q7+S1TqSp6moKq4TzrGdOtcT3jNEgJSPrCGQ+UpbB8g8S9MWO");
+            file.WriteLine("# D8Gi6CxR93O8vYWxYoNzQYIH5DiLanMg0A9kczyen6Yzqf0Z3yWT0QIDAQABo4IB");
+            file.WriteLine("# zTCCAckwEgYDVR0TAQH/BAgwBgEB/wIBADAOBgNVHQ8BAf8EBAMCAYYwEwYDVR0l");
+            file.WriteLine("# BAwwCgYIKwYBBQUHAwMweQYIKwYBBQUHAQEEbTBrMCQGCCsGAQUFBzABhhhodHRw");
+            file.WriteLine("# Oi8vb2NzcC5kaWdpY2VydC5jb20wQwYIKwYBBQUHMAKGN2h0dHA6Ly9jYWNlcnRz");
+            file.WriteLine("# LmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydEFzc3VyZWRJRFJvb3RDQS5jcnQwgYEGA1Ud");
+            file.WriteLine("# HwR6MHgwOqA4oDaGNGh0dHA6Ly9jcmw0LmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydEFz");
+            file.WriteLine("# c3VyZWRJRFJvb3RDQS5jcmwwOqA4oDaGNGh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNv");
+            file.WriteLine("# bS9EaWdpQ2VydEFzc3VyZWRJRFJvb3RDQS5jcmwwTwYDVR0gBEgwRjA4BgpghkgB");
+            file.WriteLine("# hv1sAAIEMCowKAYIKwYBBQUHAgEWHGh0dHBzOi8vd3d3LmRpZ2ljZXJ0LmNvbS9D");
+            file.WriteLine("# UFMwCgYIYIZIAYb9bAMwHQYDVR0OBBYEFFrEuXsqCqOl6nEDwGD5LfZldQ5YMB8G");
+            file.WriteLine("# A1UdIwQYMBaAFEXroq/0ksuCMS1Ri6enIZ3zbcgPMA0GCSqGSIb3DQEBCwUAA4IB");
+            file.WriteLine("# AQA+7A1aJLPzItEVyCx8JSl2qB1dHC06GsTvMGHXfgtg/cM9D8Svi/3vKt8gVTew");
+            file.WriteLine("# 4fbRknUPUbRupY5a4l4kgU4QpO4/cY5jDhNLrddfRHnzNhQGivecRk5c/5CxGwcO");
+            file.WriteLine("# kRX7uq+1UcKNJK4kxscnKqEpKBo6cSgCPC6Ro8AlEeKcFEehemhor5unXCBc2XGx");
+            file.WriteLine("# DI+7qPjFEmifz0DLQESlE/DmZAwlCEIysjaKJAL+L3J+HNdJRZboWR3p+nRka7Lr");
+            file.WriteLine("# ZkPas7CM1ekN3fYBIM6ZMWM9CBoYs4GbT8aTEAb8B4H6i9r5gkn3Ym6hU/oSlBiF");
+            file.WriteLine("# LpKR6mhsRDKyZqHnGKSaZFHvMYIELzCCBCsCAQEwgYYwcjELMAkGA1UEBhMCVVMx");
+            file.WriteLine("# FTATBgNVBAoTDERpZ2lDZXJ0IEluYzEZMBcGA1UECxMQd3d3LmRpZ2ljZXJ0LmNv");
+            file.WriteLine("# bTExMC8GA1UEAxMoRGlnaUNlcnQgU0hBMiBBc3N1cmVkIElEIENvZGUgU2lnbmlu");
+            file.WriteLine("# ZyBDQQIQB6Zc7QsNL9EyTYMCYZHvVTAJBgUrDgMCGgUAoHAwEAYKKwYBBAGCNwIB");
+            file.WriteLine("# DDECMAAwGQYJKoZIhvcNAQkDMQwGCisGAQQBgjcCAQQwHAYKKwYBBAGCNwIBCzEO");
+            file.WriteLine("# MAwGCisGAQQBgjcCARUwIwYJKoZIhvcNAQkEMRYEFHwhuiBSz5zCUVArLB0+ZBdk");
+            file.WriteLine("# kxcrMA0GCSqGSIb3DQEBAQUABIIBAC+k4sN12pJTowhwtnxEmKjjqdrpsTDQtziI");
+            file.WriteLine("# Iw7HhJlRBzqEbxfRc3sTYVvHKuODBZW1Fj9mtB1rYFz5zhgLkQGv+1jlfdtAeUff");
+            file.WriteLine("# mrZe8LAKk/Gs3n32uDptZcrGcXUHl5oyyQicFMRlmeU0yPp3KhlYz+cdQDewPsKA");
+            file.WriteLine("# eXuBwDRfTZ6ounInkxlBFcdbTZqwsChUYWC4IaBFb/J4GkAWBlxGPlw3ty3FuT1p");
+            file.WriteLine("# uwRbNyrOT71/hwFIEdc36Y8M8Q9dEF7sOWKxvEtZ4aCXHtwZhbpT19l8VvDnjtEi");
+            file.WriteLine("# jtyVS8PoYuISCsnzPr8Vmajn+d/B8XZT+0NnTlLxBeKBhKzZmj+hggILMIICBwYJ");
+            file.WriteLine("# KoZIhvcNAQkGMYIB+DCCAfQCAQEwcjBeMQswCQYDVQQGEwJVUzEdMBsGA1UEChMU");
+            file.WriteLine("# U3ltYW50ZWMgQ29ycG9yYXRpb24xMDAuBgNVBAMTJ1N5bWFudGVjIFRpbWUgU3Rh");
+            file.WriteLine("# bXBpbmcgU2VydmljZXMgQ0EgLSBHMgIQDs/0OMj+vzVuBNhqmBsaUDAJBgUrDgMC");
+            file.WriteLine("# GgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcN");
+            file.WriteLine("# MjAwNzI5MTQzMjM3WjAjBgkqhkiG9w0BCQQxFgQU1U2FxtyhU0AStBRmZXCxXzYP");
+            file.WriteLine("# 1uUwDQYJKoZIhvcNAQEBBQAEggEAhtpgsIBkdxtX5EXVK1ZyRm3F+9qh38OCldqF");
+            file.WriteLine("# Kwf7V9+vjy8lPaJlZ63gM9fpr3OprF0wcwkew8nm4FxlmGCns8tgA1KewkZWpqFu");
+            file.WriteLine("# pDJKYRyycEySeq8HxTqm/xphUe1YrfOgaACNH+iykhMJDVLsFXyyIcZeHRSJIKjs");
+            file.WriteLine("# BErKc4xfYZOMr0hjeN988B3jrPkmQHq08p1BmLjQ2DkuORDk16CMXg+yzufifWBv");
+            file.WriteLine("# 1ssuVldvH25k4aPIg6Q1fcAxUjNL4ST8Zb9e9ximjL7DxIe+VAyhXEfBLYCB53p2");
+            file.WriteLine("# wUZQ7JEOQJA+c1KEpo8R2cRfVzvkH3kgF9AnMuKnzUM8NnfaTg==");
+            file.WriteLine("# SIG # End signature block");
+            file.WriteLine();
+            file.Dispose();
+        }
+
+
+        void WriteFile(string path, bool habitatflag, bool uninstallscript)
+        {
+            using var file = new StreamWriter(path);
+
+            file.WriteLine("#Requires -Version 3");
+            file.WriteLine("param(");
+            file.WriteLine("\t# The root folder with WDP files.");
+            file.WriteLine("\t[string]$XCInstallRoot = \"..\",");
+            file.WriteLine("\t# The root folder of SIF.Sitecore.Commerce package.");
+            file.WriteLine("\t[string]$XCSIFInstallRoot = $PWD,");
+            file.WriteLine(
+                "\t# Specifies whether or not to bypass the installation of the default SXA Storefront. By default, the Sitecore XC installation script also deploys the SXA Storefront.");
+            file.WriteLine("\t[bool]$SkipInstallDefaultStorefront = $false,");
+            file.WriteLine("\t# Specifies whether or not to bypass the installation of the SXA Storefront packages.");
+            file.WriteLine(
+                "\t# If set to $true, $TasksToSkip parameter will be populated with the list of tasks to skip in order to bypass SXA Storefront packages installation.");
+            file.WriteLine("\t[bool]$SkipDeployStorefrontPackages = $false,");
+            file.WriteLine();
+            file.WriteLine(
+                "\t# Path to the Master_SingleServer.json file provided in the SIF.Sitecore.Commerce package.");
+            file.WriteLine("\t[string]$Path = \"$XCSIFInstallRoot\\Configuration\\Commerce\\Master_SingleServer.json\",");
+            file.WriteLine("\t# Path to the Commerce Solr schemas provided as part of the SIF.Sitecore.Commerce package.");
+            file.WriteLine("\t[string]$SolrSchemas = \"$XCSIFInstallRoot\\SolrSchemas\",");
+            file.WriteLine("\t# Path to the SiteUtilityPages folder provided as part of the SIF.Sitecore.Commerce package.");
+            file.WriteLine("\t[string]$SiteUtilitiesSrc = \"$XCSIFInstallRoot\\SiteUtilityPages\",");
+            file.WriteLine("\t# Path to the location where you downloaded the Microsoft.Web.XmlTransform.dll file.");
+            file.WriteLine(
+                "\t[string]$MergeToolFullPath = \"$XCInstallRoot\\MSBuild\\tools\\VSToolsPath\\Web\\Microsoft.Web.XmlTransform.dll\",");
+            file.WriteLine("\t# Path to the Adventure Works Images.OnPrem SCWDP file");
+            file.WriteLine("\t[string]$AdventureWorksImagesWdpFullPath = \"$XCInstallRoot\\Adventure Works Images.OnPrem.scwdp.zip\",");
+            file.WriteLine("\t# Path to the Sitecore Commerce Connect Core SCWDP file.");
+            file.WriteLine("\t[string]$CommerceConnectWdpFullPath = \"$XCInstallRoot\\Sitecore Commerce Connect Core*.scwdp.zip\",");
+            file.WriteLine("\t# Path to the Sitecore Commerce Engine Connect OnPrem SCWDP file.");
+            file.WriteLine(
+                "\t[string]$CEConnectWdpFullPath = \"$XCInstallRoot\\Sitecore Commerce Engine Connect*.scwdp.zip\",");
+            file.WriteLine("\t# Path to the Sitecore Commerce Experience Accelerator SCWDP file.");
+            file.WriteLine(
+                "\t[string]$SXACommerceWdpFullPath = \"$XCInstallRoot\\Sitecore Commerce Experience Accelerator*.scwdp.zip\",");
+            file.WriteLine("\t# Path to the Sitecore Commerce Experience Accelerator Habitat Catalog SCWDP file.");
+            file.WriteLine("\t[string]$SXAStorefrontCatalogWdpFullPath = \"$XCInstallRoot\\Sitecore Commerce Experience Accelerator Habitat*.scwdp.zip\",");
+            file.WriteLine("\t# Path to the Sitecore Commerce Experience Accelerator Storefront SCWDP file.");
+            file.WriteLine("\t[string]$SXAStorefrontWdpFullPath = \"$XCInstallRoot\\Sitecore Commerce Experience Accelerator Storefront*.scwdp.zip\",");
+            file.WriteLine("\t# Path to the Sitecore Commerce Experience Accelerator Storefront Themes SCWDP file.");
+            file.WriteLine("\t[string]$SXAStorefrontThemeWdpFullPath = \"$XCInstallRoot\\Sitecore Commerce Experience Accelerator Storefront Themes*.scwdp.zip\",");
+            file.WriteLine("\t# Path to the Sitecore Commerce Experience Analytics Core SCWDP file.");
+            file.WriteLine(
+                "\t[string]$CommercexAnalyticsWdpFullPath = \"$XCInstallRoot\\Sitecore Commerce ExperienceAnalytics Core*.scwdp.zip\",");
+            file.WriteLine(
+                "\t# Path to the Sitecore Commerce Experience Profile Core SCWDP file.");
+            file.WriteLine(
+                "\t[string]$CommercexProfilesWdpFullPath = \"$XCInstallRoot\\Sitecore Commerce ExperienceProfile Core*.scwdp.zip\",");
+            file.WriteLine(
+                "\t# Path to the Sitecore Commerce Marketing Automation Core SCWDP file.");
+            file.WriteLine(
+                "\t[string]$CommerceMAWdpFullPath = \"$XCInstallRoot\\Sitecore Commerce Marketing Automation Core*.scwdp.zip\",");
+            file.WriteLine(
+                "\t# Path to the Sitecore Commerce Marketing Automation for AutomationEngine zip file.");
+            file.WriteLine(
+                "\t[string]$CommerceMAForAutomationEngineZIPFullPath = \"$XCInstallRoot\\Sitecore Commerce Marketing Automation for AutomationEngine*.zip\",");
+
+            if (Version.SitecoreVersion != "10.3.0")
+            {
+
+                file.WriteLine(
+                "\t# Path to the Sitecore Experience Accelerator zip file.");
+                file.WriteLine(
+                    "\t[string]$SXAModuleZIPFullPath = \"$XCInstallRoot\\Sitecore Experience Accelerator*.zip\",");
+                file.WriteLine(
+                    "\t# Path to the Sitecore.PowerShell.Extensions zip file.");
+                file.WriteLine(
+                    "\t[string]$PowerShellExtensionsModuleZIPFullPath = \"$XCInstallRoot\\Sitecore.PowerShell.Extensions*.zip\",");
+            }
+
+            file.WriteLine(
+                "\t# Path to the Sitecore BizFx Server SCWDP file.");
+            file.WriteLine(
+                "\t[string]$BizFxPackage = \"$XCInstallRoot\\Sitecore.BizFx.OnPrem*scwdp.zip\",");
+            file.WriteLine(
+                "\t# Path to the Commerce Engine Service SCWDP file.");
+            file.WriteLine(
+                "\t[string]$CommerceEngineWdpFullPath = \"$XCInstallRoot\\Sitecore.Commerce.Engine.OnPrem.Solr.*scwdp.zip\",");
+            file.WriteLine(
+                "\t# Path to the Sitecore.Commerce.Habitat.Images.OnPrem SCWDP file.");
+            file.WriteLine(
+                "\t[string]$HabitatImagesWdpFullPath = \"$XCInstallRoot\\Sitecore.Commerce.Habitat.Images.OnPrem.scwdp.zip\",");
+            file.WriteLine();
+            file.WriteLine(
+                "\t# The prefix that will be used on SOLR, Website and Database instances. The default value matches the Sitecore XP default.");
+            file.WriteLine(
+                "\t[string]$SiteNamePrefix = \"" + txtSiteNamePrefix.Text + "\",");
+
+            file.WriteLine("\t# The name of the Sitecore site instance.");
+            file.WriteLine("\t[string]$SiteName = \"" + txtSiteName.Text + "\",");
+            file.WriteLine("\t# Identity Server site name.");
+            file.WriteLine("\t[string]$IdentityServerSiteName = \"" + txtIDServerSiteName.Text + "\",");
+            file.WriteLine("\t# The url of the Sitecore Identity server.");
+            file.WriteLine("\t[string]$SitecoreIdentityServerUrl = \"" + txtSitecoreIdentityServerUrl.Text + "\",");
+            file.WriteLine("\t# The Commerce Engine Connect Client Id for the Sitecore Identity Server");
+            file.WriteLine("\t[string]$CommerceEngineConnectClientId = \"" + txtCommerceEngineConnectClientId.Text + "\",");
+
+            file.WriteLine("\t# The Commerce Engine Connect Client Secret for the Sitecore Identity Server");
+            file.WriteLine("\t[string]$CommerceEngineConnectClientSecret = \"" + txtCommerceEngineConnectClientSecret.Text + "\",");
+            file.WriteLine("\t# The host header name for the Sitecore storefront site.");
+            file.WriteLine("\t[string]$SiteHostHeaderName = \"" + txtSiteHostHeaderName.Text + "\",");
+            file.WriteLine();
+            file.WriteLine("\t# The path of the Sitecore XP site.");
+            file.WriteLine("\t[string]$InstallDir = \"" + txtSXAInstallDir.Text + "\",");
+            file.WriteLine("\t# The path of the Sitecore XConnect site.");
+            file.WriteLine("\t[string]$XConnectInstallDir = \"" + txtxConnectInstallDir.Text + "\",");
+            file.WriteLine("\t# The path to the inetpub folder where Commerce is installed.");
+            file.WriteLine("\t[string]$CommerceInstallRoot = \"" + txtCommerceInstallRoot.Text + "\",");
+            file.WriteLine();
+            file.WriteLine("\t# The prefix for Sitecore core and master databases.");
+            file.WriteLine("\t[string]$SqlDbPrefix = $SiteNamePrefix,");
+            file.WriteLine("\t# The location of the database server where Sitecore XP databases are hosted. In case of named SQL instance, use \"SQLServerName\\SQLInstanceName\".");
+
+            file.WriteLine("\t[string]$SitecoreDbServer = \"" + txtSitecoreDbServer.Text + "\",");
+            file.WriteLine("\t# The name of the Sitecore core database.");
+            file.WriteLine("\t[string]$SitecoreCoreDbName = \"$($SqlDbPrefix)_Core\",");
+            file.WriteLine("\t# A SQL user with sysadmin privileges.");
+            file.WriteLine("\t[string]$SqlUser = \"" + txtSitecoreSqlUser.Text + "\",");
+            file.WriteLine("\t# The password for $SQLAdminUser.");
+            file.WriteLine("\t[string]$SqlPass = \"" + txtSitecoreSqlPass.Text + "\",");
+            file.WriteLine();
+            file.WriteLine("\t# The name of the Sitecore domain.");
+            file.WriteLine("\t[string]$SitecoreDomain = \"" + txtSitecoreDomain.Text + "\",");
+            file.WriteLine("\t# The name of the Sitecore user account.");
+            file.WriteLine("\t[string]$SitecoreUsername = \"" + txtSitecoreUsername.Text + "\",");
+            file.WriteLine("\t# The password for the $SitecoreUsername.");
+            file.WriteLine("\t[string]$SitecoreUserPassword = \"" + txtSitecoreUserPassword.Text + "\",");
+            file.WriteLine();
+            file.WriteLine("\t# The prefix for the Search index. Using the SiteName value for the prefix is recommended.");
+            file.WriteLine("\t[string]$SearchIndexPrefix = \"" + txtSearchIndexPrefix.Text + "\",");
+            file.WriteLine("\t# The URL of the Solr Server.");
+            file.WriteLine("\t[string]$SolrUrl =  \"" + txtSolrUrl.Text + "\",");
+            file.WriteLine("\t# The folder that Solr has been installed to.");
+            file.WriteLine("\t[string]$SolrRoot =  \"" + txtSolrRoot.Text + "\",");
+            file.WriteLine("\t# The name of the Solr Service.");
+            file.WriteLine("\t[string]$SolrService =  \"" + txtSolrService.Text + "\",");
+            file.WriteLine("\t# The prefix for the Storefront index. The default value is the SiteNamePrefix.");
+            file.WriteLine("\t[string]$StorefrontIndexPrefix = $SiteNamePrefix,");
+            file.WriteLine();
+            file.WriteLine("\t# The host name where Redis is hosted.");
+            file.WriteLine("\t[string]$RedisHost =  \"" + txtRedisHost.Text + "\",");
+            file.WriteLine("\t# The port number on which Redis is running.");
+            file.WriteLine("\t[string]$RedisPort = \"" + txtRedisPort.Text + "\",");
+            file.WriteLine("\t# The name of the Redis instance.");
+            file.WriteLine("\t[string]$RedisInstanceName = \"Redis\",");
+            file.WriteLine("\t# The path to the redis-cli executable.");
+            file.WriteLine("\t[string]$RedisCliPath = \"$($Env:SYSTEMDRIVE)\\Program Files\\Redis\\redis-cli.exe\",");
+            file.WriteLine();
+            file.WriteLine("\t# The location of the database server where Commerce databases should be deployed. In case of named SQL instance, use \"SQLServerName\\SQLInstanceName\"");
+            file.WriteLine("\t[string]$CommerceServicesDbServer = \"" + txtCommerceServicesDBServer.Text + "\",");
+            file.WriteLine("\t# The name of the shared database for the Commerce Services.");
+            file.WriteLine("\t[string]$CommerceServicesDbName = \"" + txtCommerceDbName.Text + "\",");
+            file.WriteLine("\t# The name of the global database for the Commerce Services.");
+            file.WriteLine("\t[string]$CommerceServicesGlobalDbName =  \"" + txtCommerceGlobalDbName.Text + "\",");
+
+            if (Version.SitecoreVersion != "10.3.0")
+            {
+
+                file.WriteLine("\t# The port for the Commerce Ops Service.");
+                file.WriteLine("\t[string]$CommerceOpsServicesPort = \"" + txtCommerceOpsSvcPort.Value.ToString() + "\",");
+            }
+
+            file.WriteLine("\t# The port for the Commerce Shops Service");
+            file.WriteLine("\t[string]$CommerceShopsServicesPort = \"" + txtCommerceShopsServicesPort.Value.ToString() + "\",");
+            file.WriteLine("\t# The port for the Commerce Authoring Service.");
+            file.WriteLine("\t[string]$CommerceAuthoringServicesPort = \"" + txtCommerceAuthSvcPort.Value.ToString() + "\",");
+            file.WriteLine("\t# The port for the Commerce Minions Service.");
+            file.WriteLine("\t[string]$CommerceMinionsServicesPort = \"" + txtCommerceMinionsSvcPort.Value.ToString() + "\",");
+            file.WriteLine("\t# The postfix appended to Commerce services folders names and sitenames.");
+            file.WriteLine("\t# The postfix allows you to host more than one Commerce installment on one server.");
+            file.WriteLine("\t[string]$CommerceServicesPostfix = \"" + txtCommerceSvcPostFix.Text + "\",");
+            file.WriteLine("\t# The postfix used as the root domain name (two-levels) to append as the hostname for Commerce services.");
+            file.WriteLine("\t# By default, all Commerce services are configured as sub-domains of the domain identified by the postfix.");
+            file.WriteLine("\t# Postfix validation enforces the following rules:");
+            file.WriteLine("\t# 1. The first level (TopDomainName) must be 2-7 characters in length and can contain alphabetical characters (a-z, A-Z) only. Numeric and special characters are not valid.");
+            file.WriteLine("\t# 2. The second level (DomainName) can contain alpha-numeric characters (a-z, A-Z,and 0-9) and can include one hyphen (-) character.");
+            file.WriteLine("\t# Special characters (wildcard (*)), for example, are not valid.");
+            file.WriteLine("\t[string]$CommerceServicesHostPostfix = \"" + txtCommerceServicesHostPostFix.Text + "\",");
+            file.WriteLine();
+            file.WriteLine("\t# The name of the Sitecore XC Business Tools server.");
+            file.WriteLine("\t[string]$BizFxSiteName = \"" + txtBizFxName.Text + "\",");
+            file.WriteLine("\t# The port of the Sitecore XC Business Tools server.");
+            file.WriteLine("\t[string]$BizFxPort = \"" + txtBizFxPort.Value.ToString() + "\",");
+            file.WriteLine();
+            file.WriteLine("\t# The prefix used in the EnvironmentName setting in the config.json file for each Commerce Engine role.");
+            file.WriteLine("\t[string]$EnvironmentsPrefix = \"Habitat\",");
+            file.WriteLine("\t# The list of Commerce environment names. By default, the script deploys the AdventureWorks and the Habitat environments.");
+            file.WriteLine("\t[array]$Environments = @(\"AdventureWorksAuthoring\", \"HabitatAuthoring\"),");
+
+            file.WriteLine("\t# Commerce environments GUIDs used to clean existing Redis cache during deployment. Default parameter values correspond to the default Commerce environment GUIDS.");
+            file.WriteLine("\t[array]$EnvironmentsGuids = @(\"78a1ea611f3742a7ac899a3f46d60ca5\", \"40e77b7b4be94186b53b5bfd89a6a83b\"),");
+            file.WriteLine("\t# The environments running the minions service. (This is required, for example, for running indexing minions).");
+            file.WriteLine("\t[array]$MinionEnvironments = @(\"AdventureWorksMinions\", \"HabitatMinions\"),");
+            file.WriteLine("\t# whether to deploy sample data for each environment.");
+            if (chkDeploySampleData.Checked)
+            {
+                file.WriteLine("\t[bool]$DeploySampleData = $true,");
+            }
+            else
+            {
+                file.WriteLine("\t[bool]$DeploySampleData = $false,");
+            }
+            file.WriteLine();
+            file.WriteLine("\t# The domain of the local account used for the various application pools created as part of the deployment.");
+            file.WriteLine("\t[string]$UserDomain = $Env:COMPUTERNAME,");
+            file.WriteLine("\t# The user name for a local account to be set up for the various application pools that are created as part of the deployment.");
+            file.WriteLine("\t[string]$UserName = \"" + txtUserName.Text + "\",");
+            file.WriteLine("\t# The password for the $UserName.");
+            file.WriteLine("\t[string]$UserPassword = \"" + txtUserPassword.Text + "\",");
+            file.WriteLine();
+            file.WriteLine("\t# The Braintree Merchant Id.");
+            file.WriteLine("\t[string]$BraintreeMerchantId = \"" + txttxtBraintreeMerchantId.Text + "\",");
+            file.WriteLine("\t# The Braintree Public Key.");
+            file.WriteLine("\t[string]$BraintreePublicKey = \"" + txtBraintreePublicKey.Text + "\",");
+            file.WriteLine("\t# The Braintree Private Key.");
+            file.WriteLine("\t[string]$BraintreePrivateKey = \"" + txtBraintreePrivateKey.Text + "\",");
+            file.WriteLine("\t# The Braintree Environment.");
+            file.WriteLine("\t[string]$BraintreeEnvironment = \"sandbox\",");
+            file.WriteLine();
+            file.WriteLine("\t# List of comma-separated task names to skip during Sitecore XC deployment.");
+            if (habitatflag && !uninstallscript)
+            {
+                file.WriteLine("\t[string]$TasksToSkip = \"Module-HabitatImages_InstallWDPModuleMasterCore,Module-HabitatImages_InstallWDPModuleMaster,Module-HabitatImages_InstallWDPModuleCore,Module-AdventureWorksImages_InstallWDPModuleMasterCore,Module-AdventureWorksImages_InstallWDPModuleMaster,Module-AdventureWorksImages_InstallWDPModuleCore,RebuildIndexes_RebuildIndex-Master,RebuildIndexes_RebuildIndex-Web\"");
+            }
+            else
+            {
+                file.WriteLine("\t[string]$TasksToSkip = \"\"");
+            }
+
+            file.WriteLine(")");
+            file.WriteLine();
+            file.WriteLine("Function Resolve-ItemPath {");
+            file.WriteLine("\tparam (");
+            file.WriteLine("\t\t[Parameter(Mandatory = $true)]");
+            file.WriteLine("\t\t[ValidateNotNullorEmpty()]");
+            file.WriteLine("\t\t[string] $Path");
+            file.WriteLine("\t)");
+            file.WriteLine("\tprocess {");
+            file.WriteLine("\t\tif ([string]::IsNullOrWhiteSpace($Path)) {");
+            file.WriteLine("\t\t\tthrow \"Parameter could not be validated because it contains only whitespace. Please check script parameters.\"");
+            file.WriteLine("\t\t}");
+            file.WriteLine("\t\t$itemPath = Resolve-Path -Path $Path -ErrorAction SilentlyContinue | Select-Object -First 1");
+            file.WriteLine("\t\tif ([string]::IsNullOrEmpty($itemPath) -or (-not (Test-Path $itemPath))) {");
+            file.WriteLine("\t\t\tthrow \"Path[$Path] could not be resolved.Please check script parameters.\"");
+            file.WriteLine("\t\t}");
+            file.WriteLine();
+            file.WriteLine("\t\tWrite-Host \"Found [$itemPath].\"");
+            file.WriteLine("\t\treturn $itemPath");
+            file.WriteLine("\t}");
+            file.WriteLine("}");
+            file.WriteLine();
+            file.WriteLine("if (($SkipDeployStorefrontPackages -eq $true) -and ($SkipInstallDefaultStorefront -eq $false)) {");
+            file.WriteLine("\tthrow \"You cannot install the SXA Storefront without deploying necessary packages. If you want to install the SXA Storefront, set [SkipDeployStorefrontPackages] parameter to [false].\"");
+            file.WriteLine("}");
+            file.WriteLine();
+            file.WriteLine("if (($DeploySampleData -eq $false) -and ($SkipInstallDefaultStorefront -eq $false)) {");
+            file.WriteLine("\tthrow \"You cannot install the SXA Storefront without deploying sample data. If you want to install the SXA Storefront, set [DeploySampleData] parameter to [true].\"");
+            file.WriteLine("}");
+            file.WriteLine();
+            file.WriteLine("[string[]] $Skip = @()");
+            file.WriteLine("if (-not ([string]::IsNullOrWhiteSpace($TasksToSkip))) {");
+            file.WriteLine("\t$TasksToSkip.Split(',') | ForEach-Object { $Skip += $_.Trim() }");
+            file.WriteLine("}");
+            file.WriteLine();
+            file.WriteLine("Push-Location $PSScriptRoot");
+            file.WriteLine();
+            file.WriteLine("$modulesPath = ( Join-Path -Path $PWD -ChildPath \"Modules\" )");
+            file.WriteLine("if ($env:PSModulePath -notlike \"*$modulesPath*\") {");
+            file.WriteLine("\t[Environment]::SetEnvironmentVariable(\"PSModulePath\", \"$env:PSModulePath;$modulesPath\")");
+            file.WriteLine("}");
+            file.WriteLine();
+            file.WriteLine("$deployCommerceParams = @{");
+            file.WriteLine("\tPath                                     = Resolve-ItemPath -Path $Path");
+            file.WriteLine("\tSolrSchemas              				  = Resolve-ItemPath -Path $SolrSchemas");
+            file.WriteLine("\tSiteUtilitiesSrc                         = Resolve-ItemPath -Path $SiteUtilitiesSrc");
+            file.WriteLine("\tMergeToolFullPath                        = Resolve-ItemPath -Path $MergeToolFullPath");
+            file.WriteLine("\tAdventureWorksImagesWdpFullPath          = Resolve-ItemPath -Path $AdventureWorksImagesWdpFullPath");
+            file.WriteLine("\tCommerceConnectWdpFullPath               = Resolve-ItemPath -Path $CommerceConnectWdpFullPath");
+            file.WriteLine("\tCEConnectWdpFullPath                     = Resolve-ItemPath -Path $CEConnectWdpFullPath");
+            file.WriteLine("\tSXACommerceWdpFullPath                   = Resolve-ItemPath -Path $SXACommerceWdpFullPath");
+            file.WriteLine("\tSXAStorefrontCatalogWdpFullPath          = Resolve-ItemPath -Path $SXAStorefrontCatalogWdpFullPath");
+            file.WriteLine("\tSXAStorefrontWdpFullPath                 = Resolve-ItemPath -Path $SXAStorefrontWdpFullPath");
+            file.WriteLine("\tSXAStorefrontThemeWdpFullPath            = Resolve-ItemPath -Path $SXAStorefrontThemeWdpFullPath");
+            file.WriteLine("\tCommercexAnalyticsWdpFullPath            = Resolve-ItemPath -Path $CommercexAnalyticsWdpFullPath");
+            file.WriteLine("\tCommercexProfilesWdpFullPath             = Resolve-ItemPath -Path $CommercexProfilesWdpFullPath");
+            file.WriteLine("\tCommerceMAWdpFullPath                    = Resolve-ItemPath -Path $CommerceMAWdpFullPath");
+            file.WriteLine("\tCommerceMAForAutomationEngineZIPFullPath = Resolve-ItemPath -Path $CommerceMAForAutomationEngineZIPFullPath");
+            if (Version.SitecoreVersion != "10.3.0")
+            {
+                file.WriteLine("\tSXAModuleZIPFullPath                     = Resolve-ItemPath -Path $SXAModuleZIPFullPath");
+                file.WriteLine("\tPowerShellExtensionsModuleZIPFullPath    = Resolve-ItemPath -Path $PowerShellExtensionsModuleZIPFullPath");
+            }
             file.WriteLine("\tBizFxPackage                             = Resolve-ItemPath -Path $BizFxPackage");
             file.WriteLine("\tCommerceEngineWdpFullPath                = Resolve-ItemPath -Path $CommerceEngineWdpFullPath");
             file.WriteLine("\tHabitatImagesWdpFullPath                 = Resolve-ItemPath -Path $HabitatImagesWdpFullPath");
@@ -2046,7 +2609,10 @@ namespace SCIA
             file.WriteLine("\tEnvironments                             = $Environments");
             file.WriteLine("\tEnvironmentsGuids                        = $EnvironmentsGuids");
             file.WriteLine("\tMinionEnvironments                       = $MinionEnvironments");
-            file.WriteLine("\tCommerceOpsServicesPort                  = $CommerceOpsServicesPort");
+
+            if (Version.SitecoreVersion != "10.3.0")
+                file.WriteLine("\tCommerceOpsServicesPort                  = $CommerceOpsServicesPort");
+
             file.WriteLine("\tCommerceShopsServicesPort                = $CommerceShopsServicesPort");
             file.WriteLine("\tCommerceAuthoringServicesPort            = $CommerceAuthoringServicesPort");
             file.WriteLine("\tCommerceMinionsServicesPort              = $CommerceMinionsServicesPort");
@@ -2353,6 +2919,9 @@ namespace SCIA
                 case "10.1.0":
                     Write101File(@".\" + destSifFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", habitatExists, false);
                     break;
+                case "10.3.0":
+                    Write103File(@".\" + destSifFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", habitatExists, false);
+                    break;
                 case "9.3":
                     Write93File(@".\" + destSifFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", habitatExists, false);
                     break;
@@ -2649,12 +3218,17 @@ namespace SCIA
             uninstall = CheckCommerceInstallDir();
 
             var prereqs = CommonFunctions.GetVersionPrerequisites(Version.SitecoreVersion, "commerce");
-            var sxaZipName = prereqs.Where(p => p.PrerequisiteKey == "sxa").ToList().FirstOrDefault().PrerequisiteName;
-            var pseZipName = prereqs.Where(p => p.PrerequisiteKey == "psextension").ToList().FirstOrDefault().PrerequisiteName;
-            if (!CommonFunctions.CheckPrerequisiteList(destFolder,sxaZipName,pseZipName))
+
+            if (Version.SitecoreVersion!="10.3.0")
             {
-                SetStatusMessage("One or more pre-requisites missing.... Click Pre-requisites button to check...", Color.Red);
-                return false;
+                var sxaZipName = prereqs.Where(p => p.PrerequisiteKey == "sxa").ToList().FirstOrDefault().PrerequisiteName;
+                var pseZipName = prereqs.Where(p => p.PrerequisiteKey == "psextension").ToList().FirstOrDefault().PrerequisiteName;
+                if (!CommonFunctions.CheckPrerequisiteList(destFolder, sxaZipName, pseZipName))
+                {
+                    SetStatusMessage("One or more pre-requisites missing.... Click Pre-requisites button to check...", Color.Red);
+                    return false;
+                }
+
             }
 
             if (!ValidateAll(uninstall)) return false;

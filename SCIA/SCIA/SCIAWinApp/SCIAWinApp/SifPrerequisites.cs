@@ -152,8 +152,19 @@ namespace SCIA
             file.WriteLine("        },");
             file.WriteLine("        \"DotNetHostingDownload\": {");
             file.WriteLine("            \"Type\": \"String\",");
-            file.WriteLine("            \"Description\": \"Download location of .net 6.0.x Hosting Bundle\",");
-            file.WriteLine("            \"DefaultValue\": \"https://download.visualstudio.microsoft.com/download/pr/7de08ae2-75e6-49b8-b04a-31526204fa7b/c1cee44a509495e4bb0bba49f52c719a/dotnet-hosting-6.0.7-win.exe\"");
+            file.WriteLine("            \"Description\": \"Download location of .net Hosting Bundle\",");
+            switch (Version.SitecoreVersion)
+                {
+                    case "10.0":
+                       file.WriteLine("            \"DefaultValue\": \"https://download.visualstudio.microsoft.com/download/pr/633b17e5-a489-4da4-9713-5ddedf17a5f0/5c18f4203e837dd90ba3da59eee92b01/dotnet-hosting-2.1.15-win.exe\"");
+                       break;
+                    case "10.1.0":
+                        file.WriteLine("            \"DefaultValue\": \"https://download.visualstudio.microsoft.com/download/pr/5ee633f2-bf6d-49bd-8fb6-80c861c36d54/caa93641707e1fd5b8273ada22009246/dotnet-hosting-2.2.1-win.exe\"");
+                        break;
+                    default:
+                        file.WriteLine("            \"DefaultValue\": \"https://download.visualstudio.microsoft.com/download/pr/7de08ae2-75e6-49b8-b04a-31526204fa7b/c1cee44a509495e4bb0bba49f52c719a/dotnet-hosting-6.0.7-win.exe\"");
+                        break;
+            }
             file.WriteLine("        },");
             file.WriteLine("        \"DotNet4RegistryLocation\": {");
             file.WriteLine("            \"Type\": \"String\",");
