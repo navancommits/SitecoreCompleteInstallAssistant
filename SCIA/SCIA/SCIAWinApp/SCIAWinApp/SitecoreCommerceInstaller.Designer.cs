@@ -1391,7 +1391,6 @@
             // 
             // txtUserName
             // 
-            this.txtUserName.Enabled = false;
             this.txtUserName.Location = new System.Drawing.Point(278, 69);
             this.txtUserName.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtUserName.MaxLength = 14;

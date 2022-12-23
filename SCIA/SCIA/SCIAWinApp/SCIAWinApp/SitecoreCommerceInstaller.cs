@@ -45,7 +45,7 @@ namespace SCIA
         string httpsString = "https://";//"https://
         string sharedDbSuffix = "shared";
         string globalDbSuffix = "global";
-        string userSuffixString = "_User";
+        string userSuffixString = "User";
         string storefrontHostSuffix = ".storefront.com";
         string hostSuffix = ".com";
         string coreDbSuffix = "_Core";
