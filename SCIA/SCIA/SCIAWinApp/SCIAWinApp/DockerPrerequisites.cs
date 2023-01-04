@@ -173,7 +173,7 @@ namespace SCIA
         private bool WindowsVersionOk()
         {
             string version = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows NT\CurrentVersion", "ProductName", null);
-            if (version == "Windows 10 Pro" || version == "Windows 10 Enterprise") { return true; }
+            if (version == "Windows 10 Pro" || version.StartsWith("Windows 10 Enterprise")) { return true; }
             lblStatus.ForeColor = Color.Red;
             lblStatus.Text = "Windows Edition must be Pro or Enterprise Build for Docker Windows";
             AllChecked = false;

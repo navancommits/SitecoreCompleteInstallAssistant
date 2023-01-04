@@ -158,7 +158,7 @@ namespace SCIA
         private bool WindowsVersionOk()
         {
             string version = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows NT\CurrentVersion", "ProductName", null);
-            if (version == "Windows 10 Pro" || version == "Windows 10 Enterprise") { return true; }
+            if (version == "Windows 10 Pro" || version.StartsWith("Windows 10 Enterprise")) { return true; }
             lblStatus.ForeColor = Color.Red;
             lblStatus.Text = "Windows Edition must be Pro or Enterprise Build for Docker Windows";
             return false;
@@ -258,7 +258,7 @@ namespace SCIA
             file.WriteLine("Set-DockerComposeEnvFileVariable \"SQL_SA_PASSWORD\" -Value $SqlSaPassword");
             file.WriteLine();
             file.WriteLine("# TELERIK_ENCRYPTION_KEY = random 64-128 chars");
-            file.WriteLine("Set-DockerComposeEnvFileVariable \"TELERIK_ENCRYPTION_KEY\" -Value (Get-SitecoreRandomString 128)");
+            file.WriteLine("Set-DockerComposeEnvFileVariable \"TELERIK_ENCRYPTION_KEY\" -Value (Get-SitecoreRandomString 128 -DisallowSpecial)");
             file.WriteLine();
             file.WriteLine("# SITECORE_IDSECRET = random 64 chars");
             file.WriteLine("Set-DockerComposeEnvFileVariable \"SITECORE_IDSECRET\" -Value (Get-SitecoreRandomString 64 -DisallowSpecial)");

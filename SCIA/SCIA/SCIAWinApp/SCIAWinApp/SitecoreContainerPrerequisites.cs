@@ -32,14 +32,14 @@ namespace SCIA
         private void CheckPrerequisites()
         {
             if (CommonFunctions.FileSystemEntryExists(SiteName.Prefix, null, "folder", true)) { chkSitecoreContainer.Checked = true; chkSitecoreContainer.BackColor = Color.LightGreen; }
-            if (CommonFunctions.FileSystemEntryExists("\\"  + ZipList.SitecoreContainerZip + xp0Path + "license.xml",null)) { chkLicenseFile.Checked = true; chkLicenseFile.BackColor = Color.LightGreen; }
+            if (CommonFunctions.FileSystemEntryExists(".\\" + SiteName.Prefix + "\\"  + ZipList.SitecoreContainerZip + xp0Path + "license.xml",null)) { chkLicenseFile.Checked = true; chkLicenseFile.BackColor = Color.LightGreen; }
             if (WindowsVersionOk()) { chkWindowsEdition.Checked = true; chkWindowsEdition.BackColor = Color.LightGreen; };
             if (CommonFunctions.FileSystemEntryExists("c:\\program files\\docker",null,"folder")) { chkDocker.Checked = true; chkDocker.BackColor = Color.LightGreen; }
         }
         private bool WindowsVersionOk()
         {
             string version = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows NT\CurrentVersion", "ProductName", null);
-            if (version == "Windows 10 Pro" || version == "Windows 10 Enterprise") { return true; }
+            if (version == "Windows 10 Pro" || version.StartsWith("Windows 10 Enterprise")) { return true; }
             lblStatus.ForeColor = Color.Red;
             lblStatus.Text = "Windows Edition must be Pro or Enterprise Build for Docker Windows";
             return false;
@@ -83,7 +83,7 @@ namespace SCIA
             file.WriteLine("param(");
             file.WriteLine("\t[Parameter(Mandatory = $false)]");
             file.WriteLine("\t[ValidateNotNullOrEmpty()]");
-            file.WriteLine("\t[string]$InstallSourcePath = (Join-Path $PSScriptRoot '.\\" + SiteName.Prefix + "'),");
+            file.WriteLine("\t[string]$InstallSourcePath = $PSScriptRoot,");
             file.WriteLine();
             file.WriteLine("\t[Parameter(Mandatory = $false)]");
             file.WriteLine("\t[ValidateNotNullOrEmpty()]");
@@ -151,7 +151,7 @@ namespace SCIA
             file.WriteLine("$preference = $ProgressPreference");
             file.WriteLine("$ProgressPreference = \"SilentlyContinue\"");
             file.WriteLine(".\\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllSitecoreContainerPrereqs" + SiteName.Prefix + Version.SitecoreVersion + ".ps1");
-            file.WriteLine("Expand-Archive -Force -LiteralPath " + ZipList.SitecoreContainerZip + ".zip -DestinationPath .\\" + SiteName.Prefix + "\\" + ZipList.SitecoreContainerZip);
+            file.WriteLine("Expand-Archive -Force -LiteralPath .\\" +  ZipList.SitecoreContainerZip + ".zip -DestinationPath .\\" + SiteName.Prefix + "\\" + ZipList.SitecoreContainerZip);
             file.WriteLine();
             file.WriteLine("if (-not(Test-Path -Path 'C:\\program files\\docker' -PathType Container)) {");
             file.WriteLine("if (-not(Test-Path -Path 'Docker Desktop Installer.exe' -PathType Leaf)) {");
@@ -161,7 +161,7 @@ namespace SCIA
             file.WriteLine(
                 "\tStart-Process -FilePath \"Docker Desktop Installer.exe\"");
             file.WriteLine("}");
-            file.WriteLine("if ((Test-Path '" + ZipList.SitecoreContainerZip + ".zip' -PathType Leaf))");
+            file.WriteLine("if ((Test-Path '.\\" + SiteName.Prefix + "\\" + ZipList.SitecoreContainerZip + "' -PathType Container))");
             file.WriteLine("{");
             file.WriteLine("Copy-Item -Force -Path \"license.xml\" -Destination \".\\" + SiteName.Prefix  + "\\" + ZipList.SitecoreContainerZip + xp0Path + "license.xml\"");
             file.WriteLine("}");

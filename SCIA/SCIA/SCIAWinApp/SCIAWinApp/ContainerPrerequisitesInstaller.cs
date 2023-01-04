@@ -188,7 +188,7 @@ namespace SCIA
             file.WriteLine("Set-DockerComposeEnvFileVariable \"SQL_SA_PASSWORD\" -Value $SqlSaPassword");
             file.WriteLine();
             file.WriteLine("# TELERIK_ENCRYPTION_KEY = random 64-128 chars");
-            file.WriteLine("Set-DockerComposeEnvFileVariable \"TELERIK_ENCRYPTION_KEY\" -Value (Get-SitecoreRandomString 128)");
+            file.WriteLine("Set-DockerComposeEnvFileVariable \"TELERIK_ENCRYPTION_KEY\" -Value (Get-SitecoreRandomString 128  -DisallowSpecial)");
             file.WriteLine();
             file.WriteLine("# SITECORE_IDSECRET = random 64 chars");
             file.WriteLine("Set-DockerComposeEnvFileVariable \"SITECORE_IDSECRET\" -Value (Get-SitecoreRandomString 64 -DisallowSpecial)");
