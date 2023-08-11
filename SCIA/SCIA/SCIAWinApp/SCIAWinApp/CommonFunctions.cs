@@ -671,7 +671,7 @@ namespace SCIA
             var script = scriptname;
             var startInfo = new ProcessStartInfo()
             {
-                FileName = @"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe",
+                FileName = @"powershell.exe",
                 WorkingDirectory = workingDirectory,
                 Arguments = $"-NoProfile -noexit -ExecutionPolicy Bypass \"{script}\"",
                 UseShellExecute = false
