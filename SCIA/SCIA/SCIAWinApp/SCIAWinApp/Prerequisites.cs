@@ -72,7 +72,7 @@ namespace SCIA
             if (CommonFunctions.FileSystemEntryExists(destFolder, "Sitecore Commerce ExperienceProfile Core OnPrem *.zip")) { chkExperienceProfile.Checked = true; chkExperienceProfile.BackColor = Color.LightGreen; }
             if (CommonFunctions.FileSystemEntryExists(destFolder, "Sitecore Commerce Marketing Automation Core OnPrem *.zip")) { chkCommerceMarketingAutomationCore.Checked = true; chkCommerceMarketingAutomationCore.BackColor = Color.LightGreen; }
             if (CommonFunctions.FileSystemEntryExists(destFolder, "Sitecore Commerce Marketing Automation for AutomationEngine *.zip")) { chkMarketingAutomationAutomationEngine.Checked = true; chkMarketingAutomationAutomationEngine.BackColor = Color.LightGreen; }
-            if (Version.SitecoreVersion != "10.3.0")
+            if (Version.SitecoreVersion != "10.3.0" && Version.SitecoreVersion != "10.3.1")
             {
                 if (CommonFunctions.FileSystemEntryExists(destFolder, prereqs.Where(p => p.PrerequisiteKey == sxaZipKey).ToList().FirstOrDefault().PrerequisiteName)) { chkSitecoreExperienceAccelerator.Checked = true; chkSitecoreExperienceAccelerator.BackColor = Color.LightGreen; }
             }
@@ -85,7 +85,7 @@ namespace SCIA
             if (CommonFunctions.FileSystemEntryExists(destFolder, "Sitecore.BizFX.SDK.*.zip")) { chkBizFxSdk.Checked = true; chkBizFxSdk.BackColor = Color.LightGreen; }
             if (CommonFunctions.FileSystemEntryExists(destFolder, "Sitecore.Commerce.Engine.OnPrem.Solr.*.zip")) { chkCommerceEngineSolr.Checked = true; chkCommerceEngineSolr.BackColor = Color.LightGreen; }
             if (CommonFunctions.FileSystemEntryExists(destFolder,"Sitecore.Commerce.Habitat.Images.*.zip")) { chkHabitatImages.Checked = true; chkHabitatImages.BackColor = Color.LightGreen; }
-            if (Version.SitecoreVersion != "10.3.0")
+            if (Version.SitecoreVersion != "10.3.0" && Version.SitecoreVersion != "10.3.1")
             {
                 if (CommonFunctions.FileSystemEntryExists(destFolder, prereqs.Where(p => p.PrerequisiteKey == psExtensionZipKey).ToList().FirstOrDefault().PrerequisiteName)) { chkPowershellExtensions.Checked = true; chkPowershellExtensions.BackColor = Color.LightGreen; }
             }
@@ -239,7 +239,7 @@ namespace SCIA
             file.WriteLine("$sitecoreDownloadUrl = \"https://sitecoredev.azureedge.net\"");
             file.WriteLine("$packages = @{");
             file.WriteLine("\"" + prereqs.Where(p => p.PrerequisiteKey == commerceZipKey).ToList().FirstOrDefault().PrerequisiteName + ".zip\" = \""+ prereqs.Where(p => p.PrerequisiteKey == commerceZipKey).ToList().FirstOrDefault().PrerequisiteUrl + "\"");
-            if (Version.SitecoreVersion != "10.3.0")
+            if (Version.SitecoreVersion != "10.3.0" && Version.SitecoreVersion != "10.3.1")
             {
                 file.WriteLine("\"" + prereqs.Where(p => p.PrerequisiteKey == sxaZipKey).ToList().FirstOrDefault().PrerequisiteName + "\" = \"" + prereqs.Where(p => p.PrerequisiteKey == sxaZipKey).ToList().FirstOrDefault().PrerequisiteUrl + "\"");
                 file.WriteLine("\"" + prereqs.Where(p => p.PrerequisiteKey == psExtensionZipKey).ToList().FirstOrDefault().PrerequisiteName + "\" = \"" + prereqs.Where(p => p.PrerequisiteKey == psExtensionZipKey).ToList().FirstOrDefault().PrerequisiteUrl + "\"");
@@ -307,7 +307,7 @@ namespace SCIA
             }            
             file.WriteLine("Expand-Archive -Force -LiteralPath " + prereqs.Where(p => p.PrerequisiteKey == commerceZipKey).ToList().FirstOrDefault().PrerequisiteName + "\\" + prereqs.Where(p => p.PrerequisiteKey == commerceSifZipKey).ToList().FirstOrDefault().PrerequisiteName + ".zip -DestinationPath .\\" + ZipList.CommerceZip + "\\" + prereqs.Where(p => p.PrerequisiteKey == commerceSifZipKey).ToList().FirstOrDefault().PrerequisiteName);
             file.WriteLine("Invoke-WebRequest -Uri \"" + prereqs.Where(p => p.PrerequisiteKey == msBuildZipKey).ToList().FirstOrDefault().PrerequisiteUrl + "\" -OutFile \".\\" + prereqs.Where(p => p.PrerequisiteKey == commerceZipKey).ToList().FirstOrDefault().PrerequisiteName + "\\" + prereqs.Where(p => p.PrerequisiteKey == msBuildZipKey).ToList().FirstOrDefault().PrerequisiteName + ".zip\"");
-            if (Version.SitecoreVersion != "10.3.0")
+            if (Version.SitecoreVersion != "10.3.0" && Version.SitecoreVersion != "10.3.1")
             {
                 file.WriteLine("Copy-Item -Force -Path \"" + prereqs.Where(p => p.PrerequisiteKey == sxaZipKey).ToList().FirstOrDefault().PrerequisiteName + "\" -Destination \".\\" + prereqs.Where(p => p.PrerequisiteKey == commerceZipKey).ToList().FirstOrDefault().PrerequisiteName + "\\" + prereqs.Where(p => p.PrerequisiteKey == sxaZipKey).ToList().FirstOrDefault().PrerequisiteName + "\"");
                 file.WriteLine(

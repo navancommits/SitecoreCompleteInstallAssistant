@@ -21,15 +21,8 @@ namespace SCIA
 
             switch (Version.SitecoreVersion)
             {
-                case "10.3.0":
-                case "10.2.0":
-                case "10.1.0":
-                case "10.0":
-                case "10.0.1":
-                case "9.3":
-                    zipVersions = CommonFunctions.GetZipVersionData(Version.SitecoreVersion, "sitecoredevsetup");
-                    break;                
                 default:
+                    zipVersions = CommonFunctions.GetZipVersionData(Version.SitecoreVersion, "sitecoredevsetup");
                     break;
             }
         }

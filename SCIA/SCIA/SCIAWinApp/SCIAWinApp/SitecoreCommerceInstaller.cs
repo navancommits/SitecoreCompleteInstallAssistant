@@ -339,7 +339,7 @@ namespace SCIA
             file.WriteLine("    AzureSearchAdminKey                      = \"\"");
             file.WriteLine("    AzureSearchQueryKey                      = \"\"");
 
-            if (Version.SitecoreVersion != "10.3.0")
+            if (Version.SitecoreVersion != "10.3.0" && Version.SitecoreVersion != "10.3.1")
                 file.WriteLine("    CommerceOpsServicesPort                  = \"" + txtCommerceOpsSvcPort.Text + "\"");
 
             file.WriteLine("    CommerceShopsServicesPort                = \"" + txtCommerceShopsServicesPort.Text + "\"");
@@ -360,7 +360,7 @@ namespace SCIA
             file.WriteLine("    CEConnectWdpFullPath                     = Resolve-Path -Path \"$XCInstallRoot\\Sitecore Commerce Engine Connect*.scwdp.zip\"");
             file.WriteLine("    CommerceMAForAutomationEngineZIPFullPath = Resolve-Path -Path \"$XCInstallRoot\\Sitecore Commerce Marketing Automation for AutomationEngine*.zip\"");
 
-            if (Version.SitecoreVersion != "10.3.0")
+            if (Version.SitecoreVersion != "10.3.0" && Version.SitecoreVersion != "10.3.1")
             {
 
                 file.WriteLine("    PowerShellExtensionsModuleZIPFullPath    = Resolve-Path -Path \"$XCInstallRoot\\Sitecore PowerShell Extensions*.zip\"");
@@ -928,7 +928,7 @@ namespace SCIA
             file.WriteLine("\t# The name of the global database for the Commerce Services.");
             file.WriteLine("\t[string]$CommerceServicesGlobalDbName =  \"" + txtCommerceGlobalDbName.Text + "\",");
 
-            if (Version.SitecoreVersion != "10.3.0")
+            if (Version.SitecoreVersion != "10.3.0" && Version.SitecoreVersion != "10.3.1")
             {
 
                 file.WriteLine("\t# The port for the Commerce Ops Service.");
@@ -1060,7 +1060,7 @@ namespace SCIA
             file.WriteLine("\tCommerceMAWdpFullPath                    = Resolve-ItemPath -Path $CommerceMAWdpFullPath");
             file.WriteLine("\tCommerceMAForAutomationEngineZIPFullPath = Resolve-ItemPath -Path $CommerceMAForAutomationEngineZIPFullPath");
 
-            if (Version.SitecoreVersion != "10.3.0")
+            if (Version.SitecoreVersion != "10.3.0" && Version.SitecoreVersion != "10.3.1")
             {
 
                 file.WriteLine("\tSXAModuleZIPFullPath                     = Resolve-ItemPath -Path $SXAModuleZIPFullPath");
@@ -1095,7 +1095,7 @@ namespace SCIA
             file.WriteLine("\tEnvironmentsGuids                        = $EnvironmentsGuids");
             file.WriteLine("\tMinionEnvironments                       = $MinionEnvironments");
 
-            if (Version.SitecoreVersion != "10.3.0")
+            if (Version.SitecoreVersion != "10.3.0" && Version.SitecoreVersion != "10.3.1")
                 file.WriteLine("\tCommerceOpsServicesPort                  = $CommerceOpsServicesPort");
 
             file.WriteLine("\tCommerceShopsServicesPort                = $CommerceShopsServicesPort");
@@ -1337,7 +1337,7 @@ namespace SCIA
             file.WriteLine(
                 "\t[string]$CommerceMAForAutomationEngineZIPFullPath = \"$XCInstallRoot\\Sitecore Commerce Marketing Automation for AutomationEngine*.zip\",");
 
-            if (Version.SitecoreVersion != "10.3.0")
+            if (Version.SitecoreVersion != "10.3.0" && Version.SitecoreVersion != "10.3.1")
             {
 
                 file.WriteLine(
@@ -1438,7 +1438,7 @@ namespace SCIA
             file.WriteLine("\t# The name of the archive database for the Commerce Services.");
             file.WriteLine("\t[string]$CommerceServicesArchiveDbName = \"" + txtSiteNamePrefix.Text  + "_SitecoreCommerce_ArchiveSharedEnvironments" + "\",");
 
-            if (Version.SitecoreVersion != "10.3.0")
+            if (Version.SitecoreVersion != "10.3.0" && Version.SitecoreVersion != "10.3.1")
             {
 
                 file.WriteLine("\t# The port for the Commerce Ops Service.");
@@ -1571,7 +1571,7 @@ namespace SCIA
             file.WriteLine("\tCommerceMAWdpFullPath                    = Resolve-ItemPath -Path $CommerceMAWdpFullPath");
             file.WriteLine("\tCommerceMAForAutomationEngineZIPFullPath = Resolve-ItemPath -Path $CommerceMAForAutomationEngineZIPFullPath");
 
-            if (Version.SitecoreVersion != "10.3.0")
+            if (Version.SitecoreVersion != "10.3.0" && Version.SitecoreVersion != "10.3.1")
             {
                 file.WriteLine("\tSXAModuleZIPFullPath                     = Resolve-ItemPath -Path $SXAModuleZIPFullPath");
                 file.WriteLine("\tPowerShellExtensionsModuleZIPFullPath    = Resolve-ItemPath -Path $PowerShellExtensionsModuleZIPFullPath");
@@ -1607,7 +1607,7 @@ namespace SCIA
             file.WriteLine("\tEnvironmentsGuids                        = $EnvironmentsGuids");
             file.WriteLine("\tMinionEnvironments                       = $MinionEnvironments");
 
-            if (Version.SitecoreVersion != "10.3.0")
+            if (Version.SitecoreVersion != "10.3.0" && Version.SitecoreVersion != "10.3.1")
                 file.WriteLine("\tCommerceOpsServicesPort                  = $CommerceOpsServicesPort");
 
             file.WriteLine("\tCommerceShopsServicesPort                = $CommerceShopsServicesPort");
@@ -2064,7 +2064,7 @@ namespace SCIA
             file.WriteLine("\tCommerceMAWdpFullPath                    = Resolve-ItemPath -Path $CommerceMAWdpFullPath");
             file.WriteLine("\tCommerceMAForAutomationEngineZIPFullPath = Resolve-ItemPath -Path $CommerceMAForAutomationEngineZIPFullPath");
 
-            if (Version.SitecoreVersion != "10.3.0")
+            if (Version.SitecoreVersion != "10.3.0" && Version.SitecoreVersion != "10.3.1")
             {
 
                 file.WriteLine("\tSXAModuleZIPFullPath                     = Resolve-ItemPath -Path $SXAModuleZIPFullPath");
@@ -2101,7 +2101,7 @@ namespace SCIA
             file.WriteLine("\tEnvironmentsGuids                        = $EnvironmentsGuids");
             file.WriteLine("\tMinionEnvironments                       = $MinionEnvironments");
 
-            if (Version.SitecoreVersion != "10.3.0")
+            if (Version.SitecoreVersion != "10.3.0" && Version.SitecoreVersion != "10.3.1")
                 file.WriteLine("\tCommerceOpsServicesPort                  = $CommerceOpsServicesPort");
 
             file.WriteLine("\tCommerceShopsServicesPort                = $CommerceShopsServicesPort");
@@ -2346,8 +2346,8 @@ namespace SCIA
                 "\t# Path to the Sitecore Commerce Marketing Automation for AutomationEngine zip file.");
             file.WriteLine(
                 "\t[string]$CommerceMAForAutomationEngineZIPFullPath = \"$XCInstallRoot\\Sitecore Commerce Marketing Automation for AutomationEngine*.zip\",");
-
-            if (Version.SitecoreVersion != "10.3.0")
+             
+            if (Version.SitecoreVersion != "10.3.0" && Version.SitecoreVersion != "10.3.1")
             {
 
                 file.WriteLine(
@@ -2445,7 +2445,7 @@ namespace SCIA
             file.WriteLine("\t# The name of the global database for the Commerce Services.");
             file.WriteLine("\t[string]$CommerceServicesGlobalDbName =  \"" + txtCommerceGlobalDbName.Text + "\",");
 
-            if (Version.SitecoreVersion != "10.3.0")
+            if (Version.SitecoreVersion != "10.3.0" && Version.SitecoreVersion != "10.3.1")
             {
 
                 file.WriteLine("\t# The port for the Commerce Ops Service.");
@@ -2577,7 +2577,7 @@ namespace SCIA
             file.WriteLine("\tCommercexProfilesWdpFullPath             = Resolve-ItemPath -Path $CommercexProfilesWdpFullPath");
             file.WriteLine("\tCommerceMAWdpFullPath                    = Resolve-ItemPath -Path $CommerceMAWdpFullPath");
             file.WriteLine("\tCommerceMAForAutomationEngineZIPFullPath = Resolve-ItemPath -Path $CommerceMAForAutomationEngineZIPFullPath");
-            if (Version.SitecoreVersion != "10.3.0")
+            if (Version.SitecoreVersion != "10.3.0" && Version.SitecoreVersion != "10.3.1")
             {
                 file.WriteLine("\tSXAModuleZIPFullPath                     = Resolve-ItemPath -Path $SXAModuleZIPFullPath");
                 file.WriteLine("\tPowerShellExtensionsModuleZIPFullPath    = Resolve-ItemPath -Path $PowerShellExtensionsModuleZIPFullPath");
@@ -2610,7 +2610,7 @@ namespace SCIA
             file.WriteLine("\tEnvironmentsGuids                        = $EnvironmentsGuids");
             file.WriteLine("\tMinionEnvironments                       = $MinionEnvironments");
 
-            if (Version.SitecoreVersion != "10.3.0")
+            if (Version.SitecoreVersion != "10.3.0" && Version.SitecoreVersion != "10.3.1")
                 file.WriteLine("\tCommerceOpsServicesPort                  = $CommerceOpsServicesPort");
 
             file.WriteLine("\tCommerceShopsServicesPort                = $CommerceShopsServicesPort");
@@ -2919,6 +2919,7 @@ namespace SCIA
                 case "10.1.0":
                     Write101File(@".\" + destSifFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", habitatExists, false);
                     break;
+                case "10.3.1":
                 case "10.3.0":
                     Write103File(@".\" + destSifFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", habitatExists, false);
                     break;
@@ -3219,7 +3220,7 @@ namespace SCIA
 
             var prereqs = CommonFunctions.GetVersionPrerequisites(Version.SitecoreVersion, "commerce");
 
-            if (Version.SitecoreVersion!="10.3.0")
+            if (Version.SitecoreVersion!="10.3.0" && Version.SitecoreVersion != "10.3.1")
             {
                 var sxaZipName = prereqs.Where(p => p.PrerequisiteKey == "sxa").ToList().FirstOrDefault().PrerequisiteName;
                 var pseZipName = prereqs.Where(p => p.PrerequisiteKey == "psextension").ToList().FirstOrDefault().PrerequisiteName;

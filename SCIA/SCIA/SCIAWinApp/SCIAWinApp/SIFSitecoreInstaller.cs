@@ -32,18 +32,7 @@ namespace SCIA
             InitializeComponent();
             this.Text = this.Text + " for Sitecore v" + Version.SitecoreVersion;
             switch (Version.SitecoreVersion)
-            {
-                case "10.3.0":
-                case "10.2.0":
-                case "10.1.1":
-                case "10.1.0":
-                case "10.0.1":
-                case "10.0":
-                case "9.3":
-                case "9.2":
-                    destFolder = CommonFunctions.GetZipNamefromWdpVersion("sitecoredevsetup", Version.SitecoreVersion);
-                    prereqs = CommonFunctions.GetVersionPrerequisites(Version.SitecoreVersion, "sitecoredevsetup");
-                    break;
+            {                
                 case "9.0":
                 case "9.0.1":
                 case "9.0.2":
@@ -53,7 +42,10 @@ namespace SCIA
                     xp0Install = true;
                     break;
                 default:
+                    destFolder = CommonFunctions.GetZipNamefromWdpVersion("sitecoredevsetup", Version.SitecoreVersion);
+                    prereqs = CommonFunctions.GetVersionPrerequisites(Version.SitecoreVersion, "sitecoredevsetup");
                     break;
+
             }
             tabDetails.Region = new Region(tabDetails.DisplayRectangle);
             ToggleEnableControls(false);
@@ -3008,19 +3000,7 @@ namespace SCIA
             if (!CheckAllValidations()) return;
 
             switch (Version.SitecoreVersion)
-            {
-                case "10.3.0":
-                case "10.2.0":
-                case "10.1.1":
-                case "10.0.1":
-                case "10.1.0":
-                case "10.0":
-                case "9.3":
-                    WriteSiteSingleDeveloperJsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "SXA-SingleDeveloper.json");
-                    WriteJsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "SingleDeveloperwithSXA.json");
-                    WriteFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", false);
-                    WriteFile(@".\"  + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1", true);
-                    break;
+            {               
                 case "9.2":
                     Write92JsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + txtSiteNamePrefix.Text + "-SingleDeveloper.json");
                     Write92File(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", false);
@@ -3039,6 +3019,10 @@ namespace SCIA
                     Write90PSFile(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", false);
                     DeleteScript(@".\" + destFolder + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Delete_Script.ps1"); break;
                 default:
+                    WriteSiteSingleDeveloperJsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "SXA-SingleDeveloper.json");
+                    WriteJsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "SingleDeveloperwithSXA.json");
+                    WriteFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", false);
+                    WriteFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1", true);
                     break;
             }
 
@@ -3339,18 +3323,6 @@ namespace SCIA
 
             switch (Version.SitecoreVersion)
             {
-                case "10.3.0":
-                case "10.2.0":
-                case "10.1.1":
-                case "10.0.1":
-                case "10.1.0":
-                case "10.0":
-                case "9.3":
-                    WriteSiteSingleDeveloperJsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "SXA-SingleDeveloper.json");
-                    WriteJsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "SingleDeveloperwithSXA.json");
-                    WriteFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", false);
-                    CommonFunctions.LaunchPSScript(@".\'"  + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1'", destFolder);
-                    break;
                 case "9.2":
                     Write92JsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + txtSiteNamePrefix.Text + "-SingleDeveloper.json");
                     Write92File(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", false);
@@ -3370,13 +3342,17 @@ namespace SCIA
                     CommonFunctions.LaunchPSScript(@".\'" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1'", destFolder);
                     break;
                 default:
+                    WriteSiteSingleDeveloperJsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "SXA-SingleDeveloper.json");
+                    WriteJsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "SingleDeveloperwithSXA.json");
+                    WriteFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1", false);
+                    CommonFunctions.LaunchPSScript(@".\'" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_Install_Script.ps1'", destFolder);
                     break;
             }
 
             lblStatus.Text = "Installation successfully launched through Powershell....";
             SaveSCIAData();
             lblStatus.ForeColor = Color.DarkGreen;
-            ToggleEnableControls(false);
+            //ToggleEnableControls(false);
         }
 
         private void DeleteScript(string path)
@@ -3641,18 +3617,6 @@ namespace SCIA
 
             switch (Version.SitecoreVersion)
             {
-                case "10.3.0":
-                case "10.2.0":
-                case "10.1.1":
-                case "10.0.1":
-                case "10.1.0":
-                case "10.0":
-                case "9.3":
-                    WriteSiteSingleDeveloperJsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "SXA-SingleDeveloper.json");
-                    WriteJsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "SingleDeveloperwithSXA.json");
-                    WriteFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1", true);
-                    CommonFunctions.LaunchPSScript(@".\'"  + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1'", destFolder);
-                    break;
                 case "9.2":
                     Write92JsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + txtSiteNamePrefix.Text + "-SingleDeveloper.json");
                     Write92File(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1", true);
@@ -3671,6 +3635,10 @@ namespace SCIA
                     CommonFunctions.LaunchPSScript(@".\'"  + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1'", destFolder);
                     break;
                 default:
+                    WriteSiteSingleDeveloperJsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "SXA-SingleDeveloper.json");
+                    WriteJsonFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "SingleDeveloperwithSXA.json");
+                    WriteFile(@".\" + ZipList.SitecoreDevSetupZip + @"\" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1", true);
+                    CommonFunctions.LaunchPSScript(@".\'" + SCIASettings.FilePrefixAppString + txtSiteName.Text + "_UnInstall_Script.ps1'", destFolder);
                     break;
             }
 

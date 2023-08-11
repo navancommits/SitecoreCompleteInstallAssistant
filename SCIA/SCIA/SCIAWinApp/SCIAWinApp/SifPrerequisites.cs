@@ -32,19 +32,6 @@ namespace SCIA
 
             switch (Version.SitecoreVersion)
             {
-                case "10.3.0":
-                case "10.2.0":
-                case "10.1.1":
-                case "10.1.0":
-                case "10.0":
-                case "10.0.1":
-                case "9.3":
-                case "9.2":
-                    destFolder = CommonFunctions.GetZipNamefromWdpVersion("sitecoredevsetup", Version.SitecoreVersion);
-                    zipVersions = CommonFunctions.GetZipVersionData(Version.SitecoreVersion, "sitecoredevsetup");
-                    prereqs = CommonFunctions.GetVersionPrerequisites(version, "sitecoredevsetup");
-                    xpoFile = false;
-                    break;
                 case "9.1.1":
                 case "9.0":
                 case "9.0.1":
@@ -54,6 +41,10 @@ namespace SCIA
                     prereqs = CommonFunctions.GetVersionPrerequisites(version, "sitecoresif");
                     break;
                 default:
+                    destFolder = CommonFunctions.GetZipNamefromWdpVersion("sitecoredevsetup", Version.SitecoreVersion);
+                    zipVersions = CommonFunctions.GetZipVersionData(Version.SitecoreVersion, "sitecoredevsetup");
+                    prereqs = CommonFunctions.GetVersionPrerequisites(version, "sitecoredevsetup");
+                    xpoFile = false;
                     break;
             }
 
@@ -693,20 +684,7 @@ namespace SCIA
             }
 
             switch (Version.SitecoreVersion)
-            {
-                case "10.3.0":
-                case "10.2.0":
-                case "10.1.1":
-                case "10.1.0":
-                case "10.0.1":
-                case "10.0":
-                case "9.3":
-                case "9.2":
-                    WriteWorkerFile(@".\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllPrereqs.ps1");
-                    WriteMainFile(@".\" + SCIASettings.FilePrefixAppString + "DownloadandExpandSifZip.ps1");
-
-                    CommonFunctions.LaunchPSScript(@".\" + SCIASettings.FilePrefixAppString + "DownloadandExpandSifZip -InstallSourcePath \".\"");
-                    break;
+            {                
                 case "9.1":
                 case "9.1.1":
                 case "9.0":
@@ -718,6 +696,10 @@ namespace SCIA
                     CommonFunctions.LaunchPSScript(@".\" + SCIASettings.FilePrefixAppString + "DownloadandExpandXP0SifZip -InstallSourcePath \".\"");
                     break;
                 default:
+                    WriteWorkerFile(@".\" + SCIASettings.FilePrefixAppString + "DownloadandSetupAllPrereqs.ps1");
+                    WriteMainFile(@".\" + SCIASettings.FilePrefixAppString + "DownloadandExpandSifZip.ps1");
+
+                    CommonFunctions.LaunchPSScript(@".\" + SCIASettings.FilePrefixAppString + "DownloadandExpandSifZip -InstallSourcePath \".\"");
                     break;
             }
 
@@ -730,27 +712,17 @@ namespace SCIA
             WritePrerequisitesFile(@".\" + destFolder + "\\Prerequisites.json");//need to generate this for new machines since 9.0.2 doesn't provide a prerequisites.json in the zip
 
             switch (Version.SitecoreVersion)
-            {
-                case "10.3.0":
-                case "10.2.0":
-                case "10.1.1":
-                case "10.1.0":
-                case "10.0.1":
-                case "10.0":
-                case "9.3":
-                case "9.2":
-                case "9.1.1":
-                    if (CommonFunctions.FileSystemEntryExists(destFolder, null, "folder"))
-                    {
-                        CommonFunctions.LaunchPSScript(@"Install-SitecoreConfiguration -Path .\Prerequisites.json", destFolder);
-                    }
-                    break;
+            {               
                 case "9.0":
                 case "9.0.1":
                 case "9.0.2":
                     CommonFunctions.LaunchPSScript(@"Install-SitecoreConfiguration -Path .\Prerequisites.json", destFolder);
                     break;
                 default:
+                    if (CommonFunctions.FileSystemEntryExists(destFolder, null, "folder"))
+                    {
+                        CommonFunctions.LaunchPSScript(@"Install-SitecoreConfiguration -Path .\Prerequisites.json", destFolder);
+                    }
                     break;
             }
             SetStatusMessage("Restart machine for prerequisites install to take effect...", Color.Red);
